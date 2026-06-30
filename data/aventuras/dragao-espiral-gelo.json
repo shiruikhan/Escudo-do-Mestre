@@ -4,11 +4,6 @@
   "nivel_recomendado": "1–6",
   "num_jogadores": "1–5",
   "cenario": "Reinos Esquecidos — Costa da Espada, região de Phandalin",
-  "mapas": [
-    { "nome": "Phandalin", "url": "assets/images/dragao-espiral-gelo/mapa_phandalin.webp" },
-    { "nome": "Costa da Espada", "url": "assets/images/dragao-espiral-gelo/mapa_costa_espada.webp" }
-  ],
-
   "bestiario": {
     "cryovain": {
       "nome": "Cryovain — Dragão Branco Jovem",
@@ -21,12 +16,26 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 16,
       "modificadores": {
-        "FOR": "+4", "DES": "+0", "CON": "+4",
-        "INT": "-2", "SAB": "+0", "CAR": "+1"
+        "FOR": "+4",
+        "DES": "+0",
+        "CON": "+4",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "+1"
       },
-      "salvaguardas": ["DES +3", "CON +7", "SAB +3", "CAR +4"],
-      "pericias": ["Furtividade +7", "Percepção +6"],
-      "imunidades_dano": ["frio"],
+      "salvaguardas": [
+        "DES +3",
+        "CON +7",
+        "SAB +3",
+        "CAR +4"
+      ],
+      "pericias": [
+        "Furtividade +7",
+        "Percepção +6"
+      ],
+      "imunidades_dano": [
+        "frio"
+      ],
       "sentidos": "Percepção às cegas 9 m, Visão no Escuro 36 m",
       "idiomas": "Comum, Dracônico",
       "nd": "6",
@@ -60,7 +69,6 @@
       "localizacao": "Fortaleza da Espiral de Gelo (boss principal); pode ser encontrado em qualquer lugar do mapa (role d20 na tabela de localização do dragão).",
       "notas_dm": "Rolar d20 sempre que os personagens chegarem a ou partirem de um local marcado no mapa para determinar a posição de Cryovain. Matar Cryovain concede um nível extra aos personagens."
     },
-
     "anacoreta-orc": {
       "nome": "Anacoreta dos Orcs",
       "tipo_alinhamento": "Humanoide Médio (orc, metamorfo), Caótico e Mau",
@@ -72,8 +80,12 @@
       "iniciativa": "+1 (11)",
       "percepcao_passiva": 11,
       "modificadores": {
-        "FOR": "+2", "DES": "+1", "CON": "+1",
-        "INT": "+0", "SAB": "+1", "CAR": "+0"
+        "FOR": "+2",
+        "DES": "+1",
+        "CON": "+1",
+        "INT": "+0",
+        "SAB": "+1",
+        "CAR": "+0"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -105,7 +117,6 @@
       "reacoes": [],
       "localizacao": "Círculo do Trovão e Floresta de Neverwinter"
     },
-
     "ankheg": {
       "nome": "Ankheg",
       "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
@@ -117,8 +128,12 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 11,
       "modificadores": {
-        "FOR": "+3", "DES": "+0", "CON": "+1",
-        "INT": "-5", "SAB": "+1", "CAR": "-2"
+        "FOR": "+3",
+        "DES": "+0",
+        "CON": "+1",
+        "INT": "-5",
+        "SAB": "+1",
+        "CAR": "-2"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -141,7 +156,6 @@
       "reacoes": [],
       "localizacao": "Acampamento dos Lenhadores"
     },
-
     "banshee": {
       "nome": "Banshee (Vyldara)",
       "tipo_alinhamento": "Morto-vivo Médio, Caótico e Mau",
@@ -152,14 +166,43 @@
       "iniciativa": "+2 (12)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "-5", "DES": "+2", "CON": "+0",
-        "INT": "+1", "SAB": "+0", "CAR": "+3"
+        "FOR": "-5",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "+1",
+        "SAB": "+0",
+        "CAR": "+3"
       },
-      "salvaguardas": ["SAB +2", "CAR +5"],
+      "salvaguardas": [
+        "SAB +2",
+        "CAR +5"
+      ],
       "pericias": [],
-      "resistencias_dano": ["ácido", "elétrico", "ígneo", "trovão", "contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
-      "imunidades_dano": ["frio", "necrótico", "venenoso"],
-      "imunidades_condicao": ["agarrado", "amedrontado", "caído", "contido", "enfeitiçado", "envenenado", "exaustão", "paralisado", "petrificado"],
+      "resistencias_dano": [
+        "ácido",
+        "elétrico",
+        "ígneo",
+        "trovão",
+        "contundente não-mágico",
+        "cortante não-mágico",
+        "perfurante não-mágico"
+      ],
+      "imunidades_dano": [
+        "frio",
+        "necrótico",
+        "venenoso"
+      ],
+      "imunidades_condicao": [
+        "agarrado",
+        "amedrontado",
+        "caído",
+        "contido",
+        "enfeitiçado",
+        "envenenado",
+        "exaustão",
+        "paralisado",
+        "petrificado"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "Comum, Élfico",
       "nd": "4",
@@ -193,7 +236,6 @@
       "localizacao": "Axeholm (sala A27 — Aposentos da Banshee)",
       "notas_dm": "Vyldara é o espírito da embaixadora élfica que foi aprisionada e morreu em Axeholm. Ela abomina espelhos. A banshee percebe a chegada dos aventureiros com Detectar Vida."
     },
-
     "aranha-gigante": {
       "nome": "Aranha Gigante",
       "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
@@ -205,11 +247,17 @@
       "iniciativa": "+3 (13)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+2", "DES": "+3", "CON": "+1",
-        "INT": "-4", "SAB": "+0", "CAR": "-3"
+        "FOR": "+2",
+        "DES": "+3",
+        "CON": "+1",
+        "INT": "-4",
+        "SAB": "+0",
+        "CAR": "-3"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +7"],
+      "pericias": [
+        "Furtividade +7"
+      ],
       "sentidos": "Percepção às cegas 3 m, Visão no Escuro 18 m",
       "idiomas": "—",
       "nd": "1",
@@ -242,7 +290,6 @@
       "reacoes": [],
       "localizacao": "Axeholm (sala A22 — Bastião Superior)"
     },
-
     "carnical": {
       "nome": "Carniçal",
       "tipo_alinhamento": "Morto-vivo Médio, Caótico e Mau",
@@ -253,13 +300,23 @@
       "iniciativa": "+2 (12)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+1", "DES": "+2", "CON": "+0",
-        "INT": "-2", "SAB": "+0", "CAR": "-2"
+        "FOR": "+1",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "-2"
       },
       "salvaguardas": [],
       "pericias": [],
-      "imunidades_dano": ["venenoso"],
-      "imunidades_condicao": ["enfeitiçado", "envenenado", "exaustão"],
+      "imunidades_dano": [
+        "venenoso"
+      ],
+      "imunidades_condicao": [
+        "enfeitiçado",
+        "envenenado",
+        "exaustão"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "Comum",
       "nd": "1",
@@ -279,7 +336,6 @@
       "reacoes": [],
       "localizacao": "Axeholm (salas A5, A19, A26)"
     },
-
     "caranguejo-gigante": {
       "nome": "Caranguejo Gigante",
       "tipo_alinhamento": "Besta Média, Sem Alinhamento",
@@ -291,11 +347,17 @@
       "iniciativa": "+2 (12)",
       "percepcao_passiva": 9,
       "modificadores": {
-        "FOR": "+1", "DES": "+2", "CON": "+0",
-        "INT": "-5", "SAB": "-1", "CAR": "-4"
+        "FOR": "+1",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "-5",
+        "SAB": "-1",
+        "CAR": "-4"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +4"],
+      "pericias": [
+        "Furtividade +4"
+      ],
       "sentidos": "Percepção às cegas 9 m",
       "idiomas": "—",
       "nd": "1/8",
@@ -317,7 +379,6 @@
       "localizacao": "Torre das Tempestades (costa a oeste de Phandalin)",
       "notas_dm": "Um caranguejo gigante na Torre das Tempestades foi imbuído com Inteligência 10 e a capacidade de falar Comum pela feiticeira do mar Miraal. Ele cumprimenta os aventureiros e oferece ajuda em troca de paz para o espírito de sua mestre."
     },
-
     "cavalo-montaria": {
       "nome": "Cavalo de Montaria",
       "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
@@ -328,8 +389,12 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+3", "DES": "+0", "CON": "+2",
-        "INT": "-4", "SAB": "+0", "CAR": "-2"
+        "FOR": "+3",
+        "DES": "+0",
+        "CON": "+2",
+        "INT": "-4",
+        "SAB": "+0",
+        "CAR": "-2"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -348,7 +413,6 @@
       "reacoes": [],
       "notas_dm": "Um cavalo de montaria saudável pode ser comprado ou vendido em Phandalin por 75 PO."
     },
-
     "centauro": {
       "nome": "Centauro",
       "tipo_alinhamento": "Monstruosidade Grande, Neutro e Bom",
@@ -359,11 +423,19 @@
       "iniciativa": "+2 (12)",
       "percepcao_passiva": 13,
       "modificadores": {
-        "FOR": "+4", "DES": "+2", "CON": "+2",
-        "INT": "-1", "SAB": "+1", "CAR": "+0"
+        "FOR": "+4",
+        "DES": "+2",
+        "CON": "+2",
+        "INT": "-1",
+        "SAB": "+1",
+        "CAR": "+0"
       },
       "salvaguardas": [],
-      "pericias": ["Atletismo +6", "Percepção +3", "Sobrevivência +3"],
+      "pericias": [
+        "Atletismo +6",
+        "Percepção +3",
+        "Sobrevivência +3"
+      ],
       "sentidos": "—",
       "idiomas": "Élfico, Silvestre",
       "nd": "2",
@@ -396,7 +468,6 @@
       "reacoes": [],
       "localizacao": "Colina do Dragão (Xanth, NPC aliado)"
     },
-
     "espreitador-invisivel": {
       "nome": "Espreitador Invisível",
       "tipo_alinhamento": "Elemental Médio, Neutro",
@@ -407,14 +478,36 @@
       "iniciativa": "+4 (14)",
       "percepcao_passiva": 18,
       "modificadores": {
-        "FOR": "+3", "DES": "+4", "CON": "+2",
-        "INT": "+0", "SAB": "+2", "CAR": "+0"
+        "FOR": "+3",
+        "DES": "+4",
+        "CON": "+2",
+        "INT": "+0",
+        "SAB": "+2",
+        "CAR": "+0"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +10", "Percepção +8"],
-      "resistencias_dano": ["contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
-      "imunidades_dano": ["venenoso"],
-      "imunidades_condicao": ["agarrado", "caído", "contido", "envenenado", "exaustão", "inconsciente", "paralisado", "petrificado"],
+      "pericias": [
+        "Furtividade +10",
+        "Percepção +8"
+      ],
+      "resistencias_dano": [
+        "contundente não-mágico",
+        "cortante não-mágico",
+        "perfurante não-mágico"
+      ],
+      "imunidades_dano": [
+        "venenoso"
+      ],
+      "imunidades_condicao": [
+        "agarrado",
+        "caído",
+        "contido",
+        "envenenado",
+        "exaustão",
+        "inconsciente",
+        "paralisado",
+        "petrificado"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "Auran; compreende Comum mas não fala",
       "nd": "6",
@@ -442,7 +535,6 @@
       "acoes_bonus": [],
       "reacoes": []
     },
-
     "fogo-fatuo": {
       "nome": "Fogo Fátuo",
       "tipo_alinhamento": "Morto-vivo Minúsculo, Caótico e Mau",
@@ -453,14 +545,38 @@
       "iniciativa": "+9 (19)",
       "percepcao_passiva": 12,
       "modificadores": {
-        "FOR": "-5", "DES": "+9", "CON": "+0",
-        "INT": "+1", "SAB": "+2", "CAR": "+0"
+        "FOR": "-5",
+        "DES": "+9",
+        "CON": "+0",
+        "INT": "+1",
+        "SAB": "+2",
+        "CAR": "+0"
       },
       "salvaguardas": [],
       "pericias": [],
-      "imunidades_dano": ["elétrico", "venenoso"],
-      "resistencias_dano": ["ácido", "frio", "ígneo", "necrótico", "trovão", "contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
-      "imunidades_condicao": ["agarrado", "caído", "contido", "envenenado", "exaustão", "paralisado", "petrificado"],
+      "imunidades_dano": [
+        "elétrico",
+        "venenoso"
+      ],
+      "resistencias_dano": [
+        "ácido",
+        "frio",
+        "ígneo",
+        "necrótico",
+        "trovão",
+        "contundente não-mágico",
+        "cortante não-mágico",
+        "perfurante não-mágico"
+      ],
+      "imunidades_condicao": [
+        "agarrado",
+        "caído",
+        "contido",
+        "envenenado",
+        "exaustão",
+        "paralisado",
+        "petrificado"
+      ],
       "sentidos": "Visão no Escuro 32 m",
       "idiomas": "Os idiomas que sabia em vida",
       "nd": "2",
@@ -497,7 +613,6 @@
       "reacoes": [],
       "localizacao": "Colina do Dragão (área D2)"
     },
-
     "gnomo-rochas-recluso": {
       "nome": "Gnomo das Rochas Recluso",
       "tipo_alinhamento": "Humanoide Pequeno (gnomo), Caótico e Neutro",
@@ -509,11 +624,18 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "-2", "DES": "+0", "CON": "+0",
-        "INT": "+2", "SAB": "+0", "CAR": "+1"
+        "FOR": "-2",
+        "DES": "+0",
+        "CON": "+0",
+        "INT": "+2",
+        "SAB": "+0",
+        "CAR": "+1"
       },
       "salvaguardas": [],
-      "pericias": ["Arcanismo +4", "História +4"],
+      "pericias": [
+        "Arcanismo +4",
+        "História +4"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "Comum, Gnômico",
       "nd": "1/4",
@@ -542,7 +664,6 @@
       "reacoes": [],
       "localizacao": "Gruta dos Gnomos"
     },
-
     "gorthok": {
       "nome": "Gorthok, o Javali do Trovão",
       "tipo_alinhamento": "Monstruosidade Enorme, Caótico e Mau",
@@ -554,13 +675,24 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+5", "DES": "+0", "CON": "+4",
-        "INT": "-2", "SAB": "+0", "CAR": "+2"
+        "FOR": "+5",
+        "DES": "+0",
+        "CON": "+4",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "+2"
       },
       "salvaguardas": [],
       "pericias": [],
-      "resistencias_dano": ["contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
-      "imunidades_dano": ["elétrico", "trovão"],
+      "resistencias_dano": [
+        "contundente não-mágico",
+        "cortante não-mágico",
+        "perfurante não-mágico"
+      ],
+      "imunidades_dano": [
+        "elétrico",
+        "trovão"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "—",
       "nd": "6",
@@ -594,7 +726,6 @@
       "localizacao": "Círculo do Trovão (convocado pelos anacoretas)",
       "notas_dm": "Gorthok serve a Talos, deus das tempestades. É convocado pelos anacoretas durante a invocação no Círculo do Trovão. Chega com um trovão quando os dois anacoretas que realizam o ritual são mortos."
     },
-
     "harpia": {
       "nome": "Harpia",
       "tipo_alinhamento": "Monstruosidade Média, Caótico e Mau",
@@ -605,8 +736,12 @@
       "iniciativa": "+1 (11)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+1", "DES": "+1", "CON": "+1",
-        "INT": "-2", "SAB": "+0", "CAR": "+1"
+        "FOR": "+1",
+        "DES": "+1",
+        "CON": "+1",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "+1"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -638,7 +773,6 @@
       "reacoes": [],
       "localizacao": "Torre das Tempestades (cume da colina)"
     },
-
     "gosma-ocre": {
       "nome": "Gosma Ocre",
       "tipo_alinhamento": "Gosma Grande, Sem Alinhamento",
@@ -649,14 +783,30 @@
       "iniciativa": "-2 (8)",
       "percepcao_passiva": 8,
       "modificadores": {
-        "FOR": "+2", "DES": "-2", "CON": "+2",
-        "INT": "-4", "SAB": "-2", "CAR": "-5"
+        "FOR": "+2",
+        "DES": "-2",
+        "CON": "+2",
+        "INT": "-4",
+        "SAB": "-2",
+        "CAR": "-5"
       },
       "salvaguardas": [],
       "pericias": [],
-      "resistencias_dano": ["ácido"],
-      "imunidades_dano": ["cortante", "elétrico"],
-      "imunidades_condicao": ["amedrontado", "caído", "cego", "enfeitiçado", "exaustão", "surdo"],
+      "resistencias_dano": [
+        "ácido"
+      ],
+      "imunidades_dano": [
+        "cortante",
+        "elétrico"
+      ],
+      "imunidades_condicao": [
+        "amedrontado",
+        "caído",
+        "cego",
+        "enfeitiçado",
+        "exaustão",
+        "surdo"
+      ],
       "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
       "idiomas": "—",
       "nd": "2",
@@ -686,7 +836,6 @@
       ],
       "localizacao": "Escavação dos Anões (templo de Abbathor)"
     },
-
     "homem-rato": {
       "nome": "Homem-Rato",
       "tipo_alinhamento": "Humanoide Médio (humano, metamorfo), Ordeiro e Mau",
@@ -697,12 +846,23 @@
       "iniciativa": "+2 (12)",
       "percepcao_passiva": 12,
       "modificadores": {
-        "FOR": "+0", "DES": "+2", "CON": "+1",
-        "INT": "+0", "SAB": "+0", "CAR": "-1"
+        "FOR": "+0",
+        "DES": "+2",
+        "CON": "+1",
+        "INT": "+0",
+        "SAB": "+0",
+        "CAR": "-1"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +4", "Percepção +2"],
-      "imunidades_dano": ["contundente não-mágico sem prata", "cortante não-mágico sem prata", "perfurante não-mágico sem prata"],
+      "pericias": [
+        "Furtividade +4",
+        "Percepção +2"
+      ],
+      "imunidades_dano": [
+        "contundente não-mágico sem prata",
+        "cortante não-mágico sem prata",
+        "perfurante não-mágico sem prata"
+      ],
       "sentidos": "Visão no Escuro 18 m (apenas forma de rato)",
       "idiomas": "Comum (não fala na forma de rato)",
       "nd": "2",
@@ -734,7 +894,6 @@
       "acoes_bonus": [],
       "reacoes": []
     },
-
     "javali": {
       "nome": "Javali",
       "tipo_alinhamento": "Besta Média, Sem Alinhamento",
@@ -746,8 +905,12 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 9,
       "modificadores": {
-        "FOR": "+1", "DES": "+0", "CON": "+1",
-        "INT": "-4", "SAB": "-1", "CAR": "-3"
+        "FOR": "+1",
+        "DES": "+0",
+        "CON": "+1",
+        "INT": "-4",
+        "SAB": "-1",
+        "CAR": "-3"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -774,7 +937,6 @@
       "acoes_bonus": [],
       "reacoes": []
     },
-
     "mimico": {
       "nome": "Mímico",
       "tipo_alinhamento": "Monstruosidade Média (metamorfo), Neutro",
@@ -786,13 +948,23 @@
       "iniciativa": "+1 (11)",
       "percepcao_passiva": 11,
       "modificadores": {
-        "FOR": "+3", "DES": "+1", "CON": "+2",
-        "INT": "-3", "SAB": "+1", "CAR": "-1"
+        "FOR": "+3",
+        "DES": "+1",
+        "CON": "+2",
+        "INT": "-3",
+        "SAB": "+1",
+        "CAR": "-1"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +5"],
-      "imunidades_dano": ["ácido"],
-      "imunidades_condicao": ["caído"],
+      "pericias": [
+        "Furtividade +5"
+      ],
+      "imunidades_dano": [
+        "ácido"
+      ],
+      "imunidades_condicao": [
+        "caído"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "—",
       "nd": "2",
@@ -828,7 +1000,6 @@
       "acoes_bonus": [],
       "reacoes": []
     },
-
     "manticora": {
       "nome": "Manticora",
       "tipo_alinhamento": "Monstruosidade Grande, Ordeira e Má",
@@ -840,8 +1011,12 @@
       "iniciativa": "+3 (13)",
       "percepcao_passiva": 11,
       "modificadores": {
-        "FOR": "+3", "DES": "+3", "CON": "+3",
-        "INT": "-2", "SAB": "+1", "CAR": "-1"
+        "FOR": "+3",
+        "DES": "+3",
+        "CON": "+3",
+        "INT": "-2",
+        "SAB": "+1",
+        "CAR": "-1"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -877,7 +1052,6 @@
       "reacoes": [],
       "notas_dm": "Expulsa de seu ninho nas Montanhas da Espada por Cryovain, a manticora migrou para o sopé da montanha e começou a aterrorizar a região de Phandalin."
     },
-
     "ogro": {
       "nome": "Ogro",
       "tipo_alinhamento": "Gigante Grande, Caótico e Mau",
@@ -889,8 +1063,12 @@
       "iniciativa": "-1 (9)",
       "percepcao_passiva": 8,
       "modificadores": {
-        "FOR": "+4", "DES": "-1", "CON": "+3",
-        "INT": "-3", "SAB": "-2", "CAR": "-2"
+        "FOR": "+4",
+        "DES": "-1",
+        "CON": "+3",
+        "INT": "-3",
+        "SAB": "-2",
+        "CAR": "-2"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -912,7 +1090,6 @@
       "acoes_bonus": [],
       "reacoes": []
     },
-
     "orc": {
       "nome": "Orc",
       "tipo_alinhamento": "Humanoide Médio, Caótico e Mau",
@@ -924,11 +1101,17 @@
       "iniciativa": "+1 (11)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+3", "DES": "+1", "CON": "+3",
-        "INT": "-2", "SAB": "+0", "CAR": "+0"
+        "FOR": "+3",
+        "DES": "+1",
+        "CON": "+3",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "+0"
       },
       "salvaguardas": [],
-      "pericias": ["Intimidação +2"],
+      "pericias": [
+        "Intimidação +2"
+      ],
       "sentidos": "Visão no Escuro 18 m",
       "idiomas": "Comum, Orc",
       "nd": "1/2",
@@ -957,7 +1140,6 @@
       ],
       "reacoes": []
     },
-
     "plebeu": {
       "nome": "Plebeu",
       "tipo_alinhamento": "Humanoide Médio (qualquer raça), Qualquer Alinhamento",
@@ -968,8 +1150,12 @@
       "iniciativa": "+0 (10)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+0", "DES": "+0", "CON": "+0",
-        "INT": "+0", "SAB": "+0", "CAR": "+0"
+        "FOR": "+0",
+        "DES": "+0",
+        "CON": "+0",
+        "INT": "+0",
+        "SAB": "+0",
+        "CAR": "+0"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -988,7 +1174,6 @@
       "reacoes": [],
       "notas_dm": "Inclui camponeses, servos, serviçais, peregrinos, comerciantes, artesãos e eremitas. Tibor Wester usa este bloco de estatísticas."
     },
-
     "ramo-espetos": {
       "nome": "Ramo de Espetos",
       "tipo_alinhamento": "Planta Média, Neutra e Má",
@@ -1000,12 +1185,19 @@
       "iniciativa": "+1 (11)",
       "percepcao_passiva": 9,
       "modificadores": {
-        "FOR": "+1", "DES": "+1", "CON": "+1",
-        "INT": "-3", "SAB": "-1", "CAR": "-4"
+        "FOR": "+1",
+        "DES": "+1",
+        "CON": "+1",
+        "INT": "-3",
+        "SAB": "-1",
+        "CAR": "-4"
       },
       "salvaguardas": [],
       "pericias": [],
-      "imunidades_condicao": ["cego", "surdo"],
+      "imunidades_condicao": [
+        "cego",
+        "surdo"
+      ],
       "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
       "idiomas": "Compreende Comum, mas não fala",
       "nd": "1/4",
@@ -1030,7 +1222,6 @@
       "reacoes": [],
       "localizacao": "Floresta de Neverwinter, Mansão do Bosque"
     },
-
     "ramo-galhos": {
       "nome": "Ramo de Galhos",
       "tipo_alinhamento": "Planta Pequena, Neutra e Má",
@@ -1042,13 +1233,24 @@
       "iniciativa": "+1 (11)",
       "percepcao_passiva": 9,
       "modificadores": {
-        "FOR": "-2", "DES": "+1", "CON": "+1",
-        "INT": "-3", "SAB": "-1", "CAR": "-4"
+        "FOR": "-2",
+        "DES": "+1",
+        "CON": "+1",
+        "INT": "-3",
+        "SAB": "-1",
+        "CAR": "-4"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +3"],
-      "vulnerabilidades_dano": ["ígneo"],
-      "imunidades_condicao": ["cego", "surdo"],
+      "pericias": [
+        "Furtividade +3"
+      ],
+      "vulnerabilidades_dano": [
+        "ígneo"
+      ],
+      "imunidades_condicao": [
+        "cego",
+        "surdo"
+      ],
       "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
       "idiomas": "Compreende Comum, mas não fala",
       "nd": "1/8",
@@ -1069,7 +1271,6 @@
       "reacoes": [],
       "localizacao": "Floresta de Neverwinter, Mansão do Bosque"
     },
-
     "ramo-vinhas": {
       "nome": "Ramo de Vinhas",
       "tipo_alinhamento": "Planta Média, Neutra e Má",
@@ -1081,12 +1282,21 @@
       "iniciativa": "-1 (9)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "+2", "DES": "-1", "CON": "+2",
-        "INT": "-3", "SAB": "+0", "CAR": "-4"
+        "FOR": "+2",
+        "DES": "-1",
+        "CON": "+2",
+        "INT": "-3",
+        "SAB": "+0",
+        "CAR": "-4"
       },
       "salvaguardas": [],
-      "pericias": ["Furtividade +1"],
-      "imunidades_condicao": ["cego", "surdo"],
+      "pericias": [
+        "Furtividade +1"
+      ],
+      "imunidades_condicao": [
+        "cego",
+        "surdo"
+      ],
       "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
       "idiomas": "Comum",
       "nd": "1/2",
@@ -1107,7 +1317,6 @@
       "reacoes": [],
       "localizacao": "Floresta de Neverwinter, Mansão do Bosque"
     },
-
     "rato-gigante": {
       "nome": "Rato Gigante",
       "tipo_alinhamento": "Besta Pequena, Sem Alinhamento",
@@ -1118,8 +1327,12 @@
       "iniciativa": "+2 (12)",
       "percepcao_passiva": 10,
       "modificadores": {
-        "FOR": "-2", "DES": "+2", "CON": "+0",
-        "INT": "-5", "SAB": "+0", "CAR": "-3"
+        "FOR": "-2",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "-5",
+        "SAB": "+0",
+        "CAR": "-3"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -1142,7 +1355,6 @@
       "acoes_bonus": [],
       "reacoes": []
     },
-
     "stirge": {
       "nome": "Stirge",
       "tipo_alinhamento": "Besta Minúscula, Sem Alinhamento",
@@ -1154,8 +1366,12 @@
       "iniciativa": "+3 (13)",
       "percepcao_passiva": 9,
       "modificadores": {
-        "FOR": "-4", "DES": "+3", "CON": "+0",
-        "INT": "-5", "SAB": "-1", "CAR": "-4"
+        "FOR": "-4",
+        "DES": "+3",
+        "CON": "+0",
+        "INT": "-5",
+        "SAB": "-1",
+        "CAR": "-4"
       },
       "salvaguardas": [],
       "pericias": [],
@@ -1175,7 +1391,6 @@
       "localizacao": "Axeholm (sala A9 — Forja; sala A28 — Aposentos do Regente)"
     }
   },
-
   "npcs": {
     "harbin-wester": {
       "nome": "Harbin Wester",
@@ -1277,7 +1492,6 @@
       "interacao": "Oferece-se para guiar os personagens ao bestiario:gorthok do Círculo do Trovão se eles quiserem enfrentar os meio-orcs. Usa bloco de estatísticas de bestiario:centauro."
     }
   },
-
   "itens": {
     "pocao-invulnerabilidade": {
       "nome": "Poção de Invulnerabilidade",
@@ -1316,7 +1530,6 @@
       "historico": "Pertencia a Lady Tanamere Alagondar, herdeira real de Neverwinter de um século atrás. Foi usada para matar Azdraka, o dragão verde da Estrada Alta."
     }
   },
-
   "ganchos": [
     {
       "id": "g1",
@@ -1359,7 +1572,6 @@
       "texto": "\"Vi mais bestiario:orc na floresta ultimamente. Esses brutos abomináveis! Os orcs parecem estar aliados aos meio-orcs malignos que habitam a sudeste daqui. Esses meio-orcs são frequentemente vistos na companhia de pequenas criaturas conhecidas por rastejar sobre essas florestas.\""
     }
   ],
-
   "missoes": [
     {
       "id": "escavacao-anoes",
@@ -1451,5 +1663,225 @@
       "localizacao": "Montanhas da Espada — Fortaleza da Espiral de Gelo",
       "notas_dm": "Missão final da aventura. Matar Cryovain concede um nível extra a todos os personagens, independente do nível atual."
     }
-  ]
+  ],
+  "locais": {
+    "phandalin": {
+      "nome": "Phandalin",
+      "tipo": "Cidade base",
+      "nivel_sugerido": "—",
+      "resumo": "Cidade mineradora fronteiriça construída sobre ruínas antigas, no sopé das Montanhas da Espada. É o ponto de partida da aventura: os aventureiros recebem missões no quadro ao lado da prefeitura e podem comprar suprimentos. Sem muralhas nem guarnição; a chegada de bestiario:cryovain ameaça destruir tudo o que foi reconstruído.",
+      "npcs": [
+        "npc:harbin-wester",
+        "npc:toblen-colina-rochosa",
+        "npc:elmar-barthen",
+        "npc:linene-vento-cinza"
+      ],
+      "conexoes": "Centro de tudo. Daqui partem as missões para todas as outras localidades. Poções de cura só na npc:adabra-gwynn, na Serra da Discórdia."
+    },
+    "serra-discordia": {
+      "nome": "Serra da Discórdia",
+      "tipo": "Exterior (moinho)",
+      "nivel_sugerido": "1",
+      "resumo": "Velho moinho de pedra na encosta de uma colina com túmulos de dois clãs anões rivais. Uma manticora expulsa das montanhas por bestiario:cryovain ataca o moinho pouco antes da chegada do grupo.",
+      "criaturas": [
+        "bestiario:manticora"
+      ],
+      "npcs": [
+        "npc:adabra-gwynn"
+      ],
+      "perigos": "A bestiario:manticora tenta arrombar a porta do moinho. Os personagens podem lutar ou negociar — ela cessa o ataque se pagar.",
+      "tesouro": "npc:adabra-gwynn recompensa os heróis com uma poção de cura por resolverem a manticora.",
+      "conexoes": "Poucos quilômetros ao sul de Phandalin. Única fonte de poções de cura da região."
+    },
+    "escavacao-anoes": {
+      "nome": "Escavação dos Anões",
+      "tipo": "Exterior / ruína",
+      "nivel_sugerido": "1",
+      "resumo": "Garimpeiros anões escavam antigas ruínas anãs nas montanhas a sudoeste em busca de relíquias. Precisam ser avisados de que bestiario:cryovain se mudou para a área. Um templo de Abbathor no desfiladeiro guarda perigos.",
+      "criaturas": [
+        "bestiario:gosma-ocre",
+        "bestiario:orc"
+      ],
+      "npcs": [
+        "npc:dazlyn-caco-cinza",
+        "npc:norbus-runa-pedra"
+      ],
+      "perigos": "Fossos com espadas enferrujadas escondidos sob pranchas (CD 10 para detectar). O templo de Abbathor abriga uma bestiario:gosma-ocre. bestiario:orc chegam durante a missão.",
+      "conexoes": "Montanhas a sudoeste de Phandalin. Avisar os anões e retornar ao npc:harbin-wester rende 50 PO."
+    },
+    "gruta-gnomos": {
+      "nome": "Gruta dos Gnomos",
+      "tipo": "Masmorra (cavernas)",
+      "nivel_sugerido": "1",
+      "resumo": "Rede de cavernas esculpidas na base de uma montanha a sudeste, ao redor de uma cachoeira. Lar de um clã recluso de gnomos magos famosos por engenhocas mágicas. Governada por dois reis, Gnerkli e Korboz — este último enlouqueceu e mantém o outro prisioneiro.",
+      "criaturas": [
+        "bestiario:gnomo-rochas-recluso",
+        "bestiario:orc"
+      ],
+      "npcs": [],
+      "perigos": "bestiario:orc invadiram parte da gruta. A crise entre os reis gnomos pode levar a combate se mal conduzida.",
+      "tesouro": "Os gnomos podem ceder itens mágicos úteis contra bestiario:cryovain em troca de ajuda.",
+      "conexoes": "Montanhas a sudeste de Phandalin."
+    },
+    "acampamento-lenhadores": {
+      "nome": "Acampamento dos Lenhadores",
+      "tipo": "Exterior",
+      "nivel_sugerido": "2",
+      "resumo": "Acampamento de corte de madeira no lado sul de um rio da Floresta de Neverwinter, administrado por npc:tibor-wester, meio-irmão oportunista de npc:harbin-wester. Phandalin entrega suprimentos a cada dois meses.",
+      "criaturas": [
+        "bestiario:ankheg",
+        "bestiario:orc"
+      ],
+      "npcs": [
+        "npc:tibor-wester"
+      ],
+      "perigos": "Um bestiario:ankheg se esconde sob o solo e irrompe pelas tábuas (áreas L3 e L6). bestiario:orc atacam o acampamento durante a visita. npc:tibor-wester está trancado no escritório.",
+      "conexoes": "Floresta de Neverwinter, ao longo do rio a oeste rumo a Neverwinter."
+    },
+    "cabana-falcon": {
+      "nome": "Cabana de Caça de Falcon",
+      "tipo": "Exterior (refúgio)",
+      "nivel_sugerido": "2",
+      "resumo": "Refúgio fortificado no âmago da Floresta de Neverwinter, à beira de um rio. npc:falcon, veterano aposentado, guia nobres em caçadas e oferece comida e abrigo a quem lhe trouxer uma garrafa de vinho.",
+      "criaturas": [
+        "bestiario:carnical"
+      ],
+      "npcs": [
+        "npc:falcon"
+      ],
+      "perigos": "Carniçais (bestiario:carnical) infestam parte da cabana, reunindo-se e atacando em grupo.",
+      "conexoes": "Único refúgio seguro da Floresta de Neverwinter. Ponto de apoio para alcançar locais mais profundos da mata."
+    },
+    "circulo-trovao": {
+      "nome": "Círculo do Trovão",
+      "tipo": "Exterior (sítio ritual)",
+      "nivel_sugerido": "3",
+      "resumo": "Colina de 30 m coroada por um círculo de pedras eretas, onde anacoretas de Talos fazem sacrifícios e, em dias de tempestade, realizam rituais para invocar bestiario:gorthok, o Javali do Trovão. Três anacoretas — Flenz, Narux e Yargath — defendem a colina.",
+      "criaturas": [
+        "bestiario:anacoreta-orc",
+        "bestiario:gorthok"
+      ],
+      "npcs": [],
+      "perigos": "Os bestiario:anacoreta-orc convocam bestiario:gorthok, que surge no centro do círculo com um trovão e luta até a morte. Alçapões secretos levam a cavernas na encosta.",
+      "tesouro": "Caverna C2 esconde a itens:pocao-invulnerabilidade (de Flenz); caverna C3 guarda o itens:escudo-mais-1 (de Narux).",
+      "conexoes": "Aproxima-se pelo sul, vindo da Mansão do Bosque."
+    },
+    "colina-dragao": {
+      "nome": "Colina do Dragão",
+      "tipo": "Masmorra (sepulcro)",
+      "nivel_sugerido": "3",
+      "resumo": "Túmulo da Lady Tanamere Alagondar, herdeira de Neverwinter que matou o dragão verde Azdraka há um século. Ela, seus companheiros caídos e o cadáver do dragão foram selados sob a colina. Guardado pelo espírito npc:xanth.",
+      "criaturas": [
+        "bestiario:fogo-fatuo"
+      ],
+      "npcs": [
+        "npc:xanth"
+      ],
+      "perigos": "Três fogos-fátuos (bestiario:fogo-fatuo) espreitam o sepulcro. Sarcófagos selados podem esconder armadilhas.",
+      "tesouro": "Sepulcro D7: itens:alaude-ilusoes e itens:colar-bolas-fogo. Sepulcro D8: a itens:espada-matadora-dragoes, enterrada com Lady Alagondar — objetivo da missão.",
+      "conexoes": "Cerca de 65 km a noroeste de Phandalin, entre colinas e pradarias."
+    },
+    "mansao-bosque": {
+      "nome": "Mansão do Bosque",
+      "tipo": "Masmorra (ruína)",
+      "nivel_sugerido": "4",
+      "resumo": "Casa de pedra em ruínas erguida por uma maga meio-elfa que estudava ruínas élficas e desapareceu. Tomada por um anacoreta meio-orc de Talos chamado Grannoc, que plantou no poço sementes das quais brotou uma árvore maligna geradora de ramos secos.",
+      "criaturas": [
+        "bestiario:anacoreta-orc",
+        "bestiario:ramo-espetos",
+        "bestiario:ramo-galhos",
+        "bestiario:ramo-vinhas"
+      ],
+      "npcs": [],
+      "perigos": "Grannoc (use bestiario:anacoreta-orc) comanda enxames de ramos secos — bestiario:ramo-espetos, bestiario:ramo-galhos e bestiario:ramo-vinhas — que defendem a mansão e atacam invasores na floresta.",
+      "conexoes": "Floresta de Neverwinter, próxima a ruínas élficas. Liga-se ao Círculo do Trovão ao norte."
+    },
+    "mina-ouro": {
+      "nome": "Mina de Ouro no Pé da Montanha",
+      "tipo": "Masmorra (mina)",
+      "nivel_sugerido": "4",
+      "resumo": "Mina de ouro de um consórcio de Neverwinter, tomada por um bando de homens-rato autodenominado Gangue do Bigode. Os proprietários contrataram npc:don-jon-raskin para resolver os problemas de produtividade — sem saber da infestação.",
+      "criaturas": [
+        "bestiario:homem-rato",
+        "bestiario:carnical",
+        "bestiario:stirge"
+      ],
+      "npcs": [
+        "npc:don-jon-raskin"
+      ],
+      "perigos": "Os bestiario:homem-rato (liderados por Zeleen Varnaster) infestam a mina. Stirges (bestiario:stirge) pendem das vigas em corredores escuros; um verme de carniça (bestiario:carnical) espreita em um túnel.",
+      "conexoes": "Escoltar npc:don-jon-raskin até a mina e erradicar as 'pestes'. Recusar pode transformá-lo em homem-rato."
+    },
+    "rancho-caveira-manteiga": {
+      "nome": "Rancho Caveira de Manteiga",
+      "tipo": "Exterior (fazenda)",
+      "nivel_sugerido": "4",
+      "resumo": "Fazenda de gado e cavalos a leste de Conyberry, fundada pelo ex-xerife Alfonso Kalazorn ('Fonsão'), famoso por vender 'caveiras de manteiga'. A manteiga vem do leite de Petúnia, sua vaca premiada. bestiario:cryovain e os orcs perturbam a região.",
+      "criaturas": [
+        "bestiario:orc",
+        "bestiario:cavalo-montaria"
+      ],
+      "npcs": [],
+      "perigos": "bestiario:orc saqueiam o rancho. Três cavalos de montaria (bestiario:cavalo-montaria) estão no estábulo.",
+      "conexoes": "A leste, próximo a Conyberry. Ligado ao Santuário de Savras."
+    },
+    "santuario-savras": {
+      "nome": "Santuário de Savras",
+      "tipo": "Masmorra (templo)",
+      "nivel_sugerido": "4",
+      "resumo": "Templo dedicado a Savras, deus da adivinhação, a poucos km ao sul de Conyberry. Sacerdotes videntes derreteram o ouro de Conyberry em um sino dourado escondido no campanário antes de serem massacrados por bárbaros. O sino de ouro ainda pende lá.",
+      "criaturas": [
+        "bestiario:orc"
+      ],
+      "npcs": [],
+      "perigos": "bestiario:orc ocupam o santuário em ruínas. Foi o covil anterior dos homens-rato da Mina de Ouro.",
+      "tesouro": "O sino de ouro no campanário — feito do ouro fundido de Conyberry — é o grande prêmio do local.",
+      "conexoes": "Ao sul de Conyberry, a leste. Ligado ao Rancho Caveira de Manteiga."
+    },
+    "axeholm": {
+      "nome": "Axeholm",
+      "tipo": "Masmorra (fortaleza anã)",
+      "nivel_sugerido": "5",
+      "resumo": "Fortaleza anã esculpida na base de uma montanha 25 km ao sul de Phandalin. Selada há anos após ser assombrada por uma banshee — o espírito de Vyldara, embaixadora dos elfos da lua, presa e morta pelos anões. Balanceada para o 5º nível.",
+      "criaturas": [
+        "bestiario:banshee",
+        "bestiario:carnical"
+      ],
+      "npcs": [],
+      "perigos": "Carniçais anões (bestiario:carnical) vagam pelos salões — três mais um por personagem; reúnem-se na área A4 ao ouvirem as portas serem arrombadas. A bestiario:banshee Vyldara assombra o Salão Mal-Assombrado.",
+      "conexoes": "Um dia de viagem ao sul de Phandalin, por planícies. Portão levadiço e portas duplas trancadas (1h para arrombar)."
+    },
+    "fortaleza-espiral-gelo": {
+      "nome": "Fortaleza da Espiral de Gelo",
+      "tipo": "Masmorra (covil do dragão)",
+      "nivel_sugerido": "6",
+      "resumo": "Fortificação de pedra no gélido pico nordeste da Espiral de Gelo. Erguida pela general Delsendra Amzarr, tomada por orcs e depois por bestiario:cryovain, que a transformou em covil. Mercenários se aventuraram à frente do grupo. Clímax da aventura.",
+      "criaturas": [
+        "bestiario:cryovain",
+        "bestiario:orc",
+        "bestiario:stirge"
+      ],
+      "npcs": [
+        "npc:dazlyn-caco-cinza",
+        "npc:norbus-runa-pedra"
+      ],
+      "perigos": "bestiario:cryovain, o jovem dragão branco, domina a fortaleza, podendo aparecer em qualquer ponto do mapa (role d20). bestiario:orc remanescentes e bestiario:stirge espreitam os salões. Matar o dragão concede um nível extra.",
+      "tesouro": "Símbolo sagrado de Abbathor (adaga com joias em corrente de prata) no cômodo parcialmente desmoronado E10.",
+      "conexoes": "Pico nordeste da Espiral de Gelo. Acesso pela seção sudoeste desmoronada."
+    },
+    "torre-tempestades": {
+      "nome": "Torre das Tempestades",
+      "tipo": "Masmorra (farol)",
+      "nivel_sugerido": "6",
+      "resumo": "Farol numa colina rochosa na costa a oeste de Phandalin — na verdade um templo a Talos. Moesko, anacoreta meio-orc, usa a luz verde pulsante (alimentada por seu próprio coração arrancado) para atrair navios à destruição. Destruir o coração apaga o farol.",
+      "criaturas": [
+        "bestiario:anacoreta-orc",
+        "bestiario:harpia",
+        "bestiario:caranguejo-gigante"
+      ],
+      "npcs": [],
+      "perigos": "Moesko (use bestiario:anacoreta-orc) guarda a torre. Harpias (bestiario:harpia) espreitam na área T5; um bestiario:caranguejo-gigante ronda a base rochosa. A maré alta submerge a trilha de acesso em 1,5 m de água.",
+      "conexoes": "Costa a oeste de Phandalin. Acesso por trilha estreita exposta apenas na maré baixa."
+    }
+  }
 }

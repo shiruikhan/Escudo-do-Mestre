@@ -44,7 +44,6 @@
         const rotulo = escHtml(obj.nome || id);
         out += `<button type="button" class="drill-link" data-tipo="${escHtml(secao)}" data-id="${escHtml(id)}">${rotulo}</button>`;
       } else {
-        // Referência quebrada: mostra o texto cru sem virar link.
         out += escHtml(m[0]);
       }
       ultimo = re.lastIndex;
@@ -76,12 +75,12 @@
       </div>`;
   }
 
-  // ---------- LISTAS ----------
-
   function dicParaArray(dic) {
     if (!dic) return [];
     return Object.keys(dic).map(id => ({ id, ...dic[id] }));
   }
+
+  // ---------- LISTAS ----------
 
   function listaBestiario(aventura) {
     const itens = dicParaArray(aventura.bestiario)
@@ -298,21 +297,63 @@
     return `<div class="fade-in">${cards}</div>`;
   }
 
-  // ---------- MAPAS ----------
+  // ---------- LOCAIS ----------
 
-  function listaMapas(aventura) {
-    const mapas = aventura.mapas || [];
-    if (!mapas.length) return vazio('Nenhum mapa cadastrado.');
-    const cards = mapas.map((mp, idx) => `
-      <div class="mb-3">
-        <p class="text-sm font-semibold text-zinc-200 mb-2">${escHtml(mp.nome)}</p>
-        <button type="button" class="open-map block w-full rounded-xl overflow-hidden border border-zinc-800" data-idx="${idx}">
-          <img src="${escHtml(mp.url)}" alt="${escHtml(mp.nome)}"
-               class="w-full h-auto block"
-               onerror="this.parentElement.innerHTML='&lt;div class=\\'mapa-placeholder\\'&gt;\u{1F5FA}️ Mapa não disponível&lt;br&gt;${escHtml(mp.url)}&lt;/div&gt;'">
-        </button>
-      </div>`).join('');
-    return `<div class="fade-in">${cards}</div>`;
+  function chip(marker, aventura) {
+    const m = /^(npc|bestiario|itens|item):([a-z0-9\-]+)$/.exec(marker || '');
+    if (!m) return '';
+    const secao = PREFIXO_PARA_SECAO[m[1]];
+    const id = m[2];
+    const obj = secao && aventura[secao] ? aventura[secao][id] : null;
+    if (!obj) return '';
+    return `<button type="button" class="chip-link" data-tipo="${escHtml(secao)}" data-id="${escHtml(id)}">${escHtml(obj.nome)}</button>`;
+  }
+
+  function grupoChips(titulo, markers, aventura) {
+    if (!markers || !markers.length) return '';
+    const chips = markers.map(mk => chip(mk, aventura)).filter(Boolean).join('');
+    if (!chips) return '';
+    return `
+      <div class="mt-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">${escHtml(titulo)}</h4>
+        <div class="flex flex-wrap gap-2">${chips}</div>
+      </div>`;
+  }
+
+  function listaLocais(aventura) {
+    const itens = dicParaArray(aventura.locais);
+    if (!itens.length) return vazio('Nenhuma localidade cadastrada.');
+    const cards = itens.map(l => itemListaCard('locais', l.id, l.nome, [
+      l.tipo,
+      l.nivel_sugerido && l.nivel_sugerido !== '—' ? `Nível sugerido ${l.nivel_sugerido}` : null,
+    ])).join('');
+    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+  }
+
+  function detalheLocal(aventura, id) {
+    const l = aventura.locais && aventura.locais[id];
+    if (!l) return vazio('Localidade não encontrada.');
+    const corpo = `
+      <h3 class="text-lg font-bold text-amber-400">${escHtml(l.nome)}</h3>
+      <div class="flex flex-wrap gap-x-3 gap-y-1 mt-1 text-xs text-zinc-500">
+        ${l.tipo ? `<span>${escHtml(l.tipo)}</span>` : ''}
+        ${l.nivel_sugerido && l.nivel_sugerido !== '—' ? `<span>Nível sugerido ${escHtml(l.nivel_sugerido)}</span>` : ''}
+      </div>
+      <div class="stat-divider"></div>
+      ${l.resumo ? `<p class="text-sm text-zinc-300 leading-snug">${parseLinks(l.resumo, aventura)}</p>` : ''}
+      ${grupoChips('Criaturas', l.criaturas, aventura)}
+      ${grupoChips('NPCs no local', l.npcs, aventura)}
+      ${l.perigos ? `<div class="mt-3 text-sm border rounded-lg p-3 bg-rose-500/5 border-rose-500/20">
+          <span class="font-semibold text-rose-300">Perigos:</span> <span class="text-zinc-300">${parseLinks(l.perigos, aventura)}</span>
+        </div>` : ''}
+      ${l.tesouro ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-amber-500/5 border-amber-500/20">
+          <span class="font-semibold text-amber-300">Tesouro:</span> <span class="text-zinc-300">${parseLinks(l.tesouro, aventura)}</span>
+        </div>` : ''}
+      ${l.conexoes ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-sky-500/5 border-sky-500/20">
+          <span class="font-semibold text-sky-300">Acesso e conexões:</span> <span class="text-zinc-300">${parseLinks(l.conexoes, aventura)}</span>
+        </div>` : ''}
+    `;
+    return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 
   // ---------- Expor ----------
@@ -326,12 +367,13 @@
       itens: listaItens,
       ganchos: listaGanchos,
       missoes: listaMissoes,
-      mapas: listaMapas,
+      locais: listaLocais,
     },
     detalhes: {
       bestiario: detalheBestiario,
       npcs: detalheNpc,
       itens: detalheItem,
+      locais: detalheLocal,
     },
   };
 })();
