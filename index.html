@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <meta name="theme-color" content="#09090b" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/utils.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -44,9 +45,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-center text-zinc-700 text-xs pb-6">
-    Apenas imagens e dados locais · Sem backend
-  </footer>
+  <footer class="pb-6"></footer>
 
   <script>
     // Carrega o manifest em data/aventuras.json
@@ -87,14 +86,6 @@
           </a>
         </li>
       `).join('');
-    }
-
-    function escHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
     }
 
     loadManifest().then(renderAdventures);

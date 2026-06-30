@@ -19,6 +19,7 @@
 
   const state = {
     aventura: null,
+    indice: [],
     aba: 'bestiario',
     foco: null,
     historico: [],
@@ -30,8 +31,31 @@
     return new URLSearchParams(window.location.search).get(nome);
   }
 
+  function debounce(fn, ms) {
+    let t;
+    return function (...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
+  }
+
+  function salvarPosicao() {
+    const id = getParam('id');
+    if (!id) return;
+    try { localStorage.setItem('escudo_pos_' + id, JSON.stringify({ aba: state.aba, foco: state.foco })); } catch (_) {}
+  }
+
+  function restaurarPosicao() {
+    const id = getParam('id');
+    if (!id) return;
+    try {
+      const saved = JSON.parse(localStorage.getItem('escudo_pos_' + id));
+      if (saved && saved.aba) { state.aba = saved.aba; state.foco = saved.foco || null; }
+    } catch (_) {}
+  }
+
   async function carregarAventura(id) {
-    const idx = await fetch('data/aventuras.json').then(r => r.json());
+    const idx = await fetch('data/aventuras.json').then(r => {
+      if (!r.ok) throw new Error('Manifest não encontrado (HTTP ' + r.status + ')');
+      return r.json();
+    });
     const meta = idx.find(a => a.id === id);
     if (!meta) throw new Error('Aventura não encontrada no índice: ' + id);
     const dados = await fetch('data/aventuras/' + meta.arquivo).then(r => {
@@ -75,6 +99,7 @@
     el.conteudo.innerHTML = html;
     el.conteudo.scrollTop = 0;
     window.scrollTo(0, 0);
+    salvarPosicao();
   }
 
   function irParaAba(aba) {
@@ -85,11 +110,16 @@
     render();
   }
 
-  // Renderiza os resultados da busca geral (ou volta ao normal se vazia).
+  // Renderiza os resultados da busca (ou sugestões de acesso rápido se vazia).
   function buscar() {
     const q = el.busca.value.trim();
-    if (!q) { render(); return; }
-    el.conteudo.innerHTML = window.Renderers.resultadosBusca(state.aventura, q);
+    if (!q) {
+      el.conteudo.innerHTML = window.Renderers.sugestoesFoco(state.aventura);
+      el.conteudo.scrollTop = 0;
+      window.scrollTo(0, 0);
+      return;
+    }
+    el.conteudo.innerHTML = window.Renderers.resultadosBusca(state.aventura, state.indice, q);
     el.conteudo.scrollTop = 0;
     window.scrollTo(0, 0);
   }
@@ -134,7 +164,34 @@
       if (chip) { drillDown(chip.dataset.tipo, chip.dataset.id); return; }
     });
 
-    if (el.busca) el.busca.addEventListener('input', buscar);
+    if (el.busca) {
+      el.busca.addEventListener('input', debounce(buscar, 150));
+      el.busca.addEventListener('focus', () => {
+        if (!el.busca.value.trim()) {
+          el.conteudo.innerHTML = window.Renderers.sugestoesFoco(state.aventura);
+          el.conteudo.scrollTop = 0;
+        }
+      });
+      el.busca.addEventListener('blur', () => {
+        // Pequeno delay para permitir clique nos resultados antes de restaurar
+        setTimeout(() => {
+          if (!el.busca.value.trim() && !state.foco) render();
+        }, 200);
+      });
+    }
+
+    if (el.exportar) {
+      el.exportar.addEventListener('click', () => {
+        const md = window.Renderers.exportarMarkdown(state.aventura);
+        const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = (state.aventura.titulo || 'aventura').toLowerCase().replace(/\s+/g, '-') + '.md';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
 
     window.addEventListener('popstate', () => {
       if (state.historico.length) {
@@ -151,6 +208,7 @@
     el.titulo = document.getElementById('titulo-aventura');
     el.sub = document.getElementById('sub-aventura');
     el.busca = document.getElementById('busca');
+    el.exportar = document.getElementById('btn-exportar');
 
     const id = getParam('id');
     if (!id) {
@@ -158,8 +216,15 @@
       return;
     }
 
+    el.conteudo.innerHTML = `
+      <div class="text-center text-zinc-600 mt-16">
+        <div class="spinner mb-3"></div>
+        <p class="text-sm">Carregando aventura…</p>
+      </div>`;
+
     try {
       state.aventura = await carregarAventura(id);
+      state.indice = window.Renderers.construirIndice(state.aventura);
     } catch (err) {
       el.conteudo.innerHTML =
         `<div class="text-center text-zinc-500 mt-16">
@@ -176,8 +241,10 @@
     el.sub.textContent = partes.join(' · ');
     document.title = (state.aventura.titulo || 'Aventura') + ' — Escudo do Mestre';
 
+    if (el.exportar) el.exportar.classList.remove('hidden');
     montarAbas();
     ligarEventos();
+    restaurarPosicao();
     history.pushState(null, '', '');
     render();
   }

@@ -17,14 +17,7 @@
 
   // ---------- Utilitários ----------
 
-  function escHtml(str) {
-    return String(str == null ? '' : str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
+  const escHtml = window.escHtml;
 
   // Converte texto com marcadores (ex.: "fale com npc:harbin-wester")
   // em HTML com botões de drill-down. Texto é escapado; nomes idem.
@@ -256,15 +249,37 @@
   function listaGanchos(aventura) {
     const ganchos = aventura.ganchos || [];
     if (!ganchos.length) return vazio('Nenhum gancho cadastrado.');
-    const cards = ganchos.map(g => {
+    const cards = ganchos.map((g, i) => {
       const fonte = typeof g === 'object' ? g.fonte : null;
       const texto = typeof g === 'object' ? g.texto : g;
-      return painelCard(`
-        ${fonte ? `<p class="text-xs font-bold uppercase tracking-wider text-amber-500/80 mb-1">${escHtml(fonte)}</p>` : ''}
-        <p class="text-sm text-zinc-200 leading-snug">${parseLinks(texto, aventura)}</p>
-      `, 'mb-2');
+      const preview = (texto || '').slice(0, 120) + ((texto || '').length > 120 ? '…' : '');
+      return `
+        <li>
+          <button type="button" class="open-detail w-full text-left bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+                  data-tipo="ganchos" data-id="${i}">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex-1 min-w-0">
+                ${fonte ? `<p class="text-xs font-bold uppercase tracking-wider text-amber-500/80 mb-1">${escHtml(fonte)}</p>` : ''}
+                <p class="text-sm text-zinc-300 leading-snug">${escHtml(preview)}</p>
+              </div>
+              <span class="text-zinc-600 text-lg flex-shrink-0 mt-0.5">&rsaquo;</span>
+            </div>
+          </button>
+        </li>`;
     }).join('');
-    return `<div class="fade-in">${cards}</div>`;
+    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+  }
+
+  function detalheGancho(aventura, id) {
+    const g = (aventura.ganchos || [])[parseInt(id)];
+    if (g == null) return vazio('Gancho não encontrado.');
+    const fonte = typeof g === 'object' ? g.fonte : null;
+    const texto = typeof g === 'object' ? g.texto : g;
+    const corpo = `
+      ${fonte ? `<p class="text-xs font-bold uppercase tracking-wider text-amber-500/80 mb-3">${escHtml(fonte)}</p>` : ''}
+      <p class="text-sm text-zinc-200 leading-relaxed">${parseLinks(texto || '', aventura)}</p>
+    `;
+    return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 
   // ---------- MISSÕES ----------
@@ -279,7 +294,30 @@
   function listaMissoes(aventura) {
     const missoes = aventura.missoes || [];
     if (!missoes.length) return vazio('Nenhuma missão cadastrada.');
-    const cards = missoes.map(m => painelCard(`
+    const cards = missoes.map((m, i) => `
+      <li>
+        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+                data-tipo="missoes" data-id="${i}">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <p class="font-semibold text-zinc-100 truncate">${escHtml(m.titulo)}</p>
+              <span class="badge ${classeBadge(m.status)} flex-shrink-0">${escHtml(m.status || '—')}</span>
+            </div>
+            <div class="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5 text-xs text-zinc-500">
+              ${m.nivel_sugerido != null ? `<span>Nível ${escHtml(m.nivel_sugerido)}</span>` : ''}
+              ${m.localizacao ? `<span>${escHtml(m.localizacao)}</span>` : ''}
+            </div>
+          </div>
+          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+        </button>
+      </li>`).join('');
+    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+  }
+
+  function detalheMissao(aventura, id) {
+    const m = (aventura.missoes || [])[parseInt(id)];
+    if (!m) return vazio('Missão não encontrada.');
+    const corpo = `
       <div class="flex items-start justify-between gap-2">
         <h3 class="text-base font-bold text-zinc-100">${escHtml(m.titulo)}</h3>
         <span class="badge ${classeBadge(m.status)} flex-shrink-0">${escHtml(m.status || '—')}</span>
@@ -288,13 +326,13 @@
         ${m.nivel_sugerido != null ? `<span>Nível ${escHtml(m.nivel_sugerido)}</span>` : ''}
         ${m.localizacao ? `<span>${escHtml(m.localizacao)}</span>` : ''}
       </div>
-      ${m.objetivo ? `<p class="text-sm text-zinc-300 mt-2 leading-snug">${parseLinks(m.objetivo, aventura)}</p>` : ''}
+      ${m.objetivo ? `<p class="text-sm text-zinc-300 mt-3 leading-snug">${parseLinks(m.objetivo, aventura)}</p>` : ''}
       ${m.recompensa ? `<p class="text-sm text-amber-300/90 mt-2"><span class="text-zinc-500">Recompensa:</span> ${parseLinks(m.recompensa, aventura)}</p>` : ''}
-      ${m.notas_dm ? `<div class="mt-2 text-sm text-zinc-400 bg-zinc-800/40 border border-zinc-700/50 rounded-lg p-3">
+      ${m.notas_dm ? `<div class="mt-3 text-sm text-zinc-400 bg-zinc-800/40 border border-zinc-700/50 rounded-lg p-3">
           <span class="font-semibold text-zinc-300">Notas do Mestre:</span> ${parseLinks(m.notas_dm, aventura)}
         </div>` : ''}
-    `, 'mb-2')).join('');
-    return `<div class="fade-in">${cards}</div>`;
+    `;
+    return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 
   // ---------- LOCAIS ----------
@@ -400,10 +438,54 @@
 
   // ---------- BUSCA GERAL ----------
 
-  // Normaliza para busca: remove acentos e caixa.
+  // Normaliza para busca: remove acentos (U+0300–U+036F) e caixa.
   function normalizar(s) {
     return String(s == null ? '' : s)
       .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
+
+  function construirIndice(aventura) {
+    const idx = [];
+    for (const [id, b] of Object.entries(aventura.bestiario || {}))
+      idx.push({ tipo: 'bestiario', id, label: 'Monstro', nome: b.nome, sub: b.tipo_alinhamento,
+        campos: [normalizar(b.nome), normalizar(b.tipo_alinhamento)] });
+    for (const [id, n] of Object.entries(aventura.npcs || {}))
+      idx.push({ tipo: 'npcs', id, label: 'NPC', nome: n.nome, sub: n.papel || n.local,
+        campos: [normalizar(n.nome), normalizar(n.papel), normalizar(n.local)] });
+    for (const [id, i] of Object.entries(aventura.itens || {}))
+      idx.push({ tipo: 'itens', id, label: 'Item', nome: i.nome, sub: i.tipo,
+        campos: [normalizar(i.nome), normalizar(i.tipo), normalizar(i.efeito)] });
+    for (const [id, l] of Object.entries(aventura.locais || {}))
+      idx.push({ tipo: 'locais', id, label: 'Local', nome: l.nome, sub: l.tipo,
+        campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(l.resumo)] });
+    (aventura.missoes || []).forEach((m, i) =>
+      idx.push({ tipo: 'missoes', id: String(i), label: 'Missão', nome: m.titulo, sub: m.localizacao,
+        campos: [normalizar(m.titulo), normalizar(m.objetivo), normalizar(m.localizacao)] }));
+    (aventura.ganchos || []).forEach((g, i) => {
+      const texto = typeof g === 'object' ? g.texto : g;
+      const fonte = typeof g === 'object' ? g.fonte : '';
+      idx.push({ tipo: 'ganchos', id: String(i), label: 'Gancho', nome: fonte || 'Gancho',
+        sub: (texto || '').slice(0, 70), campos: [normalizar(texto), normalizar(fonte)] });
+    });
+    for (const [id, c] of Object.entries(aventura.condicoes || {}))
+      idx.push({ tipo: 'condicoes', id, label: 'Condição', nome: c.nome, sub: c.resumo,
+        campos: [normalizar(c.nome), normalizar(c.resumo)] });
+    return idx;
+  }
+
+  function sugestoesFoco(aventura) {
+    const grupos = [
+      { chave: 'bestiario', tipo: 'bestiario', label: 'Monstro', getSub: b => b.tipo_alinhamento },
+      { chave: 'npcs',      tipo: 'npcs',      label: 'NPC',     getSub: n => n.papel || n.local },
+      { chave: 'locais',    tipo: 'locais',    label: 'Local',   getSub: l => l.tipo },
+    ];
+    const res = [];
+    for (const g of grupos)
+      for (const [id, obj] of Object.entries(aventura[g.chave] || {}).slice(0, 3))
+        res.push(resultadoDetalhe(g.tipo, id, obj.nome, g.label, g.getSub(obj)));
+    if (!res.length) return '';
+    return `<p class="text-xs text-zinc-500 mb-2">Acesso rápido</p>
+      <ul class="space-y-2 fade-in">${res.join('')}</ul>`;
   }
 
   function resultadoDetalhe(tipo, id, nome, label, sub) {
@@ -440,36 +522,13 @@
       </li>`;
   }
 
-  function resultadosBusca(aventura, query) {
+  function resultadosBusca(aventura, indice, query) {
     const q = normalizar(query);
     if (!q) return '';
     const res = [];
-    const bate = (...campos) => campos.some(c => normalizar(c).includes(q));
-
-    for (const [id, b] of Object.entries(aventura.bestiario || {})) {
-      if (bate(b.nome, b.tipo_alinhamento)) res.push(resultadoDetalhe('bestiario', id, b.nome, 'Monstro', b.tipo_alinhamento));
-    }
-    for (const [id, n] of Object.entries(aventura.npcs || {})) {
-      if (bate(n.nome, n.papel, n.local)) res.push(resultadoDetalhe('npcs', id, n.nome, 'NPC', n.papel || n.local));
-    }
-    for (const [id, i] of Object.entries(aventura.itens || {})) {
-      if (bate(i.nome, i.tipo, i.efeito)) res.push(resultadoDetalhe('itens', id, i.nome, 'Item', i.tipo));
-    }
-    for (const [id, l] of Object.entries(aventura.locais || {})) {
-      if (bate(l.nome, l.tipo, l.resumo)) res.push(resultadoDetalhe('locais', id, l.nome, 'Local', l.tipo));
-    }
-    (aventura.missoes || []).forEach(m => {
-      if (bate(m.titulo, m.objetivo, m.localizacao)) res.push(resultadoAba('missoes', m.titulo, 'Missão', m.localizacao));
-    });
-    (aventura.ganchos || []).forEach(g => {
-      const texto = typeof g === 'object' ? g.texto : g;
-      const fonte = typeof g === 'object' ? g.fonte : '';
-      if (bate(texto, fonte)) res.push(resultadoAba('ganchos', fonte || 'Gancho', 'Gancho', (texto || '').slice(0, 70)));
-    });
-    for (const [id, c] of Object.entries(aventura.condicoes || {})) {
-      if (bate(c.nome, c.resumo)) res.push(resultadoDetalhe('condicoes', id, c.nome, 'Condição', c.resumo));
-    }
-
+    for (const e of indice)
+      if (e.campos.some(c => c.includes(q)))
+        res.push(resultadoDetalhe(e.tipo, e.id, e.nome, e.label, e.sub));
     if (!res.length) {
       return `<div class="text-center text-zinc-600 mt-16">
         <div class="text-4xl mb-3">\u{1F50D}</div>
@@ -480,12 +539,105 @@
       <ul class="space-y-2 fade-in">${res.join('')}</ul>`;
   }
 
+  function exportarMarkdown(aventura) {
+    const md = [];
+    const sep = () => md.push('');
+
+    md.push(`# ${aventura.titulo || 'Aventura'}`);
+    if (aventura.nivel_recomendado) md.push(`**Níveis:** ${aventura.nivel_recomendado}`);
+    if (aventura.cenario) md.push(`**Cenário:** ${aventura.cenario}`);
+    sep();
+
+    const ganchos = aventura.ganchos || [];
+    if (ganchos.length) {
+      md.push('## Ganchos');
+      ganchos.forEach(g => {
+        const fonte = typeof g === 'object' ? g.fonte : null;
+        const texto = typeof g === 'object' ? g.texto : g;
+        if (fonte) md.push(`**${fonte}**`);
+        md.push(texto || ''); sep();
+      });
+    }
+
+    if ((aventura.missoes || []).length) {
+      md.push('## Missões');
+      aventura.missoes.forEach(m => {
+        md.push(`### ${m.titulo} [${m.status || '—'}]`);
+        if (m.localizacao) md.push(`*${m.localizacao}*`);
+        if (m.objetivo) { sep(); md.push(m.objetivo); }
+        if (m.recompensa) md.push(`**Recompensa:** ${m.recompensa}`);
+        if (m.notas_dm) md.push(`> 🗒 ${m.notas_dm}`);
+        sep();
+      });
+    }
+
+    const locais = Object.values(aventura.locais || {});
+    if (locais.length) {
+      md.push('## Locais');
+      locais.forEach(l => {
+        md.push(`### ${l.nome}`);
+        if (l.tipo) md.push(`*${l.tipo}*`);
+        if (l.resumo) { sep(); md.push(l.resumo); }
+        if (l.perigos) md.push(`**Perigos:** ${l.perigos}`);
+        if (l.tesouro) md.push(`**Tesouro:** ${l.tesouro}`);
+        if (l.conexoes) md.push(`**Conexões:** ${l.conexoes}`);
+        sep();
+      });
+    }
+
+    const npcs = Object.values(aventura.npcs || {});
+    if (npcs.length) {
+      md.push('## NPCs');
+      npcs.forEach(n => {
+        md.push(`### ${n.nome}`);
+        if (n.papel) md.push(`*${n.papel}*`);
+        if (n.local) md.push(`**Local:** ${n.local}`);
+        if (n.descricao) { sep(); md.push(n.descricao); }
+        if (n.motivacao) md.push(`**Motivação:** ${n.motivacao}`);
+        if (n.segredos) md.push(`**Segredos:** ${n.segredos}`);
+        if (n.interacao) md.push(`**Interação:** ${n.interacao}`);
+        sep();
+      });
+    }
+
+    const bestiario = Object.values(aventura.bestiario || {});
+    if (bestiario.length) {
+      md.push('## Bestiário');
+      bestiario.forEach(b => {
+        md.push(`### ${b.nome}`);
+        md.push(`*${b.tipo_alinhamento || ''}*`);
+        const stats = [];
+        if (b.ca != null) stats.push(`CA ${b.ca}`);
+        if (b.pv != null) stats.push(`PV ${b.pv}`);
+        if (b.nd != null) stats.push(`ND ${b.nd}`);
+        if (stats.length) md.push(stats.join(' · '));
+        sep();
+      });
+    }
+
+    const itens = Object.values(aventura.itens || {});
+    if (itens.length) {
+      md.push('## Itens');
+      itens.forEach(i => {
+        md.push(`### ${i.nome}`);
+        if (i.tipo) md.push(`*${i.tipo}*`);
+        if (i.efeito) { sep(); md.push(i.efeito); }
+        sep();
+      });
+    }
+
+    return md.join('\n');
+  }
+
   // ---------- Expor ----------
 
   window.Renderers = {
     escHtml,
     parseLinks,
+    construirIndice,
     resultadosBusca,
+    sugestoesFoco,
+    exportarMarkdown,
     listas: {
       bestiario: listaBestiario,
       npcs: listaNpcs,
@@ -499,6 +651,8 @@
       bestiario: detalheBestiario,
       npcs: detalheNpc,
       itens: detalheItem,
+      ganchos: detalheGancho,
+      missoes: detalheMissao,
       locais: detalheLocal,
       condicoes: detalheCondicao,
     },

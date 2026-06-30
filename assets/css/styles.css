@@ -159,3 +159,24 @@ body {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Indicador de scroll nas abas (fade à direita) */
+.tabs-fade-right {
+  position: absolute;
+  top: 0; right: 0; bottom: 3px;
+  width: 2.5rem;
+  background: linear-gradient(to right, transparent, var(--cor-fundo));
+  pointer-events: none;
+}
+
+/* Spinner de carregamento */
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--cor-borda);
+  border-top-color: var(--cor-ambar);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

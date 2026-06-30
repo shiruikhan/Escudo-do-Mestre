@@ -29,6 +29,9 @@
           <h1 id="titulo-aventura" class="text-base font-bold text-amber-400 truncate">Carregando…</h1>
           <p id="sub-aventura" class="text-xs text-zinc-500 truncate"></p>
         </div>
+        <button type="button" id="btn-exportar"
+                class="hidden text-zinc-500 text-lg flex-shrink-0 active:text-amber-400"
+                title="Exportar como Markdown" aria-label="Exportar como Markdown">⬇</button>
       </div>
     </div>
     <!-- Busca geral -->
@@ -37,18 +40,20 @@
              placeholder="Pesquisar monstros, NPCs, itens, locais…"
              class="busca-input" aria-label="Pesquisa geral" />
     </div>
-    <!-- Barra de abas -->
-    <nav id="tabs" class="tabs-bar px-4 pb-3"></nav>
+    <!-- Barra de abas com indicador de scroll -->
+    <div class="relative">
+      <nav id="tabs" class="tabs-bar px-4 pb-3"></nav>
+      <div class="tabs-fade-right" aria-hidden="true"></div>
+    </div>
   </header>
 
   <!-- Conteúdo principal -->
-  <main id="conteudo" class="flex-1 px-4 py-4"></main>
+  <main id="conteudo" class="flex-1 px-4 py-4" aria-live="polite" aria-atomic="false"></main>
 
-  <footer class="text-center text-zinc-700 text-xs pb-6 pt-2">
-    Apenas imagens e dados locais · Sem backend
-  </footer>
+  <footer class="pb-6 pt-2"></footer>
 
-  <!-- Ordem importa: renderers define window.Renderers usado por app.js -->
+  <!-- Ordem importa: utils expõe window.escHtml; renderers define window.Renderers; app orquestra -->
+  <script src="assets/js/utils.js"></script>
   <script src="assets/js/renderers.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
