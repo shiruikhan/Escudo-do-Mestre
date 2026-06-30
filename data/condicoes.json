@@ -1,0 +1,295 @@
+{
+  "amedrontado": {
+    "nome": "Amedrontado",
+    "icone": "😨",
+    "resumo": "Desvantagem enquanto enxerga a fonte do medo; não pode se aproximar dela.",
+    "efeitos": [
+      {
+        "nome": "Testes e Ataques Afetados",
+        "descricao": "Desvantagem em testes de atributo e jogadas de ataque enquanto a fonte do medo estiver na linha de visão."
+      },
+      {
+        "nome": "Não Pode Se Aproximar",
+        "descricao": "Você não pode se aproximar voluntariamente da fonte do medo."
+      }
+    ]
+  },
+  "atordoado": {
+    "nome": "Atordoado",
+    "icone": "💫",
+    "resumo": "Incapacitado, falha em salvaguardas de FOR/DES e é atacado com Vantagem.",
+    "efeitos": [
+      {
+        "nome": "Incapacitado",
+        "descricao": "Você tem a condição Incapacitado."
+      },
+      {
+        "nome": "Salvaguardas Afetadas",
+        "descricao": "Você falha automaticamente em salvaguardas de Força e Destreza."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Jogadas de ataque contra você têm Vantagem."
+      }
+    ]
+  },
+  "caido": {
+    "nome": "Caído",
+    "icone": "⬇️",
+    "resumo": "Caído no chão: só rasteja ou gasta metade do Deslocamento para se levantar.",
+    "efeitos": [
+      {
+        "nome": "Movimento Restrito",
+        "descricao": "Só pode rastejar ou gastar metade do seu Deslocamento (para baixo) para se levantar e encerrar a condição. Com Deslocamento 0, não consegue se levantar."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Desvantagem nas suas jogadas de ataque. Ataques contra você têm Vantagem se o atacante estiver a até 1,5 m; caso contrário, têm Desvantagem."
+      }
+    ]
+  },
+  "cego": {
+    "nome": "Cego",
+    "icone": "👁️",
+    "resumo": "Não enxerga: falha em testes que dependam de visão; ataca com Desvantagem.",
+    "efeitos": [
+      {
+        "nome": "Não Pode Ver",
+        "descricao": "Você não consegue ver e falha automaticamente em qualquer teste de atributo que dependa da visão."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Jogadas de ataque contra você têm Vantagem; suas jogadas de ataque têm Desvantagem."
+      }
+    ]
+  },
+  "contido": {
+    "nome": "Contido",
+    "icone": "🕸️",
+    "resumo": "Preso no lugar: Deslocamento 0, atacado com Vantagem e DES em desvantagem.",
+    "efeitos": [
+      {
+        "nome": "Deslocamento 0",
+        "descricao": "Seu Deslocamento é 0 e não pode aumentar."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Jogadas de ataque contra você têm Vantagem; suas jogadas de ataque têm Desvantagem."
+      },
+      {
+        "nome": "Salvaguardas Afetadas",
+        "descricao": "Você tem Desvantagem em salvaguardas de Destreza."
+      }
+    ]
+  },
+  "enfeiticado": {
+    "nome": "Enfeitiçado",
+    "icone": "💗",
+    "resumo": "Não pode atacar quem o enfeitiçou; este tem Vantagem social com você.",
+    "efeitos": [
+      {
+        "nome": "Não Pode Atacar Quem o Enfeitiçou",
+        "descricao": "Você não pode atacar quem o enfeitiçou nem o ter como alvo de ataques com atributos ou efeitos mágicos prejudiciais."
+      },
+      {
+        "nome": "Vantagem Social",
+        "descricao": "Quem o enfeitiçou tem Vantagem em qualquer teste de atributo para interações sociais com você."
+      }
+    ]
+  },
+  "envenenado": {
+    "nome": "Envenenado",
+    "icone": "🤢",
+    "resumo": "Desvantagem em jogadas de ataque e em todos os testes de atributo.",
+    "efeitos": [
+      {
+        "nome": "Testes e Ataques Afetados",
+        "descricao": "Você tem Desvantagem em jogadas de ataque e em testes de atributo."
+      }
+    ]
+  },
+  "exaustao": {
+    "nome": "Exaustão",
+    "icone": "🥵",
+    "resumo": "Condição cumulativa em níveis (1 a 6); penaliza testes e Deslocamento. Morre no nível 6.",
+    "efeitos": [
+      {
+        "nome": "Níveis de Exaustão",
+        "descricao": "Cumulativa: cada vez que adquire, recebe 1 nível. Você morre se o nível chegar a 6."
+      },
+      {
+        "nome": "Testes de D20 Afetados",
+        "descricao": "Todo Teste de D20 é reduzido em 2 × seu nível de Exaustão."
+      },
+      {
+        "nome": "Deslocamento Reduzido",
+        "descricao": "Seu Deslocamento é reduzido em 1,5 m × seu nível de Exaustão."
+      },
+      {
+        "nome": "Remoção",
+        "descricao": "Completar um Descanso Longo remove 1 nível de Exaustão."
+      }
+    ]
+  },
+  "imobilizado": {
+    "nome": "Imobilizado",
+    "icone": "🤼",
+    "resumo": "Agarrado: Deslocamento 0 e desvantagem contra alvos que não o imobilizador.",
+    "efeitos": [
+      {
+        "nome": "Deslocamento 0",
+        "descricao": "Seu Deslocamento é 0 e não pode aumentar."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Você tem Desvantagem em ataques contra qualquer alvo que não seja o imobilizador."
+      },
+      {
+        "nome": "Móvel",
+        "descricao": "O imobilizador pode arrastá-lo ou carregá-lo (cada metro custa +1 m), a menos que você seja Minúsculo ou dois ou mais tamanhos menor que ele."
+      }
+    ]
+  },
+  "incapacitado": {
+    "nome": "Incapacitado",
+    "icone": "🚫",
+    "resumo": "Sem ações, sem reação, sem concentração e sem fala.",
+    "efeitos": [
+      {
+        "nome": "Inativo",
+        "descricao": "Você não pode executar nenhuma Ação, Ação Bônus ou Reação."
+      },
+      {
+        "nome": "Sem Concentração",
+        "descricao": "Sua Concentração é interrompida."
+      },
+      {
+        "nome": "Sem Fala",
+        "descricao": "Você não pode falar."
+      },
+      {
+        "nome": "Surpresa",
+        "descricao": "Se está Incapacitado ao rolar Iniciativa, tem Desvantagem na jogada."
+      }
+    ]
+  },
+  "inconsciente": {
+    "nome": "Inconsciente",
+    "icone": "😵",
+    "resumo": "Caído e Incapacitado; atacado com Vantagem e crítico automático de perto.",
+    "efeitos": [
+      {
+        "nome": "Inerte",
+        "descricao": "Você tem as condições Caído e Incapacitado e solta o que estiver segurando. Ao encerrar, continua Caído."
+      },
+      {
+        "nome": "Deslocamento 0",
+        "descricao": "Seu Deslocamento é 0 e não pode aumentar."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Jogadas de ataque contra você têm Vantagem."
+      },
+      {
+        "nome": "Salvaguardas Afetadas",
+        "descricao": "Você falha automaticamente em salvaguardas de Força e Destreza."
+      },
+      {
+        "nome": "Acertos Críticos Automáticos",
+        "descricao": "Qualquer ataque que o atinge é um Acerto Crítico se o atacante estiver a até 1,5 m."
+      },
+      {
+        "nome": "Alheio",
+        "descricao": "Você não está ciente do que o cerca."
+      }
+    ]
+  },
+  "invisivel": {
+    "nome": "Invisível",
+    "icone": "👻",
+    "resumo": "Não pode ser visto: ataca com Vantagem e é atacado com Desvantagem.",
+    "efeitos": [
+      {
+        "nome": "Surpresa",
+        "descricao": "Se está Invisível ao rolar Iniciativa, tem Vantagem na jogada."
+      },
+      {
+        "nome": "Oculto",
+        "descricao": "Não é afetado por efeitos que exijam ser visto, a menos que o criador possa vê-lo. Equipamento vestido/carregado também fica oculto."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Ataques contra você têm Desvantagem; seus ataques têm Vantagem. O benefício some contra quem puder vê-lo de alguma forma."
+      }
+    ]
+  },
+  "paralisado": {
+    "nome": "Paralisado",
+    "icone": "⚡",
+    "resumo": "Incapacitado e imóvel; atacado com Vantagem e crítico automático de perto.",
+    "efeitos": [
+      {
+        "nome": "Incapacitado",
+        "descricao": "Você adquire a condição Incapacitado."
+      },
+      {
+        "nome": "Deslocamento 0",
+        "descricao": "Seu Deslocamento é 0 e não pode aumentar."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Jogadas de ataque contra você têm Vantagem."
+      },
+      {
+        "nome": "Acertos Críticos Automáticos",
+        "descricao": "Qualquer ataque que o atinge é um Acerto Crítico se o atacante estiver a até 1,5 m."
+      },
+      {
+        "nome": "Salvaguardas Afetadas",
+        "descricao": "Você falha automaticamente em salvaguardas de Força e Destreza."
+      }
+    ]
+  },
+  "petrificado": {
+    "nome": "Petrificado",
+    "icone": "🗿",
+    "resumo": "Transformado em pedra: inanimado, Incapacitado e com resistência a tudo.",
+    "efeitos": [
+      {
+        "nome": "Transformado em Substância Inanimada",
+        "descricao": "Você e os objetos não mágicos que carrega viram substância sólida (geralmente pedra). Seu peso aumenta dez vezes e você para de envelhecer."
+      },
+      {
+        "nome": "Incapacitado",
+        "descricao": "Você adquire a condição Incapacitado."
+      },
+      {
+        "nome": "Deslocamento 0",
+        "descricao": "Seu Deslocamento é 0 e não pode aumentar."
+      },
+      {
+        "nome": "Ataques Afetados",
+        "descricao": "Jogadas de ataque contra você têm Vantagem."
+      },
+      {
+        "nome": "Salvaguardas Afetadas",
+        "descricao": "Você falha automaticamente em salvaguardas de Força e Destreza."
+      },
+      {
+        "nome": "Resistência e Imunidade",
+        "descricao": "Você tem Resistência a todos os tipos de dano e Imunidade à condição Envenenado."
+      }
+    ]
+  },
+  "surdo": {
+    "nome": "Surdo",
+    "icone": "🔇",
+    "resumo": "Não pode ouvir: falha em testes que dependam de audição.",
+    "efeitos": [
+      {
+        "nome": "Não Pode Ouvir",
+        "descricao": "Você não consegue ouvir e falha automaticamente em qualquer teste de atributo que dependa da audição."
+      }
+    ]
+  }
+}

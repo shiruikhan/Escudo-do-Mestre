@@ -14,6 +14,7 @@
     { id: 'ganchos',   rotulo: 'Ganchos',   icone: '\u{1FA9D}' },
     { id: 'missoes',   rotulo: 'Missões',   icone: '\u{1F4DC}' },
     { id: 'locais',    rotulo: 'Locais',    icone: '\u{1F5FA}' },
+    { id: 'condicoes', rotulo: 'Condições', icone: '\u{1F300}' },
   ];
 
   const state = {
@@ -37,6 +38,12 @@
       if (!r.ok) throw new Error('Arquivo da aventura não encontrado: ' + meta.arquivo);
       return r.json();
     });
+    // Condições são regras globais (compartilhadas entre aventuras).
+    try {
+      dados.condicoes = await fetch('data/condicoes.json').then(r => r.ok ? r.json() : {});
+    } catch (_) {
+      dados.condicoes = {};
+    }
     return dados;
   }
 

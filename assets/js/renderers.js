@@ -356,6 +356,48 @@
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 
+  // ---------- CONDIÇÕES ----------
+
+  function listaCondicoes(aventura) {
+    const itens = dicParaArray(aventura.condicoes)
+      .sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt'));
+    if (!itens.length) return vazio('Nenhuma condição cadastrada.');
+    const cards = itens.map(c => `
+      <li>
+        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+                data-tipo="condicoes" data-id="${escHtml(c.id)}">
+          <span class="text-2xl flex-shrink-0">${c.icone || '\u{1F300}'}</span>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-zinc-100 truncate">${escHtml(c.nome)}</p>
+            <p class="text-xs text-zinc-500 line-clamp-2">${escHtml(c.resumo || '')}</p>
+          </div>
+          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+        </button>
+      </li>`).join('');
+    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+  }
+
+  function detalheCondicao(aventura, id) {
+    const c = aventura.condicoes && aventura.condicoes[id];
+    if (!c) return vazio('Condição não encontrada.');
+    const efeitos = (c.efeitos || []).map(ef => `
+      <div class="mt-2">
+        <p class="text-sm font-semibold text-amber-300">${escHtml(ef.nome)}</p>
+        <p class="text-sm text-zinc-300 leading-snug">${escHtml(ef.descricao)}</p>
+      </div>`).join('');
+    const corpo = `
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">${c.icone || '\u{1F300}'}</span>
+        <h3 class="text-lg font-bold text-amber-400">${escHtml(c.nome)}</h3>
+      </div>
+      ${c.resumo ? `<p class="text-sm italic text-zinc-400 mt-1">${escHtml(c.resumo)}</p>` : ''}
+      <div class="stat-divider"></div>
+      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500">Efeitos</h4>
+      ${efeitos || '<p class="text-sm text-zinc-500">Sem efeitos detalhados.</p>'}
+    `;
+    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+  }
+
   // ---------- BUSCA GERAL ----------
 
   // Normaliza para busca: remove acentos e caixa.
@@ -424,6 +466,9 @@
       const fonte = typeof g === 'object' ? g.fonte : '';
       if (bate(texto, fonte)) res.push(resultadoAba('ganchos', fonte || 'Gancho', 'Gancho', (texto || '').slice(0, 70)));
     });
+    for (const [id, c] of Object.entries(aventura.condicoes || {})) {
+      if (bate(c.nome, c.resumo)) res.push(resultadoDetalhe('condicoes', id, c.nome, 'Condição', c.resumo));
+    }
 
     if (!res.length) {
       return `<div class="text-center text-zinc-600 mt-16">
@@ -448,12 +493,14 @@
       ganchos: listaGanchos,
       missoes: listaMissoes,
       locais: listaLocais,
+      condicoes: listaCondicoes,
     },
     detalhes: {
       bestiario: detalheBestiario,
       npcs: detalheNpc,
       itens: detalheItem,
       locais: detalheLocal,
+      condicoes: detalheCondicao,
     },
   };
 })();
