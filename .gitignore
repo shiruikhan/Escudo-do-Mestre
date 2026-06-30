@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (se ferramentas de build forem adicionadas futuramente)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+.cache/
+
+# Claude Code
+.claude/settings.local.json
+
+# PDFs e arquivos pesados de referência (apenas specs ficam no repo)
+docs/assets/*.pdf
+
+# Logs e temporários
+*.log
+*.tmp
+*.bak
