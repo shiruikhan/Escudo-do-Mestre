@@ -1,0 +1,1455 @@
+{
+  "id": "dragao-espiral-gelo",
+  "titulo": "Dragão da Espiral de Gelo",
+  "nivel_recomendado": "1–6",
+  "num_jogadores": "1–5",
+  "cenario": "Reinos Esquecidos — Costa da Espada, região de Phandalin",
+  "mapas": [
+    { "nome": "Phandalin", "url": "assets/images/dragao-espiral-gelo/mapa_phandalin.webp" },
+    { "nome": "Costa da Espada", "url": "assets/images/dragao-espiral-gelo/mapa_costa_espada.webp" }
+  ],
+
+  "bestiario": {
+    "cryovain": {
+      "nome": "Cryovain — Dragão Branco Jovem",
+      "tipo_alinhamento": "Dragão Grande, Caótico e Mau",
+      "ca": 17,
+      "ca_descricao": "armadura natural",
+      "pv": 133,
+      "pv_formula": "14d10 + 56",
+      "deslocamento": "12 m; escavação 6 m; natação 12 m; voo 24 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 16,
+      "modificadores": {
+        "FOR": "+4", "DES": "+0", "CON": "+4",
+        "INT": "-2", "SAB": "+0", "CAR": "+1"
+      },
+      "salvaguardas": ["DES +3", "CON +7", "SAB +3", "CAR +4"],
+      "pericias": ["Furtividade +7", "Percepção +6"],
+      "imunidades_dano": ["frio"],
+      "sentidos": "Percepção às cegas 9 m, Visão no Escuro 36 m",
+      "idiomas": "Comum, Dracônico",
+      "nd": "6",
+      "xp": 2300,
+      "caracteristicas": [
+        {
+          "nome": "Andar no Gelo",
+          "descricao": "Cryovain pode atravessar e escalar superfícies com gelo sem precisar fazer um teste de atributo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "Cryovain faz três ataques: um com a mordida e dois com as garras."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 3 m, um alvo. Dano: 15 (2d10 + 4) de dano perfurante mais 4 (1d8) de dano gélido."
+        },
+        {
+          "nome": "Garra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 1,5 m, um alvo. Dano: 11 (2d6 + 4) de dano cortante."
+        },
+        {
+          "nome": "Sopro Gélido (Recarga 5–6)",
+          "descricao": "O dragão exala uma rajada de gelo em um cone de 9 m. Cada criatura na área deve fazer uma salvaguarda de Constituição CD 15. Falha: 45 (10d8) de dano gélido. Sucesso: metade do dano."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Fortaleza da Espiral de Gelo (boss principal); pode ser encontrado em qualquer lugar do mapa (role d20 na tabela de localização do dragão).",
+      "notas_dm": "Rolar d20 sempre que os personagens chegarem a ou partirem de um local marcado no mapa para determinar a posição de Cryovain. Matar Cryovain concede um nível extra aos personagens."
+    },
+
+    "anacoreta-orc": {
+      "nome": "Anacoreta dos Orcs",
+      "tipo_alinhamento": "Humanoide Médio (orc, metamorfo), Caótico e Mau",
+      "ca": 11,
+      "ca_descricao": "12 com Armadura Arcana",
+      "pv": 38,
+      "pv_formula": "7d8 + 7",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "+2", "DES": "+1", "CON": "+1",
+        "INT": "+0", "SAB": "+1", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Orc",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Metamorfo",
+          "descricao": "O anacoreta pode usar sua ação para se transformar em um javali ou voltar à sua verdadeira forma humanoide. Suas estatísticas são as mesmas em cada forma. Ele volta à sua verdadeira forma se morrer."
+        },
+        {
+          "nome": "Conjuração",
+          "descricao": "Atributo de conjuração: Sabedoria (CD 11, +3 para acertar). Magias: 1/dia cada: augúrio, bênção, relâmpago (8d6), revivificação. 3/dia: onda trovejante (2d8)."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Manoplas com Garras (Apenas Forma Humanoide)",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d4 + 3) de dano cortante."
+        },
+        {
+          "nome": "Presa (Apenas Forma de Javali)",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 6 (1d6 + 3) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Círculo do Trovão e Floresta de Neverwinter"
+    },
+
+    "ankheg": {
+      "nome": "Ankheg",
+      "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
+      "ca": 14,
+      "ca_descricao": "armadura natural; 11 quando prostrada",
+      "pv": 39,
+      "pv_formula": "6d10 + 6",
+      "deslocamento": "9 m; escavação 3 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "+3", "DES": "+0", "CON": "+1",
+        "INT": "-5", "SAB": "+1", "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Visão no Escuro 18 m, Sentido Sísmico 18 m",
+      "idiomas": "—",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 10 (2d6 + 3) de dano cortante mais 3 (1d6) de dano ácido. Se o alvo for Grande ou menor, fica agarrado (CD 13 para escapar). Enquanto agarrado, o ankheg só pode morder a criatura agarrada e tem vantagem nos ataques."
+        },
+        {
+          "nome": "Rajada Ácida (Recarga 6)",
+          "descricao": "O ankheg cospe ácido em uma linha de 9 m por 1,5 m, somente se não estiver agarrando uma criatura. Cada criatura na linha faz salvaguarda de Destreza CD 13: falha 10 (3d6) de dano ácido; sucesso metade."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Acampamento dos Lenhadores"
+    },
+
+    "banshee": {
+      "nome": "Banshee (Vyldara)",
+      "tipo_alinhamento": "Morto-vivo Médio, Caótico e Mau",
+      "ca": 12,
+      "pv": 58,
+      "pv_formula": "13d8",
+      "deslocamento": "0 m; voo 12 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "-5", "DES": "+2", "CON": "+0",
+        "INT": "+1", "SAB": "+0", "CAR": "+3"
+      },
+      "salvaguardas": ["SAB +2", "CAR +5"],
+      "pericias": [],
+      "resistencias_dano": ["ácido", "elétrico", "ígneo", "trovão", "contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
+      "imunidades_dano": ["frio", "necrótico", "venenoso"],
+      "imunidades_condicao": ["agarrado", "amedrontado", "caído", "contido", "enfeitiçado", "envenenado", "exaustão", "paralisado", "petrificado"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Élfico",
+      "nd": "4",
+      "xp": 1100,
+      "caracteristicas": [
+        {
+          "nome": "Detectar Vida",
+          "descricao": "A banshee detecta magicamente criaturas vivas em até 8 km, exceto mortos-vivos e construtos. Sabe a direção mas não a localização exata."
+        },
+        {
+          "nome": "Movimento Incorpóreo",
+          "descricao": "A banshee pode se mover por criaturas e objetos como se fossem terreno difícil. Sofre 5 (1d10) de dano de força se terminar seu turno dentro de um objeto."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Toque Corrompido",
+          "descricao": "Magia de Combate Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 12 (3d6 + 2) de dano necrótico."
+        },
+        {
+          "nome": "Rosto Horripilante",
+          "descricao": "Cada criatura não-morta-viva a até 18 m que possa ver a banshee faz salvaguarda de Sabedoria CD 13 ou fica amedrontada por 1 minuto. Uma criatura amedrontada pode repetir a salvaguarda no final de cada turno."
+        },
+        {
+          "nome": "Lamento (Recarga após Descanso Longo)",
+          "descricao": "A banshee solta um gemido mágico. Cada criatura não-morta-viva a até 9 m que possa ouvi-la faz salvaguarda de Constituição CD 13. Falha: a criatura cai para 0 pontos de vida. Sucesso: a criatura sofre 10 (3d6) de dano psíquico."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm (sala A27 — Aposentos da Banshee)",
+      "notas_dm": "Vyldara é o espírito da embaixadora élfica que foi aprisionada e morreu em Axeholm. Ela abomina espelhos. A banshee percebe a chegada dos aventureiros com Detectar Vida."
+    },
+
+    "aranha-gigante": {
+      "nome": "Aranha Gigante",
+      "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 26,
+      "pv_formula": "4d10 + 4",
+      "deslocamento": "9 m; escalada 9 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+2", "DES": "+3", "CON": "+1",
+        "INT": "-4", "SAB": "+0", "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +7"],
+      "sentidos": "Percepção às cegas 3 m, Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [
+        {
+          "nome": "Andar na Teia",
+          "descricao": "A aranha ignora restrições de deslocamento causadas por teias."
+        },
+        {
+          "nome": "Escalada de Aranha",
+          "descricao": "A aranha pode escalar superfícies difíceis, inclusive de cabeça para baixo no teto, sem teste de atributo."
+        },
+        {
+          "nome": "Sentido de Teia",
+          "descricao": "Enquanto em contato com uma teia, a aranha sabe a localização exata de qualquer criatura em contato com a mesma teia."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 7 (1d8 + 3) de dano perfurante. O alvo faz salvaguarda de Constituição CD 11 ou fica envenenado por 1 hora. Se falhar por 5 ou mais, também fica inconsciente enquanto envenenado."
+        },
+        {
+          "nome": "Teia (Recarga 5–6)",
+          "descricao": "Ataque de Magia à Distância: +5 para acertar, distância 9/18 m, uma criatura. Acerto: a criatura fica contida por teia. CD 12 de Força para se soltar (ação)."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm (sala A22 — Bastião Superior)"
+    },
+
+    "carnical": {
+      "nome": "Carniçal",
+      "tipo_alinhamento": "Morto-vivo Médio, Caótico e Mau",
+      "ca": 12,
+      "pv": 22,
+      "pv_formula": "5d8",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+1", "DES": "+2", "CON": "+0",
+        "INT": "-2", "SAB": "+0", "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "imunidades_dano": ["venenoso"],
+      "imunidades_condicao": ["enfeitiçado", "envenenado", "exaustão"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +2 para acertar, alcance 1,5 m, um alvo. Dano: 9 (2d6 + 2) de dano perfurante."
+        },
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 7 (2d4 + 2) de dano cortante. Se o alvo não for morto-vivo ou elfo, faz salvaguarda de Constituição CD 10 ou fica paralisado por 1 minuto. Pode repetir ao final de cada turno."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm (salas A5, A19, A26)"
+    },
+
+    "caranguejo-gigante": {
+      "nome": "Caranguejo Gigante",
+      "tipo_alinhamento": "Besta Média, Sem Alinhamento",
+      "ca": 15,
+      "ca_descricao": "armadura natural",
+      "pv": 13,
+      "pv_formula": "3d8",
+      "deslocamento": "9 m; natação 9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "+1", "DES": "+2", "CON": "+0",
+        "INT": "-5", "SAB": "-1", "CAR": "-4"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +4"],
+      "sentidos": "Percepção às cegas 9 m",
+      "idiomas": "—",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [
+        {
+          "nome": "Anfíbio",
+          "descricao": "O caranguejo pode respirar ar e água."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Garra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 4 (1d6 + 1) de dano contundente. O alvo fica agarrado (CD 11 para escapar). O caranguejo tem duas garras, cada uma pode agarrar apenas um alvo."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Torre das Tempestades (costa a oeste de Phandalin)",
+      "notas_dm": "Um caranguejo gigante na Torre das Tempestades foi imbuído com Inteligência 10 e a capacidade de falar Comum pela feiticeira do mar Miraal. Ele cumprimenta os aventureiros e oferece ajuda em troca de paz para o espírito de sua mestre."
+    },
+
+    "cavalo-montaria": {
+      "nome": "Cavalo de Montaria",
+      "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
+      "ca": 10,
+      "pv": 13,
+      "pv_formula": "2d10 + 2",
+      "deslocamento": "18 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+3", "DES": "+0", "CON": "+2",
+        "INT": "-4", "SAB": "+0", "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Percepção passiva 10",
+      "idiomas": "—",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Cascos",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 8 (2d4 + 3) de dano contundente."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "notas_dm": "Um cavalo de montaria saudável pode ser comprado ou vendido em Phandalin por 75 PO."
+    },
+
+    "centauro": {
+      "nome": "Centauro",
+      "tipo_alinhamento": "Monstruosidade Grande, Neutro e Bom",
+      "ca": 12,
+      "pv": 45,
+      "pv_formula": "6d10 + 12",
+      "deslocamento": "15 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 13,
+      "modificadores": {
+        "FOR": "+4", "DES": "+2", "CON": "+2",
+        "INT": "-1", "SAB": "+1", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": ["Atletismo +6", "Percepção +3", "Sobrevivência +3"],
+      "sentidos": "—",
+      "idiomas": "Élfico, Silvestre",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Disparada",
+          "descricao": "Se o centauro se mover ao menos 9 m em linha reta em direção a uma criatura e atacá-la com a glaive no mesmo turno, o alvo sofre 10 (3d6) de dano perfurante adicional."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "O centauro faz dois ataques: um com a glaive e um com os cascos, ou dois com o arco longo."
+        },
+        {
+          "nome": "Glaive",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 3 m, um alvo. Dano: 9 (1d10 + 4) de dano perfurante."
+        },
+        {
+          "nome": "Cascos",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 11 (2d6 + 4) de dano contundente."
+        },
+        {
+          "nome": "Arco Longo",
+          "descricao": "Ataque de Arma à Distância: +4 para acertar, distância 45/180 m, um alvo. Dano: 6 (1d8 + 2) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Colina do Dragão (Xanth, NPC aliado)"
+    },
+
+    "espreitador-invisivel": {
+      "nome": "Espreitador Invisível",
+      "tipo_alinhamento": "Elemental Médio, Neutro",
+      "ca": 14,
+      "pv": 104,
+      "pv_formula": "16d8 + 32",
+      "deslocamento": "15 m; voo 15 m (pairar)",
+      "iniciativa": "+4 (14)",
+      "percepcao_passiva": 18,
+      "modificadores": {
+        "FOR": "+3", "DES": "+4", "CON": "+2",
+        "INT": "+0", "SAB": "+2", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +10", "Percepção +8"],
+      "resistencias_dano": ["contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
+      "imunidades_dano": ["venenoso"],
+      "imunidades_condicao": ["agarrado", "caído", "contido", "envenenado", "exaustão", "inconsciente", "paralisado", "petrificado"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Auran; compreende Comum mas não fala",
+      "nd": "6",
+      "xp": 2300,
+      "caracteristicas": [
+        {
+          "nome": "Invisibilidade",
+          "descricao": "O espreitador é invisível."
+        },
+        {
+          "nome": "Rastreador Impecável",
+          "descricao": "Uma vítima é dada ao espreitador por seu invocador. Ele conhece a direção e a distância de sua vítima desde que ambos estejam no mesmo plano. Também sabe a localização de seu invocador."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "O espreitador faz dois ataques com a pancada."
+        },
+        {
+          "nome": "Pancada",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 10 (2d6 + 3) de dano contundente."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": []
+    },
+
+    "fogo-fatuo": {
+      "nome": "Fogo Fátuo",
+      "tipo_alinhamento": "Morto-vivo Minúsculo, Caótico e Mau",
+      "ca": 19,
+      "pv": 22,
+      "pv_formula": "9d4",
+      "deslocamento": "0 m; voo 15 m (pairar)",
+      "iniciativa": "+9 (19)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "-5", "DES": "+9", "CON": "+0",
+        "INT": "+1", "SAB": "+2", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "imunidades_dano": ["elétrico", "venenoso"],
+      "resistencias_dano": ["ácido", "frio", "ígneo", "necrótico", "trovão", "contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
+      "imunidades_condicao": ["agarrado", "caído", "contido", "envenenado", "exaustão", "paralisado", "petrificado"],
+      "sentidos": "Visão no Escuro 32 m",
+      "idiomas": "Os idiomas que sabia em vida",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Consumir Vida",
+          "descricao": "Como ação bônus, o fogo fátuo foca em uma criatura a até 1,5 m com 0 PV ainda viva. O alvo faz salvaguarda de Constituição CD 10 ou morre. Se morrer, o fogo fátuo recupera 10 (3d6) PV."
+        },
+        {
+          "nome": "Efêmero",
+          "descricao": "O fogo fátuo não pode carregar ou vestir nada."
+        },
+        {
+          "nome": "Iluminação Variável",
+          "descricao": "O fogo fátuo emite luz plena em raio de 1,5–6 m e meia-luz em número igual de metros. Pode alterar o raio como ação bônus."
+        },
+        {
+          "nome": "Movimento Incorpóreo",
+          "descricao": "O fogo fátuo pode se mover através de criaturas e objetos como terreno difícil. Sofre 5 (1d10) de dano de força se terminar seu turno dentro de um objeto."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Choque",
+          "descricao": "Magia de Combate Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 9 (2d8) de dano elétrico."
+        },
+        {
+          "nome": "Invisibilidade",
+          "descricao": "O fogo fátuo e sua luz ficam magicamente invisíveis até que ele ataque, use Consumir Vida, ou até sua concentração termine."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Colina do Dragão (área D2)"
+    },
+
+    "gnomo-rochas-recluso": {
+      "nome": "Gnomo das Rochas Recluso",
+      "tipo_alinhamento": "Humanoide Pequeno (gnomo), Caótico e Neutro",
+      "ca": 10,
+      "ca_descricao": "13 com Armadura Arcana",
+      "pv": 7,
+      "pv_formula": "2d6",
+      "deslocamento": "7,5 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "-2", "DES": "+0", "CON": "+0",
+        "INT": "+2", "SAB": "+0", "CAR": "+1"
+      },
+      "salvaguardas": [],
+      "pericias": ["Arcanismo +4", "História +4"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Gnômico",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Astúcia de Gnomo",
+          "descricao": "O gnomo tem vantagem nas salvaguardas de Inteligência, Sabedoria e Carisma contra magia."
+        },
+        {
+          "nome": "Conjuração",
+          "descricao": "Conjurador de 2º nível. Inteligência (CD 12, +4 para acertar). Truques (à vontade): mãos mágicas, prestidigitação, raio de gelo. 1º círculo (3 espaços): armadura arcana, detectar magia, escudo, mísseis mágicos."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mísseis Mágicos",
+          "descricao": "O gnomo cria três dardos mágicos que acertam automaticamente. Cada dardo causa 3 (1d4 + 1) de dano de força."
+        },
+        {
+          "nome": "Raio de Gelo",
+          "descricao": "Ataque de Magia à Distância: +4 para acertar, distância 18 m, um alvo. Dano: 4 (1d8) de dano gélido e deslocamento do alvo reduzido em 3 m até o início do próximo turno do gnomo."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Gruta dos Gnomos"
+    },
+
+    "gorthok": {
+      "nome": "Gorthok, o Javali do Trovão",
+      "tipo_alinhamento": "Monstruosidade Enorme, Caótico e Mau",
+      "ca": 15,
+      "ca_descricao": "armadura natural",
+      "pv": 73,
+      "pv_formula": "7d12 + 28",
+      "deslocamento": "15 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+5", "DES": "+0", "CON": "+4",
+        "INT": "-2", "SAB": "+0", "CAR": "+2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": ["contundente não-mágico", "cortante não-mágico", "perfurante não-mágico"],
+      "imunidades_dano": ["elétrico", "trovão"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "6",
+      "xp": 2300,
+      "caracteristicas": [
+        {
+          "nome": "Incansável",
+          "descricao": "Se Gorthok sofrer 27 PV ou menos que o reduziriam a 0 PV, em vez disso seus PV são reduzidos para 1."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "Gorthok faz dois ataques corpo a corpo: um com as presas e um com os cascos."
+        },
+        {
+          "nome": "Presas do Relâmpago",
+          "descricao": "Ataque de Arma Corpo a Corpo: +8 para acertar, alcance 3 m, um alvo. Dano: 12 (2d6 + 5) de dano cortante mais 7 (2d6) de dano elétrico."
+        },
+        {
+          "nome": "Cascos do Trovão",
+          "descricao": "Ataque de Arma Corpo a Corpo: +8 para acertar, alcance 3 m, um alvo. Dano: 12 (2d6 + 5) de dano contundente mais 7 (2d6) de dano trovejante."
+        },
+        {
+          "nome": "Relâmpago",
+          "descricao": "Gorthok dispara um raio em uma criatura à sua vista em até 36 m. O alvo faz salvaguarda de Destreza CD 14 ou sofre 14 (4d6) de dano elétrico; metade em sucesso."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Círculo do Trovão (convocado pelos anacoretas)",
+      "notas_dm": "Gorthok serve a Talos, deus das tempestades. É convocado pelos anacoretas durante a invocação no Círculo do Trovão. Chega com um trovão quando os dois anacoretas que realizam o ritual são mortos."
+    },
+
+    "harpia": {
+      "nome": "Harpia",
+      "tipo_alinhamento": "Monstruosidade Média, Caótico e Mau",
+      "ca": 11,
+      "pv": 38,
+      "pv_formula": "7d8 + 7",
+      "deslocamento": "6 m; voo 12 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+1", "DES": "+1", "CON": "+1",
+        "INT": "-2", "SAB": "+0", "CAR": "+1"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "—",
+      "idiomas": "Comum",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [
+        {
+          "nome": "Canção Sedutora",
+          "descricao": "A harpia canta uma melodia mágica. Todo humanoide e gigante a menos de 90 m que puder ouvi-la faz salvaguarda de Sabedoria CD 11 ou fica enfeitiçado até a música terminar. A harpia usa ação bônus nos turnos seguintes para continuar cantando. O alvo enfeitiçado fica incapacitado e se move em direção à harpia. Pode repetir ao final de cada turno ou ao sofrer dano de outra fonte."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "A harpia faz dois ataques: um com as garras e outro com a clava."
+        },
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 6 (2d4 + 1) de dano cortante."
+        },
+        {
+          "nome": "Clava",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 3 (1d4 + 1) de dano contundente."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Torre das Tempestades (cume da colina)"
+    },
+
+    "gosma-ocre": {
+      "nome": "Gosma Ocre",
+      "tipo_alinhamento": "Gosma Grande, Sem Alinhamento",
+      "ca": 8,
+      "pv": 45,
+      "pv_formula": "6d10 + 12",
+      "deslocamento": "3 m; escalada 3 m",
+      "iniciativa": "-2 (8)",
+      "percepcao_passiva": 8,
+      "modificadores": {
+        "FOR": "+2", "DES": "-2", "CON": "+2",
+        "INT": "-4", "SAB": "-2", "CAR": "-5"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": ["ácido"],
+      "imunidades_dano": ["cortante", "elétrico"],
+      "imunidades_condicao": ["amedrontado", "caído", "cego", "enfeitiçado", "exaustão", "surdo"],
+      "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
+      "idiomas": "—",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Amorfo",
+          "descricao": "A gosma pode se mover por um espaço tão estreito quanto 2,5 cm de largura sem se apertar."
+        },
+        {
+          "nome": "Escalada de Aranha",
+          "descricao": "A gosma pode escalar superfícies difíceis, inclusive de cabeça para baixo no teto, sem teste de atributo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Pseudópode",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 9 (2d6 + 2) de dano contundente mais 3 (1d6) de dano ácido."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [
+        {
+          "nome": "Dividir",
+          "descricao": "Quando uma gosma Média ou maior é sujeita a dano elétrico ou cortante, ela se divide em duas novas gosmas se tiver pelo menos 10 PV. Cada nova gosma tem PV iguais à metade da original (arredondados para baixo)."
+        }
+      ],
+      "localizacao": "Escavação dos Anões (templo de Abbathor)"
+    },
+
+    "homem-rato": {
+      "nome": "Homem-Rato",
+      "tipo_alinhamento": "Humanoide Médio (humano, metamorfo), Ordeiro e Mau",
+      "ca": 12,
+      "pv": 33,
+      "pv_formula": "6d8 + 6",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "+0", "DES": "+2", "CON": "+1",
+        "INT": "+0", "SAB": "+0", "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +4", "Percepção +2"],
+      "imunidades_dano": ["contundente não-mágico sem prata", "cortante não-mágico sem prata", "perfurante não-mágico sem prata"],
+      "sentidos": "Visão no Escuro 18 m (apenas forma de rato)",
+      "idiomas": "Comum (não fala na forma de rato)",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Metamorfo",
+          "descricao": "O homem-rato pode usar sua ação para se transformar em um híbrido humano-rato ou em um rato gigante, ou voltar à sua forma verdadeira. Suas estatísticas, exceto o tamanho, são iguais em cada forma."
+        },
+        {
+          "nome": "Olfato Aguçado",
+          "descricao": "O homem-rato tem vantagem nos testes de Sabedoria (Percepção) que dependam do olfato."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos (Apenas Forma Humanoide ou Híbrida)",
+          "descricao": "O homem-rato faz dois ataques, dos quais apenas um pode ser com a mordida."
+        },
+        {
+          "nome": "Mordida (Apenas Forma Híbrida ou de Rato)",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 1 de dano perfurante. O alvo faz salvaguarda de Constituição CD 11 ou é amaldiçoado com licantropia de homem-rato."
+        },
+        {
+          "nome": "Espada Curta (Apenas Forma Humanoide ou Híbrida)",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": []
+    },
+
+    "javali": {
+      "nome": "Javali",
+      "tipo_alinhamento": "Besta Média, Sem Alinhamento",
+      "ca": 11,
+      "ca_descricao": "armadura natural",
+      "pv": 11,
+      "pv_formula": "2d8 + 2",
+      "deslocamento": "12 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "+1", "DES": "+0", "CON": "+1",
+        "INT": "-4", "SAB": "-1", "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "—",
+      "idiomas": "—",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Incansável (Recarga após Descanso Curto ou Longo)",
+          "descricao": "Se o javali sofrer 7 PV ou menos que o reduziriam a 0 PV, em vez disso seus PV são reduzidos para 1."
+        },
+        {
+          "nome": "Investida",
+          "descricao": "Se o javali se mover ao menos 6 m em linha reta em direção ao alvo e acertá-lo com a presa no mesmo turno, o alvo faz salvaguarda de Força CD 11 ou é derrubado."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Presa",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 4 (1d6 + 1) de dano cortante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": []
+    },
+
+    "mimico": {
+      "nome": "Mímico",
+      "tipo_alinhamento": "Monstruosidade Média (metamorfo), Neutro",
+      "ca": 12,
+      "ca_descricao": "armadura natural",
+      "pv": 59,
+      "pv_formula": "9d8 + 18",
+      "deslocamento": "4,5 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "+3", "DES": "+1", "CON": "+2",
+        "INT": "-3", "SAB": "+1", "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +5"],
+      "imunidades_dano": ["ácido"],
+      "imunidades_condicao": ["caído"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Metamorfo",
+          "descricao": "O mímico pode usar sua ação para se transformar em um objeto ou retornar à sua forma amorfa verdadeira."
+        },
+        {
+          "nome": "Adesivo (Apenas Forma de Objeto)",
+          "descricao": "O mímico adere a qualquer coisa que o toque. Uma criatura enorme ou menor colada ao mímico está agarrada (CD 13 para escapar). Testes para escapar têm desvantagem."
+        },
+        {
+          "nome": "Aparência Falsa (Apenas Forma de Objeto)",
+          "descricao": "Enquanto imóvel, o mímico é indistinguível de um objeto comum."
+        },
+        {
+          "nome": "Agarrador",
+          "descricao": "O mímico tem vantagem nas jogadas de ataque contra qualquer criatura agarrada por ele."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Pseudópode",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 7 (1d8 + 3) de dano contundente. Se em forma de objeto, o alvo é submetido ao traço Adesivo."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 7 (1d8 + 3) de dano perfurante mais 4 (1d8) de dano ácido."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": []
+    },
+
+    "manticora": {
+      "nome": "Manticora",
+      "tipo_alinhamento": "Monstruosidade Grande, Ordeira e Má",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 68,
+      "pv_formula": "8d10 + 24",
+      "deslocamento": "9 m; voo 15 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "+3", "DES": "+3", "CON": "+3",
+        "INT": "-2", "SAB": "+1", "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum",
+      "nd": "3",
+      "xp": 700,
+      "caracteristicas": [
+        {
+          "nome": "Crescimento de Espinho de Cauda",
+          "descricao": "A manticora tem vinte e quatro espinhos na cauda. Os espinhos usados voltam a crescer quando a manticora termina um descanso longo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "A manticora faz três ataques: um com a mordida e dois com as garras, ou três com os espinhos da cauda."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 7 (1d8 + 3) de dano perfurante."
+        },
+        {
+          "nome": "Garra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 6 (1d6 + 3) de dano cortante."
+        },
+        {
+          "nome": "Espinho de Cauda",
+          "descricao": "Ataque de Arma à Distância: +5 para acertar, distância 18/36 m, um alvo. Dano: 7 (1d8 + 3) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "notas_dm": "Expulsa de seu ninho nas Montanhas da Espada por Cryovain, a manticora migrou para o sopé da montanha e começou a aterrorizar a região de Phandalin."
+    },
+
+    "ogro": {
+      "nome": "Ogro",
+      "tipo_alinhamento": "Gigante Grande, Caótico e Mau",
+      "ca": 11,
+      "ca_descricao": "gibão de peles",
+      "pv": 59,
+      "pv_formula": "7d10 + 21",
+      "deslocamento": "12 m",
+      "iniciativa": "-1 (9)",
+      "percepcao_passiva": 8,
+      "modificadores": {
+        "FOR": "+4", "DES": "-1", "CON": "+3",
+        "INT": "-3", "SAB": "-2", "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Gigante",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Clava Grande",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 13 (2d8 + 4) de dano contundente."
+        },
+        {
+          "nome": "Azagaia",
+          "descricao": "Ataque de Arma Corpo a Corpo ou à Distância: +6 para acertar, alcance 1,5 m ou distância 9/36 m, um alvo. Dano: 11 (2d6 + 4) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": []
+    },
+
+    "orc": {
+      "nome": "Orc",
+      "tipo_alinhamento": "Humanoide Médio, Caótico e Mau",
+      "ca": 13,
+      "ca_descricao": "gibão de peles",
+      "pv": 15,
+      "pv_formula": "2d8 + 6",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+3", "DES": "+1", "CON": "+3",
+        "INT": "-2", "SAB": "+0", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": ["Intimidação +2"],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Orc",
+      "nd": "1/2",
+      "xp": 100,
+      "caracteristicas": [
+        {
+          "nome": "Agressivo",
+          "descricao": "Como ação bônus, o orc pode mover até metade de seu deslocamento em direção a uma criatura hostil à sua vista."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Machado Grande",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 9 (1d12 + 3) de dano cortante."
+        },
+        {
+          "nome": "Azagaia",
+          "descricao": "Ataque de Arma Corpo a Corpo ou à Distância: +5 para acertar, alcance 1,5 m ou distância 9/36 m, um alvo. Dano: 6 (1d6 + 3) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [
+        {
+          "nome": "Agressivo",
+          "descricao": "Mover até metade do deslocamento em direção a uma criatura hostil à vista."
+        }
+      ],
+      "reacoes": []
+    },
+
+    "plebeu": {
+      "nome": "Plebeu",
+      "tipo_alinhamento": "Humanoide Médio (qualquer raça), Qualquer Alinhamento",
+      "ca": 10,
+      "pv": 4,
+      "pv_formula": "1d8",
+      "deslocamento": "9 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+0", "DES": "+0", "CON": "+0",
+        "INT": "+0", "SAB": "+0", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "—",
+      "idiomas": "Qualquer idioma (geralmente Comum)",
+      "nd": "0",
+      "xp": 10,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Clava",
+          "descricao": "Ataque de Arma Corpo a Corpo: +2 para acertar, alcance 1,5 m, um alvo. Dano: 2 (1d4)."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "notas_dm": "Inclui camponeses, servos, serviçais, peregrinos, comerciantes, artesãos e eremitas. Tibor Wester usa este bloco de estatísticas."
+    },
+
+    "ramo-espetos": {
+      "nome": "Ramo de Espetos",
+      "tipo_alinhamento": "Planta Média, Neutra e Má",
+      "ca": 12,
+      "ca_descricao": "armadura natural",
+      "pv": 11,
+      "pv_formula": "2d8 + 2",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "+1", "DES": "+1", "CON": "+1",
+        "INT": "-3", "SAB": "-1", "CAR": "-4"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "imunidades_condicao": ["cego", "surdo"],
+      "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
+      "idiomas": "Compreende Comum, mas não fala",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Aparência Falsa",
+          "descricao": "Enquanto o ramo permanecer imóvel, é indistinguível de um objeto comum."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 3 (1d4 + 1) de dano perfurante."
+        },
+        {
+          "nome": "Rajada de Espetos (Recarga 6)",
+          "descricao": "Ataque de Magia à Distância: +3 para acertar, distância 9 m, um alvo. Dano: 5 (2d4) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Floresta de Neverwinter, Mansão do Bosque"
+    },
+
+    "ramo-galhos": {
+      "nome": "Ramo de Galhos",
+      "tipo_alinhamento": "Planta Pequena, Neutra e Má",
+      "ca": 13,
+      "ca_descricao": "armadura natural",
+      "pv": 4,
+      "pv_formula": "1d6 + 1",
+      "deslocamento": "6 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "-2", "DES": "+1", "CON": "+1",
+        "INT": "-3", "SAB": "-1", "CAR": "-4"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +3"],
+      "vulnerabilidades_dano": ["ígneo"],
+      "imunidades_condicao": ["cego", "surdo"],
+      "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
+      "idiomas": "Compreende Comum, mas não fala",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [
+        {
+          "nome": "Aparência Falsa",
+          "descricao": "Enquanto o ramo permanecer imóvel, é indistinguível de um objeto comum."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 3 (1d4 + 1) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Floresta de Neverwinter, Mansão do Bosque"
+    },
+
+    "ramo-vinhas": {
+      "nome": "Ramo de Vinhas",
+      "tipo_alinhamento": "Planta Média, Neutra e Má",
+      "ca": 12,
+      "ca_descricao": "armadura natural",
+      "pv": 26,
+      "pv_formula": "4d8 + 8",
+      "deslocamento": "3 m",
+      "iniciativa": "-1 (9)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+2", "DES": "-1", "CON": "+2",
+        "INT": "-3", "SAB": "+0", "CAR": "-4"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +1"],
+      "imunidades_condicao": ["cego", "surdo"],
+      "sentidos": "Percepção às cegas 18 m (cego além desse raio)",
+      "idiomas": "Comum",
+      "nd": "1/2",
+      "xp": 100,
+      "caracteristicas": [
+        {
+          "nome": "Aparência Falsa",
+          "descricao": "Enquanto o ramo permanecer imóvel, é indistinguível de um objeto comum."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Constrição",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 3 m, um alvo. Dano: 9 (2d6 + 2) de dano contundente. Um alvo Grande ou menor fica agarrado (CD 12 para escapar). Enquanto agarrado, o alvo está contido e o ramo não pode agarrar outro alvo."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Floresta de Neverwinter, Mansão do Bosque"
+    },
+
+    "rato-gigante": {
+      "nome": "Rato Gigante",
+      "tipo_alinhamento": "Besta Pequena, Sem Alinhamento",
+      "ca": 12,
+      "pv": 7,
+      "pv_formula": "2d6",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "-2", "DES": "+2", "CON": "+0",
+        "INT": "-5", "SAB": "+0", "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [
+        {
+          "nome": "Olfato Aguçado",
+          "descricao": "O rato tem vantagem nos testes de Sabedoria (Percepção) que dependam do olfato."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 4 (1d4 + 2) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": []
+    },
+
+    "stirge": {
+      "nome": "Stirge",
+      "tipo_alinhamento": "Besta Minúscula, Sem Alinhamento",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 2,
+      "pv_formula": "1d4",
+      "deslocamento": "3 m; voo 12 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "-4", "DES": "+3", "CON": "+0",
+        "INT": "-5", "SAB": "-1", "CAR": "-4"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Punção de Sangue",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, uma criatura. Dano: 5 (1d4 + 3) de dano perfurante. A stirge se prende ao alvo. Enquanto presa, a stirge não ataca. Em vez disso, no início de cada turno da stirge, o alvo perde 5 (1d4 + 3) PV por perda de sangue. A stirge se solta se tiver sido morta, o alvo for morto ou outro tiver usado uma ação para removê-la."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm (sala A9 — Forja; sala A28 — Aposentos do Regente)"
+    }
+  },
+
+  "npcs": {
+    "harbin-wester": {
+      "nome": "Harbin Wester",
+      "local": "Phandalin — Casa a leste da Prefeitura",
+      "papel": "Chefe (prefeito) de Phandalin",
+      "descricao": "Banqueiro pomposo de meia-idade. Relatos do dragão branco na área o tornaram um verdadeiro recluso; raramente sai da prefeitura exceto para pegar comida e postar novos avisos buscando aventureiros.",
+      "motivacao": "Manter a segurança de Phandalin e contratar aventureiros para lidar com as ameaças externas.",
+      "segredos": "Seu meio-irmão Tibor Wester gerencia o acampamento dos lenhadores e evita pagar o 'imposto de desmatamento' de Neverwinter.",
+      "interacao": "Se os aventureiros baterem à sua porta, Harbin responde: \"Se você é um dragão, saiba que sou magro e ossudo demais para virar uma boa refeição!\""
+    },
+    "toblen-colina-rochosa": {
+      "nome": "Toblen Colina Rochosa",
+      "local": "Phandalin — Estalagem Colina Rochosa",
+      "papel": "Proprietário da Estalagem Colina Rochosa",
+      "descricao": "Homem pequeno e amigável, nativo de Triboar. Veio a Phandalin para prospectar mas logo percebeu que sabia mais sobre administrar estalagem do que minerar. Quarto por noite: 5 PP; refeição: 1 PP.",
+      "motivacao": "Manter um negócio próspero e compartilhar rumores com os visitantes.",
+      "segredos": "",
+      "interacao": "Conhece um rumor da tabela Contos de Phandalin (role 1d6)."
+    },
+    "elmar-barthen": {
+      "nome": "Elmar Barthen",
+      "local": "Phandalin — Barthen Provisões",
+      "papel": "Dono de Barthen Provisões",
+      "descricao": "Humano magro e careca de cinquenta anos. Emprega dois funcionários jovens (Ander e Thistle). A loja vende a maioria dos bens comuns, exceto armas e armaduras, e itens acima de 25 PO.",
+      "motivacao": "Fornecer suprimentos aos habitantes e aventureiros de Phandalin.",
+      "segredos": "",
+      "interacao": "Ele, Ander ou Thistle podem compartilhar um rumor da tabela Rumores de Phandalin."
+    },
+    "linene-vento-cinza": {
+      "nome": "Linene Vento Cinza",
+      "local": "Phandalin — Escudo de Leão Vendas",
+      "papel": "Gerente local do posto comercial Escudos de Leão",
+      "descricao": "Mulher humana de trinta e cinco anos, de língua afiada. Mantém suprimento de armaduras e armas à venda. Não venderá armas a quem considere uma ameaça à cidade.",
+      "motivacao": "Gerir o posto comercial da empresa Escudos de Leão (sediada em Yartar).",
+      "segredos": "",
+      "interacao": "Pode compartilhar um rumor da tabela Rumores de Phandalin."
+    },
+    "tibor-wester": {
+      "nome": "Tibor Wester",
+      "local": "Acampamento dos Lenhadores (Floresta de Neverwinter)",
+      "papel": "Administrador do Acampamento dos Lenhadores; meio-irmão de Harbin Wester",
+      "descricao": "Oportunista covarde. Emprega madeireiros e obtém suprimentos de Phandalin para evitar pagar o 'imposto de desmatamento' de Neverwinter. Usa bloco de estatísticas de Plebeu.",
+      "motivacao": "Autopreservação acima de tudo; faz sempre a escolha mais covarde.",
+      "segredos": "Trancou-se no escritório (norte do acampamento) com mesa contra a porta quando os ankhegs atacaram.",
+      "interacao": "Quando confrontado com qualquer decisão, Tibor faz a escolha mais covarde e egoísta."
+    },
+    "falcon": {
+      "nome": "Falcon, o Caçador (Gustaf Stellern)",
+      "local": "Floresta de Neverwinter — Cabana de Caça de Falcon",
+      "papel": "Guia de caça veterano; anfitrião da Cabana de Caça",
+      "descricao": "1,80 m, cabelos pretos, ombros largos, olhos azuis penetrantes, barba bem aparada. Usa capa forrada de pele sobre armadura de couro batido. Adora bom vinho. Tem dois empregados: Corwin (cozinheiro idoso) e Pell (tratador de cavalos mudo, 12 anos).",
+      "motivacao": "Vida rústica, caçar, proteger a floresta. Abomina a vida da cidade.",
+      "segredos": "Abandonou seu nome verdadeiro (Gustaf Stellern). Começou a caçar orcs além de animais selvagens.",
+      "interacao": "Oferece comida e alojamento gratuitos a quem trouxer uma garrafa de vinho. Se informado sobre os orcs aliados a meio-orcs no círculo de pedras, pode guiar os aventureiros ao Círculo do Trovão."
+    },
+    "don-jon-raskin": {
+      "nome": "Don-Jon Raskin",
+      "local": "Phandalin / Mina de Ouro no Pé da Montanha",
+      "papel": "Novo superintendente da Mina de Ouro",
+      "descricao": "Humano destemido que viveu mais aventuras do que pode contar. Usa bloco de estatísticas próprio (ND 1/2).",
+      "motivacao": "Administrar a mina com segurança; já viveu aventuras e não teme perigos.",
+      "segredos": "",
+      "interacao": "Precisa de escolta segura de Phandalin até a mina. Recompensa: 100 PO (via Harbin Wester após escolta segura)."
+    },
+    "adabra-gwynn": {
+      "nome": "Adabra Gwynn",
+      "local": "Serra da Discórdia (moinho de vento)",
+      "papel": "Parteira local, acólita de Chauntea",
+      "descricao": "Acólita humana dedicada à deusa Chauntea. Vive sozinha no moinho de vento da Serra da Discórdia.",
+      "motivacao": "Servir a Chauntea e cuidar dos habitantes da região.",
+      "segredos": "",
+      "interacao": "A missão Serra da Discórdia envolve verificar o bem-estar de Adabra."
+    },
+    "dazlyn-caco-cinza": {
+      "nome": "Dazlyn Caco Cinza",
+      "local": "Escavação dos Anões (montanhas a sudoeste de Phandalin)",
+      "papel": "Garimpeiro anão; sócio de Norbus",
+      "descricao": "Anão garimpeiro que descobriu ruínas de um antigo assentamento anão soterrado por uma avalanche. Passou meses limpando os escombros em busca de tesouros.",
+      "motivacao": "Encontrar tesouros e relíquias nas ruínas anãs.",
+      "segredos": "Não sabe que um dragão branco se mudou para a área.",
+      "interacao": "Os aventureiros devem avisar Dazlyn e bestiario:cryovain sobre o perigo do bestiario:cryovain na região. Recompensa de Harbin Wester: 50 PO."
+    },
+    "norbus-runa-pedra": {
+      "nome": "Norbus Runa de Pedra",
+      "local": "Escavação dos Anões (montanhas a sudoeste de Phandalin)",
+      "papel": "Garimpeiro anão; sócio de Dazlyn",
+      "descricao": "Anão garimpeiro, parceiro de negócios de npc:dazlyn-caco-cinza. Exploram juntos o desfiladeiro nas montanhas.",
+      "motivacao": "Encontrar tesouros e relíquias anãs.",
+      "segredos": "Não sabe que um dragão branco se mudou para a área.",
+      "interacao": "Junto com npc:dazlyn-caco-cinza, deve ser avisado sobre bestiario:cryovain."
+    },
+    "xanth": {
+      "nome": "Xanth",
+      "local": "Colina do Dragão (Floresta de Neverwinter)",
+      "papel": "Centauro NPC aliado",
+      "descricao": "Centauro que vaga pelas colinas e pradarias entre a Estrada Alta e a Floresta de Neverwinter. Aviso aos aventureiros sobre orcs e feiticeiros meio-orcs na floresta.",
+      "motivacao": "Proteger a floresta; deseja ver os feiticeiros meio-orcs malignos expulsos ou mortos.",
+      "segredos": "Evita a Colina do Dragão.",
+      "interacao": "Oferece-se para guiar os personagens ao bestiario:gorthok do Círculo do Trovão se eles quiserem enfrentar os meio-orcs. Usa bloco de estatísticas de bestiario:centauro."
+    }
+  },
+
+  "itens": {
+    "pocao-invulnerabilidade": {
+      "nome": "Poção de Invulnerabilidade",
+      "tipo": "Poção",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Durante 1 minuto após beber, você tem resistência a todos os danos.",
+      "localizacao": "Círculo do Trovão — Caverna C2 (pertencia ao anacoreta bestiario:anacoreta-orc Flenz, enterrada no chão)"
+    },
+    "escudo-mais-1": {
+      "nome": "Escudo +1",
+      "tipo": "Armadura (escudo)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Enquanto empunhado, este escudo concede um bônus adicional de +1 à CA.",
+      "localizacao": "Círculo do Trovão — Caverna C3 (pertencia ao anacoreta Narux, enterrado no chão)"
+    },
+    "alaude-ilusoes": {
+      "nome": "Alaúde das Ilusões",
+      "tipo": "Item Maravilhoso",
+      "propriedades": "Requer Sintonização: Sim (por um bardo)",
+      "efeito": "Enquanto estiver segurando este instrumento, você pode usar uma ação para tocar música e lançar um dos seguintes feitiços usando seu CD de magia: voz dissonante, imagem silenciosa ou sugestão.",
+      "localizacao": "Colina do Dragão — Sepulcro D7 (no sarcófago do bardo morto)"
+    },
+    "colar-bolas-fogo": {
+      "nome": "Colar de Bolas de Fogo",
+      "tipo": "Item Maravilhoso",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Este colar tem 1d6 + 3 pérolas que funcionam como bolas de fogo. Você pode usar uma ação para arrancar uma pérola do colar e jogá-la em um ponto a até 18 m. A pérola explode como uma bola de fogo de 3º nível (CD de Destreza 15, 8d6 de dano ígneo).",
+      "localizacao": "Colina do Dragão — Sepulcro D7 (no sarcófago do mago morto)"
+    },
+    "espada-matadora-dragoes": {
+      "nome": "Espada Longa Matadora de Dragões",
+      "tipo": "Arma (espada longa)",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Você ganha +1 nas jogadas de ataque e dano com esta arma. Quando você acerta um dragão com ela, ele sofre 3d6 de dano extra.",
+      "localizacao": "Colina do Dragão — Sepulcro D8 (enterrada com Lady Tanamere Alagondar)",
+      "historico": "Pertencia a Lady Tanamere Alagondar, herdeira real de Neverwinter de um século atrás. Foi usada para matar Azdraka, o dragão verde da Estrada Alta."
+    }
+  },
+
+  "ganchos": [
+    {
+      "id": "g1",
+      "fonte": "Rumor de Phandalin",
+      "texto": "\"Mais uma vez, os bestiario:orc desceram das montanhas para atacar as planícies! Se Neverwinter não enviar ajuda em breve, os orcs invadirão Phandalin e destruirão tudo o que trabalhamos para reconstruir.\""
+    },
+    {
+      "id": "g2",
+      "fonte": "Rumor de Phandalin",
+      "texto": "\"Como a Trilha Triboar vai para o leste, ela atravessa as ruínas de Conyberry, uma cidade saqueada por bárbaros anos atrás. Há um templo em ruínas ao sul de Conyberry, onde se diz que os habitantes locais ocultaram seu ouro.\" (Ver Santuário de Savras)"
+    },
+    {
+      "id": "g3",
+      "fonte": "Rumor de Phandalin",
+      "texto": "\"Uma magia estranha invadiu a Floresta de Neverwinter, confundindo navegadores e ocultando, em suas profundezas, as ruínas antigas de reinos há muito desaparecidos.\""
+    },
+    {
+      "id": "g4",
+      "fonte": "Rumor de Phandalin",
+      "texto": "\"A Cabana de Caça de npc:falcon é o único refúgio seguro na Floresta de Neverwinter. npc:falcon é um veterano aposentado de muitas guerras e oferecerá comida e alojamento gratuitos a qualquer pessoa que lhe trouxer uma garrafa de vinho.\""
+    },
+    {
+      "id": "g5",
+      "fonte": "Rumor de Phandalin",
+      "texto": "\"Na costa a oeste de Phandalin, há um antigo farol de pedra. Os navios são atraídos para esta torre por uma luz verde pulsante. Dizem que um anacoreta meio-orc malvado controla a luz.\""
+    },
+    {
+      "id": "g6",
+      "fonte": "Rumor de Phandalin",
+      "texto": "\"Garimpeiros anões encontraram ruínas anãs antigas nas montanhas a sudoeste. Mas dizem que um jovem dragão branco chamado bestiario:cryovain se mudou para a região das montanhas e está aterrorizando tudo por perto.\""
+    },
+    {
+      "id": "g7",
+      "fonte": "Contexto da Aventura",
+      "texto": "Expulso de terras ao norte por dragões mais poderosos, bestiario:cryovain desceu às Montanhas da Espada reivindicando a região coberta de neve como seu domínio. O dragão patrulha os céus ao redor da Espiral de Gelo, procurando comida e tesouro fácil."
+    },
+    {
+      "id": "g8",
+      "fonte": "npc:falcon",
+      "texto": "\"Vi mais bestiario:orc na floresta ultimamente. Esses brutos abomináveis! Os orcs parecem estar aliados aos meio-orcs malignos que habitam a sudeste daqui. Esses meio-orcs são frequentemente vistos na companhia de pequenas criaturas conhecidas por rastejar sobre essas florestas.\""
+    }
+  ],
+
+  "missoes": [
+    {
+      "id": "escavacao-anoes",
+      "titulo": "Escavação dos Anões",
+      "status": "Disponível",
+      "nivel_sugerido": 1,
+      "recompensa": "50 PO (via npc:harbin-wester)",
+      "objetivo": "Garimpeiros anões encontraram antigas ruínas anãs nas montanhas a sudoeste. Eles precisam ser avisados de que bestiario:cryovain se mudou para a área. Leve a notícia para npc:dazlyn-caco-cinza e npc:norbus-runa-pedra e retorne ao npc:harbin-wester.",
+      "localizacao": "Montanhas a sudoeste de Phandalin",
+      "notas_dm": "Balanceado para personagens de 1º nível. O templo de Abbathor no desfiladeiro contém bestiario:gosma-ocre. Orcs chegam durante a missão."
+    },
+    {
+      "id": "gruta-gnomos",
+      "titulo": "Gruta dos Gnomos",
+      "status": "Disponível",
+      "nivel_sugerido": 1,
+      "recompensa": "50 PO (via npc:harbin-wester por item útil contra o dragão)",
+      "objetivo": "Um clã recluso de bestiario:gnomo-rochas-recluso reside em uma pequena rede de cavernas nas montanhas a sudeste. Obtenha o que puder deles para derrotar bestiario:cryovain.",
+      "localizacao": "Montanhas a sudeste de Phandalin",
+      "notas_dm": "Balanceado para personagens de 1º nível."
+    },
+    {
+      "id": "serra-da-discordia",
+      "titulo": "Serra da Discórdia",
+      "status": "Disponível",
+      "nivel_sugerido": 1,
+      "recompensa": "A ser definida",
+      "objetivo": "A parteira local, acólita de Chauntea chamada npc:adabra-gwynn, vive sozinha em um moinho de vento. Verificar seu bem-estar e retornar a npc:harbin-wester.",
+      "localizacao": "Serra da Discórdia, ao redor de Phandalin",
+      "notas_dm": "Missão inicial balanceada para personagens de 1º nível."
+    },
+    {
+      "id": "acampamento-lenhadores",
+      "titulo": "Acampamento dos Lenhadores",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "100 PO (via npc:harbin-wester, com aviso de entrega assinado por npc:tibor-wester)",
+      "objetivo": "Nas entranhas da Floresta de Neverwinter há um acampamento de corte de madeira. npc:elmar-barthen preparou uma nova entrega de suprimentos. Leve-a com segurança para npc:tibor-wester e retorne com o aviso de entrega assinado.",
+      "localizacao": "Floresta de Neverwinter, ~80 km ao norte de Phandalin",
+      "notas_dm": "Balanceado para 3º nível. Personagens de 2º nível podem sobreviver sendo cautelosos. bestiario:ankheg infesta o acampamento. npc:tibor-wester está trancado no escritório norte."
+    },
+    {
+      "id": "mina-ouro-pe-montanha",
+      "titulo": "Mina de Ouro no Pé da Montanha",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "100 PO (via npc:harbin-wester após escolta segura)",
+      "objetivo": "A Mina de Ouro no Pé da Montanha fica a 25 km a nordeste de Phandalin. O novo superintendente npc:don-jon-raskin precisa ser escoltado até a mina com segurança.",
+      "localizacao": "25 km a nordeste de Phandalin",
+      "notas_dm": "Balanceado para 3º nível."
+    },
+    {
+      "id": "colina-dragao",
+      "titulo": "Colina do Dragão",
+      "status": "Disponível",
+      "nivel_sugerido": 5,
+      "recompensa": "itens:espada-matadora-dragoes e outros tesouros do sepulcro",
+      "objetivo": "A Colina do Dragão fica ~65 km a noroeste de Phandalin. Recuperar a espada longa matadora de dragões de Lady Alagondar, enterrada com ela. O centauro npc:xanth pode guiar os aventureiros a partir daqui ao bestiario:gorthok do Círculo do Trovão.",
+      "localizacao": "~65 km a noroeste de Phandalin, entre a Estrada Alta e a Floresta de Neverwinter",
+      "notas_dm": "Balanceado para 5º nível. Personagens de 4º podem sobreviver com cautela. Contém bestiario:fogo-fatuo, cavalo esquelético (morto-vivo), armadilhas ocultas e bestiario:mimico."
+    },
+    {
+      "id": "axeholm",
+      "titulo": "Axeholm",
+      "status": "Disponível",
+      "nivel_sugerido": 5,
+      "recompensa": "Tesouros da fortaleza",
+      "objetivo": "Axeholm é uma fortaleza anã a 25 km ao sul de Phandalin, assombrada por bestiario:banshee (Vyldara) e bestiario:carnical. Limpar a fortaleza e silenciar o espírito da banshee.",
+      "localizacao": "25 km ao sul de Phandalin",
+      "notas_dm": "Balanceado para 5º nível. Personagens de 3º ou 4º nível podem sobreviver sendo cautelosos. A bestiario:banshee detecta a chegada dos aventureiros com Detectar Vida."
+    },
+    {
+      "id": "circulo-trovao",
+      "titulo": "Círculo do Trovão",
+      "status": "Disponível",
+      "nivel_sugerido": 6,
+      "recompensa": "itens:pocao-invulnerabilidade, itens:escudo-mais-1",
+      "objetivo": "No coração da Floresta de Neverwinter, anacoretas bestiario:anacoreta-orc realizam ritos sombrios no Círculo do Trovão para invocar bestiario:gorthok, o Javali do Trovão, a serviço de Talos. Eliminar Flenz, Narux, Yargath e Gorthok.",
+      "localizacao": "Floresta de Neverwinter, ~64 km do Colina do Dragão",
+      "notas_dm": "Balanceado para 6º nível. Personagens de 4º ou 5º podem sobreviver com cautela. Três anacoretas (Flenz, Narux, Yargath) + Gorthok se não foi derrotado ainda."
+    },
+    {
+      "id": "fortaleza-espiral-gelo",
+      "titulo": "Fortaleza da Espiral de Gelo — Confronto Final",
+      "status": "Disponível",
+      "nivel_sugerido": 6,
+      "recompensa": "Tesouro de bestiario:cryovain + nível de personagem",
+      "objetivo": "Adentrar a Fortaleza da Espiral de Gelo nas Montanhas da Espada e derrotar bestiario:cryovain, o jovem dragão branco que terroriza a região.",
+      "localizacao": "Montanhas da Espada — Fortaleza da Espiral de Gelo",
+      "notas_dm": "Missão final da aventura. Matar Cryovain concede um nível extra a todos os personagens, independente do nível atual."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escudo do Mestre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="px-4 pt-8 pb-4 text-center">
+    <div class="text-4xl mb-2">🛡️</div>
+    <h1 class="text-2xl font-bold tracking-wide text-amber-400">Escudo do Mestre</h1>
+    <p class="text-zinc-400 text-sm mt-1">D&amp;D 5.5e · Painel do Narrador</p>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1 px-4 pb-8">
+
+    <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4 mt-4">
+      Selecione uma Aventura
+    </h2>
+
+    <!-- Adventure list — populated by JS -->
+    <ul id="adventure-list" class="space-y-3"></ul>
+
+    <!-- Empty state (shown while loading or if no adventures found) -->
+    <div id="empty-state" class="hidden mt-16 text-center text-zinc-600">
+      <div class="text-5xl mb-4">📜</div>
+      <p class="text-sm">Nenhuma aventura encontrada.</p>
+      <p class="text-xs mt-1">Adicione arquivos JSON em <code class="text-zinc-400">adventures/</code>.</p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-zinc-700 text-xs pb-6">
+    Apenas imagens e dados locais · Sem backend
+  </footer>
+
+  <script>
+    // Carrega o manifest em data/aventuras.json
+    async function loadManifest() {
+      const res = await fetch('data/aventuras.json');
+      if (!res.ok) throw new Error('Manifest não encontrado');
+      return res.json();
+    }
+
+    function renderAdventures(list) {
+      const ul = document.getElementById('adventure-list');
+      const empty = document.getElementById('empty-state');
+
+      if (!list.length) {
+        empty.classList.remove('hidden');
+        return;
+      }
+
+      ul.innerHTML = list.map(adv => `
+        <li>
+          <a
+            href="aventura.html?id=${encodeURIComponent(adv.id)}"
+            class="flex items-center gap-4 w-full bg-zinc-900 border border-zinc-800
+                   rounded-xl px-4 py-4 active:bg-zinc-800 transition-colors
+                   focus:outline-none focus:ring-2 focus:ring-amber-500"
+          >
+            <span class="text-3xl leading-none">${adv.icone ?? '📖'}</span>
+            <div class="flex-1 min-w-0">
+              <p class="font-semibold text-zinc-100 truncate">${escHtml(adv.titulo)}</p>
+              ${adv.nivel_recomendado
+                ? `<p class="text-xs text-zinc-500 mt-0.5">Níveis ${escHtml(adv.nivel_recomendado)} · ${adv.num_jogadores ?? '?'} jogadores</p>`
+                : ''}
+              ${adv.descricao
+                ? `<p class="text-xs text-zinc-600 mt-1 line-clamp-2">${escHtml(adv.descricao)}</p>`
+                : ''}
+            </div>
+            <span class="text-zinc-600 text-lg flex-shrink-0">›</span>
+          </a>
+        </li>
+      `).join('');
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    loadManifest().then(renderAdventures);
+  </script>
+
+</body>
+</html>

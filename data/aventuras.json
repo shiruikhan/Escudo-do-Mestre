@@ -1,0 +1,10 @@
+[
+  {
+    "id": "dragao-espiral-gelo",
+    "titulo": "Dragão da Espiral de Gelo",
+    "nivel_recomendado": "1–6",
+    "num_jogadores": "1–5",
+    "descricao": "Um jovem dragão branco chamado Cryovain desceu às Montanhas da Espada, reivindicando a região coberta de neve como seu domínio. Partindo da cidade de Phandalin, os aventureiros exploram a Costa da Espada enfrentando orcs, monstros e o próprio dragão.",
+    "arquivo": "dragao-espiral-gelo.json"
+  }
+]

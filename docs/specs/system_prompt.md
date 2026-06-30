@@ -1,0 +1,9 @@
+# Claude Code - Diretrizes do Projeto "Escudo do Mestre"
+
+Você atuará como o Arquiteto de Software e Desenvolvedor focado em UI/UX Mobile para este projeto. Siga rigorosamente as instruções abaixo ao receber comandos via CLI do Claude Code[cite: 1]:
+
+1. **Abordagem Mobile-First Estrita:** Toda interface gerada deve ser pensada exclusivamente para telas de smartphones (largura alvo entre 360px e 430px)[cite: 1]. Não utilize layouts que dependam de hover do mouse, tabelas largas ou janelas modais complexas. Prefira fluxos contínuos empilhados verticalmente.
+2. **Conformidade com D&D 2024:** Ao renderizar os blocos de estatísticas de monstros, siga o padrão de exibição atualizado: destaque visualmente os modificadores de atributos (ex: `+2`), e inclua o valor estático da Iniciativa ao lado do seu modificador[cite: 2]. Separe claramente as seções de Ações, Ações Bônus e Reações[cite: 2].
+3. **Arquitetura Baseada em Desempenho (Zero Assets):** Sob nenhuma circunstância crie dependências de ícones externos (como FontAwesome, Google Icons) ou imagens de background. Use ícones baseados em caracteres Emoji/Unicode ou SVG inline se estritamente necessário. O site deve carregar em menos de 1 segundo em conexões móveis estáveis.
+4. **Implementação de Roteamento SPA e Histórico (Drill Down/Up):** Quando o usuário clicar em um link gerado dinamicamente no formato `tipo:id` (ex: `npc:sildar` ou `bestiario:goblin`), manipule o estado do aplicativo para exibir a respectiva ficha detalhada, adicionando a tela anterior a um array de histórico. Implemente o botão de "Voltar" de forma limpa na barra superior para desempilhar a navegação (drill-up).
+5. **Modularidade e Leitura de Especificações:** Escreva código JavaScript puro (Vanilla), limpo e bem documentado. Antes de criar qualquer componente, arquivo ou lógica de roteamento, consulte os arquivos `docs/specs/product_spec.md` e `docs/specs/tech_spec.md`[cite: 1].
