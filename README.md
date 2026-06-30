@@ -19,9 +19,7 @@ A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links cl
 
 ## Acesso rápido
 
-**[▶ Abrir no GitHub Pages](https://SEU-USUARIO.github.io/escudo-do-mestre/)**
-
-> Substitua `SEU-USUARIO` pelo seu usuário do GitHub após configurar o Pages.
+**[▶ Abrir no GitHub Pages](https://shiruikhan.github.io/Escudo-do-Mestre/)**
 
 ## Aventuras incluídas
 
