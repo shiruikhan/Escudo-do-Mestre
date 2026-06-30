@@ -42,8 +42,8 @@
 
   function montarAbas() {
     el.tabs.innerHTML = ABAS.map(a => `
-      <button type="button" class="tab-btn" data-aba="${a.id}">
-        <span aria-hidden="true">${a.icone}</span> ${a.rotulo}
+      <button type="button" class="tab-btn" data-aba="${a.id}" aria-label="${a.rotulo}" title="${a.rotulo}">
+        <span aria-hidden="true">${a.icone}</span>
       </button>`).join('');
   }
 
@@ -74,7 +74,17 @@
     state.aba = aba;
     state.foco = null;
     state.historico = [];
+    if (el.busca) el.busca.value = '';
     render();
+  }
+
+  // Renderiza os resultados da busca geral (ou volta ao normal se vazia).
+  function buscar() {
+    const q = el.busca.value.trim();
+    if (!q) { render(); return; }
+    el.conteudo.innerHTML = window.Renderers.resultadosBusca(state.aventura, q);
+    el.conteudo.scrollTop = 0;
+    window.scrollTo(0, 0);
   }
 
   function drillDown(tipo, id) {
@@ -104,8 +114,11 @@
     el.voltar.addEventListener('click', voltar);
 
     el.conteudo.addEventListener('click', e => {
+      const irAba = e.target.closest('.goto-aba');
+      if (irAba) { irParaAba(irAba.dataset.aba); return; }
+
       const abrir = e.target.closest('.open-detail');
-      if (abrir) { drillDown(abrir.dataset.tipo, abrir.dataset.id); return; }
+      if (abrir) { if (el.busca) el.busca.value = ''; drillDown(abrir.dataset.tipo, abrir.dataset.id); return; }
 
       const link = e.target.closest('.drill-link');
       if (link) { drillDown(link.dataset.tipo, link.dataset.id); return; }
@@ -113,6 +126,8 @@
       const chip = e.target.closest('.chip-link');
       if (chip) { drillDown(chip.dataset.tipo, chip.dataset.id); return; }
     });
+
+    if (el.busca) el.busca.addEventListener('input', buscar);
 
     window.addEventListener('popstate', () => {
       if (state.historico.length) {
@@ -128,6 +143,7 @@
     el.voltar = document.getElementById('btn-voltar');
     el.titulo = document.getElementById('titulo-aventura');
     el.sub = document.getElementById('sub-aventura');
+    el.busca = document.getElementById('busca');
 
     const id = getParam('id');
     if (!id) {

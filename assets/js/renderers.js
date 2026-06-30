@@ -356,11 +356,91 @@
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 
+  // ---------- BUSCA GERAL ----------
+
+  // Normaliza para busca: remove acentos e caixa.
+  function normalizar(s) {
+    return String(s == null ? '' : s)
+      .normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  }
+
+  function resultadoDetalhe(tipo, id, nome, label, sub) {
+    return `
+      <li>
+        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+                data-tipo="${escHtml(tipo)}" data-id="${escHtml(id)}">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <p class="font-semibold text-zinc-100 truncate">${escHtml(nome)}</p>
+              <span class="res-tag">${escHtml(label)}</span>
+            </div>
+            ${sub ? `<p class="text-xs text-zinc-500 truncate">${escHtml(sub)}</p>` : ''}
+          </div>
+          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+        </button>
+      </li>`;
+  }
+
+  function resultadoAba(aba, nome, label, sub) {
+    return `
+      <li>
+        <button type="button" class="goto-aba w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+                data-aba="${escHtml(aba)}">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <p class="font-semibold text-zinc-100 truncate">${escHtml(nome)}</p>
+              <span class="res-tag">${escHtml(label)}</span>
+            </div>
+            ${sub ? `<p class="text-xs text-zinc-500 truncate">${escHtml(sub)}</p>` : ''}
+          </div>
+          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+        </button>
+      </li>`;
+  }
+
+  function resultadosBusca(aventura, query) {
+    const q = normalizar(query);
+    if (!q) return '';
+    const res = [];
+    const bate = (...campos) => campos.some(c => normalizar(c).includes(q));
+
+    for (const [id, b] of Object.entries(aventura.bestiario || {})) {
+      if (bate(b.nome, b.tipo_alinhamento)) res.push(resultadoDetalhe('bestiario', id, b.nome, 'Monstro', b.tipo_alinhamento));
+    }
+    for (const [id, n] of Object.entries(aventura.npcs || {})) {
+      if (bate(n.nome, n.papel, n.local)) res.push(resultadoDetalhe('npcs', id, n.nome, 'NPC', n.papel || n.local));
+    }
+    for (const [id, i] of Object.entries(aventura.itens || {})) {
+      if (bate(i.nome, i.tipo, i.efeito)) res.push(resultadoDetalhe('itens', id, i.nome, 'Item', i.tipo));
+    }
+    for (const [id, l] of Object.entries(aventura.locais || {})) {
+      if (bate(l.nome, l.tipo, l.resumo)) res.push(resultadoDetalhe('locais', id, l.nome, 'Local', l.tipo));
+    }
+    (aventura.missoes || []).forEach(m => {
+      if (bate(m.titulo, m.objetivo, m.localizacao)) res.push(resultadoAba('missoes', m.titulo, 'Missão', m.localizacao));
+    });
+    (aventura.ganchos || []).forEach(g => {
+      const texto = typeof g === 'object' ? g.texto : g;
+      const fonte = typeof g === 'object' ? g.fonte : '';
+      if (bate(texto, fonte)) res.push(resultadoAba('ganchos', fonte || 'Gancho', 'Gancho', (texto || '').slice(0, 70)));
+    });
+
+    if (!res.length) {
+      return `<div class="text-center text-zinc-600 mt-16">
+        <div class="text-4xl mb-3">\u{1F50D}</div>
+        <p class="text-sm">Nada encontrado para "${escHtml(query)}".</p>
+      </div>`;
+    }
+    return `<p class="text-xs text-zinc-500 mb-2">${res.length} resultado(s)</p>
+      <ul class="space-y-2 fade-in">${res.join('')}</ul>`;
+  }
+
   // ---------- Expor ----------
 
   window.Renderers = {
     escHtml,
     parseLinks,
+    resultadosBusca,
     listas: {
       bestiario: listaBestiario,
       npcs: listaNpcs,

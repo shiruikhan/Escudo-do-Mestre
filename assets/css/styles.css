@@ -15,7 +15,7 @@ body {
   overscroll-behavior-y: none;
 }
 
-/* ---------- Barra de abas (rolagem horizontal no mobile) ---------- */
+/* ---------- Barra de abas (somente ícones; rolagem horizontal de reserva) ---------- */
 .tabs-bar {
   display: flex;
   gap: 0.5rem;
@@ -28,11 +28,15 @@ body {
 
 .tab-btn {
   flex: 0 0 auto;
-  padding: 0.5rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
+  font-size: 1.2rem;
+  line-height: 1;
   background: var(--cor-painel);
   border: 1px solid var(--cor-borda);
   color: #a1a1aa;
@@ -44,6 +48,35 @@ body {
   background: var(--cor-ambar);
   color: #1c1917;
   border-color: var(--cor-ambar);
+}
+
+/* ---------- Barra de busca geral ---------- */
+.busca-input {
+  width: 100%;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  border-radius: 9999px;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  color: #fafafa;
+  outline: none;
+  transition: border-color .15s;
+}
+.busca-input::placeholder { color: #52525b; }
+.busca-input:focus { border-color: var(--cor-ambar); }
+
+/* Etiqueta de tipo nos resultados de busca */
+.res-tag {
+  flex-shrink: 0;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: #fcd34d;
+  background: rgba(251,191,36,.1);
+  border: 1px solid rgba(251,191,36,.3);
+  border-radius: 9999px;
+  padding: .1rem .45rem;
 }
 
 /* ---------- Links de drill-down inline ---------- */
