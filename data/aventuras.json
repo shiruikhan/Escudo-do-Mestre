@@ -6,5 +6,13 @@
     "num_jogadores": "1–5",
     "descricao": "Um jovem dragão branco chamado Cryovain desceu às Montanhas da Espada, reivindicando a região coberta de neve como seu domínio. Partindo da cidade de Phandalin, os aventureiros exploram a Costa da Espada enfrentando orcs, monstros e o próprio dragão.",
     "arquivo": "dragao-espiral-gelo.json"
+  },
+  {
+    "id": "mina-perdida-phandelver",
+    "titulo": "A Mina Perdida de Phandelver",
+    "nivel_recomendado": "1–5",
+    "num_jogadores": "4–5",
+    "descricao": "A caminho de Phandalin, os aventureiros escoltam uma carroça de suprimentos e caem numa emboscada goblin que os leva ao rastro de Gundren Buscapedra e de seu agente Sildar Hallwinter. Na fronteira sem lei da vila, eles enfrentam os Marcarrubra, exploram ruínas próximas e seguem pistas até o covil de Nezznar, o Aranha Negra, na disputa pela lendária Mina Perdida de Phandelver.",
+    "arquivo": "mina-perdida-phandelver.json"
   }
 ]

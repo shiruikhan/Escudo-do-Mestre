@@ -1,0 +1,2203 @@
+{
+  "id": "mina-perdida-phandelver",
+  "titulo": "A Mina Perdida de Phandelver",
+  "nivel_recomendado": "1–5",
+  "num_jogadores": "4–5",
+  "cenario": "Reinos Esquecidos — Costa da Espada, região de Phandalin, a sudeste de Neverwinter",
+  "bestiario": {
+    "goblin": {
+      "nome": "Goblin",
+      "tipo_alinhamento": "Humanoide Pequeno (goblinoide), Neutro e Mau",
+      "ca": 15,
+      "ca_descricao": "corselete de couro, escudo",
+      "pv": 7,
+      "pv_formula": "2d6",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "-1",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "+0",
+        "SAB": "-1",
+        "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Furtividade +6"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Goblin",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Fuga Rápida",
+          "descricao": "O goblin pode usar uma ação de Desengajar ou Esconder-se como uma ação bônus em cada um de seus turnos."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Cimitarra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) cortante."
+        },
+        {
+          "nome": "Arco Curto",
+          "descricao": "Ataque de Arma à Distância: +4 para acertar, distância 24 m/96 m, um alvo. Dano: 5 (1d6 + 2) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Esconderijo Dentefino, Castelo Dentefino, emboscada na Trilha Triboar",
+      "notas_dm": "Use a perícia de Furtividade +6 para embaixadas e vigias; goblins capturados podem revelar informações (ver npc:yeemik e npc:klarg)."
+    },
+    "bugbear": {
+      "nome": "Bugbear",
+      "tipo_alinhamento": "Humanoide Médio (goblinoide), Caótico e Mau",
+      "ca": 16,
+      "ca_descricao": "gibão de peles, escudo",
+      "pv": 27,
+      "pv_formula": "5d8 + 5",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "+2",
+        "CON": "+1",
+        "INT": "-1",
+        "SAB": "+0",
+        "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Furtividade +6",
+        "Sobrevivência +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Goblin",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [
+        {
+          "nome": "Brutal",
+          "descricao": "Quando o bugbear acerta um ataque usando arma corpo a corpo, o ataque causa um dado extra da arma de dano no alvo (já incluído no dano listado)."
+        },
+        {
+          "nome": "Ataque Surpresa",
+          "descricao": "Se o bugbear surpreender uma criatura e acertá-la com um ataque durante a primeira rodada de combate, o alvo sofre dano extra de 7 (2d6)."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Maça Estrela",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 11 (2d8 + 2) perfurante."
+        },
+        {
+          "nome": "Azagaia",
+          "descricao": "Ataque de Arma Corpo a Corpo ou à Distância: +4 para acertar, alcance 1,5 m ou distância 9 m/36 m, um alvo. Dano: 5 (1d6 + 2) perfurante à distância, ou 9 (2d6 + 2) perfurante corpo a corpo."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Esconderijo Dentefino (líder npc:klarg), Esconderijo Marcarrubra (npc:mosk e aliados), Castelo Dentefino (npc:rei-grol), Caverna Onda Eco (guarda de bestiario:nezznar)",
+      "notas_dm": "Bugbears são apreciadores de emboscadas; use furtividade alta para tentar surpreender o grupo."
+    },
+    "hobgoblin": {
+      "nome": "Hobgoblin",
+      "tipo_alinhamento": "Humanoide Médio (goblinoide), Leal e Mau",
+      "ca": 18,
+      "ca_descricao": "cota de malha, escudo",
+      "pv": 11,
+      "pv_formula": "2d8 + 2",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+1",
+        "DES": "+1",
+        "CON": "+1",
+        "INT": "+0",
+        "SAB": "+0",
+        "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Goblin",
+      "nd": "1/2",
+      "xp": 100,
+      "caracteristicas": [
+        {
+          "nome": "Vantagem Marcial",
+          "descricao": "Uma vez por turno, o hobgoblin pode causar dano extra de 7 (2d6) a uma criatura que acertar com arma corpo a corpo, caso essa criatura esteja a 1,5 m de um aliado do hobgoblin que não esteja incapacitado."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Espada Longa",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d8 + 1) cortante."
+        },
+        {
+          "nome": "Arco Longo",
+          "descricao": "Ataque de Arma à Distância: +3 para acertar, distância 45 m/180 m, um alvo. Dano: 5 (1d8 + 1) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Castelo Dentefino (alojamentos e guarda), bando de guerra de npc:targor-espada-sangrenta",
+      "notas_dm": "Disciplinados e leais ao Rei Grol; podem ser subornados ou persuadidos por ambição (ver npc:targor-espada-sangrenta)."
+    },
+    "lobo": {
+      "nome": "Lobo",
+      "tipo_alinhamento": "Besta Média, Sem Tendência",
+      "ca": 13,
+      "ca_descricao": "armadura natural",
+      "pv": 11,
+      "pv_formula": "2d8 + 2",
+      "deslocamento": "12 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 13,
+      "modificadores": {
+        "FOR": "+1",
+        "DES": "+2",
+        "CON": "+1",
+        "INT": "-4",
+        "SAB": "+1",
+        "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Furtividade +4",
+        "Percepção +3"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "",
+      "idiomas": "-",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Audição e Olfato Apurados",
+          "descricao": "O lobo tem vantagem em testes de Sabedoria (Percepção) que dependam de audição ou olfato."
+        },
+        {
+          "nome": "Tática de Matilha",
+          "descricao": "O lobo tem vantagem nas rolagens de ataque contra uma criatura se tiver pelo menos um aliado a 1,5 m da criatura e o aliado não estiver incapacitado."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 7 (2d4 + 2) perfurante. Se o alvo for uma criatura, deve suceder em salvaguarda de Força CD 11 ou ficará derrubado."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Canil do Esconderijo Dentefino (bestiario:goblin), Castelo Dentefino (mascote de npc:rei-grol, chamado Rosnado), encontros selvagens da Trilha Triboar",
+      "notas_dm": "Lobos acorrentados no canil podem ser acalmados com Adestrar Animais CD 15 (ou 10 se alimentados)."
+    },
+    "orc": {
+      "nome": "Orc",
+      "tipo_alinhamento": "Humanoide Médio (orc), Caótico e Mau",
+      "ca": 13,
+      "ca_descricao": "gibão de peles, escudo",
+      "pv": 15,
+      "pv_formula": "2d8 + 6",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+3",
+        "DES": "+1",
+        "CON": "+3",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Intimidação +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Orc",
+      "nd": "1/2",
+      "xp": 100,
+      "caracteristicas": [
+        {
+          "nome": "Agressivo",
+          "descricao": "Como ação bônus, o orc pode se mover até seu deslocamento em direção a uma criatura hostil que possa enxergar."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Machado Grande",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 9 (1d12 + 3) cortante."
+        },
+        {
+          "nome": "Azagaia",
+          "descricao": "Ataque de Arma Corpo a Corpo ou à Distância: +5 para acertar, alcance 1,5 m ou distância 9 m/36 m, um alvo. Dano: 6 (1d6 + 3) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Cume da Wyvern (bando de npc:brughor-machado-mordedor), encontros selvagens da Trilha Triboar",
+      "notas_dm": "Batedores da tribo Muitas Flechas; parte da missão de Cume da Wyvern encomendada por npc:harbin-wester."
+    },
+    "ogro": {
+      "nome": "Ogro",
+      "tipo_alinhamento": "Gigante Grande, Caótico e Mau",
+      "ca": 11,
+      "ca_descricao": "gibão de peles",
+      "pv": 59,
+      "pv_formula": "7d10 + 21",
+      "deslocamento": "12 m",
+      "iniciativa": "-1 (9)",
+      "percepcao_passiva": 8,
+      "modificadores": {
+        "FOR": "+4",
+        "DES": "-1",
+        "CON": "+3",
+        "INT": "-3",
+        "SAB": "-2",
+        "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Gigante",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Clava Grande",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 13 (2d8 + 4) concussão."
+        },
+        {
+          "nome": "Azagaia",
+          "descricao": "Ataque de Arma Corpo a Corpo ou à Distância: +6 para acertar, alcance 1,5 m ou distância 9 m/36 m, um alvo. Dano: 11 (2d6 + 4) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Cume da Wyvern, ao lado do bando de npc:brughor-machado-mordedor (o ogro é chamado Gog)",
+      "notas_dm": "Gog luta até a morte junto aos orcs; muito burro para fugir depois de iniciado o combate."
+    },
+    "esqueleto": {
+      "nome": "Esqueleto",
+      "tipo_alinhamento": "Morto Vivo Médio, Leal e Mau",
+      "ca": 13,
+      "ca_descricao": "restos de armadura",
+      "pv": 13,
+      "pv_formula": "2d8 + 4",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "+0",
+        "DES": "+2",
+        "CON": "+2",
+        "INT": "-2",
+        "SAB": "-1",
+        "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [],
+      "imunidades_dano": [
+        "veneno"
+      ],
+      "imunidades_condicao": [
+        "envenenado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "compreende idiomas que conhecia em vida, mas não fala",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Espada Curta",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) cortante."
+        },
+        {
+          "nome": "Arco Curto",
+          "descricao": "Ataque de Arma à Distância: +4 para acertar, distância 24 m/96 m, um alvo. Dano: 5 (1d6 + 2) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Criptas Tresendar (Esconderijo Marcarrubra), Velha Guarita e Caverna Estrelada da Caverna Onda Eco",
+      "notas_dm": "Vulneráveis a dano de concussão em algumas variantes especiais (zumbis das cinzas); esqueletos das criptas atacam a menos que se use a senha 'Illefarn' ou se vista um manto vermelho."
+    },
+    "zumbi": {
+      "nome": "Zumbi",
+      "tipo_alinhamento": "Morto Vivo Médio, Neutro e Mau",
+      "ca": 8,
+      "ca_descricao": "sem armadura",
+      "pv": 22,
+      "pv_formula": "3d8 + 9",
+      "deslocamento": "6 m",
+      "iniciativa": "-2 (8)",
+      "percepcao_passiva": 8,
+      "modificadores": {
+        "FOR": "+1",
+        "DES": "-2",
+        "CON": "+3",
+        "INT": "-4",
+        "SAB": "-2",
+        "CAR": "-3"
+      },
+      "salvaguardas": [
+        "SAB +0"
+      ],
+      "pericias": [],
+      "resistencias_dano": [],
+      "imunidades_dano": [
+        "veneno"
+      ],
+      "imunidades_condicao": [
+        "envenenado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "compreende idiomas que conhecia em vida, mas não fala",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Fortitude de Morto Vivo",
+          "descricao": "Se um dano reduzir o zumbi a 0 pontos de vida, ele pode fazer salvaguarda de Constituição CD 5 + o dano sofrido, a menos que o dano seja radiante ou de acerto crítico. Com sucesso, o zumbi fica com 1 ponto de vida."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Pancada",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 4 (1d6 + 1) concussão."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Poço da Velha Coruja (com npc:hamun-kost), Ruínas da Árvore Trovão como 'zumbis das cinzas', Caverna de Fundição da Caverna Onda Eco",
+      "notas_dm": "Variante 'zumbi das cinzas' (Ruínas da Árvore Trovão) tem o traço adicional Brisa das Cinzas: na primeira vez que o zumbi levar dano, criaturas vivas a 1,5 m devem suceder em salvaguarda de Constituição CD 10 ou recebem desvantagem em ataques, salvaguardas e testes de habilidade por 1 minuto."
+    },
+    "ghoul": {
+      "nome": "Ghoul",
+      "tipo_alinhamento": "Morto Vivo Médio, Neutro e Mau",
+      "ca": 12,
+      "ca_descricao": "sem armadura",
+      "pv": 22,
+      "pv_formula": "5d8",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+1",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [],
+      "imunidades_dano": [
+        "veneno"
+      ],
+      "imunidades_condicao": [
+        "encantado",
+        "envenenado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 8 (2d6 + 1) perfurante."
+        },
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 7 (2d4 + 2) cortante. Se o alvo não for elfo ou morto vivo, deve suceder em salvaguarda de Constituição CD 10 ou fica paralisado por 1 minuto (pode repetir a salvaguarda ao final de cada turno)."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Caverna Onda Eco — Alojamento Sul e Grande Caverna",
+      "notas_dm": "Ghouls vagam em bandos famintos por carne fresca; atacam imediatamente ao perceberem criaturas vivas."
+    },
+    "aranha-gigante": {
+      "nome": "Aranha Gigante",
+      "tipo_alinhamento": "Besta Grande, Sem Tendência",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 26,
+      "pv_formula": "4d10 + 4",
+      "deslocamento": "9 m, escalada 9 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "+3",
+        "CON": "+1",
+        "INT": "-4",
+        "SAB": "+0",
+        "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Furtividade +7"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "sentido cego 3 m, Visão no Escuro 18 m",
+      "idiomas": "-",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [
+        {
+          "nome": "Patas de Aranha",
+          "descricao": "A aranha pode escalar superfícies difíceis, incluindo de ponta cabeça em tetos, sem precisar de teste de habilidade."
+        },
+        {
+          "nome": "Sentido de Teia",
+          "descricao": "Ao contato com uma teia, a aranha sabe a localização exata de outras criaturas em contato com a mesma teia."
+        },
+        {
+          "nome": "Caminhar na Teia",
+          "descricao": "A aranha ignora as restrições causadas por teias de qualquer tipo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, uma criatura. Dano: 7 (1d8 + 3) perfurante, e o alvo deve suceder em salvaguarda de Constituição CD 11 ou sofre 9 (2d8) de dano de veneno adicional (metade se suceder). Se o veneno reduzir o alvo a 0 PV, ele fica estável mas envenenado e paralisado por 1 hora."
+        },
+        {
+          "nome": "Teia (Recarrega 5-6)",
+          "descricao": "Ataque de Arma à Distância: +5 para acertar, distância 9 m/18 m, uma criatura. Acerto: o alvo fica impedido pela teia (CA 10, PV 5, vulnerável a fogo, imune a concussão, veneno e psíquico)."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Armazém Destruído e Torre do Dragão nas Ruínas da Árvore Trovão; guardas de bestiario:nezznar na Caverna Onda Eco",
+      "notas_dm": "Surpreendem alvos com Percepção Passiva menor que 17."
+    },
+    "grick": {
+      "nome": "Grick",
+      "tipo_alinhamento": "Monstruosidade Média, Neutro",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 27,
+      "pv_formula": "6d8",
+      "deslocamento": "9 m, escalada 9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "-4",
+        "SAB": "+2",
+        "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [
+        "concussão, cortante e perfurante de armas não mágicas"
+      ],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "-",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Camuflagem de Pedra",
+          "descricao": "O grick tem vantagem em testes de Destreza (Furtividade) quando tenta se esconder em terreno rochoso."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O grick faz um ataque com tentáculos. Se acertar, pode fazer um ataque com o bico contra o mesmo alvo."
+        },
+        {
+          "nome": "Tentáculos",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 9 (2d6 + 2) cortante."
+        },
+        {
+          "nome": "Bico",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Salão Escuro do Castelo Dentefino, animal de estimação de npc:lhupo",
+      "notas_dm": "Fica escondido em elevação nas sombras esperando para cair sobre intrusos surpresos."
+    },
+    "nothic": {
+      "nome": "Nothic",
+      "tipo_alinhamento": "Aberração Média, Neutro e Mau",
+      "ca": 15,
+      "ca_descricao": "armadura natural",
+      "pv": 45,
+      "pv_formula": "6d8 + 18",
+      "deslocamento": "9 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "+3",
+        "CON": "+3",
+        "INT": "+1",
+        "SAB": "+0",
+        "CAR": "-1"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Arcanismo +3",
+        "Furtividade +5",
+        "Intuição +4",
+        "Percepção +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "visão da verdade 36 m",
+      "idiomas": "Subterrâneo",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Visão Aguçada",
+          "descricao": "O nothic tem vantagem em testes de Sabedoria (Percepção) que dependam da visão."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O nothic faz dois ataques com suas garras."
+        },
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 6 (1d6 + 3) cortante."
+        },
+        {
+          "nome": "Olhar Apodrecido",
+          "descricao": "O nothic escolhe uma criatura a até 9 m que possa ver. O alvo deve suceder em salvaguarda de Constituição CD 12 ou sofre 10 (3d6) de dano necrótico."
+        },
+        {
+          "nome": "Estranha Intuição",
+          "descricao": "O nothic escolhe uma criatura a até 9 m que possa ver. Teste resistido de Carisma (Enganação) do alvo contra Sabedoria (Intuição) do nothic; se o nothic vencer, aprende um fato ou segredo sobre a criatura."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "área 8 (Fenda) do Esconderijo Marcarrubra",
+      "notas_dm": "Aliado relutante de npc:iarno-alberk em troca de comida; comunica-se por telepatia e pode ser subornado com a promessa de comida."
+    },
+    "doppelganger": {
+      "nome": "Doppelganger",
+      "tipo_alinhamento": "Monstruosidade Média (metamorfo), Neutro",
+      "ca": 14,
+      "ca_descricao": "sem armadura",
+      "pv": 52,
+      "pv_formula": "8d8 + 16",
+      "deslocamento": "9 m",
+      "iniciativa": "+4 (14)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "+0",
+        "DES": "+4",
+        "CON": "+2",
+        "INT": "+0",
+        "SAB": "+1",
+        "CAR": "+2"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Enganação +6",
+        "Intuição +3"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [
+        "encantado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum",
+      "nd": "3",
+      "xp": 700,
+      "caracteristicas": [
+        {
+          "nome": "Metamorfose",
+          "descricao": "O doppelganger pode usar sua ação para mudar sua forma para um humanoide Pequeno ou Médio já visto, ou voltar à forma natural. Se morto, reverte à forma natural."
+        },
+        {
+          "nome": "Emboscador",
+          "descricao": "O doppelganger tem vantagem nas rolagens de ataque contra qualquer criatura surpresa."
+        },
+        {
+          "nome": "Ataque Surpresa",
+          "descricao": "Se surpreender uma criatura e acertá-la na primeira rodada de combate, o alvo sofre dano extra de 10 (3d6)."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O doppelganger faz dois ataques corpo a corpo."
+        },
+        {
+          "nome": "Pancada",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 7 (1d6 + 4) concussão."
+        },
+        {
+          "nome": "Ler Pensamentos",
+          "descricao": "O doppelganger lê magicamente os pensamentos superficiais de uma criatura a até 18 m, ganhando vantagem em Sabedoria (Intuição) e Carisma (Enganação, Intimidação, Persuasão) contra ela enquanto mantiver a leitura."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "npc:vyerith no Castelo Dentefino; npc:vhalak na Caverna Onda Eco",
+      "notas_dm": "Disfarçam-se como drow ou anões para enganar o grupo; usados como mensageiros/agentes do bestiario:nezznar."
+    },
+    "cranio-em-chamas": {
+      "nome": "Crânio em Chamas",
+      "tipo_alinhamento": "Morto Vivo Minúsculo, Neutro e Mau",
+      "ca": 13,
+      "ca_descricao": "sem armadura",
+      "pv": 40,
+      "pv_formula": "9d4 + 18",
+      "deslocamento": "0 m, voo 12 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "-5",
+        "DES": "+3",
+        "CON": "+2",
+        "INT": "+3",
+        "SAB": "+0",
+        "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Arcanismo +5",
+        "Percepção +2"
+      ],
+      "resistencias_dano": [
+        "elétrico",
+        "necrótico",
+        "perfurante"
+      ],
+      "imunidades_dano": [
+        "congelante",
+        "fogo",
+        "veneno"
+      ],
+      "imunidades_condicao": [
+        "amedrontado",
+        "encantado",
+        "envenenado",
+        "paralisado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum",
+      "nd": "4",
+      "xp": 1100,
+      "caracteristicas": [
+        {
+          "nome": "Iluminação",
+          "descricao": "O crânio emana luz fraca em 4,5 m de raio, ou luz clara em 4,5 m e luz fraca por mais 4,5 m; pode trocar como ação."
+        },
+        {
+          "nome": "Resistência à Magia",
+          "descricao": "Tem vantagem em salvaguardas contra magias e outros efeitos mágicos."
+        },
+        {
+          "nome": "Rejuvenescimento",
+          "descricao": "Se destruído, recupera todos os PV em 1 hora a menos que água benta seja jogada sobre seus restos ou seja lançada dissipar magia ou remover maldição."
+        },
+        {
+          "nome": "Conjuração",
+          "descricao": "Conjurador de 5º nível (CD de resistência a magia 13; +5 para acertar com magias de ataque). Truques: mãos mágicas. 1º nível (4 espaços): escudo arcano, mísseis mágicos. 2º nível (3 espaços): esfera flamejante, nublar. 3º nível (1 espaço): bola de fogo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O crânio em chamas faz dois ataques com Raio de Fogo."
+        },
+        {
+          "nome": "Raio de Fogo",
+          "descricao": "Ataque de Magia à Distância: +5 para acertar, distância 9 m, um alvo. Dano: 10 (3d6) de fogo."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Caverna de Fundição (área 12) da Caverna Onda Eco",
+      "notas_dm": "Guarda a Caverna de Fundição junto com zumbis; era servo de um mago aliado dos anões e gnomos do Pacto de Phandelver."
+    },
+    "espectador": {
+      "nome": "Espectador",
+      "tipo_alinhamento": "Aberração Média, Leal e Mau",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 39,
+      "pv_formula": "6d8 + 12",
+      "deslocamento": "0 m, voo 9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 16,
+      "modificadores": {
+        "FOR": "-1",
+        "DES": "+2",
+        "CON": "+2",
+        "INT": "+1",
+        "SAB": "+2",
+        "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Percepção +6"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [
+        "derrubado"
+      ],
+      "sentidos": "visão da verdade 36 m",
+      "idiomas": "Linguagem Obscura, Subterrâneo",
+      "nd": "3",
+      "xp": 700,
+      "caracteristicas": [
+        {
+          "nome": "Flutuar",
+          "descricao": "O espectador flutua enquanto estiver vivo."
+        },
+        {
+          "nome": "Telepatia",
+          "descricao": "O espectador pode se comunicar telepaticamente com qualquer criatura a 30 m que compreenda um idioma."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +1 para acertar, alcance 1,5 m, um alvo. Dano: 2 (1d4 - 1) perfurante."
+        },
+        {
+          "nome": "Raios Ópticos",
+          "descricao": "O espectador usa dois raios ópticos diferentes por turno (cada um usado apenas uma vez por turno), visando criaturas a até 27 m: Raio da Confusão (salvaguarda de Sabedoria CD 13), Raio Paralisante (salvaguarda de Constituição CD 13, paralisado por 1 minuto), Raio do Medo (salvaguarda de Sabedoria CD 13, amedrontado por 1 minuto) ou Raio do Ferimento (salvaguarda de Constituição CD 13, 16 (3d10) de dano necrótico, metade se suceder)."
+        },
+        {
+          "nome": "Criar Água e Comida",
+          "descricao": "O espectador pode criar água e comida suficiente para seu sustento por 24 horas."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [
+        {
+          "nome": "Refletir Magia",
+          "descricao": "Se o espectador suceder em salvaguarda contra uma magia, ou a magia errar, ele pode escolher outra criatura a até 9 m para ser afetada no lugar."
+        }
+      ],
+      "localizacao": "Forja das Magias (área 15) da Caverna Onda Eco",
+      "notas_dm": "Insano e desequilibrado desde a invasão orc; pode ser enganado com Carisma (Enganação) CD 15 fazendo-o crer que está liberado de seu dever."
+    },
+    "mago-maligno": {
+      "nome": "Mago Maligno",
+      "tipo_alinhamento": "Humanoide Médio (humano), Leal e Mau",
+      "ca": 12,
+      "ca_descricao": "sem armadura",
+      "pv": 22,
+      "pv_formula": "5d8",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "-1",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "+3",
+        "SAB": "+1",
+        "CAR": "+0"
+      },
+      "salvaguardas": [
+        "INT +5",
+        "SAB +3"
+      ],
+      "pericias": [
+        "Arcanismo +2",
+        "História +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "",
+      "idiomas": "Anão, Comum, Dracônico, Élfico",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [
+        {
+          "nome": "Conjuração",
+          "descricao": "Conjurador de 4º nível (CD de resistência a magia 13; +5 para acertar com magias de ataque). Truques: luz, mãos mágicas, toque chocante. 1º nível (4 espaços): enfeitiçar pessoas, mísseis mágicos. 2º nível (3 espaços): imobilizar pessoas, passo das brumas."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Bordão",
+          "descricao": "Ataque de Arma Corpo a Corpo: +1 para acertar, alcance 1,5 m, um alvo. Dano: 3 (1d8 - 1) concussão."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Poço da Velha Coruja (representa npc:hamun-kost em combate)",
+      "notas_dm": "Use este bloco genérico para npc:hamun-kost em combate."
+    },
+    "aparicao-mormesk": {
+      "nome": "Mormesk, a Aparição",
+      "tipo_alinhamento": "Morto Vivo Médio, Neutro e Mau",
+      "ca": 13,
+      "ca_descricao": "sem armadura",
+      "pv": 45,
+      "pv_formula": "6d8 + 18",
+      "deslocamento": "0 m, voo 18 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "-2",
+        "DES": "+3",
+        "CON": "+3",
+        "INT": "+1",
+        "SAB": "+2",
+        "CAR": "+2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [
+        "ácido, congelante, fogo, elétrico, trovejante",
+        "concussão, cortante e perfurante de armas não mágicas que não sejam revestidas de prata"
+      ],
+      "imunidades_dano": [
+        "necrótico",
+        "veneno"
+      ],
+      "imunidades_condicao": [
+        "agarrado",
+        "derrubado",
+        "encantado",
+        "envenenado",
+        "impedido",
+        "paralisado",
+        "petrificado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum",
+      "nd": "3",
+      "xp": 700,
+      "caracteristicas": [
+        {
+          "nome": "Movimento Incorpóreo",
+          "descricao": "A aparição pode se mover através de objetos ou outras criaturas, mas não pode parar dentro deles."
+        },
+        {
+          "nome": "Sensibilidade à Luz do Sol",
+          "descricao": "Na luz do sol, a aparição tem desvantagem em rolagens de ataque e em Sabedoria (Percepção) que dependam da visão."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Drenar Vida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, uma criatura. Dano: 16 (3d8 + 3) necrótico, e o alvo deve suceder em salvaguarda de Constituição CD 14 ou tem seu máximo de pontos de vida reduzido em quantidade igual ao dano sofrido (o alvo morre se isso reduzir o máximo a 0). A redução dura até o alvo terminar um descanso longo."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Aposentos dos Magos (área 14) da Caverna Onda Eco",
+      "notas_dm": "Pode ser subornado com itens mágicos, pergaminhos ou conhecimento arcano (Persuasão CD 10) para libertar seu tesouro e permitir pesquisa em seus livros, em troca de o grupo matar bestiario:espectador na Forja das Magias."
+    },
+    "nezznar": {
+      "nome": "Nezznar, o Aranha Negra",
+      "tipo_alinhamento": "Humanoide Médio (elfo drow), Neutro e Mau",
+      "ca": 11,
+      "ca_descricao": "11 (14 com armadura arcana)",
+      "pv": 27,
+      "pv_formula": "6d8",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 14,
+      "modificadores": {
+        "FOR": "-1",
+        "DES": "+1",
+        "CON": "+0",
+        "INT": "+3",
+        "SAB": "+2",
+        "CAR": "+1"
+      },
+      "salvaguardas": [
+        "INT +5",
+        "SAB +4"
+      ],
+      "pericias": [
+        "Arcanismo +5",
+        "Furtividade +3",
+        "Percepção +4"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 36 m",
+      "idiomas": "Élfico, Subterrâneo",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Equipamento Especial",
+          "descricao": "Nezznar carrega um itens:cajado-da-aranha."
+        },
+        {
+          "nome": "Origem Feérica",
+          "descricao": "Tem vantagem em salvaguardas contra ser encantado, e magia não pode colocá-lo para dormir."
+        },
+        {
+          "nome": "Sensibilidade à Luz do Sol",
+          "descricao": "Tem desvantagem em rolagens de ataque quando ele ou seu alvo estiver na luz do sol."
+        },
+        {
+          "nome": "Conjurador Nato",
+          "descricao": "Pode conjurar sem componentes materiais: globos de luz (à vontade); escuridão e fogo das fadas (CD 12), 1/dia cada."
+        },
+        {
+          "nome": "Conjuração",
+          "descricao": "Conjurador de 4º nível (CD de resistência a magia 13; +5 para acertar com magias de ataque). Truques: mãos mágicas, raio de gelo, toque chocante. 1º nível (4 espaços): armadura arcana, escudo arcano, mísseis mágicos. 2º nível (3 espaços): invisibilidade, sugestão."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Cajado da Aranha",
+          "descricao": "Ataque de Arma Corpo a Corpo: +1 para acertar, alcance 1,5 m, um alvo. Dano: 2 (1d6 - 1) concussão mais 3 (1d6) de veneno."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Templo de Dumathoin (área 19) da Caverna Onda Eco",
+      "notas_dm": "Vilão principal da aventura. Se capturado vivo e entregue em Phandalin, o grupo recebe o dobro do XP; npc:halia-thronton pode tentar libertá-lo secretamente para os Zhentarim."
+    },
+    "dragao-verde-jovem": {
+      "nome": "Dragão Verde Jovem (Venomfang)",
+      "tipo_alinhamento": "Dragão Grande, Leal e Mau",
+      "ca": 18,
+      "ca_descricao": "armadura natural",
+      "pv": 136,
+      "pv_formula": "16d10 + 48",
+      "deslocamento": "12 m, voo 18 m, natação 12 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 17,
+      "modificadores": {
+        "FOR": "+4",
+        "DES": "+1",
+        "CON": "+3",
+        "INT": "+3",
+        "SAB": "+1",
+        "CAR": "+2"
+      },
+      "salvaguardas": [
+        "DES +4",
+        "CON +6",
+        "SAB +4",
+        "CAR +5"
+      ],
+      "pericias": [
+        "Enganação +5",
+        "Furtividade +4",
+        "Percepção +7"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [
+        "veneno"
+      ],
+      "imunidades_condicao": [
+        "envenenado"
+      ],
+      "sentidos": "sentido cego 9 m, Visão no Escuro 36 m",
+      "idiomas": "Comum, Dracônico",
+      "nd": "8",
+      "xp": 3900,
+      "caracteristicas": [
+        {
+          "nome": "Anfíbio",
+          "descricao": "O dragão pode respirar tanto na água quanto no ar."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O dragão faz três ataques: um com a mordida e dois com as garras."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 3 m, um alvo. Dano: 15 (2d10 + 4) perfurante mais 7 (2d6) de veneno."
+        },
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 1,5 m, um alvo. Dano: 11 (2d6 + 4) cortante."
+        },
+        {
+          "nome": "Sopro de Veneno (Recarrega 5-6)",
+          "descricao": "O dragão sopra gás venenoso em cone de 9 m. Cada criatura no cone deve suceder em salvaguarda de Constituição CD 16 ou sofre 42 (12d6) de dano de veneno, metade se suceder."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Torre do Dragão (área 7) nas Ruínas da Árvore Trovão",
+      "notas_dm": "Recompensa por expulsar (não necessariamente matar) o dragão: 2.000 XP dividido entre o grupo. Foge quando reduzido à metade dos PV. Cultistas do Culto do Dragão (npc:favric) tentam firmar aliança com ele."
+    },
+    "bandido-marcarrubra": {
+      "nome": "Bandido Marcarrubra",
+      "tipo_alinhamento": "Humanoide Médio (humano), Neutro e Mau",
+      "ca": 14,
+      "ca_descricao": "armadura de couro batido",
+      "pv": 16,
+      "pv_formula": "3d8 + 3",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "+0",
+        "DES": "+2",
+        "CON": "+1",
+        "INT": "-1",
+        "SAB": "-1",
+        "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Intimidação +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "",
+      "idiomas": "Comum",
+      "nd": "1/2",
+      "xp": 100,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O bandido faz dois ataques corpo a corpo."
+        },
+        {
+          "nome": "Espada Curta",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "O Gigante Adormecido, ruas de Phandalin, Esconderijo Marcarrubra",
+      "notas_dm": "Gangue liderada por npc:iarno-alberk (Cajavidro); atacam em grupos de quatro."
+    },
+    "cultista": {
+      "nome": "Cultista",
+      "tipo_alinhamento": "Humanoide Médio (qualquer raça), Qualquer Tendência Não Boa",
+      "ca": 12,
+      "ca_descricao": "corselete de couro",
+      "pv": 9,
+      "pv_formula": "2d8",
+      "deslocamento": "9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "+0",
+        "DES": "+1",
+        "CON": "+0",
+        "INT": "+0",
+        "SAB": "+0",
+        "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Enganação +2",
+        "Religião +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "",
+      "idiomas": "qualquer uma (normalmente Comum)",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [
+        {
+          "nome": "Devoção",
+          "descricao": "O cultista tem vantagem em salvaguardas contra ser encantado ou amedrontado."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Cimitarra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 4 (1d6 + 1) cortante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Cabana escondida (área 13) das Ruínas da Árvore Trovão, liderados por npc:favric",
+      "notas_dm": "Membros do Culto do Dragão; buscam aliança com bestiario:dragao-verde-jovem e podem oferecer o grupo como tributo."
+    },
+    "ramos-secos": {
+      "nome": "Ramos Secos",
+      "tipo_alinhamento": "Planta Pequena, Neutro e Mau",
+      "ca": 13,
+      "ca_descricao": "armadura natural",
+      "pv": 4,
+      "pv_formula": "1d6 + 1",
+      "deslocamento": "6 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "-2",
+        "DES": "+1",
+        "CON": "+1",
+        "INT": "-3",
+        "SAB": "-1",
+        "CAR": "-4"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Furtividade +3"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [
+        "cego",
+        "surdo"
+      ],
+      "sentidos": "Visão no Escuro 18 m (cego além deste raio)",
+      "idiomas": "compreende Comum, mas não fala",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [
+        {
+          "nome": "Falsa Aparência",
+          "descricao": "Enquanto imóvel entre vegetais, o ramo é indistinguível de um arbusto morto."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 3 (1d4 + 1) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Ruínas da Árvore Trovão (várias áreas)",
+      "notas_dm": "Vulnerabilidade a dano de fogo (listar em resistencias_dano do monstro como vulnerabilidade se aplicável nas notas)."
+    },
+    "urso-coruja": {
+      "nome": "Urso Coruja",
+      "tipo_alinhamento": "Monstruosidade Grande, Sem Tendência",
+      "ca": 13,
+      "ca_descricao": "armadura natural",
+      "pv": 59,
+      "pv_formula": "7d10 + 21",
+      "deslocamento": "12 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 13,
+      "modificadores": {
+        "FOR": "+5",
+        "DES": "+1",
+        "CON": "+3",
+        "INT": "-4",
+        "SAB": "+1",
+        "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Percepção +3"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "-",
+      "nd": "3",
+      "xp": 700,
+      "caracteristicas": [
+        {
+          "nome": "Olfato e Visão Apurados",
+          "descricao": "O urso coruja tem vantagem em testes de Sabedoria (Percepção) que dependam do olfato ou visão."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "O urso coruja faz dois ataques, um com o bico e um com as garras."
+        },
+        {
+          "nome": "Bico",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 1,5 m, um alvo. Dano: 10 (1d10 + 5) perfurante."
+        },
+        {
+          "nome": "Garras",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 1,5 m, um alvo. Dano: 14 (2d8 + 5) cortante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Torre do Urso Coruja (área 13) do Castelo Dentefino",
+      "notas_dm": "Capturado pelos goblins Dentefino e mantido trancado; ataca a menos que seja alimentado com carne fresca."
+    },
+    "stirge": {
+      "nome": "Stirge",
+      "tipo_alinhamento": "Besta Minúscula, Sem Tendência",
+      "ca": 14,
+      "ca_descricao": "armadura natural",
+      "pv": 2,
+      "pv_formula": "1d4",
+      "deslocamento": "3 m, voo 12 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "-3",
+        "DES": "+3",
+        "CON": "+0",
+        "INT": "-4",
+        "SAB": "-1",
+        "CAR": "-2"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "-",
+      "nd": "1/8",
+      "xp": 25,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Drenar Sangue",
+          "descricao": "Ataque de Arma Corpo a Corpo: +5 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d4 + 3) perfurante, e o stirge se gruda ao alvo, drenando 5 (1d4 + 3) PV no início de cada um de seus turnos até se soltar ou ser removido."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Velha Entrada (área 3) da Caverna Onda Eco, encontros selvagens da Trilha Triboar",
+      "notas_dm": "Pendurados no teto como morcegos; atacam alvos que olham para baixo."
+    },
+    "gosma-ocre": {
+      "nome": "Gosma Ocre",
+      "tipo_alinhamento": "Limo Grande, Sem Tendência",
+      "ca": 8,
+      "ca_descricao": "sem armadura",
+      "pv": 45,
+      "pv_formula": "6d10 + 12",
+      "deslocamento": "9 m, escalada 9 m",
+      "iniciativa": "-2 (8)",
+      "percepcao_passiva": 8,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "-2",
+        "CON": "+2",
+        "INT": "-4",
+        "SAB": "-2",
+        "CAR": "-5"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [
+        "ácido"
+      ],
+      "imunidades_dano": [
+        "cortante",
+        "elétrico"
+      ],
+      "imunidades_condicao": [
+        "amedrontado",
+        "derrubado",
+        "cego",
+        "encantado",
+        "surdo"
+      ],
+      "sentidos": "sentido cego 18 m (cego além deste raio)",
+      "idiomas": "-",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Amorfo",
+          "descricao": "A gosma pode se mover através de espaços tão estreitos quanto 2 cm sem se apertar."
+        },
+        {
+          "nome": "Patas de Aranha",
+          "descricao": "A gosma pode escalar superfícies difíceis, incluindo de ponta cabeça em tetos, sem precisar de teste de atributo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Pancada",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 9 (2d6 + 2) concussão mais 3 (1d6) ácido."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [
+        {
+          "nome": "Divisão",
+          "descricao": "Quando sofrer dano cortante ou elétrico, a gosma (se Média ou maior e com ao menos 10 PV) se divide em duas novas gosmas, cada uma com metade dos PV originais (arredondado para baixo) e um tamanho inferior."
+        }
+      ],
+      "localizacao": "Túneis da Mina (área 2) da Caverna Onda Eco",
+      "notas_dm": "Segue o grupo silenciosamente esperando isolar um alvo."
+    },
+    "sildar-hallwinter-stats": {
+      "nome": "Sildar Hallwinter (bloco de combate)",
+      "tipo_alinhamento": "Humanoide Médio (humano), Neutro e Bom",
+      "ca": 16,
+      "ca_descricao": "cota de malha",
+      "pv": 27,
+      "pv_formula": "5d8 + 5",
+      "deslocamento": "9 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 12,
+      "modificadores": {
+        "FOR": "+1",
+        "DES": "+0",
+        "CON": "+1",
+        "INT": "+0",
+        "SAB": "+0",
+        "CAR": "+0"
+      },
+      "salvaguardas": [
+        "FOR +3",
+        "CON +3"
+      ],
+      "pericias": [
+        "Percepção +2"
+      ],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "sentidos": "",
+      "idiomas": "Comum",
+      "nd": "1",
+      "xp": 200,
+      "caracteristicas": [],
+      "acoes": [
+        {
+          "nome": "Ataque Múltiplo",
+          "descricao": "Sildar faz dois ataques corpo a corpo."
+        },
+        {
+          "nome": "Espada Longa",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d8 + 1) cortante."
+        },
+        {
+          "nome": "Besta Pesada",
+          "descricao": "Ataque de Arma à Distância: +2 para acertar, distância 30 m/120 m, um alvo. Dano: 5 (1d10) perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [
+        {
+          "nome": "Desviar",
+          "descricao": "Quando um inimigo acerta Sildar com arma corpo a corpo e ele pode vê-lo, Sildar rola 1d6 e soma o resultado à sua CA contra aquele ataque, desde que esteja portando uma arma corpo a corpo."
+        }
+      ],
+      "localizacao": "npc:sildar-hallwinter",
+      "notas_dm": "Bloco de estatísticas para usar Sildar em combate, caso necessário."
+    }
+  },
+  "npcs": {
+    "gundren-buscapedra": {
+      "nome": "Gundren Buscapedra",
+      "local": "Castelo Dentefino (Aposentos do Rei), depois Phandalin",
+      "papel": "Anão patrão do grupo; um dos três irmãos Buscapedra",
+      "descricao": "Anão animado e misterioso que contratou os personagens para escoltar uma carroça de suprimentos até Phandalin. Junto com seus irmãos, npc:tharden-buscapedra e npc:nundro-buscapedra, descobriu a entrada da Caverna Onda Eco.",
+      "motivacao": "Reabrir a Caverna Onda Eco e restaurar a prosperidade de Phandalin, vingando-se do bestiario:nezznar por capturá-lo e matar seu irmão.",
+      "segredos": "Não sabe onde o Rei Grol escondeu seu mapa da mina (estava debaixo do colchão de npc:rei-grol).",
+      "interacao": "\"Meus amigos... encontramos algo grande. Escoltem os suprimentos e eu pago dez peças de ouro a cada um!\""
+    },
+    "tharden-buscapedra": {
+      "nome": "Tharden Buscapedra",
+      "local": "Entrada da Caverna (área 1) da Caverna Onda Eco",
+      "papel": "Irmão de npc:gundren-buscapedra, morto pelo bestiario:nezznar",
+      "descricao": "Anão minerador encontrado morto no antigo acampamento dos Buscapedra, ao lado dos suprimentos, morto há pelo menos uma semana.",
+      "motivacao": "(falecido) Buscava reabrir a mina junto aos irmãos.",
+      "segredos": "Carrega calçadas itens:botas-de-correr-e-saltar que Nezznar não teve tempo de saquear.",
+      "interacao": ""
+    },
+    "nundro-buscapedra": {
+      "nome": "Nundro Buscapedra",
+      "local": "Aposentos do Sacerdote (área 20) da Caverna Onda Eco",
+      "papel": "Irmão mais novo de npc:gundren-buscapedra, prisioneiro de bestiario:nezznar",
+      "descricao": "Anão plebeu mantido prisioneiro e interrogado duramente pelo bestiario:nezznar, que o poupou na esperança de que soubesse mais sobre a mina.",
+      "motivacao": "Sobreviver e ser resgatado; ficar ao lado dos irmãos para reabrir a mina.",
+      "segredos": "Não sabe realmente mais nada de útil sobre a mina além do que os personagens já descobriram.",
+      "interacao": "Fica agradecido e se oferece para acompanhar o grupo pelo resto da exploração da Caverna Onda Eco."
+    },
+    "sildar-hallwinter": {
+      "nome": "Sildar Hallwinter",
+      "local": "Capturado inicialmente no Esconderijo Dentefino; depois em Phandalin (Salão do Chefe da Vila)",
+      "papel": "Guerreiro humano, agente da Aliança dos Lordes",
+      "descricao": "Homem bondoso de quase cinquenta anos, membro de uma famosa cavalaria de grifos de Águas Profundas e agente da Aliança dos Lordes. Acompanhou npc:gundren-buscapedra até Phandalin e foi capturado pelos bestiario:goblin do Esconderijo Dentefino.",
+      "motivacao": "Investigar o desaparecimento de npc:iarno-alberk, ajudar Gundren a reabrir a mina, e restaurar a lei em Phandalin.",
+      "segredos": "",
+      "interacao": "\"Meus amigos, vamos procurar uma hospedagem. Falaram-me que a estalagem local é bem exótica.\""
+    },
+    "yeemik": {
+      "nome": "Yeemik",
+      "local": "Covil dos Goblins (área 6) do Esconderijo Dentefino",
+      "papel": "Líder goblin, segundo em comando do esconderijo, com 12 PV",
+      "descricao": "Goblin ambicioso que quer tomar o lugar de bestiario:goblin Klarg como líder. Mantém npc:sildar-hallwinter refém, amarrado e fraco com 1 PV.",
+      "motivacao": "Assumir o comando do esconderijo matando ou traindo Klarg.",
+      "segredos": "Mesmo se negociar a libertação de Sildar, tentará extorquir resgate extra e pode trair o grupo.",
+      "interacao": "\"Trégua, ou este humano morre!\""
+    },
+    "klarg": {
+      "nome": "Klarg",
+      "local": "Caverna do Klarg (área 8) do Esconderijo Dentefino",
+      "papel": "Bugbear líder do Esconderijo Dentefino",
+      "descricao": "Bugbear cheio de ilusões de grandeza, fala de si na terceira pessoa (\"Klarg irá construir um trono com seus ossos!\"). Recebeu ordens do npc:rei-grol para emboscar npc:gundren-buscapedra e sua escolta.",
+      "motivacao": "Tornar-se um grande senhor da guerra; cumprir as ordens do Rei Grol para agradar o bestiario:nezznar.",
+      "segredos": "Guarda um baú de tesouro escondido entre os suprimentos roubados da Leãoescudo Transações.",
+      "interacao": "\"Quem ousa desafiar Klarg?\""
+    },
+    "droop": {
+      "nome": "Droop",
+      "local": "Alojamento dos Guardas (área 9) do Esconderijo Marcarrubra",
+      "papel": "Goblin escravo humilhado pelos bugbears de npc:mosk",
+      "descricao": "Pequeno e triste goblin intimidado que desmaia quando o grupo aparece. Não é ameaça; covarde e disposto a ajudar quem for mais forte que os bugbears.",
+      "motivacao": "Sobreviver e servir a quem estiver no controle no momento.",
+      "segredos": "Sabe o layout geral do esconderijo, localização de portas secretas e armadilhas, mas as informações podem estar confusas.",
+      "interacao": "Se libertado dos bugbears, oferece-se para se juntar ao grupo e sugere capturar um goblin bestiario:goblin Dentefino para achar o Castelo Dentefino."
+    },
+    "mosk": {
+      "nome": "Mosk",
+      "local": "Alojamento dos Guardas (área 9) do Esconderijo Marcarrubra",
+      "papel": "Líder dos bugbears enviados pelo bestiario:nezznar para reforçar os Marcarrubra",
+      "descricao": "Bugbear que usa um tapa-olho com joia por vaidade, apesar de ter os dois olhos perfeitos. Comanda três bugbears e humilha o goblin npc:droop.",
+      "motivacao": "Manter os Marcarrubra e os cidadãos de Phandalin sob controle a mando do bestiario:nezznar.",
+      "segredos": "Sabe a localização do Castelo Dentefino e da Caverna Onda Eco, mas teme mais o Aranha Negra do que os personagens.",
+      "interacao": ""
+    },
+    "iarno-alberk": {
+      "nome": "Iarno \"Cajavidro\" Alberk",
+      "local": "Alojamento do Cajavidro (área 12) do Esconderijo Marcarrubra",
+      "papel": "Mago humano, líder secreto dos Marcarrubra",
+      "descricao": "Antigo membro da Aliança dos Lordes enviado para estabelecer ordem em Phandalin, mas que ao invés disso fundou os Marcarrubra e assumiu o codinome Cajavidro, escondendo sua identidade. Trata bandidos como \"meu bom homem\" e sequestros como \"pequenos negócios desagradáveis\".",
+      "motivacao": "Enriquecer e manter o controle secreto de Phandalin, agindo sob ordens do bestiario:nezznar em troca de riquezas da Forja das Magias.",
+      "segredos": "É o verdadeiro líder dos Marcarrubra; correspondência do Aranha Negra em sua mesa comprova a conspiração.",
+      "interacao": "Se reduzido a 8 PV ou menos e sem fuga, rende-se, esperando que o Aranha Negra depois \"consiga sua liberdade\"."
+    },
+    "toblen-stonehill": {
+      "nome": "Toblen Stonehill",
+      "local": "Estalagem Stonehill, Phandalin",
+      "papel": "Dono da estalagem",
+      "descricao": "Humano baixo, jovem e amigável, nativo de Triboar. Veio a Phandalin buscando prosperidade e acabou virando estalajadeiro.",
+      "motivacao": "Manter sua estalagem e proteger sua família dos Marcarrubra.",
+      "segredos": "Teme retaliação da gangue Marcarrubra contra sua esposa e filhos se causar problemas.",
+      "interacao": "Pode indicar que os Marcarrubra frequentam a taverna O Gigante Adormecido."
+    },
+    "elmar-barthen": {
+      "nome": "Elmar Barthen",
+      "local": "Barthen Provisões, Phandalin",
+      "papel": "Dono do maior posto de troca de Phandalin",
+      "descricao": "Comerciante humano magro e careca de cinquenta anos, de bons modos, com dois funcionários jovens (Ander e Thistle).",
+      "motivacao": "Manter seu comércio funcionando apesar dos Marcarrubra; ajudar o amigo npc:gundren-buscapedra.",
+      "segredos": "Deve 10 po a cada personagem se usado o gancho 'Me Encontre em Phandalin'.",
+      "interacao": "Se contarem que Gundren foi capturado, encoraja o grupo a resgatá-lo."
+    },
+    "daran-edermath": {
+      "nome": "Daran Edermath",
+      "local": "Pomar Edermath, Phandalin",
+      "papel": "Ex-aventureiro, membro da Ordem da Manopla",
+      "descricao": "Meio-elfo guerreiro com mais de cem anos, veterano que serviu como agente e mensageiro na Costa do Dragão. Vive em uma cabana ao lado de um pomar de maçãs.",
+      "motivacao": "Proteger a região de vândalos e malfeitores; recrutar aventureiros virtuosos para a Ordem da Manopla.",
+      "segredos": "",
+      "interacao": "Oferece a missao:encrenca-na-velha-coruja e pode convidar o grupo para a Ordem da Manopla depois."
+    },
+    "linene-greywind": {
+      "nome": "Linene Vento Cinza (Greywind)",
+      "local": "Transações Escudo Leão, Phandalin",
+      "papel": "Chefe do posto de troca Escudo Leão",
+      "descricao": "Mulher humana de língua afiada com trinta e cinco anos, comandando o posto de comércio da companhia Escudo Leão em Phandalin.",
+      "motivacao": "Recuperar os bens roubados de sua última caravana, atacada pelos bestiario:goblin Dentefino.",
+      "segredos": "Não sabe quem está por trás dos ataques até que os personagens revelem.",
+      "interacao": "Oferece 50 po de recompensa por bens roubados recuperados do Esconderijo Dentefino."
+    },
+    "halia-thronton": {
+      "nome": "Halia Thronton",
+      "local": "Câmbio de Minério de Phandalin, Phandalin",
+      "papel": "Mestra da guilda do câmbio de minério; agente secreta dos Zhentarim",
+      "descricao": "Mulher humana ambiciosa e calculista que tenta estabelecer o Câmbio de Minério como autoridade de facto em Phandalin.",
+      "motivacao": "Expandir sua influência e a dos Zhentarim sobre Phandalin, eliminando os Marcarrubra para assumir o controle.",
+      "segredos": "Quer tomar a operação dos Marcarrubra para si; pode libertar bestiario:nezznar da cadeia se ele for capturado, entregando-o aos Zhentarim.",
+      "interacao": "Oferece a missao:oferta-de-emprego-da-halia por 100 po para eliminar npc:iarno-alberk."
+    },
+    "qelline-alderleaf": {
+      "nome": "Qelline Alderleaf",
+      "local": "Fazenda Alderleaf, Phandalin",
+      "papel": "Fazendeira halfling, mãe de Carp",
+      "descricao": "Sábia halfling de quarenta e cinco anos que parece saber de tudo que ocorre na vila. Anfitriã amável, disposta a hospedar o grupo em seu galpão.",
+      "motivacao": "Proteger seu filho Carp e ajudar os aventureiros com informações.",
+      "segredos": "Seu filho Carp encontrou o túnel secreto que leva à área 8 do Esconderijo Marcarrubra.",
+      "interacao": "Sugere que o grupo procure o druida npc:reidoth nas Ruínas da Árvore Trovão para a missao:reidoth-o-druida."
+    },
+    "irma-garaele": {
+      "nome": "Irmã Garaele",
+      "local": "Santuário da Sorte, Phandalin",
+      "papel": "Acólita clériga de Tymora; agente dos Harpistas",
+      "descricao": "Jovem elfa zelosa que despreza os Marcarrubra. Membro da rede de espiões e aventureiros conhecida como Harpistas.",
+      "motivacao": "Cumprir uma missão delicada de seus superiores dos Harpistas: descobrir o paradeiro do grimório de Arco Suave através da banshee npc:agatha.",
+      "segredos": "Reporta regularmente aos Harpistas sobre eventos em Phandalin.",
+      "interacao": "Oferece a missao:a-barganha-da-banshee, dando um itens:pente-de-prata e três itens:pocao-de-cura como pagamento."
+    },
+    "harbin-wester": {
+      "nome": "Harbin Wester",
+      "local": "Salão do Chefe da Vila, Phandalin",
+      "papel": "Chefe da vila de Phandalin",
+      "descricao": "Homem humano banqueiro, gordo e pomposo, completamente intimidado pelos Marcarrubra, que minimiza a ameaça deles.",
+      "motivacao": "Manter as aparências de autoridade sem confrontar diretamente os bandidos.",
+      "segredos": "",
+      "interacao": "Oferece a missao:problema-orc por 100 po para lidar com os orcs do Cume da Wyvern."
+    },
+    "grista": {
+      "nome": "Grista",
+      "local": "O Gigante Adormecido, Phandalin",
+      "papel": "Gerente da taverna frequentada pelos Marcarrubra",
+      "descricao": "Anã mal-humorada que administra a decadente taverna O Gigante Adormecido.",
+      "motivacao": "Manter seu negócio funcionando apesar da clientela perigosa.",
+      "segredos": "",
+      "interacao": ""
+    },
+    "carp-alderleaf": {
+      "nome": "Carp Alderleaf",
+      "local": "Fazenda Alderleaf, Phandalin",
+      "papel": "Filho de npc:qelline-alderleaf",
+      "descricao": "Halfling espirituoso e precoce de dez anos, fascinado pela ideia de se tornar aventureiro.",
+      "motivacao": "Provar seu valor e ajudar os aventureiros.",
+      "segredos": "Descobriu um túnel secreto na floresta perto da Mansão Tresendar que leva à área 8 do Esconderijo Marcarrubra; quase foi visto por dois bestiario:bandido-marcarrubra e um bugbear.",
+      "interacao": "Pode levar os personagens até o túnel ou apenas dar as direções."
+    },
+    "reidoth": {
+      "nome": "Reidoth",
+      "local": "Reduto do Druida (área 4) nas Ruínas da Árvore Trovão",
+      "papel": "Druida humano, membro do Enclave Esmeralda",
+      "descricao": "Humano de barba branca, homem de poucas palavras mas hospitaleiro. Visita periodicamente as Ruínas da Árvore Trovão para monitorar seus perigos.",
+      "motivacao": "Preservar a ordem natural e expulsar ameaças como o bestiario:dragao-verde-jovem Venomfang.",
+      "segredos": "Sabe a localização do Castelo Dentefino e pode guiar o grupo até a Caverna Onda Eco em troca de expulsarem o dragão.",
+      "interacao": "Se atacado, transforma-se em esquilo cinza e foge por um buraco na parede."
+    },
+    "favric": {
+      "nome": "Favric",
+      "local": "Cabana dos Cultistas (área 13) nas Ruínas da Árvore Trovão",
+      "papel": "Líder do bando de cultistas do Culto do Dragão",
+      "descricao": "Jovem maligno e ambicioso que espera subir de posição rapidamente conseguindo a aliança do bestiario:dragao-verde-jovem.",
+      "motivacao": "Firmar aliança com o dragão verde, mesmo que isso signifique sacrificar os personagens como tributo.",
+      "segredos": "Planeja oferecer os personagens ao dragão como parte do tributo.",
+      "interacao": "Sugere uma aliança se os personagens expressarem intenção similar à dele."
+    },
+    "hamun-kost": {
+      "nome": "Hamun Kost",
+      "local": "Poço da Velha Coruja",
+      "papel": "Mago maligno de Thay explorando as ruínas",
+      "descricao": "Figura robusta usando Manto Vermelho, pele pálida, cabeça raspada e tatuagem negra de necromancia na testa. Comanda doze zumbis como guardas.",
+      "motivacao": "Encontrar resquícios mágicos deixados pelos construtores da torre de vigia; disposto a negociar em vez de lutar.",
+      "segredos": "Quer que Agatha, a banshee, responda uma pergunta: quem construiu a torre (ela sabe: Arthindol).",
+      "interacao": "\"Qual o significado disto?\" — prefere negociar do que lutar se abordado com respeito."
+    },
+    "agatha": {
+      "nome": "Agatha",
+      "local": "Covil da Agatha, perto de Conyberry",
+      "papel": "Banshee poderosa e adivinha",
+      "descricao": "Espírito de uma elfa que já foi bonita, agora com feições hediondas, manto e cabelo ondulando com vento espectral.",
+      "motivacao": "Ser tratada com respeito e vaidade; em troca, responde uma única pergunta por visita.",
+      "segredos": "Sabe onde está o grimório de Arco Suave (negociado há mais de cem anos com o necromante Tsernoth em Iriaebor) e pode responder sobre o Castelo Dentefino, a Caverna Onda Eco, a identidade do Aranha Negra ou o nome do construtor do Poço da Velha Coruja (Arthindol).",
+      "interacao": "\"Tolos mortais, o que vocês querem aqui? Vocês não sabem que é a morte quem me busca?\" Se ofendida, desaparece e não retorna."
+    },
+    "brughor-machado-mordedor": {
+      "nome": "Brughor Machado-Mordedor",
+      "local": "Acampamento Orc, Cume da Wyvern",
+      "papel": "Líder do bando de orcs da tribo Muitas Flechas",
+      "descricao": "Bruto selvagem mais interessado em assassinatos e pilhagens do que em patrulhar, líder de seis orcs comuns e do ogro Gog.",
+      "motivacao": "Saquear viajantes e assentamentos próximos a Phandalin.",
+      "segredos": "",
+      "interacao": "Luta até a morte; orcs remanescentes fogem quando ele cai."
+    },
+    "rei-grol": {
+      "nome": "Rei Grol",
+      "local": "Aposentos do Rei (área 14) do Castelo Dentefino",
+      "papel": "Bugbear velho, chefe supremo da tribo Dentefino",
+      "descricao": "Bugbear feroz de 45 PV que manda através de pura intimidação. Idade curvou seus ombros, mas continua ágil e forte. Exigente e vingativo.",
+      "motivacao": "Vender o mapa da Caverna Onda Eco para o melhor comprador, negociando com a doppelganger npc:vyerith.",
+      "segredos": "Escondeu o mapa de npc:gundren-buscapedra sob o colchão de sua cama.",
+      "interacao": "Mantém Gundren refém, pronto para matá-lo se os personagens não recuarem."
+    },
+    "vyerith": {
+      "nome": "Vyerith",
+      "local": "Aposentos do Rei (área 14) do Castelo Dentefino",
+      "papel": "Doppelganger disfarçada de drow fêmea, mensageira do Aranha Negra",
+      "descricao": "Doppelganger enviada por bestiario:nezznar para negociar o mapa da mina com npc:rei-grol e depois matar npc:gundren-buscapedra.",
+      "motivacao": "Obter o mapa da Caverna Onda Eco e eliminar Gundren para o Aranha Negra.",
+      "segredos": "É na verdade um doppelganger disfarçado, não uma drow de verdade.",
+      "interacao": "Se avisada de um ataque, esconde-se atrás de uma porta para emboscar um intruso pelas costas."
+    },
+    "vhalak": {
+      "nome": "Vhalak",
+      "local": "Caverna Desmoronada (área 18) da Caverna Onda Eco",
+      "papel": "Doppelganger disfarçado de drow macho, supervisor dos bugbears de Nezznar",
+      "descricao": "Supervisiona três bugbears escavando os escombros da fenda em busca de tesouro sob as ordens de bestiario:nezznar.",
+      "motivacao": "Encontrar o tesouro que a intuição de Nezznar sugere estar na fenda; avisar Nezznar de qualquer ataque.",
+      "segredos": "Pode assumir o disfarce de npc:nundro-buscapedra para servir de refém falso.",
+      "interacao": "Recua para o Templo de Dumathoin para avisar Nezznar se dois ou mais bugbears forem mortos."
+    },
+    "targor-espada-sangrenta": {
+      "nome": "Targor Espada Sangrenta",
+      "local": "Arredores do Castelo Dentefino",
+      "papel": "Líder de um bando de guerra hobgoblin retornando de uma batalha",
+      "descricao": "Hobgoblin com 20 pontos de vida, líder de três hobgoblins e dois lobos de estimação, carregando cabeças decepadas de elfos como troféus.",
+      "motivacao": "Assumir a liderança da tribo Dentefino no lugar de npc:rei-grol.",
+      "segredos": "",
+      "interacao": "Pode ser persuadido (Persuasão CD 15) a não atacar se convencido de que pode suceder Grol como líder."
+    },
+    "lhupo": {
+      "nome": "Lhupo",
+      "local": "Santuário Goblin (área 9) do Castelo Dentefino",
+      "papel": "Goblin líder do santuário dedicado a Maglubiyet",
+      "descricao": "Goblin com 12 pontos de vida que afirma ouvir a voz de Maglubiyet falando com ele, junto a dois goblins acólitos. Dono do bestiario:grick que mantém no Salão Escuro.",
+      "motivacao": "Manter seu falso status religioso entre os Dentefino.",
+      "segredos": "Não possui poderes divinos reais, apesar de afirmar o contrário.",
+      "interacao": ""
+    },
+    "yegg": {
+      "nome": "Yegg",
+      "local": "Salão de Banquetes (área 7) do Castelo Dentefino",
+      "papel": "Goblin chefe de cozinha do Castelo Dentefino, com 12 pontos de vida",
+      "descricao": "Goblin gordo e rabugento que atormenta seus assistentes enquanto prepara as refeições da tribo.",
+      "motivacao": "Manter a cozinha funcionando sob o comando do npc:rei-grol.",
+      "segredos": "",
+      "interacao": "Se morto, os goblins sobreviventes fogem para leste ou oeste."
+    },
+    "mirna-dendrar": {
+      "nome": "Mirna Dendrar",
+      "local": "Jaulas de Escravos (área 5) do Esconderijo Marcarrubra",
+      "papel": "Prisioneira dos Marcarrubra, viúva de Thel Dendrar",
+      "descricao": "Humana plebeia mantida presa junto de seus dois filhos adolescentes, Nars (13 anos) e Nilsa (18 anos). Seu marido, Thel, foi assassinado pelos Marcarrubra por desafiá-los.",
+      "motivacao": "Ser resgatada e recuperar a herança da família deixada nas Ruínas da Árvore Trovão.",
+      "segredos": "Sabe onde está escondido um colar de esmeraldas (itens:colar-de-esmeraldas) na antiga loja de ervas de sua família na Árvore Trovão.",
+      "interacao": "Oferece a missao:a-heranca-de-mirna em troca do resgate."
+    }
+  },
+  "itens": {
+    "armadura-mais-1": {
+      "nome": "Armadura +1",
+      "tipo": "Armadura",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Concede +1 de bônus na Classe de Armadura enquanto vestida. Nunca enferruja ou deteriora, e se ajusta magicamente ao tamanho do usuário.",
+      "localizacao": "Recompensa genérica de tesouro ao longo da aventura"
+    },
+    "arma-mais-1": {
+      "nome": "Arma +1",
+      "tipo": "Arma",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Concede +1 de bônus nas rolagens de ataque e dano.",
+      "localizacao": "Ex.: itens:espada-longa-talon, itens:machado-de-batalha-hew"
+    },
+    "espada-longa-talon": {
+      "nome": "Talon (Espada Longa +1)",
+      "tipo": "Arma",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Espada longa +1 com cabo em forma de ave de rapina de asas abertas, guardada em bainha revestida de prata. Pertenceu ao cavaleiro Aldith Tresendar, o Falcão Negro.",
+      "localizacao": "Fenda (área 8) do Esconderijo Marcarrubra, no baú de tesouro de bestiario:nothic"
+    },
+    "machado-de-batalha-hew": {
+      "nome": "Hew (Machado de Batalha +1)",
+      "tipo": "Arma",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Machado de batalha +1 de manufatura anã que causa dano máximo contra criaturas do tipo planta ou objetos de madeira. Quem o carrega sente-se inquieto ao viajar por florestas.",
+      "localizacao": "Torre do Dragão (área 7) nas Ruínas da Árvore Trovão, no tesouro de bestiario:dragao-verde-jovem"
+    },
+    "botas-de-correr-e-saltar": {
+      "nome": "Botas de Correr e Saltar",
+      "tipo": "Item Maravilhoso (vestimenta)",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "O deslocamento do usuário torna-se 9 m (a menos que já seja maior) e não é reduzido por sobrecarga ou armadura pesada. Pular multiplica a distância normal por três.",
+      "localizacao": "Entrada da Caverna (área 1) da Caverna Onda Eco, vestidas por npc:tharden-buscapedra"
+    },
+    "manoplas-do-poder-ogro": {
+      "nome": "Manoplas do Poder Ogro",
+      "tipo": "Item Maravilhoso (vestimenta)",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Enquanto usadas, a Força do usuário se torna 19. Não têm efeito se a Força já for 19 ou maior.",
+      "localizacao": "Caverna Desmoronada (área 18) da Caverna Onda Eco, no esqueleto esmagado de uma anã sob os escombros"
+    },
+    "pocao-de-voar": {
+      "nome": "Poção de Voar",
+      "tipo": "Poção",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Concede deslocamento de voo igual ao deslocamento de caminhada do usuário por 1 hora.",
+      "localizacao": "Carregada por npc:favric ao redor do pescoço, nas Ruínas da Árvore Trovão"
+    },
+    "pocao-de-cura": {
+      "nome": "Poção de Cura",
+      "tipo": "Poção",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Ao beber, o personagem recupera 2d4 + 2 pontos de vida.",
+      "localizacao": "Diversos tesouros ao longo da aventura (Esconderijo Dentefino, Esconderijo Marcarrubra, Poço da Velha Coruja, Castelo Dentefino, etc.)"
+    },
+    "pocao-de-invisibilidade": {
+      "nome": "Poção de Invisibilidade",
+      "tipo": "Poção",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Ao beber, o personagem e seu equipamento ficam invisíveis por 1 hora; a invisibilidade termina se o personagem atacar ou conjurar uma magia.",
+      "localizacao": "Kit de fuga de npc:iarno-alberk na cisterna do Porão (área 1) do Esconderijo Marcarrubra"
+    },
+    "pocao-da-vitalidade": {
+      "nome": "Poção da Vitalidade",
+      "tipo": "Poção",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Remove exaustão, cura doenças e efeitos de veneno, e maximiza os Dados de Vida gastos nas próximas 24 horas.",
+      "localizacao": "Carregada por um bugbear no Alojamento Norte (área 11) da Caverna Onda Eco"
+    },
+    "anel-de-protecao": {
+      "nome": "Anel de Proteção",
+      "tipo": "Item Maravilhoso (anel)",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Concede +1 de bônus na Classe de Armadura e em salvaguardas enquanto usado e sintonizado.",
+      "localizacao": "Baú de npc:hamun-kost no Poço da Velha Coruja"
+    },
+    "pergaminho-de-magia": {
+      "nome": "Pergaminho de Magia",
+      "tipo": "Pergaminho",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Permite conjurar a magia escrita sem componentes, se estiver na lista de magias da classe do usuário. Pergaminhos de nível mais alto exigem teste de habilidade (CD 10 + nível da magia).",
+      "localizacao": "Vários (pergaminho de augúrio, de bola de fogo, de encantar pessoas, de passo das brumas, de relâmpago, de escuridão, de silêncio, de reviver) espalhados pela aventura"
+    },
+    "cajado-da-aranha": {
+      "nome": "Cajado da Aranha",
+      "tipo": "Cajado",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Pode ser usado como bordão, causando 1d6 de dano extra de veneno em acertos. Tem 10 cargas para conjurar patas de aranha (1 carga) ou teia (2 cargas, CD 15). Recupera 1d6 + 4 cargas ao anoitecer; ao gastar a última carga, 1 em 1d20 destrói o cajado.",
+      "localizacao": "Carregado por bestiario:nezznar no Templo de Dumathoin (área 19) da Caverna Onda Eco"
+    },
+    "cajado-da-defesa": {
+      "nome": "Cajado da Defesa",
+      "tipo": "Cajado",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Concede +1 de bônus na CA enquanto empunhado. Tem 10 cargas para conjurar armadura arcana (1 carga) ou escudo arcano (2 cargas). Recupera 1d6 + 4 cargas ao amanhecer; ao gastar a última carga, 1 em 1d20 destrói o cajado.",
+      "localizacao": "Carregado por npc:iarno-alberk no Esconderijo Marcarrubra"
+    },
+    "varinha-de-misseis-magicos": {
+      "nome": "Varinha de Mísseis Mágicos",
+      "tipo": "Varinha",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Tem 7 cargas para conjurar mísseis mágicos, gastando de 1 a 3 cargas por uso (nível da magia aumenta por carga extra gasta). Recupera 1d6 + 1 cargas ao amanhecer; ao gastar a última carga, 1 em 1d20 destrói a varinha.",
+      "localizacao": "Lago Escuro (área 10) da Caverna Onda Eco, com o esqueleto de um mago humano"
+    },
+    "criadora-da-luz": {
+      "nome": "Criadora da Luz",
+      "tipo": "Arma (Maça +1)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Maça +1 feita para um clérigo de Lathander. Pode brilhar como uma tocha sob comando, causando 1d6 de dano radiante extra contra criaturas do tipo morto vivo enquanto brilhando.",
+      "localizacao": "Forja das Magias (área 15) da Caverna Onda Eco, guardada pelo bestiario:espectador"
+    },
+    "protecao-dragao": {
+      "nome": "Proteção Dragão",
+      "tipo": "Armadura (Peitoral +1)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Peitoral de aço +1 com dragão dourado trabalhado no design. Concede vantagem em salvaguardas contra ataques de sopro de criaturas do tipo dragão.",
+      "localizacao": "Forja das Magias (área 15) da Caverna Onda Eco, guardada pelo bestiario:espectador"
+    },
+    "pente-de-prata": {
+      "nome": "Pente de Prata Adornado de Joia",
+      "tipo": "Item Comum (presente)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Presente não mágico oferecido por npc:irma-garaele para agradar a vaidade da banshee npc:agatha, garantindo sucesso automático ao pedir uma resposta.",
+      "localizacao": "Dado pela npc:irma-garaele para a missao:a-barganha-da-banshee"
+    },
+    "colar-de-esmeraldas": {
+      "nome": "Colar de Esmeraldas de Mirna",
+      "tipo": "Item Comum (joia, tesouro)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Colar de ouro com um fino pingente de esmeralda (200 po), herança escondida da família de npc:mirna-dendrar.",
+      "localizacao": "Loja do Herborista (área 9) nas Ruínas da Árvore Trovão"
+    }
+  },
+  "ganchos": [
+    {
+      "id": "g1",
+      "fonte": "Gancho de Aventura — Encontre-me em Phandalin",
+      "texto": "Os personagens estão em Neverwinter quando npc:gundren-buscapedra os contrata para escoltar uma carroça de suprimentos até Phandalin, pagando 10 po a cada um na entrega em Barthen Provisões. Gundren seguiu à frente com npc:sildar-hallwinter para 'fazer negócios'."
+    },
+    {
+      "id": "g2",
+      "fonte": "Rumor de Phandalin — Narth, um velho fazendeiro",
+      "texto": "A Irmã Garaele, que cuida do Santuário da Sorte, recentemente deixou a vila por uns dias e retornou toda machucada e exausta (npc:irma-garaele)."
+    },
+    {
+      "id": "g3",
+      "fonte": "Rumor de Phandalin — Elsa, garçonete fofoqueira",
+      "texto": "Daran Edermath, o dono do pomar, é um ex-aventureiro (npc:daran-edermath)."
+    },
+    {
+      "id": "g4",
+      "fonte": "Rumor de Phandalin — Lanar, um mineiro",
+      "texto": "Assaltantes orcs (bestiario:orc) foram vistos na ponta leste da Trilha Triboar. O chefe da vila npc:harbin-wester está procurando alguém para fazê-los ir embora."
+    },
+    {
+      "id": "g5",
+      "fonte": "Rumor de Phandalin — Trilena, esposa do dono da estalagem",
+      "texto": "Thel Dendrar, um marceneiro local, enfrentou os Marcarrubra há dez dias e foi morto por eles. Sua esposa npc:mirna-dendrar e filhos estão desaparecidos."
+    },
+    {
+      "id": "g6",
+      "fonte": "Rumor de Phandalin — Pip, filho mais novo de Toblen",
+      "texto": "O filho da Qelline Alderleaf, npc:carp-alderleaf, disse que encontrou um túnel secreto na floresta, mas os Marcarrubra quase o pegaram."
+    },
+    {
+      "id": "g7",
+      "fonte": "Rumor de Phandalin — Freda, uma tecelã",
+      "texto": "Os Marcarrubra atormentam todos os negócios da vila, exceto o Câmbio de Minério de Phandalin, pois eles não querem encrenca com npc:halia-thronton."
+    },
+    {
+      "id": "g8",
+      "fonte": "Aviso no Salão do Chefe da Vila",
+      "texto": "RECOMPENSA — Orcs próximos ao Cume da Wyvern! Aqueles com bravura para encarar a ameaça orc (bestiario:orc) entrem para mais informações com npc:harbin-wester."
+    },
+    {
+      "id": "g9",
+      "fonte": "Placa de aviso na Árvore Trovão",
+      "texto": "PERIGO! Plantas monstro e Zumbis! Volte agora! (colocada por npc:reidoth para afastar caçadores de tesouro das ruínas)."
+    },
+    {
+      "id": "g10",
+      "fonte": "O que os Goblins Sabem (informação de prisioneiros)",
+      "texto": "Bestiario:goblin capturados no Esconderijo Dentefino podem revelar que seu líder bestiario:bugbear Klarg responde ao npc:rei-grol e que um misterioso Aranha Negra (bestiario:nezznar) está pagando pela captura de npc:gundren-buscapedra."
+    }
+  ],
+  "missoes": [
+    {
+      "id": "escoltar-a-carroca",
+      "titulo": "Escoltar a Carroça até Phandalin",
+      "status": "Disponível",
+      "nivel_sugerido": 1,
+      "recompensa": "10 po por personagem, pagos por npc:elmar-barthen em Barthen Provisões",
+      "objetivo": "Escoltar a carroça de suprimentos de npc:gundren-buscapedra de Neverwinter até Phandalin, enfrentando uma emboscada de bestiario:goblin na Trilha Triboar no caminho.",
+      "localizacao": "Trilha Triboar",
+      "notas_dm": "Após a emboscada, uma trilha leva ao Esconderijo Dentefino; use os testes de Sobrevivência CD 10 e as armadilhas descritas (laço e fosso) ao longo do caminho."
+    },
+    {
+      "id": "resgatar-sildar",
+      "titulo": "Resgatar Sildar Hallwinter",
+      "status": "Disponível",
+      "nivel_sugerido": 1,
+      "recompensa": "50 po pagos por npc:sildar-hallwinter ao chegar em Phandalin",
+      "objetivo": "Explorar o Esconderijo Dentefino, derrotar bestiario:bugbear Klarg e seus goblins, e resgatar npc:sildar-hallwinter das mãos de npc:yeemik.",
+      "localizacao": "Esconderijo Dentefino",
+      "notas_dm": "Yeemik pode tentar negociar a vida de Sildar; recompense o grupo com 275 XP ao completar esta etapa."
+    },
+    {
+      "id": "eliminar-os-marcarrubra",
+      "titulo": "Eliminar a Ameaça dos Marcarrubra",
+      "status": "Disponível",
+      "nivel_sugerido": 2,
+      "recompensa": "200 po pagos por npc:sildar-hallwinter; 100 po pagos por npc:halia-thronton (missao:oferta-de-emprego-da-halia)",
+      "objetivo": "Confrontar os bestiario:bandido-marcarrubra em O Gigante Adormecido ou na rua, depois invadir o Esconderijo Marcarrubra sob a Mansão Tresendar e derrotar ou capturar npc:iarno-alberk (Cajavidro).",
+      "localizacao": "Phandalin e Esconderijo Marcarrubra",
+      "notas_dm": "Dobre o XP se Iarno for capturado vivo e entregue a Sildar. Cuidado com o bestiario:nothic e os bugbears de npc:mosk."
+    },
+    {
+      "id": "encrenca-na-velha-coruja",
+      "titulo": "Encrenca no Poço da Velha Coruja",
+      "status": "Disponível",
+      "nivel_sugerido": 2,
+      "recompensa": "200 XP por negociar com npc:hamun-kost e reportar a npc:daran-edermath; 800 XP por derrotá-lo",
+      "objetivo": "Investigar as ruínas do Poço da Velha Coruja, lidando com bestiario:zumbi guardiões e com o mago npc:hamun-kost, a pedido de npc:daran-edermath.",
+      "localizacao": "Poço da Velha Coruja",
+      "notas_dm": "Kost pode pedir favores em troca de informação: expulsar os orcs do Cume da Wyvern ou perguntar algo à npc:agatha."
+    },
+    {
+      "id": "a-barganha-da-banshee",
+      "titulo": "A Barganha da Banshee",
+      "status": "Disponível",
+      "nivel_sugerido": 2,
+      "recompensa": "Três itens:pocao-de-cura, pagas por npc:irma-garaele; 200 XP por obter a resposta de npc:agatha",
+      "objetivo": "Levar o itens:pente-de-prata até a banshee npc:agatha em seu covil perto de Conyberry e persuadi-la a responder uma pergunta sobre o grimório de Arco Suave (ou qualquer outra pergunta relevante à trama).",
+      "localizacao": "Conyberry e Covil da Agatha",
+      "notas_dm": "Teste de Persuasão CD 15 (automático se o pente for entregue). A banshee só responde uma pergunta por visita."
+    },
+    {
+      "id": "reidoth-o-druida",
+      "titulo": "Encontrar Reidoth nas Ruínas da Árvore Trovão",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "Direções para a Caverna Onda Eco ou o Castelo Dentefino, dadas por npc:reidoth",
+      "objetivo": "Viajar até as Ruínas da Árvore Trovão para encontrar o druida npc:reidoth, enfrentando bestiario:ramos-secos, bestiario:aranha-gigante, bestiario:cultista e possivelmente o bestiario:dragao-verde-jovem Venomfang.",
+      "localizacao": "Ruínas da Árvore Trovão",
+      "notas_dm": "Reidoth só guia o grupo até a mina se ajudarem a expulsar Venomfang; recompensa de 2.000 XP por afugentar o dragão."
+    },
+    {
+      "id": "a-heranca-de-mirna",
+      "titulo": "A Herança de Mirna",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "itens:colar-de-esmeraldas (200 po) devolvido a npc:mirna-dendrar gera 200 XP extra",
+      "objetivo": "Encontrar o itens:colar-de-esmeraldas escondido na antiga Loja do Herborista nas Ruínas da Árvore Trovão e devolvê-lo à npc:mirna-dendrar em Phandalin.",
+      "localizacao": "Ruínas da Árvore Trovão",
+      "notas_dm": "Teste de Percepção CD 15 para encontrar a caixa escondida; automático se Mirna enviou o grupo."
+    },
+    {
+      "id": "problema-orc",
+      "titulo": "Problema Orc no Cume da Wyvern",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "100 po pagos por npc:harbin-wester",
+      "objetivo": "Localizar o acampamento de bestiario:orc liderado por npc:brughor-machado-mordedor e seu aliado bestiario:ogro no Cume da Wyvern, expulsando-os da região.",
+      "localizacao": "Cume da Wyvern",
+      "notas_dm": "Também cumpre a promessa feita a npc:hamun-kost. Recompensa de 1.250 XP dividida entre o grupo."
+    },
+    {
+      "id": "encontrar-o-castelo-dentefino",
+      "titulo": "Encontrar o Castelo Dentefino e Resgatar Gundren",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "500 po pagos por npc:sildar-hallwinter",
+      "objetivo": "Localizar o Castelo Dentefino, derrotar ou afugentar npc:rei-grol e a doppelganger npc:vyerith, e resgatar npc:gundren-buscapedra recuperando seu mapa da Caverna Onda Eco.",
+      "localizacao": "Castelo Dentefino",
+      "notas_dm": "Recompensa de 950 XP por derrotar Grol, o lobo e o doppelganger, mais 200 XP por escoltar Gundren de volta em segurança."
+    },
+    {
+      "id": "caverna-onda-eco",
+      "titulo": "A Caverna Onda Eco e o Aranha Negra",
+      "status": "Disponível",
+      "nivel_sugerido": 4,
+      "recompensa": "25 po por personagem e 10% dos lucros futuros da mina, prometidos por npc:gundren-buscapedra",
+      "objetivo": "Explorar a Caverna Onda Eco, resgatar npc:nundro-buscapedra, derrotar bestiario:nezznar (o Aranha Negra) e seus aliados, e decidir o destino da Forja das Magias guardada pelo bestiario:espectador.",
+      "localizacao": "Caverna Onda Eco",
+      "notas_dm": "XP dobrado se Nezznar for capturado vivo e entregue em Phandalin. Cuidado com npc:vhalak, a aparição de bestiario:aparicao-mormesk e o bestiario:cranio-em-chamas."
+    }
+  ],
+  "locais": {
+    "trilha-triboar": {
+      "nome": "Trilha Triboar",
+      "tipo": "Exterior / Rota de viagem",
+      "nivel_sugerido": "1",
+      "resumo": "Trecho de colinas e planícies entre as Montanhas Espada e a Floresta de Neverwinter, ligando Triboar a Phandalin. Local da emboscada inicial de bestiario:goblin contra a carroça de npc:gundren-buscapedra, e cenário de encontros selvagens aleatórios (bestiario:stirge, bestiario:ghoul, bestiario:ogro, bestiario:goblin, bestiario:hobgoblin, bestiario:orc, bestiario:lobo, bestiario:urso-coruja).",
+      "npcs": [],
+      "criaturas": [
+        "bestiario:goblin",
+        "bestiario:orc",
+        "bestiario:lobo",
+        "bestiario:ogro"
+      ],
+      "perigos": "Emboscadas de bandidos e monstros; teste de encontro 17-20 em d20 por dia e por noite.",
+      "tesouro": "",
+      "conexoes": "Liga Phandalin ao Esconderijo Dentefino, Conyberry, Cume da Wyvern e ao Castelo Dentefino."
+    },
+    "esconderijo-dentefino": {
+      "nome": "Esconderijo Dentefino",
+      "tipo": "Masmorra / Caverna",
+      "nivel_sugerido": "1",
+      "resumo": "Complexo de cavernas usado pela tribo goblin Dentefino para emboscar caravanas. Liderado pelo bugbear bestiario:bugbear Klarg (npc:klarg), que mantém npc:sildar-hallwinter prisioneiro sob custódia do goblin npc:yeemik.",
+      "npcs": [
+        "npc:sildar-hallwinter",
+        "npc:yeemik",
+        "npc:klarg"
+      ],
+      "criaturas": [
+        "bestiario:goblin",
+        "bestiario:bugbear",
+        "bestiario:lobo"
+      ],
+      "perigos": "Armadilhas de laço e fosso na trilha de acesso; ponte frágil e sistema de enchente controlado pelos goblins na área 5-7.",
+      "tesouro": "Baú de npc:klarg com 600 pc, 110 pp, duas poções de cura e uma estatueta de jade (40 po); suprimentos roubados da Leãoescudo Transações.",
+      "conexoes": "Acessível por trilha a 7 km a noroeste do local da emboscada na trilha-triboar; goblins sabem o caminho até o Castelo Dentefino."
+    },
+    "phandalin": {
+      "nome": "Phandalin",
+      "tipo": "Cidade base",
+      "nivel_sugerido": "1–3",
+      "resumo": "Vila fronteiriça sem lei construída sobre ruínas antigas, controlada pelo medo dos bestiario:bandido-marcarrubra liderados secretamente por npc:iarno-alberk. Principais estabelecimentos incluem a Estalagem Stonehill (npc:toblen-stonehill), Barthen Provisões (npc:elmar-barthen), Transações Escudo Leão (npc:linene-greywind), Câmbio de Minério (npc:halia-thronton), Pomar Edermath (npc:daran-edermath), Fazenda Alderleaf (npc:qelline-alderleaf), Santuário da Sorte (npc:irma-garaele), Salão do Chefe da Vila (npc:harbin-wester) e a taverna O Gigante Adormecido (npc:grista).",
+      "npcs": [
+        "npc:toblen-stonehill",
+        "npc:elmar-barthen",
+        "npc:daran-edermath",
+        "npc:linene-greywind",
+        "npc:halia-thronton",
+        "npc:qelline-alderleaf",
+        "npc:irma-garaele",
+        "npc:harbin-wester",
+        "npc:sildar-hallwinter",
+        "npc:grista",
+        "npc:carp-alderleaf"
+      ],
+      "criaturas": [
+        "bestiario:bandido-marcarrubra"
+      ],
+      "perigos": "Extorsão e confrontos com os Marcarrubra nas ruas ou em O Gigante Adormecido.",
+      "tesouro": "",
+      "conexoes": "Ponto central que conecta à Esconderijo Marcarrubra (Mansão Tresendar), à trilha-triboar, e a todas as localizações da parte 3."
+    },
+    "esconderijo-marcarrubra": {
+      "nome": "Esconderijo Marcarrubra (Mansão Tresendar)",
+      "tipo": "Masmorra",
+      "nivel_sugerido": "2",
+      "resumo": "Complexo de masmorras sob a Mansão Tresendar em ruínas, expandido pelos Marcarrubra com jaulas de escravos, oficinas e alojamentos. Base secreta de npc:iarno-alberk (Cajavidro), guardada por bugbears de npc:mosk e pelo bestiario:nothic na Fenda.",
+      "npcs": [
+        "npc:iarno-alberk",
+        "npc:mosk",
+        "npc:droop",
+        "npc:mirna-dendrar"
+      ],
+      "criaturas": [
+        "bestiario:bandido-marcarrubra",
+        "bestiario:esqueleto",
+        "bestiario:bugbear",
+        "bestiario:nothic",
+        "bestiario:doppelganger"
+      ],
+      "perigos": "Armadilha de fosso escondida no Corredor (área 3); esqueletos guardiões nas Criptas Tresendar (área 4); portas secretas em vários pontos.",
+      "tesouro": "Baú de npc:iarno-alberk com 180 pp, 130 po e gemas; espada longa itens:espada-longa-talon no fundo da fenda guardada pelo bestiario:nothic.",
+      "conexoes": "Entrada principal pela Mansão Tresendar; túnel secreto encontrado por npc:carp-alderleaf leva direto à área 8."
+    },
+    "poco-da-velha-coruja": {
+      "nome": "Poço da Velha Coruja",
+      "tipo": "Ruína",
+      "nivel_sugerido": "2",
+      "resumo": "Torre de vigia em ruínas de um antigo império, ocupada pelo mago necromante npc:hamun-kost e doze bestiario:zumbi guardiões, enquanto ele busca resquícios mágicos deixados pelo construtor Arthindol.",
+      "npcs": [
+        "npc:hamun-kost"
+      ],
+      "criaturas": [
+        "bestiario:zumbi"
+      ],
+      "perigos": "Doze zumbis emergem da torre ao perceberem intrusos.",
+      "tesouro": "Bolsa de couro com 35 pp, 20 pe, 20 po, 5 ppl, uma pérola (100 po), itens:pocao-de-cura, um pergaminho de escuridão e o itens:anel-de-protecao.",
+      "conexoes": "A dois dias de marcha a nordeste de Phandalin; Hamun Kost pode pedir para expulsar orcs do Cume da Wyvern ou perguntar algo à npc:agatha."
+    },
+    "covil-da-agatha": {
+      "nome": "Conyberry e Covil da Agatha",
+      "tipo": "Ruína / Exterior",
+      "nivel_sugerido": "2",
+      "resumo": "Vila abandonada de Conyberry, saqueada por bárbaros, próxima ao covil da banshee npc:agatha na Floresta Neverwinter, uma poderosa adivinha capaz de responder perguntas sobre a trama.",
+      "npcs": [
+        "npc:agatha"
+      ],
+      "criaturas": [],
+      "perigos": "Agatha se ofende e desaparece se tratada com desrespeito.",
+      "tesouro": "",
+      "conexoes": "A trilha-triboar passa por Conyberry; a partir daí, uma trilha leva a noroeste até o covil."
+    },
+    "ruinas-arvore-trovao": {
+      "nome": "Ruínas da Árvore Trovão",
+      "tipo": "Ruína",
+      "nivel_sugerido": "3",
+      "resumo": "Vila abandonada destruída pela erupção do Monte Hotenow, agora infestada por bestiario:ramos-secos e bestiario:zumbi das cinzas, visitada pelo druida npc:reidoth e ocupada pelo bestiario:dragao-verde-jovem Venomfang na Torre do Dragão e por cultistas liderados por npc:favric.",
+      "npcs": [
+        "npc:reidoth",
+        "npc:favric",
+        "npc:mirna-dendrar"
+      ],
+      "criaturas": [
+        "bestiario:ramos-secos",
+        "bestiario:zumbi",
+        "bestiario:aranha-gigante",
+        "bestiario:dragao-verde-jovem",
+        "bestiario:cultista"
+      ],
+      "perigos": "Zumbis das cinzas com Brisa das Cinzas; teias de bestiario:aranha-gigante; possível confronto com o dragão verde.",
+      "tesouro": "itens:machado-de-batalha-hew no tesouro do dragão; itens:colar-de-esmeraldas na Loja do Herborista; baú de moedas na Cabana com Ramos.",
+      "conexoes": "A 80 km a noroeste de Phandalin, perto de onde o Rio Neverwinter emerge da Floresta Neverwinter."
+    },
+    "cume-da-wyvern": {
+      "nome": "Cume da Wyvern",
+      "tipo": "Exterior",
+      "nivel_sugerido": "3",
+      "resumo": "Rochedo proeminente que já foi ninho de wyverns, agora ocupado por um bando de bestiario:orc da tribo Muitas Flechas liderado por npc:brughor-machado-mordedor e seu aliado bestiario:ogro Gog.",
+      "npcs": [
+        "npc:brughor-machado-mordedor"
+      ],
+      "criaturas": [
+        "bestiario:orc",
+        "bestiario:ogro"
+      ],
+      "perigos": "Vigia orc na entrada da caverna pode soar alarme.",
+      "tesouro": "Baú com 750 pc, 180 pp, 62 pe, 30 po e três frascos de perfume (10 po cada).",
+      "conexoes": "Visível a 30 km de distância nas colinas ásperas a nordeste das Montanhas Espada; próximo à trilha-triboar."
+    },
+    "castelo-dentefino": {
+      "nome": "Castelo Dentefino",
+      "tipo": "Masmorra / Fortaleza",
+      "nivel_sugerido": "3–4",
+      "resumo": "Antiga fortaleza de sete torres construída por um mago de Pharlom, agora ocupada pela tribo goblin Dentefino sob o comando de npc:rei-grol. Aqui os personagens podem resgatar npc:gundren-buscapedra e recuperar o mapa da Caverna Onda Eco, além de confrontar a doppelganger npc:vyerith.",
+      "npcs": [
+        "npc:rei-grol",
+        "npc:vyerith",
+        "npc:lhupo",
+        "npc:yegg",
+        "npc:targor-espada-sangrenta",
+        "npc:gundren-buscapedra"
+      ],
+      "criaturas": [
+        "bestiario:goblin",
+        "bestiario:hobgoblin",
+        "bestiario:bugbear",
+        "bestiario:grick",
+        "bestiario:urso-coruja",
+        "bestiario:lobo",
+        "bestiario:doppelganger"
+      ],
+      "perigos": "Armadilha de desmoronamento no Salão com Armadilha (área 2); aberturas para arqueiros; urso coruja capturado na torre (área 13).",
+      "tesouro": "Saco de couro com 220 pp, 160 pe, três poções de cura e o mapa de npc:gundren-buscapedra sob o colchão de npc:rei-grol; estátua de ouro no Salão Escuro (100 po).",
+      "conexoes": "A cerca de 30 km a noroeste do Esconderijo Dentefino, na Floresta Neverwinter; ponto de partida para descobrir a Caverna Onda Eco."
+    },
+    "caverna-onda-eco": {
+      "nome": "Caverna Onda Eco",
+      "tipo": "Masmorra final / Mina",
+      "nivel_sugerido": "4–5",
+      "resumo": "A lendária mina perdida do Pacto de Phandelver, 25 km a leste de Phandalin, agora infestada por mortos-vivos e monstros, e explorada por bestiario:nezznar (o Aranha Negra) em busca da Forja das Magias, guardada por um bestiario:espectador insano e pela aparição de bestiario:aparicao-mormesk.",
+      "npcs": [
+        "npc:nundro-buscapedra",
+        "npc:tharden-buscapedra",
+        "npc:vhalak"
+      ],
+      "criaturas": [
+        "bestiario:gosma-ocre",
+        "bestiario:stirge",
+        "bestiario:esqueleto",
+        "bestiario:ghoul",
+        "bestiario:bugbear",
+        "bestiario:cranio-em-chamas",
+        "bestiario:espectador",
+        "bestiario:doppelganger",
+        "bestiario:aparicao-mormesk"
+      ],
+      "perigos": "Gás venenoso na Caverna dos Fungos (área 8, CD 11 Constituição); fenda e fossos profundos; monstros vagando (d12 por longos períodos).",
+      "tesouro": "itens:manoplas-do-poder-ogro na Caverna Desmoronada; itens:varinha-de-misseis-magicos no Lago Escuro; itens:criadora-da-luz e itens:protecao-dragao na Forja das Magias; itens:botas-de-correr-e-saltar com npc:tharden-buscapedra.",
+      "conexoes": "Acessada pelo mapa de npc:gundren-buscapedra ou por informações de npc:agatha, npc:reidoth ou npc:hamun-kost; é o destino final da aventura."
+    }
+  }
+}
