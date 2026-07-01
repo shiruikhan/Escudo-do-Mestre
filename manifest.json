@@ -1,0 +1,17 @@
+{
+  "name": "Escudo do Mestre",
+  "short_name": "Escudo do Mestre",
+  "description": "Painel do Narrador para D&D 5.5e (2024): bestiário, NPCs, itens, ganchos e missões de campanhas completas.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "assets/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

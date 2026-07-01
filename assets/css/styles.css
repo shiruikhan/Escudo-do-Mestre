@@ -180,3 +180,45 @@ body {
   animation: spin .7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- Tema claro (alternável via #btn-tema, persistido em localStorage) ----------
+   Os componentes customizados acima (tab-btn, busca-input, stat-divider, chip-link,
+   spinner...) já usam as variáveis --cor-*, então reatribuí-las aqui já os reskina.
+   O restante da UI é montado com utilitários Tailwind diretamente nos templates de
+   renderers.js — como não há build-time para gerar variantes dark:/light:, sobrescrevemos
+   aqui as classes de neutro (zinc) e destaque (amber) realmente usadas no projeto. */
+html.light {
+  --cor-ambar: #b45309;
+  --cor-ambar-escuro: #78350f;
+  --cor-fundo: #f4f4f5;
+  --cor-painel: #ffffff;
+  --cor-borda: #e4e4e7;
+}
+
+html.light .bg-zinc-950,
+html.light .bg-zinc-950\/95 { background-color: rgba(244, 244, 245, .95); }
+html.light .bg-zinc-900 { background-color: #ffffff; }
+html.light .bg-zinc-800\/40 { background-color: rgba(228, 228, 231, .7); }
+html.light .border-zinc-800 { border-color: #e4e4e7; }
+html.light .border-zinc-700\/50 { border-color: rgba(212, 212, 216, .7); }
+html.light .text-zinc-100 { color: #18181b; }
+html.light .text-zinc-200 { color: #27272a; }
+html.light .text-zinc-300 { color: #3f3f46; }
+html.light .text-zinc-400 { color: #52525b; }
+html.light .text-zinc-500 { color: #71717a; }
+html.light .text-zinc-600 { color: #a1a1aa; }
+html.light .active\:bg-zinc-800:active { background-color: #e4e4e7; }
+
+html.light .text-amber-300,
+html.light .text-amber-400,
+html.light .text-amber-500\/80 { color: #b45309; }
+html.light .text-amber-300\/90 { color: #92400e; }
+html.light .text-amber-200\/80 { color: #78350f; }
+
+html.light .busca-input { background: #ffffff; color: #18181b; }
+html.light .busca-input::placeholder { color: #a1a1aa; }
+html.light .stat-cell { background: #f4f4f5; }
+html.light .stat-cell .valor { color: #18181b; }
+html.light .res-tag { color: #92400e; background: rgba(180, 83, 9, .08); border-color: rgba(180, 83, 9, .3); }
+html.light .chip-link { color: #92400e; background: rgba(180, 83, 9, .08); border-color: rgba(180, 83, 9, .3); }
+html.light .drill-link:active { color: #78350f; }

@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Aventura — Escudo do Mestre</title>
+  <meta name="description" content="Consulte bestiário, NPCs, itens, ganchos e missões da aventura selecionada — painel do narrador para D&amp;D 5.5e." />
+  <meta name="robots" content="noindex, follow" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#09090b" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col">
@@ -32,6 +32,9 @@
         <button type="button" id="btn-exportar"
                 class="hidden text-zinc-500 text-lg flex-shrink-0 active:text-amber-400"
                 title="Exportar como Markdown" aria-label="Exportar como Markdown">⬇</button>
+        <button type="button" id="btn-tema"
+                class="text-zinc-500 text-lg flex-shrink-0 active:text-amber-400"
+                title="Alternar tema" aria-label="Alternar tema claro/escuro">&#127769;</button>
       </div>
     </div>
     <!-- Busca geral -->
@@ -52,9 +55,17 @@
 
   <footer class="pb-6 pt-2"></footer>
 
-  <!-- Ordem importa: utils expõe window.escHtml; renderers define window.Renderers; app orquestra -->
+  <!-- Ordem importa: utils expõe window.escHtml; renderers-core monta window.Renderers
+       e os helpers internos; os módulos de domínio se registram em window.Renderers;
+       renderers-busca fecha a API pública (índice/busca/export); app orquestra. -->
   <script src="assets/js/utils.js"></script>
-  <script src="assets/js/renderers.js"></script>
+  <script src="assets/js/renderers-core.js"></script>
+  <script src="assets/js/renderers-bestiario.js"></script>
+  <script src="assets/js/renderers-npcs-itens.js"></script>
+  <script src="assets/js/renderers-ganchos-missoes.js"></script>
+  <script src="assets/js/renderers-locais.js"></script>
+  <script src="assets/js/renderers-condicoes-eventos.js"></script>
+  <script src="assets/js/renderers-busca.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

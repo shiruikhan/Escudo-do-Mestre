@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shiruikhan.github.io/Escudo-do-Mestre/sitemap.xml

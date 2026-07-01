@@ -64,15 +64,23 @@
       return r.json();
     });
     // Regras globais compartilhadas entre aventuras (condições e eventos de estrada).
+    // Falha de rede é sinalizada em dados.erros para diferenciar "sem itens" de "não carregou".
+    dados.erros = {};
     try {
-      dados.condicoes = await fetch('data/condicoes.json').then(r => r.ok ? r.json() : {});
+      const r = await fetch('data/condicoes.json');
+      dados.condicoes = r.ok ? await r.json() : {};
+      if (!r.ok) dados.erros.condicoes = true;
     } catch (_) {
       dados.condicoes = {};
+      dados.erros.condicoes = true;
     }
     try {
-      dados.eventos = await fetch('data/eventos-estrada.json').then(r => r.ok ? r.json() : {});
+      const r = await fetch('data/eventos-estrada.json');
+      dados.eventos = r.ok ? await r.json() : {};
+      if (!r.ok) dados.erros.eventos = true;
     } catch (_) {
       dados.eventos = {};
+      dados.erros.eventos = true;
     }
     return dados;
   }

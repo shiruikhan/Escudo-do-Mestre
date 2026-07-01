@@ -4,7 +4,7 @@
 Como o projeto será hospedado no **GitHub Pages**, utilizaremos uma arquitetura puramente client-side (Frontend estático como Single Page Application)[cite: 2]:
 * **Linguagem:** HTML5, CSS3 moderno (Variáveis CSS, Flexbox/CSS Grid), JavaScript Vanilla (ES6+) focado em manipulação reativa do DOM baseado em estado[cite: 2].
 * **Framework:** HTML/JS Puro para manter a performance instantânea e livre de dependências de compilação pesadas[cite: 2].
-* **Estilização:** Tailwind CSS (via CDN otimizada) para responsividade rigorosa focada em Mobile[cite: 2].
+* **Estilização:** Tailwind CSS (build local commitado, sem CDN em runtime) para responsividade rigorosa focada em Mobile[cite: 2].
 * **Armazenamento de Dados:** Arquivos de dados em formato `JSON` dentro do diretório do projeto[cite: 2].
 
 ## 2. Estrutura de Pastas Sugerida
@@ -37,9 +37,6 @@ Cada arquivo de aventura em `data/aventuras/[nome-da-aventura].json` utilizará 
 {
   "id": "mina-perdida",
   "titulo": "A Mina Perdida de Phandelver",
-  "mapas": [
-    { "nome": "Região de Phandalin", "url": "assets/images/mina-perdida/mapa_regiao.webp" }
-  ],
   "bestiario": {
     "goblin": {
       "nome": "Goblin",

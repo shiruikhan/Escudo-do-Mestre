@@ -4,7 +4,7 @@ Diretrizes e direcionamentos para a construção e evolução do sistema de desi
 
 - **Versão:** 1.0
 - **Plataforma alvo:** Navegador mobile (smartphone), hospedado em GitHub Pages
-- **Stack:** HTML5 + JavaScript Vanilla (ES6+) + Tailwind CSS via CDN + CSS custom em `assets/css/styles.css`
+- **Stack:** HTML5 + JavaScript Vanilla (ES6+) + Tailwind CSS (build local commitado) + CSS custom em `assets/css/styles.css`
 
 ---
 
@@ -34,7 +34,7 @@ O site é hospedado em **GitHub Pages**, que serve **apenas arquivos estáticos*
 ### 2.2 Permitido e recomendado
 
 - **HTML, CSS e JavaScript estáticos**, servidos diretamente.
-- **Tailwind CSS via CDN** (`https://cdn.tailwindcss.com`) para utilitários de layout. Usar apenas as classes utilitárias do core — não há compilador Tailwind disponível, então `@apply`, plugins customizados e `tailwind.config` complexo não funcionam além do que o CDN expõe em runtime.
+- **Tailwind CSS via build local commitado** (`assets/css/tailwind.css`, gerado a partir de `tailwind.config.js` + `assets/css/tailwind-src.css` com `npm run build:css`). O CSS gerado é versionado no repositório e servido diretamente — não há CDN nem compilação em runtime, então continua valendo "sem etapa de build obrigatória" (o build só roda quando alguém adiciona/altera classes, nunca para servir o site). Usar apenas classes utilitárias do core; `@apply` e plugins customizados são evitados para manter o processo de build trivial.
 - **CSS custom** em `assets/css/styles.css` para tokens (variáveis CSS) e componentes próprios que o Tailwind não cobre.
 - **Dados em JSON estático** dentro de `data/`, carregados via `fetch()` relativo. Toda "base de dados" do app é arquivo `.json` versionado.
 - **Bibliotecas externas via CDN**, se imprescindíveis — mas cada dependência adicionada é peso e ponto de falha de rede. O default é **zero dependências de runtime além do Tailwind**.
