@@ -27,6 +27,7 @@ A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links cl
 |---|---|
 | Dragão da Espiral de Gelo | Em desenvolvimento |
 | A Mina Perdida de Phandelver | Em desenvolvimento |
+| A Maldição de Strahd | Em desenvolvimento |
 
 ## Estrutura do projeto
 
@@ -42,7 +43,8 @@ escudo-do-mestre/
 │   ├── aventuras.json      # Índice de aventuras disponíveis
 │   └── aventuras/
 │       ├── dragao-espiral-gelo.json   # Dados completos da aventura
-│       └── mina-perdida-phandelver.json
+│       ├── mina-perdida-phandelver.json
+│       └── maldicao-de-strahd.json
 └── docs/
     ├── specs/              # Especificações do produto e técnica
     └── assets/             # Referências (PDFs — ignorados pelo git)

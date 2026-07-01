@@ -14,5 +14,13 @@
     "num_jogadores": "4–5",
     "descricao": "A caminho de Phandalin, os aventureiros escoltam uma carroça de suprimentos e caem numa emboscada goblin que os leva ao rastro de Gundren Buscapedra e de seu agente Sildar Hallwinter. Na fronteira sem lei da vila, eles enfrentam os Marcarrubra, exploram ruínas próximas e seguem pistas até o covil de Nezznar, o Aranha Negra, na disputa pela lendária Mina Perdida de Phandelver.",
     "arquivo": "mina-perdida-phandelver.json"
+  },
+  {
+    "id": "maldicao-de-strahd",
+    "titulo": "A Maldição de Strahd",
+    "nivel_recomendado": "1–10",
+    "num_jogadores": "4–5",
+    "descricao": "Névoas sobrenaturais arrastam o grupo para Baróvia, um domínio isolado do resto da realidade e governado pelo vampiro Conde Strahd von Zarovich. Entre a Vila de Baróvia, a cidade de Vallaki, o vilarejo de Krezk e o próprio Castelo Ravenloft, os aventureiros precisam reunir aliados, decifrar a leitura das cartas Tarokka e encontrar uma forma de derrotar Strahd em seu próprio domínio.",
+    "arquivo": "maldicao-de-strahd.json"
   }
 ]
