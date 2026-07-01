@@ -16,8 +16,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'data');
-
-const PREFIXO_PARA_SECAO = { npc: 'npcs', bestiario: 'bestiario', itens: 'itens', item: 'itens' };
+const JS_DIR = path.join(ROOT, 'assets', 'js');
 
 let erros = 0;
 
@@ -28,6 +27,19 @@ function erro(msg) {
 
 function ok(msg) {
   console.log('✓ ' + msg);
+}
+
+// Única fonte de verdade é renderers-core.js — lida daqui em vez de duplicar
+// o mapa, para não divergir do que o app realmente reconhece em runtime.
+function carregarPrefixoParaSecao() {
+  const corePath = path.join(JS_DIR, 'renderers-core.js');
+  const src = fs.readFileSync(corePath, 'utf-8');
+  const m = /const PREFIXO_PARA_SECAO = (\{[\s\S]*?\});/.exec(src);
+  if (!m) {
+    erro('Não foi possível localizar PREFIXO_PARA_SECAO em assets/js/renderers-core.js');
+    return {};
+  }
+  return Function('"use strict"; return (' + m[1] + ')')();
 }
 
 function listarJsons(dir) {
@@ -79,6 +91,9 @@ function main() {
   }
 
   // 3. Marcadores de drill-down (npc:/bestiario:/itens:/item:) apontam para chaves existentes
+  const PREFIXO_PARA_SECAO = carregarPrefixoParaSecao();
+  const MARCADOR_RE = /(npc|bestiario|itens|item):([a-z0-9-]+)/g;
+
   const aventurasDir = path.join(DATA_DIR, 'aventuras');
   if (fs.existsSync(aventurasDir)) {
     for (const caminho of listarJsons(aventurasDir)) {
@@ -93,11 +108,10 @@ function main() {
       };
 
       const texto = JSON.stringify(aventura);
-      const re = /(npc|bestiario|itens|item):([a-z0-9-]+)/g;
       const jaReportados = new Set();
       let total = 0;
       let m;
-      while ((m = re.exec(texto)) !== null) {
+      while ((m = MARCADOR_RE.exec(texto)) !== null) {
         total++;
         const secao = PREFIXO_PARA_SECAO[m[1]];
         const id = m[2];
@@ -108,6 +122,54 @@ function main() {
         }
       }
       if (!jaReportados.size) ok(`${relativo}: ${total} marcador(es) de drill-down, todos válidos`);
+    }
+  }
+
+  // 4. Arquivos globais (condicoes.json, eventos-estrada.json) são compartilhados entre
+  // todas as aventuras e não têm seções próprias de npcs/bestiario/itens — um marcador de
+  // drill-down ali só resolveria por coincidência, então é sempre tratado como erro.
+  for (const nome of ['condicoes.json', 'eventos-estrada.json']) {
+    const caminho = path.join(DATA_DIR, nome);
+    const conteudo = dados.get(caminho);
+    if (!conteudo) continue;
+    const relativo = path.relative(ROOT, caminho);
+    const texto = JSON.stringify(conteudo);
+    const encontrados = new Set();
+    let m;
+    while ((m = MARCADOR_RE.exec(texto)) !== null) encontrados.add(`${m[1]}:${m[2]}`);
+    if (encontrados.size) {
+      erro(`${relativo}: marcador(es) de drill-down não suportado(s) em arquivo global: ${[...encontrados].join(', ')}`);
+    } else {
+      ok(`${relativo}: nenhum marcador de drill-down (esperado — arquivo global)`);
+    }
+  }
+
+  // 5. sw.js precisa listar todo asset servido, ou o app quebra offline após a
+  // primeira visita (silenciosamente, já que o cache-first não avisa sobre 404).
+  const swPath = path.join(ROOT, 'sw.js');
+  if (fs.existsSync(swPath)) {
+    const swSrc = fs.readFileSync(swPath, 'utf-8');
+    const swMatch = /CORE_ASSETS = \[([\s\S]*?)\];/.exec(swSrc);
+    const listados = new Set(
+      swMatch ? [...swMatch[1].matchAll(/['"]([^'"]+)['"]/g)].map(m => m[1]) : []
+    );
+
+    const esperados = [];
+    for (const arq of fs.readdirSync(JS_DIR)) {
+      if (arq.endsWith('.js')) esperados.push('assets/js/' + arq);
+    }
+    esperados.push('data/aventuras.json', 'data/condicoes.json', 'data/eventos-estrada.json');
+    if (manifest) {
+      for (const item of manifest) {
+        if (item.arquivo) esperados.push('data/aventuras/' + item.arquivo);
+      }
+    }
+
+    const faltando = esperados.filter(e => !listados.has(e));
+    if (faltando.length) {
+      erro(`sw.js: CORE_ASSETS não lista os seguintes arquivos (ficarão indisponíveis offline): ${faltando.join(', ')}`);
+    } else {
+      ok(`sw.js: CORE_ASSETS cobre todos os ${esperados.length} arquivo(s) de JS/dados esperados`);
     }
   }
 

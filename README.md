@@ -86,7 +86,7 @@ Antes de commitar uma aventura nova ou editada, valide a sintaxe dos JSONs e os 
 npm run validar-dados
 ```
 
-O script (`scripts/validar-dados.js`, sem dependências externas) verifica se todo `data/*.json` tem sintaxe válida, se `data/aventuras.json` aponta para arquivos existentes e se todo marcador de drill-down corresponde a uma chave real na respectiva seção (`npcs`, `bestiario` ou `itens`). Sai com código 1 em caso de erro — pode ser plugado em CI.
+O script (`scripts/validar-dados.js`, sem dependências externas) verifica se todo `data/*.json` tem sintaxe válida, se `data/aventuras.json` aponta para arquivos existentes, se todo marcador de drill-down corresponde a uma chave real na respectiva seção (`npcs`, `bestiario` ou `itens`), se os arquivos globais (`condicoes.json`, `eventos-estrada.json`) não usam marcadores (eles não têm seções próprias para resolvê-los) e se `sw.js` lista todo `.js`/dado necessário para o app funcionar offline. Sai com código 1 em caso de erro — pode ser plugado em CI.
 
 ## Configurar GitHub Pages
 
