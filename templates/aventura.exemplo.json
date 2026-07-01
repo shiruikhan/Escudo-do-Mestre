@@ -1,0 +1,119 @@
+{
+  "id": "nome-da-aventura",
+  "titulo": "Nome da Aventura",
+  "nivel_recomendado": "1–4",
+  "num_jogadores": "3–5",
+  "cenario": "Onde e quando a aventura se passa (região, reino, época)",
+
+  "bestiario": {
+    "goblin-batedor": {
+      "nome": "Goblin Batedor",
+      "tipo_alinhamento": "Humanoide Pequeno (goblinoide), Neutro e Mau",
+      "ca": 13,
+      "ca_descricao": "armadura de couro, escudo",
+      "pv": 7,
+      "pv_formula": "2d6",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 9,
+      "modificadores": {
+        "FOR": "-1", "DES": "+2", "CON": "+0",
+        "INT": "+0", "SAB": "-1", "CAR": "+0"
+      },
+      "salvaguardas": [],
+      "pericias": ["Furtividade +6"],
+      "resistencias_dano": [],
+      "imunidades_dano": [],
+      "imunidades_condicao": [],
+      "vulnerabilidades_dano": [],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Goblin",
+      "nd": "1/4",
+      "xp": 50,
+      "caracteristicas": [
+        {
+          "nome": "Fuga Ágil",
+          "descricao": "O goblin pode usar sua ação bônus para se desengajar ou se esconder em cada um dos seus turnos."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Cimitarra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) de dano cortante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "acoes_lendarias": [],
+      "localizacao": "Emboscadas perto da Vila dos Juncos, sempre em grupo com outros batedores.",
+      "notas_dm": "Se acuado e sozinho, tenta negociar em vez de lutar até a morte — pode entregar informações sobre npc:elara-vidente em troca da vida."
+    }
+  },
+
+  "npcs": {
+    "elara-vidente": {
+      "nome": "Elara, a Vidente",
+      "local": "Vila dos Juncos, na cabana à beira do rio",
+      "papel": "Curandeira e conselheira da vila",
+      "descricao": "Idosa de olhos leitosos que diz enxergar o futuro nas águas do rio. Guarda item:amuleto-da-mare há décadas, esperando por alguém digno de recebê-lo.",
+      "motivacao": "Proteger a vila de uma ameaça que só ela parece levar a sério — os ataques recentes de bestiario:goblin-batedor confirmam seus temores.",
+      "segredos": "Sabe que o amuleto (item:amuleto-da-mare) é a única forma de selar a fenda no Poço Antigo, mas teme que revelar isso cedo demais atraia os goblins primeiro.",
+      "interacao": "\"O rio sussurrou seu nome antes de vocês chegarem à vila. Isso não é coincidência.\""
+    },
+    "borin-ferreiro": {
+      "nome": "Borin, o Ferreiro",
+      "local": "Vila dos Juncos, na forja principal",
+      "papel": "Ferreiro e ex-aventureiro",
+      "descricao": "Homem robusto de barba grisalha, ainda guarda a armadura amassada de seus dias de aventura.",
+      "motivacao": "Vender equipamento e, se o grupo ganhar sua confiança, revelar que sabe forjar uma arma capaz de ferir o que quer que esteja emergindo do Poço Antigo.",
+      "segredos": "",
+      "interacao": "\"Preço de amigo, já que vocês vão limpar essa bagunça de goblins pra gente.\""
+    }
+  },
+
+  "itens": {
+    "amuleto-da-mare": {
+      "nome": "Amuleto da Maré",
+      "tipo": "Item de Missão",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Quando pressionado contra uma fenda planar (como o Poço Antigo), sela a fenda por uma hora. Fora desse uso, não tem efeito mágico perceptível.",
+      "localizacao": "Em posse de npc:elara-vidente até ser entregue ao grupo.",
+      "historico": "Forjado há três gerações para selar o Poço Antigo pela primeira vez; a família de Elara jurou guardá-lo até que fosse necessário de novo."
+    }
+  },
+
+  "locais": {
+    "vila-dos-juncos": {
+      "nome": "Vila dos Juncos",
+      "tipo": "Vila",
+      "nivel_sugerido": "1",
+      "resumo": "Pequeno povoado de pescadores às margens de um rio, vizinho ao Poço Antigo. Alvo recente de incursões de bestiario:goblin-batedor vindos da floresta próxima.",
+      "npcs": ["npc:elara-vidente", "npc:borin-ferreiro"],
+      "criaturas": ["bestiario:goblin-batedor"],
+      "perigos": "Emboscadas noturnas de bestiario:goblin-batedor nas trilhas ao redor da vila.",
+      "tesouro": "item:amuleto-da-mare, guardado por npc:elara-vidente.",
+      "conexoes": "Trilha ao norte leva ao Poço Antigo; estrada ao sul leva à cidade mais próxima."
+    }
+  },
+
+  "ganchos": [
+    {
+      "id": "g1",
+      "fonte": "Gancho de Aventura — Ataques na Vila dos Juncos",
+      "texto": "Um mercador ferido chega à cidade contando que a Vila dos Juncos vem sendo atacada por goblins, e pede ajuda para escoltar suprimentos até lá."
+    }
+  ],
+
+  "missoes": [
+    {
+      "id": "m1",
+      "titulo": "Investigar os Ataques Goblin",
+      "status": "Disponível",
+      "nivel_sugerido": 1,
+      "recompensa": "50 po, pagos por npc:borin-ferreiro, mais o item:amuleto-da-mare se a ameaça do Poço Antigo for resolvida.",
+      "objetivo": "Descobrir a origem dos ataques de bestiario:goblin-batedor contra a Vila dos Juncos e neutralizar a ameaça na fonte.",
+      "localizacao": "Vila dos Juncos e arredores",
+      "notas_dm": "npc:elara-vidente só menciona o Poço Antigo se o grupo ganhar sua confiança (ajudando a vila primeiro) ou capturar um goblin vivo para interrogar."
+    }
+  ]
+}

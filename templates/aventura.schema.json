@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://escudo-do-mestre.local/templates/aventura.schema.json",
+  "title": "Aventura — Escudo do Mestre",
+  "description": "Schema de um arquivo data/aventuras/<id>.json. Gerado a partir do código real (assets/js/renderers-*.js), não de documentação solta — cada campo abaixo é lido em algum lugar do app, e isso está anotado na descrição. Leia docs/guia-criar-aventura.md para o passo a passo e para a sintaxe de marcadores de drill-down (npc:/bestiario:/itens:/item:).",
+  "type": "object",
+  "required": ["id", "titulo"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Identificador da aventura, minúsculo e kebab-case. Deve ser IGUAL ao \"id\" da entrada correspondente em data/aventuras.json e consistente com o nome do arquivo."
+    },
+    "titulo": {
+      "type": "string",
+      "description": "Nome exibido no cabeçalho (aventura.html), na aba do navegador e como título do Markdown exportado."
+    },
+    "nivel_recomendado": {
+      "type": "string",
+      "description": "Ex.: \"1–6\". Exibido no subtítulo do cabeçalho, se presente (opcional)."
+    },
+    "num_jogadores": {
+      "type": "string",
+      "description": "Ex.: \"4–5\". Mantido aqui por consistência com o manifesto, mas o app NÃO lê este campo do arquivo da aventura — apenas de data/aventuras.json (tela inicial). Preencha os dois com o mesmo valor."
+    },
+    "cenario": {
+      "type": "string",
+      "description": "Onde/quando a aventura se passa. Exibido no subtítulo do cabeçalho, se presente (opcional)."
+    },
+    "bestiario": {
+      "type": "object",
+      "description": "Monstros e criaturas, indexados por id kebab-case. Objeto vazio {} é aceito.",
+      "patternProperties": {
+        "^[a-z0-9]+(-[a-z0-9]+)*$": { "$ref": "#/definitions/monstro" }
+      },
+      "additionalProperties": false
+    },
+    "npcs": {
+      "type": "object",
+      "description": "NPCs, indexados por id kebab-case. Objeto vazio {} é aceito.",
+      "patternProperties": {
+        "^[a-z0-9]+(-[a-z0-9]+)*$": { "$ref": "#/definitions/npc" }
+      },
+      "additionalProperties": false
+    },
+    "itens": {
+      "type": "object",
+      "description": "Itens mágicos e itens de missão, indexados por id kebab-case. Objeto vazio {} é aceito.",
+      "patternProperties": {
+        "^[a-z0-9]+(-[a-z0-9]+)*$": { "$ref": "#/definitions/item" }
+      },
+      "additionalProperties": false
+    },
+    "locais": {
+      "type": "object",
+      "description": "Localidades, indexadas por id kebab-case. Objeto vazio {} é aceito.",
+      "patternProperties": {
+        "^[a-z0-9]+(-[a-z0-9]+)*$": { "$ref": "#/definitions/local" }
+      },
+      "additionalProperties": false
+    },
+    "ganchos": {
+      "type": "array",
+      "description": "Ganchos de aventura / rumores. ATENÇÃO: o app identifica cada gancho pela POSIÇÃO no array (índice 0, 1, 2...), não pelo campo \"id\" do item — reordenar este array muda para onde um link salvo (localStorage) aponta.",
+      "items": { "$ref": "#/definitions/gancho" }
+    },
+    "missoes": {
+      "type": "array",
+      "description": "Missões rastreáveis (Disponível/Em Andamento/Concluída). Mesma ressalva de \"ganchos\": endereçadas pela posição no array, não pelo campo \"id\" do item.",
+      "items": { "$ref": "#/definitions/missao" }
+    }
+  },
+  "definitions": {
+    "acaoDescricao": {
+      "type": "object",
+      "required": ["nome", "descricao"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string" },
+        "descricao": {
+          "type": "string",
+          "description": "Suporta marcadores de drill-down: npc:id, bestiario:id, itens:id, item:id."
+        }
+      }
+    },
+    "monstro": {
+      "type": "object",
+      "required": ["nome"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string", "description": "Ex.: \"Cryovain — Dragão Branco Jovem\"." },
+        "tipo_alinhamento": { "type": "string", "description": "Ex.: \"Humanoide Médio (orc), Caótico e Mau\"." },
+        "ca": { "type": ["number", "string"] },
+        "ca_descricao": { "type": "string", "description": "Ex.: \"armadura natural\"." },
+        "pv": { "type": ["number", "string"] },
+        "pv_formula": { "type": "string", "description": "Ex.: \"14d10 + 56\"." },
+        "deslocamento": { "type": "string", "description": "Ex.: \"9 m; voo 24 m\"." },
+        "iniciativa": { "type": "string", "description": "Ex.: \"+0 (10)\"." },
+        "percepcao_passiva": { "type": ["number", "string"] },
+        "modificadores": {
+          "type": "object",
+          "description": "Modificadores dos 6 atributos, como texto com sinal (ex.: \"+2\", \"-1\").",
+          "required": ["FOR", "DES", "CON", "INT", "SAB", "CAR"],
+          "additionalProperties": false,
+          "properties": {
+            "FOR": { "type": "string" },
+            "DES": { "type": "string" },
+            "CON": { "type": "string" },
+            "INT": { "type": "string" },
+            "SAB": { "type": "string" },
+            "CAR": { "type": "string" }
+          }
+        },
+        "salvaguardas": { "type": "array", "items": { "type": "string" }, "description": "Ex.: [\"CON +7\", \"SAB +3\"]." },
+        "pericias": { "type": "array", "items": { "type": "string" } },
+        "resistencias_dano": { "type": "array", "items": { "type": "string" } },
+        "imunidades_dano": { "type": "array", "items": { "type": "string" } },
+        "imunidades_condicao": { "type": "array", "items": { "type": "string" } },
+        "vulnerabilidades_dano": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Presente em aventuras já publicadas, mas AINDA NÃO renderizado pela UI (falta em renderers-bestiario.js). Preencha mesmo assim para não perder a informação; considere pedir/abrir o suporte no renderer."
+        },
+        "sentidos": { "type": "string" },
+        "idiomas": { "type": "string" },
+        "nd": { "type": ["number", "string"] },
+        "xp": { "type": "number" },
+        "caracteristicas": { "type": "array", "items": { "$ref": "#/definitions/acaoDescricao" } },
+        "acoes": { "type": "array", "items": { "$ref": "#/definitions/acaoDescricao" } },
+        "acoes_bonus": { "type": "array", "items": { "$ref": "#/definitions/acaoDescricao" } },
+        "reacoes": { "type": "array", "items": { "$ref": "#/definitions/acaoDescricao" } },
+        "acoes_lendarias": { "type": "array", "items": { "$ref": "#/definitions/acaoDescricao" } },
+        "localizacao": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "notas_dm": { "type": "string", "description": "Suporta marcadores de drill-down. Só visível ao Mestre." }
+      }
+    },
+    "npc": {
+      "type": "object",
+      "required": ["nome"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string" },
+        "local": { "type": "string", "description": "Onde este NPC costuma ser encontrado. Texto simples (sem marcadores)." },
+        "papel": { "type": "string", "description": "Ex.: \"Ferreiro de Phandalin\"." },
+        "descricao": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "motivacao": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "segredos": { "type": "string", "description": "Suporta marcadores de drill-down. Só visível ao Mestre." },
+        "interacao": { "type": "string", "description": "Suporta marcadores de drill-down. Fala/gancho de diálogo de exemplo." },
+        "notas_dm": {
+          "type": "string",
+          "description": "Presente em aventuras já publicadas, mas AINDA NÃO renderizado pela UI (falta em renderers-npcs-itens.js). Preencha mesmo assim; considere pedir/abrir o suporte no renderer."
+        },
+        "ver_bestiario": {
+          "type": "string",
+          "description": "Provável referência cruzada a um bloco de estatística correspondente (ex.: NPC que também luta como criatura no bestiário). Presente em dados já publicados, mas AINDA NÃO renderizado pela UI."
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": ["nome"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string" },
+        "tipo": { "type": "string", "description": "Ex.: \"Arma\", \"Armadura\", \"Item de Missão\"." },
+        "propriedades": { "type": "string", "description": "Ex.: \"Requer Sintonização: Sim\". Texto simples (sem marcadores)." },
+        "efeito": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "localizacao": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "historico": {
+          "type": "string",
+          "description": "Lore/história do item. Presente em aventuras já publicadas, mas AINDA NÃO renderizado pela UI (falta em renderers-npcs-itens.js). Preencha mesmo assim; considere pedir/abrir o suporte no renderer."
+        }
+      }
+    },
+    "local": {
+      "type": "object",
+      "required": ["nome"],
+      "additionalProperties": false,
+      "properties": {
+        "nome": { "type": "string" },
+        "tipo": { "type": "string", "description": "Ex.: \"Vila\", \"Masmorra\", \"Exterior / Rota de viagem\"." },
+        "nivel_sugerido": { "type": ["string", "number"] },
+        "resumo": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "npcs": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^npc:[a-z0-9]+(-[a-z0-9]+)*$" },
+          "description": "Marcadores EXATOS no formato \"npc:id\" (o item inteiro do array, não um marcador embutido em texto). Cada um vira um chip clicável na tela do local."
+        },
+        "criaturas": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^(bestiario|itens|item|npc):[a-z0-9]+(-[a-z0-9]+)*$" },
+          "description": "Marcadores EXATOS, ex.: \"bestiario:goblin\". Cada um vira um chip clicável na tela do local."
+        },
+        "perigos": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "tesouro": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "conexoes": { "type": "string", "description": "Suporta marcadores de drill-down." }
+      }
+    },
+    "gancho": {
+      "type": "object",
+      "required": ["texto"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Só documentação/organização — o app usa a posição no array para navegação, não este campo."
+        },
+        "fonte": { "type": "string", "description": "Ex.: \"Rumor de Phandalin — Narth, um velho fazendeiro\"." },
+        "texto": {
+          "type": "string",
+          "description": "Suporta marcadores de drill-down. ATENÇÃO: a prévia na lista mostra o texto com o marcador cru (ex.: \"...fale com npc:foo...\") sem resolvê-lo — só a tela de detalhe resolve o marcador em botão. Evite colocar marcadores nos primeiros ~120 caracteres se isso incomodar visualmente na lista."
+        }
+      }
+    },
+    "missao": {
+      "type": "object",
+      "required": ["titulo"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Só documentação/organização — o app usa a posição no array para navegação, não este campo."
+        },
+        "titulo": { "type": "string" },
+        "status": {
+          "type": "string",
+          "description": "Qualquer texto é aceito, mas só estes 3 valores geram a cor de badge correta (o app faz busca por substring \"conclu\"/\"andamento\", case-insensitive; qualquer outro valor vira o badge \"disponível\").",
+          "examples": ["Disponível", "Em Andamento", "Concluída"]
+        },
+        "nivel_sugerido": { "type": ["string", "number"] },
+        "recompensa": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "objetivo": { "type": "string", "description": "Suporta marcadores de drill-down." },
+        "localizacao": { "type": "string", "description": "Texto simples (sem marcadores)." },
+        "notas_dm": { "type": "string", "description": "Suporta marcadores de drill-down. Só visível ao Mestre." }
+      }
+    }
+  }
+}

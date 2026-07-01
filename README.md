@@ -1,5 +1,7 @@
 # 🛡️ Escudo do Mestre
 
+**[GitHub](https://github.com/shiruikhan/Escudo-do-Mestre)** · [Abrir no GitHub Pages](https://shiruikhan.github.io/Escudo-do-Mestre/)
+
 Painel do Narrador para D&D 5.5e (2024) — ferramenta web estática, mobile-first, hospedada via **GitHub Pages**.
 
 > Feita para rodar no celular durante a sessão. Zero backend, zero instalação.
@@ -59,15 +61,22 @@ escudo-do-mestre/
 │       ├── dragao-espiral-gelo.json   # Dados completos da aventura
 │       ├── mina-perdida-phandelver.json
 │       └── maldicao-de-strahd.json
+├── templates/
+│   ├── aventura.schema.json  # JSON Schema comentado (uma description por campo)
+│   └── aventura.exemplo.json # Aventura mínima e válida para copiar
 └── docs/
     ├── specs/              # Especificações do produto e técnica
-    └── assets/             # Referências (PDFs — ignorados pelo git)
+    ├── assets/             # Referências (PDFs — ignorados pelo git)
+    └── guia-criar-aventura.md # Passo a passo + regras de marcadores + prompt de IA
 ```
 
 ## Como adicionar uma aventura
 
-1. Crie `data/aventuras/nome-da-aventura.json` seguindo a estrutura dos arquivos existentes.
+1. Copie `templates/aventura.exemplo.json` para `data/aventuras/nome-da-aventura.json` e preencha seguindo `templates/aventura.schema.json`.
 2. Adicione a entrada correspondente em `data/aventuras.json`.
+3. Rode `npm run validar-dados` (veja abaixo).
+
+Guia completo, com a tabela de quais campos aceitam marcador de drill-down e um prompt pronto para gerar o JSON com IA a partir de um módulo: **[docs/guia-criar-aventura.md](docs/guia-criar-aventura.md)**.
 
 ## Desenvolvimento (build do CSS)
 
@@ -104,6 +113,7 @@ O script (`scripts/validar-dados.js`, sem dependências externas) verifica se to
 
 ## Docs
 
+- [Guia — Criar uma Aventura Nova](docs/guia-criar-aventura.md) (com templates prontos para IA)
 - [Especificação do Produto](docs/specs/product_spec.md)
 - [Especificação Técnica](docs/specs/tech_spec.md)
 - [System Prompt / Prompt de Desenvolvimento](docs/specs/system_prompt.md)
