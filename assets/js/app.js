@@ -15,6 +15,7 @@
     { id: 'missoes',   rotulo: 'Missões',   icone: '\u{1F4DC}' },
     { id: 'locais',    rotulo: 'Locais',    icone: '\u{1F5FA}' },
     { id: 'condicoes', rotulo: 'Condições', icone: '\u{1F300}' },
+    { id: 'eventos',   rotulo: 'Eventos de Estrada', icone: '\u{1F3B2}' },
   ];
 
   const state = {
@@ -62,11 +63,16 @@
       if (!r.ok) throw new Error('Arquivo da aventura não encontrado: ' + meta.arquivo);
       return r.json();
     });
-    // Condições são regras globais (compartilhadas entre aventuras).
+    // Regras globais compartilhadas entre aventuras (condições e eventos de estrada).
     try {
       dados.condicoes = await fetch('data/condicoes.json').then(r => r.ok ? r.json() : {});
     } catch (_) {
       dados.condicoes = {};
+    }
+    try {
+      dados.eventos = await fetch('data/eventos-estrada.json').then(r => r.ok ? r.json() : {});
+    } catch (_) {
+      dados.eventos = {};
     }
     return dados;
   }

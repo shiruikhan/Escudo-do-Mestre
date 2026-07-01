@@ -436,6 +436,54 @@
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 
+  // ---------- EVENTOS DE ESTRADA ----------
+
+  function listaEventos(aventura) {
+    const itens = dicParaArray(aventura.eventos);
+    if (!itens.length) return vazio('Nenhum evento cadastrado.');
+    const cards = itens.map(e => `
+      <li>
+        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+                data-tipo="eventos" data-id="${escHtml(e.id)}">
+          <span class="text-2xl flex-shrink-0">${e.icone || '\u{1F3B2}'}</span>
+          <div class="flex-1 min-w-0">
+            <p class="font-semibold text-zinc-100 truncate">${escHtml(e.nome)}</p>
+            <p class="text-xs text-zinc-500 line-clamp-2">${escHtml(e.narrativa || '')}</p>
+          </div>
+          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+        </button>
+      </li>`).join('');
+    return `
+      <p class="text-xs text-zinc-500 mb-2">Role 1d20 ou escolha um evento durante a viagem.</p>
+      <ul class="space-y-2 fade-in">${cards}</ul>`;
+  }
+
+  function detalheEvento(aventura, id) {
+    const e = aventura.eventos && aventura.eventos[id];
+    if (!e) return vazio('Evento não encontrado.');
+    const corpo = `
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">${e.icone || '\u{1F3B2}'}</span>
+        <h3 class="text-lg font-bold text-amber-400">${escHtml(e.nome)}</h3>
+      </div>
+      <div class="stat-divider"></div>
+      ${e.narrativa ? `<p class="text-sm text-zinc-200 leading-snug">${escHtml(e.narrativa)}</p>` : ''}
+      ${e.teste ? `<div class="mt-3 text-sm border rounded-lg p-3 bg-sky-500/5 border-sky-500/20">
+          <span class="font-semibold text-sky-300">Teste sugerido:</span> <span class="text-zinc-300">${escHtml(e.teste)}</span>
+        </div>` : ''}
+      ${e.recompensa ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-emerald-500/5 border-emerald-500/20">
+          <span class="font-semibold text-emerald-300">Recompensa possível:</span> <span class="text-zinc-300">${escHtml(e.recompensa)}</span>
+        </div>` : ''}
+      ${e.risco ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-rose-500/5 border-rose-500/20">
+          <span class="font-semibold text-rose-300">Risco / dano menor:</span> <span class="text-zinc-300">${escHtml(e.risco)}</span>
+        </div>` : ''}
+      ${e.nota_dm ? `<div class="mt-2 text-sm text-zinc-400 bg-zinc-800/40 border border-zinc-700/50 rounded-lg p-3">
+          <span class="font-semibold text-zinc-300">Nota do Mestre:</span> ${escHtml(e.nota_dm)}
+        </div>` : ''}
+    `;
+    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+  }
+
   // ---------- BUSCA GERAL ----------
 
   // Normaliza para busca: remove acentos (U+0300–U+036F) e caixa.
@@ -470,6 +518,9 @@
     for (const [id, c] of Object.entries(aventura.condicoes || {}))
       idx.push({ tipo: 'condicoes', id, label: 'Condição', nome: c.nome, sub: c.resumo,
         campos: [normalizar(c.nome), normalizar(c.resumo)] });
+    for (const [id, e] of Object.entries(aventura.eventos || {}))
+      idx.push({ tipo: 'eventos', id, label: 'Evento', nome: e.nome, sub: e.narrativa,
+        campos: [normalizar(e.nome), normalizar(e.narrativa)] });
     return idx;
   }
 
@@ -626,6 +677,20 @@
       });
     }
 
+    const eventos = Object.values(aventura.eventos || {});
+    if (eventos.length) {
+      md.push('## Eventos de Estrada');
+      eventos.forEach(e => {
+        md.push(`### ${e.nome}`);
+        if (e.narrativa) { sep(); md.push(e.narrativa); }
+        if (e.teste) md.push(`**Teste:** ${e.teste}`);
+        if (e.recompensa) md.push(`**Recompensa:** ${e.recompensa}`);
+        if (e.risco) md.push(`**Risco:** ${e.risco}`);
+        if (e.nota_dm) md.push(`> 🗒 ${e.nota_dm}`);
+        sep();
+      });
+    }
+
     return md.join('\n');
   }
 
@@ -646,6 +711,7 @@
       missoes: listaMissoes,
       locais: listaLocais,
       condicoes: listaCondicoes,
+      eventos: listaEventos,
     },
     detalhes: {
       bestiario: detalheBestiario,
@@ -655,6 +721,7 @@
       missoes: detalheMissao,
       locais: detalheLocal,
       condicoes: detalheCondicao,
+      eventos: detalheEvento,
     },
   };
 })();

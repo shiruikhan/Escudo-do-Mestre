@@ -1,0 +1,156 @@
+{
+  "carroca-atolada": {
+    "nome": "Carroça Atolada",
+    "icone": "🛞",
+    "narrativa": "Uma carroça de mercador está encalhada até os eixos na lama da estrada. O condutor, suado e irritado, acena pedindo ajuda.",
+    "teste": "Força (Atletismo) CD 12 para desatolar",
+    "recompensa": "Grato, o mercador oferece um pequeno desconto em mantimentos, um mapa da região ou um rumor útil.",
+    "risco": "Quem forçar demais escorrega na lama: 1d4 de dano por queda e roupas encharcadas."
+  },
+  "peregrinos-cansados": {
+    "nome": "Peregrinos Cansados",
+    "icone": "🧎",
+    "narrativa": "Um punhado de peregrinos empoeirados marcha rumo a um santuário distante, entoando uma cantiga baixa. Eles cumprimentam os viajantes com um aceno cansado.",
+    "recompensa": "Se compartilharem comida ou histórias, um peregrino abençoa o grupo: Vantagem na próxima salvaguarda (por 1 dia).",
+    "risco": "Aceitar a bênção custa uma ração dividida com eles.",
+    "nota_dm": "Boa fonte de rumor sobre a estrada à frente."
+  },
+  "menino-perdido": {
+    "nome": "Criança Perdida",
+    "icone": "🧒",
+    "narrativa": "Um choro fino vem do mato à beira do caminho. Uma criança suja e assustada se perdeu da família durante a viagem.",
+    "teste": "Sabedoria (Percepção/Sobrevivência) CD 10 para achar a trilha dos pais",
+    "recompensa": "Os pais aliviados recompensam com 2d6 PO ou uma lembrança de valor sentimental.",
+    "risco": "A busca consome algumas horas de viagem."
+  },
+  "feira-beira-estrada": {
+    "nome": "Feira de Beira-Estrada",
+    "icone": "🎪",
+    "narrativa": "Barracas coloridas se enfileiram num cruzamento. Cheiro de pão, música desafinada e vendedores gritando ofertas.",
+    "recompensa": "Bugigangas baratas, comida quente e um jogo de azar: aposte algumas moedas (metade ganha o dobro, metade perde a aposta).",
+    "nota_dm": "Ótimo para injetar cor, boatos e um NPC memorável."
+  },
+  "ponte-quebrada": {
+    "nome": "Ponte Quebrada",
+    "icone": "🌉",
+    "narrativa": "A ponte de madeira sobre o riacho desabou parcialmente. A correnteza é fria, mas rasa; do outro lado, a estrada continua.",
+    "teste": "Destreza (Acrobacia) ou Força (Atletismo) CD 12 para atravessar o vau",
+    "recompensa": "Um vau seguro pode revelar um atalho que economiza meio dia.",
+    "risco": "Falha molha o equipamento; itens frágeis e rações podem estragar. Detour custa tempo."
+  },
+  "cheiro-fumaca": {
+    "nome": "Cheiro de Fumaça",
+    "icone": "🔥",
+    "narrativa": "Uma coluna fina de fumaça sobe entre as árvores, à frente. Não há gritos — apenas o crepitar distante.",
+    "teste": "Sabedoria (Percepção) CD 12 ao investigar",
+    "recompensa": "Uma fogueira recém-abandonada com mantimentos esquecidos: rações, um cantil ou uma faca boa.",
+    "risco": "Perder tempo com um alarme falso; a fumaça pode ser só um lenhador queimando toras."
+  },
+  "andarilho-ferido": {
+    "nome": "Andarilho Ferido",
+    "icone": "🩹",
+    "narrativa": "Um viajante manca pela estrada, segurando o braço machucado. Ele ergue a mão pedindo trégua e um pouco de água.",
+    "recompensa": "Se tratado, oferece uma lembrança útil: a localização de um poço, um atalho ou uma dica sobre perigos à frente.",
+    "risco": "Nem todo mundo é grato — alguns fingem a lesão para arrancar mantimentos.",
+    "nota_dm": "Deixe o grupo decidir o quanto confiar."
+  },
+  "corvo-falante": {
+    "nome": "Corvo Falante",
+    "icone": "🐦",
+    "narrativa": "Um corvo grande pousa num galho e crocita uma única frase, clara demais para ser acaso: repete um nome, um número ou um aviso.",
+    "teste": "Sabedoria (Intuição) CD 13 para sentir se é presságio ou truque",
+    "recompensa": "A frase é uma pista enigmática ligada à trama atual.",
+    "nota_dm": "Puro clima. Use para plantar um gancho ou um mau agouro."
+  },
+  "frutas-silvestres": {
+    "nome": "Frutas Silvestres",
+    "icone": "🫐",
+    "narrativa": "Um arbusto carregado de frutas maduras cresce à margem da estrada, brilhando sob o sol.",
+    "teste": "Inteligência (Natureza) CD 10 para saber se são comestíveis",
+    "recompensa": "Colheita farta: rações grátis para o dia.",
+    "risco": "Sem o teste, uma fruta errada causa dor de barriga: Desvantagem no próximo teste de Constituição por algumas horas."
+  },
+  "menestrel-viajante": {
+    "nome": "Menestrel Viajante",
+    "icone": "🎻",
+    "narrativa": "Sentado numa pedra, um menestrel afina o alaúde e oferece uma canção em troca de companhia na estrada solitária.",
+    "recompensa": "Notícias frescas e um rumor sobre o destino do grupo; ânimo renovado.",
+    "risco": "Ao fim, ele passa o chapéu esperando algumas moedas.",
+    "nota_dm": "Veículo perfeito para exposição e boatos."
+  },
+  "estatua-musgosa": {
+    "nome": "Estátua Musgosa",
+    "icone": "🗿",
+    "narrativa": "Um velho marco de pedra à beira da estrada, coberto de musgo, representa um santo esquecido. Oferendas antigas jazem a seus pés.",
+    "recompensa": "Deixar uma oferenda (algumas moedas) concede uma bênção: rolar novamente um teste, uma vez, antes do próximo descanso.",
+    "risco": "Saquear as oferendas deixa o grupo com uma sensação incômoda — e supersticiosos ficam nervosos."
+  },
+  "rebanho-na-estrada": {
+    "nome": "Rebanho na Estrada",
+    "icone": "🐑",
+    "narrativa": "Um rebanho balindo bloqueia completamente o caminho. Um pastor atrapalhado tenta, sem sucesso, abrir passagem.",
+    "teste": "Sabedoria (Lidar com Animais) CD 10 para ajudar a conduzir",
+    "recompensa": "Grato, o pastor oferece queijo fresco, lã ou leite — e conhece bem a região.",
+    "risco": "Esperar o rebanho passar sozinho custa uma hora preciosa."
+  },
+  "tempestade-repentina": {
+    "nome": "Tempestade Repentina",
+    "icone": "⛈️",
+    "narrativa": "O céu escurece num instante. Vento cortante e chuva pesada transformam a estrada num lamaçal.",
+    "teste": "Sabedoria (Sobrevivência) CD 12 para achar abrigo a tempo",
+    "recompensa": "Um abrigo seco (gruta, ruína) pode esconder algo interessante.",
+    "risco": "Encharcado e com frio: Desvantagem em Percepção pelo trecho e risco de 1 nível de Exaustão se insistir na marcha."
+  },
+  "vendedor-ambulante": {
+    "nome": "Vendedor Ambulante",
+    "icone": "🧺",
+    "narrativa": "Um mascate de sorriso largo empurra um carrinho tilintante de quinquilharias. 'Tenho de tudo, nobres viajantes!'",
+    "recompensa": "Entre as bugigangas há, ocasionalmente, algo genuinamente útil por bom preço.",
+    "risco": "Boa parte é tranqueira superfaturada — comprar no impulso pode ser dinheiro jogado fora."
+  },
+  "poco-dos-desejos": {
+    "nome": "Poço dos Desejos",
+    "icone": "🪙",
+    "narrativa": "Um poço de pedra abandonado guarda água escura e parada. Moedas esverdeadas cintilam no fundo.",
+    "recompensa": "Jogar uma moeda e fazer um pedido rende um pequeno amuleto de sorte narrativo (favoreça um momento oportuno).",
+    "risco": "Quem descer para pegar as moedas do fundo se arranha na pedra: 1d4 de dano e uma boa dose de mau agouro."
+  },
+  "cacador-solitario": {
+    "nome": "Caçador Solitário",
+    "icone": "🏹",
+    "narrativa": "Um caçador silencioso, com caça pendurada no ombro, avalia o grupo de longe antes de acenar em paz.",
+    "recompensa": "Troca carne fresca por mantimentos e conhece um atalho seguro pela mata (economia de tempo).",
+    "nota_dm": "Homem de poucas palavras; ótimo para dicas sobre o que ronda a região."
+  },
+  "ninhada-abandonada": {
+    "nome": "Ninhada Abandonada",
+    "icone": "🐾",
+    "narrativa": "Um filhote assustado — raposa, lobo ou coruja — se esconde tremendo perto da estrada. Não há sinal da mãe.",
+    "recompensa": "Adotado e cuidado, pode virar um companheiro de estimação (puro roleplay) e um alívio para o grupo.",
+    "risco": "Ignorá-lo pesa na consciência de alguns; carregá-lo exige atenção e mantimentos extras."
+  },
+  "marco-runico": {
+    "nome": "Marco Miliário Rúnico",
+    "icone": "🪧",
+    "narrativa": "Um antigo marco de estrada, meio tombado, traz runas gastas pelo tempo sob a poeira dos séculos.",
+    "teste": "Inteligência (História/Arcanismo) CD 13 para decifrar",
+    "recompensa": "As runas revelam uma trilha segura, uma fonte de água ou um esconderijo próximo.",
+    "nota_dm": "Recompensa conhecimento e curiosidade sem exigir combate."
+  },
+  "pedagio-improvisado": {
+    "nome": "Pedágio Improvisado",
+    "icone": "🪙",
+    "narrativa": "Três desocupados esticaram uma corda sobre a estrada e exigem um 'pedágio' com sorrisos tortos. Estão mais interessados em moedas do que em briga.",
+    "teste": "Carisma (Intimidação/Persuasão) ou Destreza (Enganação) CD 12",
+    "recompensa": "Um bom papo (ou blefe) passa sem pagar nada — e ainda arranca um rumor local.",
+    "risco": "Ceder custa algumas moedas de prata. (Sem combate: eles recuam se pressionados.)"
+  },
+  "luzes-no-pantano": {
+    "nome": "Luzes no Pântano",
+    "icone": "🔵",
+    "narrativa": "Ao entardecer, luzinhas azuladas dançam fora da estrada, convidando a segui-las para dentro da névoa.",
+    "teste": "Sabedoria (Intuição) CD 13 para resistir à atração",
+    "risco": "Quem se afasta da estrada se perde na lama: tempo desperdiçado e um item pequeno sugado pelo atoleiro.",
+    "nota_dm": "Atmosférico e enganoso — nada de combate, apenas o fascínio do desconhecido."
+  }
+}
