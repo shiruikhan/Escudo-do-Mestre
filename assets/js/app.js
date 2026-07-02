@@ -63,25 +63,24 @@
       if (!r.ok) throw new Error('Arquivo da aventura não encontrado: ' + meta.arquivo);
       return r.json();
     });
-    // Regras globais compartilhadas entre aventuras (condições e eventos de estrada).
-    // Falha de rede é sinalizada em dados.erros para diferenciar "sem itens" de "não carregou".
+    // Regras globais compartilhadas entre aventuras (condições e eventos de estrada),
+    // buscadas em paralelo. Falha de rede é sinalizada em dados.erros para
+    // diferenciar "sem itens" de "não carregou".
     dados.erros = {};
-    try {
-      const r = await fetch('data/condicoes.json');
-      dados.condicoes = r.ok ? await r.json() : {};
-      if (!r.ok) dados.erros.condicoes = true;
-    } catch (_) {
-      dados.condicoes = {};
-      dados.erros.condicoes = true;
+    async function carregarGlobal(url, chave) {
+      try {
+        const r = await fetch(url);
+        dados[chave] = r.ok ? await r.json() : {};
+        if (!r.ok) dados.erros[chave] = true;
+      } catch (_) {
+        dados[chave] = {};
+        dados.erros[chave] = true;
+      }
     }
-    try {
-      const r = await fetch('data/eventos-estrada.json');
-      dados.eventos = r.ok ? await r.json() : {};
-      if (!r.ok) dados.erros.eventos = true;
-    } catch (_) {
-      dados.eventos = {};
-      dados.erros.eventos = true;
-    }
+    await Promise.all([
+      carregarGlobal('data/condicoes.json', 'condicoes'),
+      carregarGlobal('data/eventos-estrada.json', 'eventos'),
+    ]);
     return dados;
   }
 
@@ -94,7 +93,10 @@
 
   function render() {
     Array.from(el.tabs.querySelectorAll('.tab-btn')).forEach(btn => {
-      btn.classList.toggle('ativa', btn.dataset.aba === state.aba);
+      const ativa = btn.dataset.aba === state.aba;
+      btn.classList.toggle('ativa', ativa);
+      if (ativa) btn.setAttribute('aria-current', 'true');
+      else btn.removeAttribute('aria-current');
     });
 
     el.voltar.classList.toggle('hidden', state.historico.length === 0);

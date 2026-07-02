@@ -7,7 +7,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
@@ -62,12 +62,17 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
+  // Navegações chegam com query string (ex.: aventura.html?id=...), mas o
+  // cache guarda a URL sem query — sem ignoreSearch o match falha e o app
+  // quebra offline justamente na página da aventura.
   event.respondWith(
-    caches.match(req).then((cached) => {
+    caches.match(req, { ignoreSearch: req.mode === 'navigate' }).then((cached) => {
       const atualizando = fetch(req)
         .then((resp) => {
           if (resp && resp.ok) {
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, resp.clone()));
+            caches.open(CACHE_NAME)
+              .then((cache) => cache.put(req, resp.clone()))
+              .catch(() => {});
           }
           return resp;
         })

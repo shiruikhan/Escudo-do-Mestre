@@ -13,14 +13,14 @@
   <meta property="og:description" content="Painel do Narrador para D&amp;D 5.5e (2024): bestiário, NPCs, itens, ganchos e missões de campanhas completas, com busca e navegação cruzada." />
   <meta property="og:url" content="https://shiruikhan.github.io/Escudo-do-Mestre/" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:image" content="https://shiruikhan.github.io/Escudo-do-Mestre/assets/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image" content="https://shiruikhan.github.io/Escudo-do-Mestre/assets/apple-touch-icon.png" />
+  <meta property="og:image:width" content="180" />
+  <meta property="og:image:height" content="180" />
   <meta property="og:image:alt" content="Escudo do Mestre — Painel do Narrador para D&amp;D 5.5e" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Escudo do Mestre" />
   <meta name="twitter:description" content="Painel do Narrador para D&amp;D 5.5e (2024): bestiário, NPCs, itens, ganchos e missões de campanhas completas." />
-  <meta name="twitter:image" content="https://shiruikhan.github.io/Escudo-do-Mestre/assets/og-image.png" />
+  <meta name="twitter:image" content="https://shiruikhan.github.io/Escudo-do-Mestre/assets/apple-touch-icon.png" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
@@ -92,8 +92,8 @@
     <!-- Empty state (shown while loading or if no adventures found) -->
     <div id="empty-state" class="hidden mt-16 text-center text-zinc-600">
       <div class="text-5xl mb-4">📜</div>
-      <p class="text-sm">Nenhuma aventura encontrada.</p>
-      <p class="text-xs mt-1">Adicione arquivos JSON em <code class="text-zinc-400">adventures/</code>.</p>
+      <p class="text-sm" id="empty-state-msg">Nenhuma aventura encontrada.</p>
+      <p class="text-xs mt-1">Adicione arquivos JSON em <code class="text-zinc-400">data/aventuras/</code>.</p>
     </div>
 
   </main>
@@ -142,7 +142,13 @@
       `).join('');
     }
 
-    loadManifest().then(renderAdventures);
+    loadManifest().then(renderAdventures).catch(() => {
+      // Sem o manifest a lista fica vazia para sempre — mostra o empty state
+      // com uma mensagem de erro em vez de deixar a tela em branco.
+      document.getElementById('empty-state-msg').textContent =
+        'Não foi possível carregar as aventuras. Verifique sua conexão e recarregue a página.';
+      document.getElementById('empty-state').classList.remove('hidden');
+    });
   </script>
 
 </body>
