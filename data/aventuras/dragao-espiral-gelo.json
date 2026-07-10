@@ -533,7 +533,8 @@
         }
       ],
       "acoes_bonus": [],
-      "reacoes": []
+      "reacoes": [],
+      "localizacao": "Colina do Dragão (sepulcro D8 — surge se a espada matadora de dragões for retirada do crânio de Azdraka)"
     },
     "fogo-fatuo": {
       "nome": "Fogo Fátuo",
@@ -892,7 +893,8 @@
         }
       ],
       "acoes_bonus": [],
-      "reacoes": []
+      "reacoes": [],
+      "localizacao": "Mina de Ouro no Pé da Montanha (Gangue do Bigode, liderada por Zeleen Varnaster)"
     },
     "javali": {
       "nome": "Javali",
@@ -998,7 +1000,8 @@
         }
       ],
       "acoes_bonus": [],
-      "reacoes": []
+      "reacoes": [],
+      "localizacao": "Gruta dos Gnomos (invadiu a gruta e devora gnomos; causou a loucura do rei Korboz)"
     },
     "manticora": {
       "nome": "Manticora",
@@ -1088,7 +1091,8 @@
         }
       ],
       "acoes_bonus": [],
-      "reacoes": []
+      "reacoes": [],
+      "localizacao": "Santuário de Savras (pátio S2); Fortaleza da Espiral de Gelo (ogro congelado pelo sopro de Cryovain)"
     },
     "orc": {
       "nome": "Orc",
@@ -1353,7 +1357,8 @@
         }
       ],
       "acoes_bonus": [],
-      "reacoes": []
+      "reacoes": [],
+      "localizacao": "Mina de Ouro no Pé da Montanha (acompanham os homens-rato)"
     },
     "stirge": {
       "nome": "Stirge",
@@ -1388,7 +1393,61 @@
       ],
       "acoes_bonus": [],
       "reacoes": [],
-      "localizacao": "Axeholm (sala A9 — Forja; sala A28 — Aposentos do Regente)"
+      "localizacao": "Axeholm (sala A9 — Forja; sala A28 — Aposentos do Regente); Fortaleza da Espiral de Gelo (câmara de audiência H12); Mansão do Bosque (vigas do corredor W12)"
+    },
+    "verme-carnica": {
+      "nome": "Verme da Carniça",
+      "tipo_alinhamento": "Monstruosidade Grande, Sem Alinhamento",
+      "ca": 13,
+      "ca_descricao": "armadura natural",
+      "pv": 51,
+      "pv_formula": "6d10 + 18",
+      "deslocamento": "9 m; escavação 9 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 13,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "+1",
+        "CON": "+3",
+        "INT": "-5",
+        "SAB": "+1",
+        "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Percepção +3"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "2",
+      "xp": 450,
+      "caracteristicas": [
+        {
+          "nome": "Olfato Aguçado",
+          "descricao": "O verme da carniça tem vantagem nos testes de Sabedoria (Percepção) que dependam do olfato."
+        },
+        {
+          "nome": "Escalada de Aranha",
+          "descricao": "O verme da carniça pode escalar superfícies difíceis, inclusive de cabeça para baixo no teto, sem a necessidade de fazer um teste de atributo."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "O verme da carniça faz dois ataques: um com o tentáculo e um com a mordida."
+        },
+        {
+          "nome": "Tentáculo",
+          "descricao": "Ataque de Arma Corpo a Corpo: +8 para acertar, alcance 3 m, uma criatura. Dano: 4 (1d4 + 2) de dano venenoso, e o alvo deve ser bem-sucedido em uma salvaguarda de Constituição CD 13 ou ficará envenenado por 1 minuto. Até o envenenamento terminar, o alvo está paralisado. O alvo pode repetir a salvaguarda ao final de cada um de seus turnos."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 7 (2d4 + 2) de dano perfurante."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Mina de Ouro no Pé da Montanha (túnel M11)"
     }
   },
   "npcs": {
@@ -1471,7 +1530,7 @@
       "descricao": "Anão garimpeiro que descobriu ruínas de um antigo assentamento anão soterrado por uma avalanche. Passou meses limpando os escombros em busca de tesouros.",
       "motivacao": "Encontrar tesouros e relíquias nas ruínas anãs.",
       "segredos": "Não sabe que um dragão branco se mudou para a área.",
-      "interacao": "Os aventureiros devem avisar Dazlyn e bestiario:cryovain sobre o perigo do bestiario:cryovain na região. Recompensa de Harbin Wester: 50 PO."
+      "interacao": "Os aventureiros devem avisar Dazlyn e npc:norbus-runa-pedra sobre o perigo de bestiario:cryovain na região. Recompensa de Harbin Wester: 50 PO."
     },
     "norbus-runa-pedra": {
       "nome": "Norbus Runa de Pedra",
@@ -1486,10 +1545,10 @@
       "nome": "Xanth",
       "local": "Colina do Dragão (Floresta de Neverwinter)",
       "papel": "Centauro NPC aliado",
-      "descricao": "Centauro que vaga pelas colinas e pradarias entre a Estrada Alta e a Floresta de Neverwinter. Aviso aos aventureiros sobre orcs e feiticeiros meio-orcs na floresta.",
+      "descricao": "Centauro que vaga pelas colinas e pradarias entre a Estrada Alta e a Floresta de Neverwinter. Avisa os aventureiros sobre orcs e feiticeiros meio-orcs na floresta.",
       "motivacao": "Proteger a floresta; deseja ver os feiticeiros meio-orcs malignos expulsos ou mortos.",
       "segredos": "Evita a Colina do Dragão.",
-      "interacao": "Oferece-se para guiar os personagens ao bestiario:gorthok do Círculo do Trovão se eles quiserem enfrentar os meio-orcs. Usa bloco de estatísticas de bestiario:centauro."
+      "interacao": "Oferece-se para guiar os personagens ao Círculo do Trovão se eles quiserem enfrentar os meio-orcs de lá. Usa bloco de estatísticas de bestiario:centauro."
     }
   },
   "itens": {
@@ -1498,7 +1557,7 @@
       "tipo": "Poção",
       "propriedades": "Requer Sintonização: Não",
       "efeito": "Durante 1 minuto após beber, você tem resistência a todos os danos.",
-      "localizacao": "Círculo do Trovão — Caverna C2 (pertencia ao anacoreta bestiario:anacoreta-orc Flenz, enterrada no chão)"
+      "localizacao": "Círculo do Trovão — Caverna C2 (pertencia a Flenz, um bestiario:anacoreta-orc; enterrada no chão)"
     },
     "escudo-mais-1": {
       "nome": "Escudo +1",
@@ -1617,11 +1676,11 @@
       "id": "mina-ouro-pe-montanha",
       "titulo": "Mina de Ouro no Pé da Montanha",
       "status": "Disponível",
-      "nivel_sugerido": 3,
+      "nivel_sugerido": 4,
       "recompensa": "100 PO (via npc:harbin-wester após escolta segura)",
       "objetivo": "A Mina de Ouro no Pé da Montanha fica a 25 km a nordeste de Phandalin. O novo superintendente npc:don-jon-raskin precisa ser escoltado até a mina com segurança.",
       "localizacao": "25 km a nordeste de Phandalin",
-      "notas_dm": "Balanceado para 3º nível."
+      "notas_dm": "Balanceado para 4º nível. Personagens de 3º nível podem sobreviver com cautela, especialmente se possuírem uma arma mágica."
     },
     {
       "id": "colina-dragao",
@@ -1629,9 +1688,9 @@
       "status": "Disponível",
       "nivel_sugerido": 5,
       "recompensa": "itens:espada-matadora-dragoes e outros tesouros do sepulcro",
-      "objetivo": "A Colina do Dragão fica ~65 km a noroeste de Phandalin. Recuperar a espada longa matadora de dragões de Lady Alagondar, enterrada com ela. O centauro npc:xanth pode guiar os aventureiros a partir daqui ao bestiario:gorthok do Círculo do Trovão.",
+      "objetivo": "A Colina do Dragão fica ~65 km a noroeste de Phandalin. Recuperar a espada longa matadora de dragões de Lady Alagondar, enterrada com ela. O centauro npc:xanth pode guiar os aventureiros a partir daqui ao Círculo do Trovão.",
       "localizacao": "~65 km a noroeste de Phandalin, entre a Estrada Alta e a Floresta de Neverwinter",
-      "notas_dm": "Balanceado para 5º nível. Personagens de 4º podem sobreviver com cautela. Contém bestiario:fogo-fatuo, cavalo esquelético (morto-vivo), armadilhas ocultas e bestiario:mimico."
+      "notas_dm": "Balanceado para 5º nível. Personagens de 4º podem sobreviver com cautela. Contém bestiario:fogo-fatuo, cavalo esquelético (morto-vivo) e armadilhas ocultas. Retirar a espada do crânio de Azdraka desperta um bestiario:espreitador-invisivel, que ataca até a espada ser devolvida ou até ser destruído."
     },
     {
       "id": "axeholm",
@@ -1650,7 +1709,7 @@
       "nivel_sugerido": 6,
       "recompensa": "itens:pocao-invulnerabilidade, itens:escudo-mais-1",
       "objetivo": "No coração da Floresta de Neverwinter, anacoretas bestiario:anacoreta-orc realizam ritos sombrios no Círculo do Trovão para invocar bestiario:gorthok, o Javali do Trovão, a serviço de Talos. Eliminar Flenz, Narux, Yargath e Gorthok.",
-      "localizacao": "Floresta de Neverwinter, ~64 km do Colina do Dragão",
+      "localizacao": "Floresta de Neverwinter, ~64 km da Colina do Dragão",
       "notas_dm": "Balanceado para 6º nível. Personagens de 4º ou 5º podem sobreviver com cautela. Três anacoretas (Flenz, Narux, Yargath) + Gorthok se não foi derrotado ainda."
     },
     {
@@ -1681,7 +1740,7 @@
     "serra-discordia": {
       "nome": "Serra da Discórdia",
       "tipo": "Exterior (moinho)",
-      "nivel_sugerido": "1",
+      "nivel_sugerido": "1–3",
       "resumo": "Velho moinho de pedra na encosta de uma colina com túmulos de dois clãs anões rivais. Uma manticora expulsa das montanhas por bestiario:cryovain ataca o moinho pouco antes da chegada do grupo.",
       "criaturas": [
         "bestiario:manticora"
@@ -1716,17 +1775,17 @@
       "resumo": "Rede de cavernas esculpidas na base de uma montanha a sudeste, ao redor de uma cachoeira. Lar de um clã recluso de gnomos magos famosos por engenhocas mágicas. Governada por dois reis, Gnerkli e Korboz — este último enlouqueceu e mantém o outro prisioneiro.",
       "criaturas": [
         "bestiario:gnomo-rochas-recluso",
-        "bestiario:orc"
+        "bestiario:mimico"
       ],
       "npcs": [],
-      "perigos": "bestiario:orc invadiram parte da gruta. A crise entre os reis gnomos pode levar a combate se mal conduzida.",
+      "perigos": "Um bestiario:mimico invadiu a gruta e vem devorando gnomos, mudando de forma pelo complexo — foi ele que enlouqueceu o rei Korboz. Fornecer evidências da morte do mímico restaura a sanidade do rei. A crise entre os reis gnomos pode levar a combate se mal conduzida.",
       "tesouro": "Os gnomos podem ceder itens mágicos úteis contra bestiario:cryovain em troca de ajuda.",
       "conexoes": "Montanhas a sudeste de Phandalin."
     },
     "acampamento-lenhadores": {
       "nome": "Acampamento dos Lenhadores",
       "tipo": "Exterior",
-      "nivel_sugerido": "2",
+      "nivel_sugerido": "3",
       "resumo": "Acampamento de corte de madeira no lado sul de um rio da Floresta de Neverwinter, administrado por npc:tibor-wester, meio-irmão oportunista de npc:harbin-wester. Phandalin entrega suprimentos a cada dois meses.",
       "criaturas": [
         "bestiario:ankheg",
@@ -1741,21 +1800,22 @@
     "cabana-falcon": {
       "nome": "Cabana de Caça de Falcon",
       "tipo": "Exterior (refúgio)",
-      "nivel_sugerido": "2",
+      "nivel_sugerido": "—",
       "resumo": "Refúgio fortificado no âmago da Floresta de Neverwinter, à beira de um rio. npc:falcon, veterano aposentado, guia nobres em caçadas e oferece comida e abrigo a quem lhe trouxer uma garrafa de vinho.",
       "criaturas": [
-        "bestiario:carnical"
+        "bestiario:orc",
+        "bestiario:gorthok"
       ],
       "npcs": [
         "npc:falcon"
       ],
-      "perigos": "Carniçais (bestiario:carnical) infestam parte da cabana, reunindo-se e atacando em grupo.",
+      "perigos": "Local seguro — até os personagens atacarem a Mansão do Bosque. No dia seguinte, os anacoretas de Talos contra-atacam: bestiario:gorthok rompe a paliçada e vinte bestiario:orc capturam a cabana. Se os personagens não estiverem presentes, npc:falcon e seus servos fogem para Phandalin.",
       "conexoes": "Único refúgio seguro da Floresta de Neverwinter. Ponto de apoio para alcançar locais mais profundos da mata."
     },
     "circulo-trovao": {
       "nome": "Círculo do Trovão",
       "tipo": "Exterior (sítio ritual)",
-      "nivel_sugerido": "3",
+      "nivel_sugerido": "6",
       "resumo": "Colina de 30 m coroada por um círculo de pedras eretas, onde anacoretas de Talos fazem sacrifícios e, em dias de tempestade, realizam rituais para invocar bestiario:gorthok, o Javali do Trovão. Três anacoretas — Flenz, Narux e Yargath — defendem a colina.",
       "criaturas": [
         "bestiario:anacoreta-orc",
@@ -1769,31 +1829,33 @@
     "colina-dragao": {
       "nome": "Colina do Dragão",
       "tipo": "Masmorra (sepulcro)",
-      "nivel_sugerido": "3",
-      "resumo": "Túmulo da Lady Tanamere Alagondar, herdeira de Neverwinter que matou o dragão verde Azdraka há um século. Ela, seus companheiros caídos e o cadáver do dragão foram selados sob a colina. Guardado pelo espírito npc:xanth.",
+      "nivel_sugerido": "5",
+      "resumo": "Túmulo da Lady Tanamere Alagondar, herdeira de Neverwinter que matou o dragão verde Azdraka há um século. Ela, seus companheiros caídos e o cadáver do dragão foram selados sob a colina. O centauro npc:xanth vaga pelas redondezas, mas evita a colina.",
       "criaturas": [
-        "bestiario:fogo-fatuo"
+        "bestiario:fogo-fatuo",
+        "bestiario:espreitador-invisivel"
       ],
       "npcs": [
         "npc:xanth"
       ],
-      "perigos": "Três fogos-fátuos (bestiario:fogo-fatuo) espreitam o sepulcro. Sarcófagos selados podem esconder armadilhas.",
+      "perigos": "Três fogos-fátuos (bestiario:fogo-fatuo) espreitam o sepulcro. Sarcófagos selados podem esconder armadilhas. Retirar a espada matadora de dragões do crânio de Azdraka desperta um bestiario:espreitador-invisivel, que ataca até a espada ser devolvida ou até ser destruído.",
       "tesouro": "Sepulcro D7: itens:alaude-ilusoes e itens:colar-bolas-fogo. Sepulcro D8: a itens:espada-matadora-dragoes, enterrada com Lady Alagondar — objetivo da missão.",
       "conexoes": "Cerca de 65 km a noroeste de Phandalin, entre colinas e pradarias."
     },
     "mansao-bosque": {
       "nome": "Mansão do Bosque",
       "tipo": "Masmorra (ruína)",
-      "nivel_sugerido": "4",
+      "nivel_sugerido": "5–6",
       "resumo": "Casa de pedra em ruínas erguida por uma maga meio-elfa que estudava ruínas élficas e desapareceu. Tomada por um anacoreta meio-orc de Talos chamado Grannoc, que plantou no poço sementes das quais brotou uma árvore maligna geradora de ramos secos.",
       "criaturas": [
         "bestiario:anacoreta-orc",
         "bestiario:ramo-espetos",
         "bestiario:ramo-galhos",
-        "bestiario:ramo-vinhas"
+        "bestiario:ramo-vinhas",
+        "bestiario:stirge"
       ],
       "npcs": [],
-      "perigos": "Grannoc (use bestiario:anacoreta-orc) comanda enxames de ramos secos — bestiario:ramo-espetos, bestiario:ramo-galhos e bestiario:ramo-vinhas — que defendem a mansão e atacam invasores na floresta.",
+      "perigos": "Grannoc (use bestiario:anacoreta-orc) comanda enxames de ramos secos — bestiario:ramo-espetos, bestiario:ramo-galhos e bestiario:ramo-vinhas — que defendem a mansão e atacam invasores na floresta. Stirges (bestiario:stirge) pendem das vigas do corredor escuro que leva à área W12.",
       "conexoes": "Floresta de Neverwinter, próxima a ruínas élficas. Liga-se ao Círculo do Trovão ao norte."
     },
     "mina-ouro": {
@@ -1803,19 +1865,19 @@
       "resumo": "Mina de ouro de um consórcio de Neverwinter, tomada por um bando de homens-rato autodenominado Gangue do Bigode. Os proprietários contrataram npc:don-jon-raskin para resolver os problemas de produtividade — sem saber da infestação.",
       "criaturas": [
         "bestiario:homem-rato",
-        "bestiario:carnical",
-        "bestiario:stirge"
+        "bestiario:rato-gigante",
+        "bestiario:verme-carnica"
       ],
       "npcs": [
         "npc:don-jon-raskin"
       ],
-      "perigos": "Os bestiario:homem-rato (liderados por Zeleen Varnaster) infestam a mina. Stirges (bestiario:stirge) pendem das vigas em corredores escuros; um verme de carniça (bestiario:carnical) espreita em um túnel.",
+      "perigos": "Os bestiario:homem-rato (liderados por Zeleen Varnaster) infestam a mina, acompanhados de ratos gigantes (bestiario:rato-gigante). Um bestiario:verme-carnica espreita no túnel M11.",
       "conexoes": "Escoltar npc:don-jon-raskin até a mina e erradicar as 'pestes'. Recusar pode transformá-lo em homem-rato."
     },
     "rancho-caveira-manteiga": {
       "nome": "Rancho Caveira de Manteiga",
       "tipo": "Exterior (fazenda)",
-      "nivel_sugerido": "4",
+      "nivel_sugerido": "3",
       "resumo": "Fazenda de gado e cavalos a leste de Conyberry, fundada pelo ex-xerife Alfonso Kalazorn ('Fonsão'), famoso por vender 'caveiras de manteiga'. A manteiga vem do leite de Petúnia, sua vaca premiada. bestiario:cryovain e os orcs perturbam a região.",
       "criaturas": [
         "bestiario:orc",
@@ -1828,13 +1890,14 @@
     "santuario-savras": {
       "nome": "Santuário de Savras",
       "tipo": "Masmorra (templo)",
-      "nivel_sugerido": "4",
-      "resumo": "Templo dedicado a Savras, deus da adivinhação, a poucos km ao sul de Conyberry. Sacerdotes videntes derreteram o ouro de Conyberry em um sino dourado escondido no campanário antes de serem massacrados por bárbaros. O sino de ouro ainda pende lá.",
+      "nivel_sugerido": "1–6",
+      "resumo": "Templo dedicado a Savras, deus da adivinhação, a poucos km ao sul de Conyberry. Sacerdotes videntes derreteram o ouro de Conyberry em um sino dourado escondido no campanário antes de serem massacrados por bárbaros. O sino de ouro ainda pende lá. Os encontros escalam com o nível do grupo.",
       "criaturas": [
-        "bestiario:orc"
+        "bestiario:orc",
+        "bestiario:ogro"
       ],
       "npcs": [],
-      "perigos": "bestiario:orc ocupam o santuário em ruínas. Foi o covil anterior dos homens-rato da Mina de Ouro.",
+      "perigos": "bestiario:orc ocupam o santuário em ruínas, acompanhados de um ou mais bestiario:ogro no pátio (S2), conforme o nível do grupo. Foi o covil anterior dos homens-rato da Mina de Ouro.",
       "tesouro": "O sino de ouro no campanário — feito do ouro fundido de Conyberry — é o grande prêmio do local.",
       "conexoes": "Ao sul de Conyberry, a leste. Ligado ao Rancho Caveira de Manteiga."
     },
@@ -1872,7 +1935,7 @@
     "torre-tempestades": {
       "nome": "Torre das Tempestades",
       "tipo": "Masmorra (farol)",
-      "nivel_sugerido": "6",
+      "nivel_sugerido": "3",
       "resumo": "Farol numa colina rochosa na costa a oeste de Phandalin — na verdade um templo a Talos. Moesko, anacoreta meio-orc, usa a luz verde pulsante (alimentada por seu próprio coração arrancado) para atrair navios à destruição. Destruir o coração apaga o farol.",
       "criaturas": [
         "bestiario:anacoreta-orc",

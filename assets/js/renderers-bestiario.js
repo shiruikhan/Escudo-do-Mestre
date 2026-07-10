@@ -61,6 +61,7 @@
 
       ${listaTexto('Salvaguardas', b.salvaguardas)}
       ${listaTexto('Perícias', b.pericias)}
+      ${listaTexto('Vulnerabilidades a Dano', b.vulnerabilidades_dano)}
       ${listaTexto('Imunidades a Dano', b.imunidades_dano)}
       ${listaTexto('Resistências a Dano', b.resistencias_dano)}
       ${listaTexto('Imunidades a Condição', b.imunidades_condicao)}
