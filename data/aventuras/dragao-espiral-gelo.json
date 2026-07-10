@@ -1556,7 +1556,7 @@
       "nome": "Poção de Invulnerabilidade",
       "tipo": "Poção",
       "propriedades": "Requer Sintonização: Não",
-      "efeito": "Durante 1 minuto após beber, você tem resistência a todos os danos.",
+      "efeito": "Durante 1 minuto após beber esta poção, você tem resistência a todos os danos. O líquido xaroposo da poção parece ferro liquefeito.",
       "localizacao": "Círculo do Trovão — Caverna C2 (pertencia a Flenz, um bestiario:anacoreta-orc; enterrada no chão)"
     },
     "escudo-mais-1": {
@@ -1568,25 +1568,102 @@
     },
     "alaude-ilusoes": {
       "nome": "Alaúde das Ilusões",
-      "tipo": "Item Maravilhoso",
-      "propriedades": "Requer Sintonização: Sim (por um bardo)",
-      "efeito": "Enquanto estiver segurando este instrumento, você pode usar uma ação para tocar música e lançar um dos seguintes feitiços usando seu CD de magia: voz dissonante, imagem silenciosa ou sugestão.",
+      "tipo": "Item Maravilhoso (comum)",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Enquanto toca este alaúde mágico, você pode criar efeitos visuais ilusórios e inofensivos dentro de uma esfera de 1,5 m de raio centrada no instrumento. Se você for um bardo, o raio aumenta para 4,5 m. Exemplos de efeitos: notas musicais luminosas, um dançarino espectral, borboletas e neve caindo suavemente. Os efeitos não têm substância nem som e são obviamente ilusórios. Eles terminam quando você para de tocar.",
       "localizacao": "Colina do Dragão — Sepulcro D7 (no sarcófago do bardo morto)"
     },
     "colar-bolas-fogo": {
       "nome": "Colar de Bolas de Fogo",
       "tipo": "Item Maravilhoso",
       "propriedades": "Requer Sintonização: Não",
-      "efeito": "Este colar tem 1d6 + 3 pérolas que funcionam como bolas de fogo. Você pode usar uma ação para arrancar uma pérola do colar e jogá-la em um ponto a até 18 m. A pérola explode como uma bola de fogo de 3º nível (CD de Destreza 15, 8d6 de dano ígneo).",
+      "efeito": "Este colar tem 1d6 + 3 pérolas que funcionam como bolas de fogo. Você pode usar uma ação para arrancar uma pérola do colar e jogá-la em um ponto a até 18 m. A pérola explode como uma bola de fogo de 3º nível (CD de Destreza 15, 8d6 de dano ígneo). Você pode arremessar várias pérolas — ou até o colar inteiro — com uma única ação; nesse caso, aumente o nível da bola de fogo em 1 para cada pérola além da primeira.",
       "localizacao": "Colina do Dragão — Sepulcro D7 (no sarcófago do mago morto)"
     },
     "espada-matadora-dragoes": {
       "nome": "Espada Longa Matadora de Dragões",
       "tipo": "Arma (espada longa)",
       "propriedades": "Requer Sintonização: Sim",
-      "efeito": "Você ganha +1 nas jogadas de ataque e dano com esta arma. Quando você acerta um dragão com ela, ele sofre 3d6 de dano extra.",
+      "efeito": "Você ganha +1 nas jogadas de ataque e dano com esta arma. Quando você acerta um dragão com ela, ele sofre 3d6 de dano cortante extra. Para os propósitos desta arma, \"dragão\" é qualquer criatura do tipo dragão.",
       "localizacao": "Colina do Dragão — Sepulcro D8 (enterrada com Lady Tanamere Alagondar)",
       "historico": "Pertencia a Lady Tanamere Alagondar, herdeira real de Neverwinter de um século atrás. Foi usada para matar Azdraka, o dragão verde da Estrada Alta."
+    },
+    "amuleto-mecanico": {
+      "nome": "Amuleto Mecânico",
+      "tipo": "Item Maravilhoso (comum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Este amuleto de cobre contém minúsculas engrenagens interligadas e é movido por magia de Mechanus. Ao fazer uma jogada de ataque enquanto o estiver usando, você pode abrir mão de rolar o d20 e considerar que obteve um 10 no dado. Uma vez usada, essa propriedade só pode ser usada de novo no próximo amanhecer.",
+      "localizacao": "local:gruta-gnomos — área G13; entregue pelos gnomos gratos se os personagens resgatarem Gnerkli e derem fim à loucura de Korboz"
+    },
+    "chapeu-feiticaria": {
+      "nome": "Chapéu de Feitiçaria",
+      "tipo": "Item Maravilhoso (comum)",
+      "propriedades": "Requer Sintonização: Sim (por um mago)",
+      "efeito": "Este chapéu antiquado em forma de cone é adornado com luas crescentes e estrelas douradas. Enquanto o estiver usando: você pode usá-lo como foco de conjuração para suas magias de mago; e pode tentar conjurar um truque que não conhece (da lista de mago) com um teste de Inteligência (Arcanismo) CD 10 — sucesso conjura o truque, falha desperdiça a ação. De qualquer forma, essa propriedade só pode ser usada de novo após um descanso longo.",
+      "localizacao": "local:gruta-gnomos — presente do rei Korboz. npc:harbin-wester oferece 50 PO por ele, mesmo sem conhecer alguém que possa sintonizá-lo"
+    },
+    "estaca-retratil": {
+      "nome": "Estaca Retrátil",
+      "tipo": "Item Maravilhoso (comum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Enquanto segura esta estaca de 3 m, você pode usar uma ação e falar uma palavra de comando para fazê-la se recolher em um bastão de 30 cm, para facilitar o transporte. O peso não muda. Com outra ação e outra palavra de comando, o bastão volta a ser estaca — porém só se alonga até onde o espaço ao redor permitir.",
+      "localizacao": "local:gruta-gnomos — área G13; entregue pelos gnomos gratos se os personagens resgatarem Gnerkli e derem fim à loucura de Korboz"
+    },
+    "botas-elficas": {
+      "nome": "Botas Élficas",
+      "tipo": "Item Maravilhoso (incomum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Enquanto usa estas botas, seus passos não fazem nenhum som, independentemente da superfície sobre a qual você se move. Você também tem vantagem em testes de Destreza (Furtividade) que dependam de se mover em silêncio.",
+      "localizacao": "Recompensa oferecida por npc:falcon a quem completar a missão da local:mansao-bosque"
+    },
+    "cota-malha-mithral": {
+      "nome": "Cota de Malha de Mithral",
+      "tipo": "Armadura (cota de malha), incomum",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Mithral é um metal leve e flexível. Ao contrário de uma cota de malha comum, a cota de malha de mithral não tem requisito de Força e não impõe desvantagem nos testes de Destreza (Furtividade).",
+      "localizacao": "local:rancho-caveira-manteiga — escondida na área B6; Alfonso a oferece como recompensa pelo retorno seguro de sua vaca premiada, Petúnia"
+    },
+    "manoplas-forca-ogro": {
+      "nome": "Manoplas de Força de Ogro",
+      "tipo": "Item Maravilhoso (incomum)",
+      "propriedades": "Requer Sintonização: Sim",
+      "efeito": "Sua Força é 19 enquanto você usa estas manoplas. Elas não têm nenhum efeito se sua Força já for 19 ou maior sem elas.",
+      "localizacao": "local:axeholm — baú trancado do regente (destrava com o anel de sinete do regente), junto com o itens:elmo-temor"
+    },
+    "elmo-temor": {
+      "nome": "Elmo do Temor",
+      "tipo": "Item Maravilhoso (comum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Este elmo de aço amedrontador faz seus olhos brilharem em vermelho enquanto você o usa.",
+      "localizacao": "local:axeholm — baú trancado do regente (destrava com o anel de sinete do regente), junto com as itens:manoplas-forca-ogro"
+    },
+    "pedras-envio": {
+      "nome": "Pedras de Envio",
+      "tipo": "Item Maravilhoso (incomum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "As pedras de envio vêm em pares, cada uma lapidada para combinar com a outra e facilitar o reconhecimento. Enquanto toca uma delas, você pode usar uma ação para conjurar a magia envio a partir dela; o alvo é o portador da outra pedra. Se nenhuma criatura estiver portando a outra pedra, você sabe disso assim que usa a sua e a magia não é conjurada. Depois que envio é conjurada por uma das pedras, elas só podem ser usadas de novo no próximo amanhecer. Se uma pedra do par for destruída, a outra se torna não-mágica.",
+      "localizacao": "local:escavacao-anoes — par pertencente a npc:dazlyn-caco-cinza e npc:norbus-runa-pedra, oferecido a quem livrar o templo das bestiario:gosma-ocre (área E5) e torná-lo seguro"
+    },
+    "manto-de-brisa": {
+      "nome": "Manto de Brisa",
+      "tipo": "Item Maravilhoso (comum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Enquanto veste este manto, você pode usar uma ação bônus para fazê-lo ondular dramaticamente.",
+      "localizacao": "local:mansao-bosque — pendurado em um gancho na parede de um quarto do piso superior"
+    },
+    "bastao-imovel": {
+      "nome": "Bastão Imóvel",
+      "tipo": "Bastão (incomum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Este bastão achatado de ferro tem um botão em uma das extremidades. Você pode usar uma ação para apertar o botão, o que faz o bastão ficar magicamente fixo no lugar. Até que você ou outra criatura use uma ação para apertar o botão de novo, o bastão não se move, mesmo desafiando a gravidade, e sustenta até 3.600 kg — mais peso que isso o desativa e o faz cair. Uma criatura pode usar uma ação para fazer um teste de Força CD 30 e mover o bastão fixado em até 3 m em um sucesso.",
+      "localizacao": "local:mansao-bosque — dentro de um baú trancado magicamente (o feitiço arrombar o destrava), envolto em um pano preto"
+    },
+    "varinha-pirotecnia": {
+      "nome": "Varinha de Pirotecnia",
+      "tipo": "Varinha (comum)",
+      "propriedades": "Requer Sintonização: Não",
+      "efeito": "Esta varinha tem 7 cargas. Enquanto a segura, você pode usar uma ação e gastar 1 carga para criar uma explosão inofensiva de luzes multicoloridas em um ponto à sua vista a até 18 m, acompanhada de um estalo audível a até 90 m. A luz é tão intensa quanto a chama de uma tocha, mas dura só um instante. A varinha recupera todas as cargas gastas ao amanhecer; ao gastar a última carga, role um d20 — em um 1, ela irrompe num espetáculo pirotécnico inofensivo e é destruída.",
+      "localizacao": "local:gruta-gnomos — presente do rei Gnerkli"
     }
   },
   "ganchos": [
@@ -1642,7 +1719,7 @@
       "titulo": "Escavação dos Anões",
       "status": "Disponível",
       "nivel_sugerido": 1,
-      "recompensa": "50 PO (via npc:harbin-wester)",
+      "recompensa": "50 PO (via npc:harbin-wester); os anões ainda oferecem suas itens:pedras-envio a quem livrar o templo das bestiario:gosma-ocre",
       "objetivo": "Garimpeiros anões encontraram antigas ruínas anãs nas montanhas a sudoeste. Eles precisam ser avisados de que bestiario:cryovain se mudou para a área. Leve a notícia para npc:dazlyn-caco-cinza e npc:norbus-runa-pedra e retorne ao npc:harbin-wester.",
       "localizacao": "Montanhas a sudoeste de Phandalin",
       "notas_dm": "Balanceado para personagens de 1º nível. O templo de Abbathor no desfiladeiro contém bestiario:gosma-ocre. Orcs chegam durante a missão."
@@ -1652,10 +1729,10 @@
       "titulo": "Gruta dos Gnomos",
       "status": "Disponível",
       "nivel_sugerido": 1,
-      "recompensa": "50 PO (via npc:harbin-wester por item útil contra o dragão)",
-      "objetivo": "Um clã recluso de bestiario:gnomo-rochas-recluso reside em uma pequena rede de cavernas nas montanhas a sudeste. Obtenha o que puder deles para derrotar bestiario:cryovain.",
+      "recompensa": "itens:amuleto-mecanico, itens:estaca-retratil, itens:varinha-pirotecnia e itens:chapeu-feiticaria — npc:harbin-wester oferece 50 PO pelo chapéu",
+      "objetivo": "Um clã recluso de bestiario:gnomo-rochas-recluso reside em uma pequena rede de cavernas nas montanhas a sudeste. Para completar a missão, obtenha pelo menos um item mágico deles para ajudar contra bestiario:cryovain.",
       "localizacao": "Montanhas a sudeste de Phandalin",
-      "notas_dm": "Balanceado para personagens de 1º nível. Um bestiario:mimico invadiu a gruta e vem devorando gnomos — foi ele que enlouqueceu o rei Korboz, que mantém o rei Gnerkli refém em seus aposentos. Provar a morte do mímico restaura a sanidade de Korboz."
+      "notas_dm": "Balanceado para personagens de 1º nível. Um bestiario:mimico invadiu a gruta e vem devorando gnomos — foi ele que enlouqueceu o rei Korboz, que mantém o rei Gnerkli refém em seus aposentos. Provar a morte do mímico restaura a sanidade de Korboz. Os gnomos não entregam nenhum item mágico antes de os personagens falarem com Fibblestib e Dabbledob (área G11); resgatar Gnerkli e curar Korboz rende os quatro itens."
     },
     {
       "id": "serra-da-discordia",
@@ -1682,7 +1759,7 @@
       "titulo": "Rancho Caveira de Manteiga",
       "status": "Disponível",
       "nivel_sugerido": 3,
-      "recompensa": "Cota de malha de mithral de Alfonso (pelo retorno seguro da vaca Petúnia); se Alfonso estiver morto, 100 PO (via npc:harbin-wester, com a prova da morte)",
+      "recompensa": "itens:cota-malha-mithral de Alfonso (pelo retorno seguro da vaca Petúnia); se Alfonso estiver morto, 100 PO (via npc:harbin-wester, com a prova da morte)",
       "objetivo": "bestiario:orc atacaram o Rancho Caveira de Manteiga, 8 km a leste de Conyberry, ao longo da Trilha Triboar. Viaje para lá de imediato, avalie os danos e ajude como puder. O proprietário, Alfonso \"Fonsão\" Kalazorn, é um xerife aposentado que pode recompensar os esforços.",
       "localizacao": "8 km a leste de Conyberry, na Trilha Triboar",
       "notas_dm": "Missão subsequente — entra no quadro após duas missões iniciais concluídas. Balanceado para 3º nível; personagens de 2º nível sobrevivem se evitarem combate e focarem em resgatar Alfonso. A cota de malha de mithral está escondida na área B6."
@@ -1722,7 +1799,7 @@
       "titulo": "Mansão do Bosque",
       "status": "Disponível",
       "nivel_sugerido": 5,
-      "recompensa": "Botas élficas (oferecidas por npc:falcon ao completar a missão)",
+      "recompensa": "itens:botas-elficas (oferecidas por npc:falcon ao completar a missão)",
       "objetivo": "Os bestiario:orc foram dominados por feiticeiros malignos na Floresta de Neverwinter e são vistos em números crescentes perto da Cabana de Caça de npc:falcon. Os conjuradores habitam uma mansão em ruínas. npc:falcon precisa de alguém para um ataque preventivo: destruir o mal que se alastra pela Mansão do Bosque.",
       "localizacao": "Floresta de Neverwinter, a alguns quilômetros da Cabana de Caça de Falcon",
       "notas_dm": "Missão subsequente final — entra no quadro após duas missões subsequentes concluídas. Balanceado para 5º–6º nível; personagens de 3º ou 4º sobrevivem se descansarem entre encontros. Conduza pela Cabana de Caça de Falcon antes da mansão. Grannoc (use bestiario:anacoreta-orc) comanda os ramos secos. No dia seguinte ao ataque à mansão, os anacoretas contra-atacam a cabana com bestiario:gorthok e vinte bestiario:orc."
@@ -1791,6 +1868,7 @@
         "npc:norbus-runa-pedra"
       ],
       "perigos": "Fossos com espadas enferrujadas escondidos sob pranchas (CD 10 para detectar). O templo de Abbathor abriga uma bestiario:gosma-ocre. bestiario:orc chegam durante a missão.",
+      "tesouro": "npc:dazlyn-caco-cinza e npc:norbus-runa-pedra oferecem seu par de itens:pedras-envio a quem matar as bestiario:gosma-ocre da área E5 e tornar o templo seguro.",
       "conexoes": "Montanhas a sudoeste de Phandalin. Avisar os anões e retornar ao npc:harbin-wester rende 50 PO."
     },
     "gruta-gnomos": {
@@ -1804,7 +1882,7 @@
       ],
       "npcs": [],
       "perigos": "Um bestiario:mimico invadiu a gruta e vem devorando gnomos, mudando de forma pelo complexo — foi ele que enlouqueceu o rei Korboz. Fornecer evidências da morte do mímico restaura a sanidade do rei. A crise entre os reis gnomos pode levar a combate se mal conduzida.",
-      "tesouro": "Os gnomos podem ceder itens mágicos úteis contra bestiario:cryovain em troca de ajuda.",
+      "tesouro": "Se os personagens resgatarem Gnerkli e derem fim à loucura de Korboz, os gnomos gratos entregam o itens:amuleto-mecanico e a itens:estaca-retratil (área G13), e cada rei dá um presente: a itens:varinha-pirotecnia (Gnerkli) e o itens:chapeu-feiticaria (Korboz).",
       "conexoes": "Montanhas a sudeste de Phandalin."
     },
     "acampamento-lenhadores": {
@@ -1881,6 +1959,7 @@
       ],
       "npcs": [],
       "perigos": "Grannoc (use bestiario:anacoreta-orc) comanda enxames de ramos secos — bestiario:ramo-espetos, bestiario:ramo-galhos e bestiario:ramo-vinhas — que defendem a mansão e atacam invasores na floresta. Stirges (bestiario:stirge) pendem das vigas do corredor escuro que leva à área W12.",
+      "tesouro": "Um quarto do piso superior guarda o itens:manto-de-brisa (pendurado num gancho) e o itens:bastao-imovel (num baú trancado magicamente, envolto em pano preto).",
       "conexoes": "Floresta de Neverwinter, próxima a ruínas élficas. Liga-se ao Círculo do Trovão ao norte."
     },
     "mina-ouro": {
@@ -1910,6 +1989,7 @@
       ],
       "npcs": [],
       "perigos": "bestiario:orc saqueiam o rancho. Três cavalos de montaria (bestiario:cavalo-montaria) estão no estábulo.",
+      "tesouro": "A itens:cota-malha-mithral de Alfonso está escondida na área B6 — ele a oferece pelo retorno seguro de sua vaca premiada, Petúnia.",
       "conexoes": "A leste, próximo a Conyberry. Ligado ao Santuário de Savras."
     },
     "santuario-savras": {
@@ -1937,6 +2017,7 @@
       ],
       "npcs": [],
       "perigos": "Carniçais anões (bestiario:carnical) vagam pelos salões — três mais um por personagem; reúnem-se na área A4 ao ouvirem as portas serem arrombadas. A bestiario:banshee Vyldara assombra o Salão Mal-Assombrado.",
+      "tesouro": "O baú trancado do regente (destrava com o anel de sinete dele) guarda o itens:elmo-temor e as itens:manoplas-forca-ogro.",
       "conexoes": "Um dia de viagem ao sul de Phandalin, por planícies. Portão levadiço e portas duplas trancadas (1h para arrombar)."
     },
     "fortaleza-espiral-gelo": {
