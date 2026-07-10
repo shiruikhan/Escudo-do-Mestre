@@ -4,14 +4,14 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, vazio, classeBadge } = window.Renderers._;
+  const { painelCard, vazio, classeBadge, textoPlano } = window.Renderers._;
 
   function listaGanchos(aventura) {
     const ganchos = aventura.ganchos || [];
     if (!ganchos.length) return vazio('Nenhum gancho cadastrado.');
     const cards = ganchos.map((g, i) => {
-      const fonte = typeof g === 'object' ? g.fonte : null;
-      const texto = typeof g === 'object' ? g.texto : g;
+      const fonte = textoPlano(typeof g === 'object' ? g.fonte : null, aventura);
+      const texto = textoPlano(typeof g === 'object' ? g.texto : g, aventura);
       const preview = (texto || '').slice(0, 120) + ((texto || '').length > 120 ? '…' : '');
       return `
         <li>
@@ -33,7 +33,7 @@
   function detalheGancho(aventura, id) {
     const g = (aventura.ganchos || [])[parseInt(id)];
     if (g == null) return vazio('Gancho não encontrado.');
-    const fonte = typeof g === 'object' ? g.fonte : null;
+    const fonte = textoPlano(typeof g === 'object' ? g.fonte : null, aventura);
     const texto = typeof g === 'object' ? g.texto : g;
     const corpo = `
       ${fonte ? `<p class="text-xs font-bold uppercase tracking-wider text-amber-500/80 mb-3">${escHtml(fonte)}</p>` : ''}

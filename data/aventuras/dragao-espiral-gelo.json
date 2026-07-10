@@ -1629,6 +1629,11 @@
       "id": "g8",
       "fonte": "npc:falcon",
       "texto": "\"Vi mais bestiario:orc na floresta ultimamente. Esses brutos abomináveis! Os orcs parecem estar aliados aos meio-orcs malignos que habitam a sudeste daqui. Esses meio-orcs são frequentemente vistos na companhia de pequenas criaturas conhecidas por rastejar sobre essas florestas.\""
+    },
+    {
+      "id": "g9",
+      "fonte": "Onde está o dragão? (role 1d20)",
+      "texto": "Role 1d20 sempre que os personagens chegarem a um local marcado no mapa ou se prepararem para partir dele (a primeira rolagem é feita quando deixam Phandalin pela primeira vez): 1 local:acampamento-lenhadores · 2 local:axeholm · 3 local:cabana-falcon · 4 local:colina-dragao · 5 Colinas de Metal Estelar · 6 Conyberry · 7 local:escavacao-anoes · 8 Estrada Alta · 9 local:fortaleza-espiral-gelo · 10 local:gruta-gnomos · 11 Leilon · 12 local:mansao-bosque · 13 local:mina-ouro · 14 Neverwinter · 15 local:phandalin · 16 local:rancho-caveira-manteiga · 17 local:santuario-savras · 18 local:serra-discordia · 19 local:torre-tempestades · 20 Trilha Triboar. Fora do covil, bestiario:cryovain examina o local do alto por um minuto ou dois e só desce se avistar algo saboroso; se perder mais de 10 PV, recua para a local:fortaleza-espiral-gelo até completar um descanso longo — só lá ele luta até a morte."
     }
   ],
   "missoes": [
@@ -1650,17 +1655,17 @@
       "recompensa": "50 PO (via npc:harbin-wester por item útil contra o dragão)",
       "objetivo": "Um clã recluso de bestiario:gnomo-rochas-recluso reside em uma pequena rede de cavernas nas montanhas a sudeste. Obtenha o que puder deles para derrotar bestiario:cryovain.",
       "localizacao": "Montanhas a sudeste de Phandalin",
-      "notas_dm": "Balanceado para personagens de 1º nível."
+      "notas_dm": "Balanceado para personagens de 1º nível. Um bestiario:mimico invadiu a gruta e vem devorando gnomos — foi ele que enlouqueceu o rei Korboz, que mantém o rei Gnerkli refém em seus aposentos. Provar a morte do mímico restaura a sanidade de Korboz."
     },
     {
       "id": "serra-da-discordia",
       "titulo": "Serra da Discórdia",
       "status": "Disponível",
       "nivel_sugerido": 1,
-      "recompensa": "A ser definida",
-      "objetivo": "A parteira local, acólita de Chauntea chamada npc:adabra-gwynn, vive sozinha em um moinho de vento. Verificar seu bem-estar e retornar a npc:harbin-wester.",
-      "localizacao": "Serra da Discórdia, ao redor de Phandalin",
-      "notas_dm": "Missão inicial balanceada para personagens de 1º nível."
+      "recompensa": "25 PO (via npc:harbin-wester)",
+      "objetivo": "A parteira local, acólita de Chauntea chamada npc:adabra-gwynn, vive sozinha em um moinho de vento alguns quilômetros ao sul de Phandalin. Com as aparições do dragão cada vez mais comuns, não é seguro para ela ficar sozinha. Pedir que Adabra retorne a Phandalin e, quando ela estiver segura, procurar npc:harbin-wester.",
+      "localizacao": "Serra da Discórdia, ao sul de Phandalin",
+      "notas_dm": "Missão inicial. Adabra se recusa a voltar para Phandalin, mas uma carta dela confirmando que está em segurança basta para completar a missão junto a Harbin."
     },
     {
       "id": "acampamento-lenhadores",
@@ -1671,6 +1676,16 @@
       "objetivo": "Nas entranhas da Floresta de Neverwinter há um acampamento de corte de madeira. npc:elmar-barthen preparou uma nova entrega de suprimentos. Leve-a com segurança para npc:tibor-wester e retorne com o aviso de entrega assinado.",
       "localizacao": "Floresta de Neverwinter, ~80 km ao norte de Phandalin",
       "notas_dm": "Balanceado para 3º nível. Personagens de 2º nível podem sobreviver sendo cautelosos. bestiario:ankheg infesta o acampamento. npc:tibor-wester está trancado no escritório norte."
+    },
+    {
+      "id": "rancho-caveira-manteiga",
+      "titulo": "Rancho Caveira de Manteiga",
+      "status": "Disponível",
+      "nivel_sugerido": 3,
+      "recompensa": "Cota de malha de mithral de Alfonso (pelo retorno seguro da vaca Petúnia); se Alfonso estiver morto, 100 PO (via npc:harbin-wester, com a prova da morte)",
+      "objetivo": "bestiario:orc atacaram o Rancho Caveira de Manteiga, 8 km a leste de Conyberry, ao longo da Trilha Triboar. Viaje para lá de imediato, avalie os danos e ajude como puder. O proprietário, Alfonso \"Fonsão\" Kalazorn, é um xerife aposentado que pode recompensar os esforços.",
+      "localizacao": "8 km a leste de Conyberry, na Trilha Triboar",
+      "notas_dm": "Missão subsequente — entra no quadro após duas missões iniciais concluídas. Balanceado para 3º nível; personagens de 2º nível sobrevivem se evitarem combate e focarem em resgatar Alfonso. A cota de malha de mithral está escondida na área B6."
     },
     {
       "id": "mina-ouro-pe-montanha",
@@ -1697,10 +1712,20 @@
       "titulo": "Axeholm",
       "status": "Disponível",
       "nivel_sugerido": 5,
-      "recompensa": "Tesouros da fortaleza",
-      "objetivo": "Axeholm é uma fortaleza anã a 25 km ao sul de Phandalin, assombrada por bestiario:banshee (Vyldara) e bestiario:carnical. Limpar a fortaleza e silenciar o espírito da banshee.",
+      "recompensa": "250 PO (via npc:harbin-wester)",
+      "objetivo": "Axeholm é uma antiga fortaleza anã selada dentro de uma montanha a 25 km ao sul de Phandalin, assombrada por bestiario:banshee (Vyldara) e bestiario:carnical. Se um ataque do dragão for iminente, o povo de Phandalin pode precisar evacuar para lá: abrir a fortaleza e torná-la segura para habitação, depois retornar ao npc:harbin-wester.",
       "localizacao": "25 km ao sul de Phandalin",
-      "notas_dm": "Balanceado para 5º nível. Personagens de 3º ou 4º nível podem sobreviver sendo cautelosos. A bestiario:banshee detecta a chegada dos aventureiros com Detectar Vida."
+      "notas_dm": "Missão subsequente final — entra no quadro após duas missões subsequentes concluídas. Balanceado para 5º nível. Personagens de 3º ou 4º nível podem sobreviver sendo cautelosos. A bestiario:banshee detecta a chegada dos aventureiros com Detectar Vida."
+    },
+    {
+      "id": "mansao-bosque",
+      "titulo": "Mansão do Bosque",
+      "status": "Disponível",
+      "nivel_sugerido": 5,
+      "recompensa": "Botas élficas (oferecidas por npc:falcon ao completar a missão)",
+      "objetivo": "Os bestiario:orc foram dominados por feiticeiros malignos na Floresta de Neverwinter e são vistos em números crescentes perto da Cabana de Caça de npc:falcon. Os conjuradores habitam uma mansão em ruínas. npc:falcon precisa de alguém para um ataque preventivo: destruir o mal que se alastra pela Mansão do Bosque.",
+      "localizacao": "Floresta de Neverwinter, a alguns quilômetros da Cabana de Caça de Falcon",
+      "notas_dm": "Missão subsequente final — entra no quadro após duas missões subsequentes concluídas. Balanceado para 5º–6º nível; personagens de 3º ou 4º sobrevivem se descansarem entre encontros. Conduza pela Cabana de Caça de Falcon antes da mansão. Grannoc (use bestiario:anacoreta-orc) comanda os ramos secos. No dia seguinte ao ataque à mansão, os anacoretas contra-atacam a cabana com bestiario:gorthok e vinte bestiario:orc."
     },
     {
       "id": "circulo-trovao",

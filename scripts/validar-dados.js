@@ -3,8 +3,9 @@
 //
 // 1. Verifica se todo JSON em data/ tem sintaxe válida.
 // 2. Verifica se cada entrada de data/aventuras.json aponta para um arquivo existente.
-// 3. Verifica se todo marcador de drill-down (npc:, bestiario:, itens:, item:) usado
-//    nos textos de cada aventura corresponde a uma chave real na respectiva seção.
+// 3. Verifica se todo marcador de drill-down (npc:, bestiario:, itens:/item:,
+//    locais:/local:) usado nos textos de cada aventura corresponde a uma chave
+//    real na respectiva seção.
 //
 // Uso: node scripts/validar-dados.js  (ou: npm run validar-dados)
 // Sai com código 1 se encontrar algum erro — pode ser usado em CI.
@@ -92,7 +93,7 @@ function main() {
 
   // 3. Marcadores de drill-down (npc:/bestiario:/itens:/item:) apontam para chaves existentes
   const PREFIXO_PARA_SECAO = carregarPrefixoParaSecao();
-  const MARCADOR_RE = /(npc|bestiario|itens|item):([a-z0-9-]+)/g;
+  const MARCADOR_RE = /(npc|bestiario|itens|item|locais|local):([a-z0-9-]+)/g;
 
   const aventurasDir = path.join(DATA_DIR, 'aventuras');
   if (fs.existsSync(aventurasDir)) {
@@ -105,6 +106,7 @@ function main() {
         npcs: new Set(Object.keys(aventura.npcs || {})),
         bestiario: new Set(Object.keys(aventura.bestiario || {})),
         itens: new Set(Object.keys(aventura.itens || {})),
+        locais: new Set(Object.keys(aventura.locais || {})),
       };
 
       const texto = JSON.stringify(aventura);

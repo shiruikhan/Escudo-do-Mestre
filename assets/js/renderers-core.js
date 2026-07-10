@@ -10,20 +10,26 @@
 
   const escHtml = window.escHtml;
 
-  // Mapeia o prefixo usado nos textos (npc:, bestiario:, itens:) para a
+  // Mapeia o prefixo usado nos textos (npc:, bestiario:, itens:, local:) para a
   // chave da seção correspondente no JSON da aventura.
   const PREFIXO_PARA_SECAO = {
     npc: 'npcs',
     bestiario: 'bestiario',
     itens: 'itens',
     item: 'itens',
+    locais: 'locais',
+    local: 'locais',
   };
+
+  // Alternação com os prefixos mais longos primeiro (itens antes de item,
+  // locais antes de local) para o regex consumir o prefixo inteiro.
+  const PREFIXOS_RE = '(npc|bestiario|itens|item|locais|local)';
 
   // Converte texto com marcadores (ex.: "fale com npc:harbin-wester")
   // em HTML com botões de drill-down. Texto é escapado; nomes idem.
   function parseLinks(texto, aventura) {
     if (!texto) return '';
-    const re = /(npc|bestiario|itens|item):([a-z0-9\-]+)/g;
+    const re = new RegExp(PREFIXOS_RE + ':([a-z0-9\\-]+)', 'g');
     let out = '';
     let ultimo = 0;
     let m;
@@ -113,8 +119,20 @@
     </div>`;
   }
 
+  // Versão texto-puro de parseLinks para prévias: troca cada marcador pelo
+  // nome da entidade, sem gerar botões (evita botão dentro de botão).
+  function textoPlano(texto, aventura) {
+    if (!texto) return '';
+    const re = new RegExp(PREFIXOS_RE + ':([a-z0-9\\-]+)', 'g');
+    return texto.replace(re, (tudo, prefixo, id) => {
+      const secao = PREFIXO_PARA_SECAO[prefixo];
+      const obj = secao && aventura[secao] ? aventura[secao][id] : null;
+      return obj ? (obj.nome || id) : tudo;
+    });
+  }
+
   function chip(marker, aventura) {
-    const m = /^(npc|bestiario|itens|item):([a-z0-9\-]+)$/.exec(marker || '');
+    const m = new RegExp('^' + PREFIXOS_RE + ':([a-z0-9\\-]+)$').exec(marker || '');
     if (!m) return '';
     const secao = PREFIXO_PARA_SECAO[m[1]];
     const id = m[2];
@@ -195,6 +213,7 @@
       itemListaCard,
       vazio,
       campoDestaque,
+      textoPlano,
       chip,
       grupoChips,
       classeBadge,

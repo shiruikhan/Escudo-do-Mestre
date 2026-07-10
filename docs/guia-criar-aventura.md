@@ -29,15 +29,16 @@ Um arquivo em `data/aventuras/` é um único objeto com estas seções (todas ex
 
 ## Marcadores de drill-down
 
-Dentro dos campos de texto livre, você pode linkar para um NPC, monstro ou item usando `prefixo:id`:
+Dentro dos campos de texto livre, você pode linkar para um NPC, monstro, item ou local usando `prefixo:id`:
 
 | Prefixo | Aponta para | Exemplo |
 |---|---|---|
 | `npc:` | `npcs` | `npc:elara-vidente` |
 | `bestiario:` | `bestiario` | `bestiario:goblin-batedor` |
 | `itens:` ou `item:` | `itens` (aliases — vão para a mesma seção) | `itens:amuleto-da-mare` |
+| `local:` ou `locais:` | `locais` (aliases — vão para a mesma seção) | `local:torre-da-mare` |
 
-**Não existe** marcador para `locais:`, `missoes:` ou `ganchos:` — esses três só podem ser mencionados como texto simples, nunca como link clicável. `id` deve ser minúsculo, apenas `a-z0-9-` (sem acento, espaço ou maiúscula) — é o mesmo texto usado como chave do objeto na seção correspondente.
+**Não existe** marcador para `missoes:` ou `ganchos:` — esses dois só podem ser mencionados como texto simples, nunca como link clicável. `id` deve ser minúsculo, apenas `a-z0-9-` (sem acento, espaço ou maiúscula) — é o mesmo texto usado como chave do objeto na seção correspondente.
 
 Nem todo campo de texto passa pelo parser de marcadores — a tabela abaixo (extraída lendo cada renderer) diz onde funciona:
 
@@ -52,7 +53,7 @@ Nem todo campo de texto passa pelo parser de marcadores — a tabela abaixo (ext
 | `locais.resumo`, `.perigos`, `.tesouro`, `.conexoes` | Sim |
 | `locais.npcs[]`, `.criaturas[]` | Marcador **exato** (o item inteiro do array é `"npc:id"` ou `"bestiario:id"`, não embutido em frase) — vira chip clicável, não link inline |
 | `locais.tipo`, `.nivel_sugerido` | Não |
-| `ganchos[].texto` | Sim — mas a prévia na lista mostra o marcador cru (`...fale com npc:foo...`), só a tela de detalhe resolve em botão |
+| `ganchos[].texto` | Sim — a prévia na lista resolve o marcador para o nome da entidade (texto simples); a tela de detalhe resolve em botão |
 | `missoes.objetivo`, `.recompensa`, `.notas_dm` | Sim |
 | `missoes.localizacao` | Não |
 
@@ -64,7 +65,7 @@ O validador (`npm run validar-dados`) confere se todo marcador usado aponta para
 
 ## Campos existentes mas ainda não exibidos pela UI
 
-Durante a auditoria dos renderers encontramos 4 campos usados nas aventuras já publicadas que **não aparecem em lugar nenhum da tela** (o renderer correspondente nunca lê essas chaves): `bestiario.vulnerabilidades_dano`, `npcs.notas_dm`, `npcs.ver_bestiario`, `itens.historico`. Provavelmente foram adicionados nos dados esperando um suporte no renderer que nunca chegou a ser escrito. Preencha-os mesmo assim se tiver a informação (não custa nada e cobre o dia em que alguém adicionar o suporte), mas não conte com eles aparecendo para o Mestre hoje.
+Durante a auditoria dos renderers encontramos campos usados nas aventuras já publicadas que **não aparecem em lugar nenhum da tela** (o renderer correspondente nunca lê essas chaves): `npcs.notas_dm`, `npcs.ver_bestiario`, `itens.historico` (`bestiario.vulnerabilidades_dano` estava nessa lista, mas ganhou suporte no renderer e hoje é exibido). Provavelmente foram adicionados nos dados esperando um suporte no renderer que nunca chegou a ser escrito. Preencha-os mesmo assim se tiver a informação (não custa nada e cobre o dia em que alguém adicionar o suporte), mas não conte com eles aparecendo para o Mestre hoje.
 
 ## Prompt pronto para gerar uma aventura com IA
 
@@ -77,9 +78,9 @@ campo tem uma descrição de onde/como é exibido no app. Regras não-negociáve
 
 1. Toda chave de bestiario/npcs/itens/locais é kebab-case: só a-z, 0-9 e hífen.
 2. Marcadores de drill-down só existem para "npc:", "bestiario:", "itens:"
-   (ou "item:") — NUNCA invente "local:", "missao:" ou "gancho:". Um marcador
-   só é válido se o id apontar para uma chave que você mesmo criou em
-   bestiario/npcs/itens neste mesmo arquivo.
+   (ou "item:") e "local:" (ou "locais:") — NUNCA invente "missao:" ou
+   "gancho:". Um marcador só é válido se o id apontar para uma chave que
+   você mesmo criou em bestiario/npcs/itens/locais neste mesmo arquivo.
 3. Retorne APENAS o JSON, sem comentários, sem markdown ao redor.
 4. Preencha o máximo de campos que o material de origem permitir — campos
    sem informação no módulo podem ficar de fora (nenhum é obrigatório

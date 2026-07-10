@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://escudo-do-mestre.local/templates/aventura.schema.json",
   "title": "Aventura — Escudo do Mestre",
-  "description": "Schema de um arquivo data/aventuras/<id>.json. Gerado a partir do código real (assets/js/renderers-*.js), não de documentação solta — cada campo abaixo é lido em algum lugar do app, e isso está anotado na descrição. Leia docs/guia-criar-aventura.md para o passo a passo e para a sintaxe de marcadores de drill-down (npc:/bestiario:/itens:/item:).",
+  "description": "Schema de um arquivo data/aventuras/<id>.json. Gerado a partir do código real (assets/js/renderers-*.js), não de documentação solta — cada campo abaixo é lido em algum lugar do app, e isso está anotado na descrição. Leia docs/guia-criar-aventura.md para o passo a passo e para a sintaxe de marcadores de drill-down (npc:/bestiario:/itens:/item:/locais:/local:).",
   "type": "object",
   "required": ["id", "titulo"],
   "additionalProperties": false,
@@ -80,7 +80,7 @@
         "nome": { "type": "string" },
         "descricao": {
           "type": "string",
-          "description": "Suporta marcadores de drill-down: npc:id, bestiario:id, itens:id, item:id."
+          "description": "Suporta marcadores de drill-down: npc:id, bestiario:id, itens:id, item:id, locais:id, local:id."
         }
       }
     },
@@ -209,7 +209,7 @@
         "fonte": { "type": "string", "description": "Ex.: \"Rumor de Phandalin — Narth, um velho fazendeiro\"." },
         "texto": {
           "type": "string",
-          "description": "Suporta marcadores de drill-down. ATENÇÃO: a prévia na lista mostra o texto com o marcador cru (ex.: \"...fale com npc:foo...\") sem resolvê-lo — só a tela de detalhe resolve o marcador em botão. Evite colocar marcadores nos primeiros ~120 caracteres se isso incomodar visualmente na lista."
+          "description": "Suporta marcadores de drill-down. A prévia na lista resolve marcadores para o nome da entidade (texto simples); a tela de detalhe os resolve em botões clicáveis."
         }
       }
     },
