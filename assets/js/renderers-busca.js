@@ -13,8 +13,7 @@
       idx.push({ tipo: 'bestiario', id, label: 'Monstro', nome: b.nome, sub: b.tipo_alinhamento,
         campos: [normalizar(b.nome), normalizar(b.tipo_alinhamento)] });
     for (const [id, n] of Object.entries(aventura.npcs || {}))
-      idx.push({ tipo: 'npcs', id, label: 'NPC', nome: n.nome, sub: n.papel || n.local,
-        campos: [normalizar(n.nome), normalizar(n.papel), normalizar(n.local)] });
+      idx.push({ tipo: 'npcs', id, label: 'NPC', nome: n.nome, sub: tp(n.papel || n.local),        campos: [normalizar(n.nome), normalizar(tp(n.papel)), normalizar(tp(n.local))] });
     for (const [id, i] of Object.entries(aventura.itens || {}))
       idx.push({ tipo: 'itens', id, label: 'Item', nome: i.nome, sub: i.tipo,
         campos: [normalizar(i.nome), normalizar(i.tipo), normalizar(tp(i.efeito))] });
@@ -22,11 +21,11 @@
       idx.push({ tipo: 'locais', id, label: 'Local', nome: l.nome, sub: l.tipo,
         campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(tp(l.resumo))] });
     (aventura.missoes || []).forEach((m, i) =>
-      idx.push({ tipo: 'missoes', id: String(i), label: 'Missão', nome: m.titulo, sub: m.localizacao,
-        campos: [normalizar(m.titulo), normalizar(tp(m.objetivo)), normalizar(m.localizacao)] }));
+      idx.push({ tipo: 'missoes', id: String(i), label: 'Missão', nome: m.titulo, sub: tp(m.localizacao),
+        campos: [normalizar(m.titulo), normalizar(tp(m.objetivo)), normalizar(tp(m.localizacao))] }));
     (aventura.ganchos || []).forEach((g, i) => {
       const texto = tp(typeof g === 'object' ? g.texto : g);
-      const fonte = typeof g === 'object' ? g.fonte : '';
+      const fonte = tp(typeof g === 'object' ? g.fonte : '');
       idx.push({ tipo: 'ganchos', id: String(i), label: 'Gancho', nome: fonte || 'Gancho',
         sub: (texto || '').slice(0, 70), campos: [normalizar(texto), normalizar(fonte)] });
     });
@@ -86,7 +85,7 @@
     if (ganchos.length) {
       md.push('## Ganchos');
       ganchos.forEach(g => {
-        const fonte = typeof g === 'object' ? g.fonte : null;
+        const fonte = tp(typeof g === 'object' ? g.fonte : null);
         const texto = tp(typeof g === 'object' ? g.texto : g);
         if (fonte) md.push(`**${fonte}**`);
         md.push(texto || ''); sep();
@@ -97,7 +96,7 @@
       md.push('## Missões');
       aventura.missoes.forEach(m => {
         md.push(`### ${m.titulo} [${m.status || '—'}]`);
-        if (m.localizacao) md.push(`*${m.localizacao}*`);
+        if (m.localizacao) md.push(`*${tp(m.localizacao)}*`);
         if (m.objetivo) { sep(); md.push(tp(m.objetivo)); }
         if (m.recompensa) md.push(`**Recompensa:** ${tp(m.recompensa)}`);
         if (m.notas_dm) md.push(`> 🗒 ${tp(m.notas_dm)}`);
@@ -124,8 +123,8 @@
       md.push('## NPCs');
       npcs.forEach(n => {
         md.push(`### ${n.nome}`);
-        if (n.papel) md.push(`*${n.papel}*`);
-        if (n.local) md.push(`**Local:** ${n.local}`);
+        if (n.papel) md.push(`*${tp(n.papel)}*`);
+        if (n.local) md.push(`**Local:** ${tp(n.local)}`);
         if (n.descricao) { sep(); md.push(tp(n.descricao)); }
         if (n.motivacao) md.push(`**Motivação:** ${tp(n.motivacao)}`);
         if (n.segredos) md.push(`**Segredos:** ${tp(n.segredos)}`);

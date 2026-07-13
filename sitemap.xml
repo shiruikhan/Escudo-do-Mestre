@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Vazio de propósito: site de uso pessoal, sem URLs para indexação. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://shiruikhan.github.io/Escudo-do-Mestre/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
 </urlset>

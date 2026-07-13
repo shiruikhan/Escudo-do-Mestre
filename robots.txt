@@ -1,4 +1,11 @@
-User-agent: *
-Allow: /
+# Site de uso pessoal — não indexar.
+# As páginas HTML continuam rastreáveis de propósito: é o único jeito de os
+# robôs verem a meta "noindex" e REMOVEREM o que já foi indexado.
+# Os diretórios de arquivos (dados, JS, docs) ficam bloqueados por completo.
 
-Sitemap: https://shiruikhan.github.io/Escudo-do-Mestre/sitemap.xml
+User-agent: *
+Disallow: /data/
+Disallow: /assets/
+Disallow: /templates/
+Disallow: /scripts/
+Disallow: /docs/
