@@ -1,8 +1,14 @@
 // Escudo do Mestre — Gerenciador de Estado Global, Roteador SPA e Histórico de Navegação
 //
 // Carrega o JSON da aventura (id vindo da query string), monta a barra de
-// abas e gerencia a navegação reativa drill-down / drill-up com pilha de
-// histórico. Depende de window.Renderers (renderers.js).
+// abas e gerencia a navegação reativa drill-down / drill-up.
+//
+// Roteamento por hash: o fragmento da URL é a fonte de verdade da navegação.
+//   #bestiario            → aba
+//   #npcs/sildar          → detalhe (tipo/id)
+// Cada navegação vira uma entrada real no histórico do navegador, então o
+// botão físico "voltar" do celular funciona, e uma ficha específica pode ser
+// favoritada ou compartilhada (aventura.html?id=x#npcs/sildar).
 
 (function () {
   'use strict';
@@ -23,10 +29,12 @@
     indice: [],
     aba: 'bestiario',
     foco: null,
-    historico: [],
+    historico: [],   // pilha de hashes anteriores — alimenta o botão "Voltar"
   };
 
   const el = {};
+  let hashAnterior = '';
+  let resetPilha = false;
 
   function getParam(nome) {
     return new URLSearchParams(window.location.search).get(nome);
@@ -37,6 +45,67 @@
     return function (...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
   }
 
+  // ---------- Hash ----------
+  function hashAtual() {
+    return decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
+  }
+
+  function parseHash(h) {
+    if (!h) return null;
+    const barra = h.indexOf('/');
+    if (barra > 0) {
+      const tipo = h.slice(0, barra);
+      const id = h.slice(barra + 1);
+      if (id && window.Renderers.detalhes[tipo]) return { foco: { tipo, id } };
+      return null;
+    }
+    if (ABAS.some(a => a.id === h)) return { aba: h };
+    return null;
+  }
+
+  function hashDoEstado() {
+    return state.foco ? state.foco.tipo + '/' + state.foco.id : state.aba;
+  }
+
+  function navegar(novoHash) {
+    if (hashAtual() === novoHash) {
+      if (resetPilha) { state.historico = []; resetPilha = false; }
+      render();
+      return;
+    }
+    window.location.hash = novoHash; // dispara hashchange, que aplica e renderiza
+  }
+
+  function aplicarHash() {
+    const h = hashAtual();
+    const alvo = parseHash(h);
+
+    // Pilha do botão "Voltar": se o novo hash é o topo da pilha, foi um
+    // retorno (pop); senão, é navegação para frente (push do anterior).
+    // Trocar de aba zera a pilha (contexto novo).
+    if (resetPilha) {
+      state.historico = [];
+      resetPilha = false;
+    } else if (state.historico.length && state.historico[state.historico.length - 1] === h) {
+      state.historico.pop();
+    } else if (hashAnterior && hashAnterior !== h) {
+      state.historico.push(hashAnterior);
+    }
+    hashAnterior = h;
+
+    if (alvo && alvo.foco) {
+      state.foco = alvo.foco;
+      if (ABAS.some(a => a.id === alvo.foco.tipo)) state.aba = alvo.foco.tipo;
+    } else if (alvo && alvo.aba) {
+      state.aba = alvo.aba;
+      state.foco = null;
+    } else {
+      state.foco = null; // hash vazio/inválido → lista da aba atual
+    }
+    render();
+  }
+
+  // ---------- Posição salva ----------
   function salvarPosicao() {
     const id = getParam('id');
     if (!id) return;
@@ -52,6 +121,7 @@
     } catch (_) {}
   }
 
+  // ---------- Carga de dados ----------
   async function carregarAventura(id) {
     const idx = await fetch('data/aventuras.json').then(r => {
       if (!r.ok) throw new Error('Manifest não encontrado (HTTP ' + r.status + ')');
@@ -84,6 +154,7 @@
     return dados;
   }
 
+  // ---------- Render ----------
   function montarAbas() {
     el.tabs.innerHTML = ABAS.map(a => `
       <button type="button" class="tab-btn" data-aba="${a.id}" aria-label="${a.rotulo}" title="${a.rotulo}">
@@ -118,12 +189,20 @@
     salvarPosicao();
   }
 
+  // ---------- Navegação ----------
   function irParaAba(aba) {
-    state.aba = aba;
-    state.foco = null;
-    state.historico = [];
     if (el.busca) el.busca.value = '';
-    render();
+    resetPilha = true;
+    state.aba = aba;
+    navegar(aba);
+  }
+
+  function drillDown(tipo, id) {
+    navegar(tipo + '/' + id);
+  }
+
+  function voltar() {
+    if (state.historico.length) window.history.back();
   }
 
   // Renderiza os resultados da busca (ou sugestões de acesso rápido se vazia).
@@ -140,24 +219,72 @@
     window.scrollTo(0, 0);
   }
 
-  function drillDown(tipo, id) {
-    state.historico.push({ aba: state.aba, foco: state.foco });
-    state.foco = { tipo, id };
-    if (ABAS.some(a => a.id === tipo)) state.aba = tipo;
-    render();
-  }
-
-  function voltar() {
-    const anterior = state.historico.pop();
-    if (!anterior) return;
-    state.aba = anterior.aba;
-    state.foco = anterior.foco;
-    if (anterior.foco && ABAS.some(a => a.id === anterior.foco.tipo)) {
-      state.aba = anterior.foco.tipo;
+  // ---------- Rolagem de dados ----------
+  function rolarDado(btn) {
+    const n = Math.min(parseInt(btn.dataset.n, 10) || 1, 40);
+    const faces = parseInt(btn.dataset.faces, 10) || 6;
+    const mod = parseInt(btn.dataset.mod || '0', 10) || 0;
+    const rolagens = [];
+    for (let i = 0; i < n; i++) rolagens.push(1 + Math.floor(Math.random() * faces));
+    const soma = rolagens.reduce((a, b) => a + b, 0) + mod;
+    const detalhe = n > 1 ? ` [${rolagens.join(' + ')}]` : '';
+    const modTxt = mod ? (mod > 0 ? ` + ${mod}` : ` − ${Math.abs(mod)}`) : '';
+    const notacao = `${n}d${faces}${mod ? (mod > 0 ? '+' + mod : mod) : ''}`;
+    if (window.mostrarToast) {
+      window.mostrarToast(`\u{1F3B2} ${notacao}${detalhe}${modTxt} = <strong>${soma}</strong>`, 3500);
     }
+  }
+
+  // ---------- Estado de sessão (missões e PV) ----------
+  const CICLO_STATUS = ['Disponível', 'Em Andamento', 'Concluída'];
+
+  function lerMapa(chave) {
+    try { return JSON.parse(localStorage.getItem(chave)) || {}; } catch (_) { return {}; }
+  }
+
+  function gravarMapa(chave, mapa) {
+    try {
+      if (Object.keys(mapa).length) localStorage.setItem(chave, JSON.stringify(mapa));
+      else localStorage.removeItem(chave);
+    } catch (_) {}
+  }
+
+  function ciclarStatus(btn) {
+    const idMissao = btn.dataset.id;
+    const chave = 'escudo_missao_' + (state.aventura.id || '');
+    const mapa = lerMapa(chave);
+    const m = window.Renderers._.resolverLista(state.aventura, 'missoes', idMissao) || {};
+    const atual = mapa[idMissao] || m.status || CICLO_STATUS[0];
+    const idxAtual = CICLO_STATUS.findIndex(s =>
+      atual.toLowerCase().includes(s.toLowerCase().slice(0, 6)));
+    const proximo = CICLO_STATUS[(idxAtual + 1) % CICLO_STATUS.length];
+    if (proximo === m.status) delete mapa[idMissao];
+    else mapa[idMissao] = proximo;
+    gravarMapa(chave, mapa);
     render();
   }
 
+  function ajustarPv(btn) {
+    const wrap = btn.closest('.pv-tracker');
+    if (!wrap) return;
+    const idMonstro = wrap.dataset.id;
+    const max = parseInt(wrap.dataset.max, 10);
+    const chave = 'escudo_pv_' + (state.aventura.id || '');
+    const mapa = lerMapa(chave);
+    let atual = mapa[idMonstro] != null ? mapa[idMonstro] : max;
+    if (btn.classList.contains('pv-reset')) atual = max;
+    else atual = Math.max(0, Math.min(max, atual + (parseInt(btn.dataset.delta, 10) || 0)));
+    if (atual === max) delete mapa[idMonstro];
+    else mapa[idMonstro] = atual;
+    gravarMapa(chave, mapa);
+    const val = wrap.querySelector('.pv-atual');
+    if (val) {
+      val.textContent = atual;
+      val.classList.toggle('pv-baixo', atual <= max / 4);
+    }
+  }
+
+  // ---------- Eventos ----------
   function ligarEventos() {
     el.tabs.addEventListener('click', e => {
       const btn = e.target.closest('.tab-btn');
@@ -167,6 +294,15 @@
     el.voltar.addEventListener('click', voltar);
 
     el.conteudo.addEventListener('click', e => {
+      const dado = e.target.closest('.dice-link');
+      if (dado) { rolarDado(dado); return; }
+
+      const pvBtn = e.target.closest('.pv-btn');
+      if (pvBtn) { ajustarPv(pvBtn); return; }
+
+      const badge = e.target.closest('.badge-toggle');
+      if (badge) { ciclarStatus(badge); return; }
+
       const irAba = e.target.closest('.goto-aba');
       if (irAba) { irParaAba(irAba.dataset.aba); return; }
 
@@ -209,14 +345,10 @@
       });
     }
 
-    window.addEventListener('popstate', () => {
-      if (state.historico.length) {
-        voltar();
-        history.pushState(null, '', '');
-      }
-    });
+    window.addEventListener('hashchange', aplicarHash);
   }
 
+  // ---------- Init ----------
   async function init() {
     el.tabs = document.getElementById('tabs');
     el.conteudo = document.getElementById('conteudo');
@@ -260,8 +392,21 @@
     if (el.exportar) el.exportar.classList.remove('hidden');
     montarAbas();
     ligarEventos();
-    restaurarPosicao();
-    history.pushState(null, '', '');
+
+    // Deep link tem prioridade; sem hash, restaura a última posição salva.
+    const alvoInicial = parseHash(hashAtual());
+    if (alvoInicial) {
+      if (alvoInicial.foco) {
+        state.foco = alvoInicial.foco;
+        if (ABAS.some(a => a.id === alvoInicial.foco.tipo)) state.aba = alvoInicial.foco.tipo;
+      } else {
+        state.aba = alvoInicial.aba;
+      }
+    } else {
+      restaurarPosicao();
+    }
+    window.history.replaceState(null, '', '#' + hashDoEstado());
+    hashAnterior = hashAtual();
     render();
   }
 

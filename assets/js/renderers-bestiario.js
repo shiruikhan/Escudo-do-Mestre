@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, linha, listaBlocos, dicParaArray, itemListaCard, vazio } = window.Renderers._;
+  const { painelCard, linha, listaBlocos, dicParaArray, itemListaCard, vazio, marcarDados, lerSessao } = window.Renderers._;
 
   function listaBestiario(aventura) {
     const itens = dicParaArray(aventura.bestiario)
@@ -15,6 +15,25 @@
       `ND ${b.nd ?? '?'} · CA ${b.ca ?? '?'} · PV ${b.pv ?? '?'}`,
     ])).join('');
     return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+  }
+
+  // Rastreador de PV da sessão: mostra o PV atual (override do localStorage,
+  // gravado pelo app.js) com botões de ajuste. Só aparece quando pv é numérico.
+  function trackerPv(aventura, id, b) {
+    const max = parseInt(b.pv, 10);
+    if (!Number.isFinite(max)) return '';
+    const pvs = lerSessao('pv', aventura.id || '');
+    const atual = pvs[id] != null ? pvs[id] : max;
+    const baixo = atual <= max / 4 ? ' pv-baixo' : '';
+    return `
+      <div class="pv-tracker" data-id="${escHtml(id)}" data-max="${max}">
+        <button type="button" class="pv-btn" data-delta="-5" aria-label="Menos 5 PV">−5</button>
+        <button type="button" class="pv-btn" data-delta="-1" aria-label="Menos 1 PV">−1</button>
+        <div class="pv-valor"><span class="pv-atual${baixo}">${atual}</span><span class="pv-max">/${max}</span></div>
+        <button type="button" class="pv-btn" data-delta="1" aria-label="Mais 1 PV">+1</button>
+        <button type="button" class="pv-btn" data-delta="5" aria-label="Mais 5 PV">+5</button>
+        <button type="button" class="pv-btn pv-reset" aria-label="Restaurar PV" title="Restaurar PV">&#8634;</button>
+      </div>`;
   }
 
   function detalheBestiario(aventura, id) {
@@ -32,7 +51,7 @@
     const caLinha = b.ca != null
       ? `CA ${escHtml(b.ca)}${b.ca_descricao ? ` (${escHtml(b.ca_descricao)})` : ''}` : '';
     const pvLinha = b.pv != null
-      ? `PV ${escHtml(b.pv)}${b.pv_formula ? ` (${escHtml(b.pv_formula)})` : ''}` : '';
+      ? `PV ${escHtml(b.pv)}${b.pv_formula ? ` (${marcarDados(escHtml(b.pv_formula))})` : ''}` : '';
 
     const listaTexto = (rotulo, arr) =>
       arr && arr.length
@@ -54,6 +73,8 @@
         ${b.percepcao_passiva != null ? `<span>Perc. Passiva ${escHtml(b.percepcao_passiva)}</span>` : ''}
         ${b.nd != null ? `<span>ND ${escHtml(b.nd)}${b.xp != null ? ` (${escHtml(b.xp)} XP)` : ''}</span>` : ''}
       </div>
+
+      ${trackerPv(aventura, id, b)}
 
       <div class="stat-divider"></div>
       <div class="stat-grid">${grid}</div>

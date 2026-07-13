@@ -25,5 +25,8 @@ jobs:
       - name: Validar dados (JSON + marcadores + sw.js)
         run: npm run validar-dados
 
+      - name: Testes unitários (renderers)
+        run: npm test
+
       - name: Conferir CORE_ASSETS do sw.js
         run: npm run check-sw

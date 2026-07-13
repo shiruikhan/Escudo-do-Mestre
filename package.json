@@ -8,7 +8,8 @@
     "watch:css": "tailwindcss -i ./assets/css/tailwind-src.css -o ./assets/css/tailwind.css --watch",
     "validar-dados": "node scripts/validar-dados.js",
     "gerar-sw": "node scripts/gerar-sw.js",
-    "check-sw": "node scripts/gerar-sw.js --check"
+    "check-sw": "node scripts/gerar-sw.js --check",
+    "test": "node scripts/testes.js"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.19"

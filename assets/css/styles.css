@@ -222,3 +222,115 @@ html.light .stat-cell .valor { color: #18181b; }
 html.light .res-tag { color: #92400e; background: rgba(180, 83, 9, .08); border-color: rgba(180, 83, 9, .3); }
 html.light .chip-link { color: #92400e; background: rgba(180, 83, 9, .08); border-color: rgba(180, 83, 9, .3); }
 html.light .drill-link:active { color: #78350f; }
+
+/* ---------- Acessibilidade: foco visível para navegação por teclado ---------- */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--cor-ambar);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.tab-btn:focus-visible,
+.chip-link:focus-visible { border-radius: 9999px; }
+
+/* ---------- Rolagem de dados inline (2d6, 1d8+3...) ---------- */
+.dice-link {
+  display: inline;
+  color: #7dd3fc;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+.dice-link:active { color: #bae6fd; }
+html.light .dice-link { color: #0369a1; }
+html.light .dice-link:active { color: #075985; }
+
+/* ---------- Toast flutuante (resultado de dados, aviso de atualização) ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.25rem;
+  transform: translate(-50%, 150%);
+  max-width: min(92vw, 26rem);
+  background: var(--cor-painel);
+  color: #fafafa;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .45);
+  z-index: 50;
+  transition: transform .25s ease, opacity .25s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.toast.visivel {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.toast strong { color: var(--cor-ambar); font-size: 1.05rem; }
+.toast-acao {
+  margin-left: .5rem;
+  color: #1c1917;
+  background: var(--cor-ambar);
+  border: none;
+  border-radius: 9999px;
+  padding: .25rem .75rem;
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+html.light .toast { color: #18181b; }
+
+/* ---------- Rastreador de PV (sessão de combate) ---------- */
+.pv-tracker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+}
+html.light .pv-tracker { background: #f4f4f5; }
+.pv-btn {
+  min-width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-painel);
+  color: #d4d4d8;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pv-btn:active { background: #27272a; }
+html.light .pv-btn { color: #3f3f46; }
+html.light .pv-btn:active { background: #e4e4e7; }
+.pv-valor {
+  min-width: 4.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.pv-atual { font-size: 1.25rem; font-weight: 800; color: #4ade80; }
+.pv-atual.pv-baixo { color: #f87171; }
+html.light .pv-atual { color: #15803d; }
+html.light .pv-atual.pv-baixo { color: #b91c1c; }
+.pv-max { font-size: 0.8rem; color: #71717a; margin-left: 2px; }
+
+/* Badge de status clicável no detalhe da missão */
+.badge-toggle { cursor: pointer; }
+.badge-toggle:active { filter: brightness(1.3); }

@@ -26,9 +26,9 @@ A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links cl
 
 | Aventura | Status |
 |---|---|
-| Dragão da Espiral de Gelo | Em desenvolvimento |
-| A Mina Perdida de Phandelver | Em desenvolvimento |
-| A Maldição de Strahd | Em desenvolvimento |
+| Dragão da Espiral de Gelo | Disponível |
+| A Mina Perdida de Phandelver | Disponível |
+| A Maldição de Strahd | Disponível |
 
 ## Estrutura do projeto
 

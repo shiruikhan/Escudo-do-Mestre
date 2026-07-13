@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  const { normalizar, resultadoDetalhe, textoPlano } = window.Renderers._;
+  const { normalizar, resultadoDetalhe, textoPlano, listasComId } = window.Renderers._;
 
   function construirIndice(aventura) {
     // Campos de texto livre podem conter marcadores de drill-down (npc:*, etc.);
@@ -20,13 +20,13 @@
     for (const [id, l] of Object.entries(aventura.locais || {}))
       idx.push({ tipo: 'locais', id, label: 'Local', nome: l.nome, sub: l.tipo,
         campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(tp(l.resumo))] });
-    (aventura.missoes || []).forEach((m, i) =>
-      idx.push({ tipo: 'missoes', id: String(i), label: 'Missão', nome: m.titulo, sub: tp(m.localizacao),
+    listasComId(aventura).missoes.forEach(({ id, obj: m }) =>
+      idx.push({ tipo: 'missoes', id, label: 'Missão', nome: m.titulo, sub: tp(m.localizacao),
         campos: [normalizar(m.titulo), normalizar(tp(m.objetivo)), normalizar(tp(m.localizacao))] }));
-    (aventura.ganchos || []).forEach((g, i) => {
+    listasComId(aventura).ganchos.forEach(({ id, obj: g }) => {
       const texto = tp(typeof g === 'object' ? g.texto : g);
       const fonte = tp(typeof g === 'object' ? g.fonte : '');
-      idx.push({ tipo: 'ganchos', id: String(i), label: 'Gancho', nome: fonte || 'Gancho',
+      idx.push({ tipo: 'ganchos', id, label: 'Gancho', nome: fonte || 'Gancho',
         sub: (texto || '').slice(0, 70), campos: [normalizar(texto), normalizar(fonte)] });
     });
     for (const [id, c] of Object.entries(aventura.condicoes || {}))

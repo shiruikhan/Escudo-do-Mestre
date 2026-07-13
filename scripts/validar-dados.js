@@ -30,17 +30,10 @@ function ok(msg) {
   console.log('✓ ' + msg);
 }
 
-// Única fonte de verdade é renderers-core.js — lida daqui em vez de duplicar
-// o mapa, para não divergir do que o app realmente reconhece em runtime.
+// Única fonte de verdade é assets/js/marcadores.js (módulo UMD compartilhado
+// entre navegador e Node) — o mesmo mapa que o app usa em runtime.
 function carregarPrefixoParaSecao() {
-  const corePath = path.join(JS_DIR, 'renderers-core.js');
-  const src = fs.readFileSync(corePath, 'utf-8');
-  const m = /const PREFIXO_PARA_SECAO = (\{[\s\S]*?\});/.exec(src);
-  if (!m) {
-    erro('Não foi possível localizar PREFIXO_PARA_SECAO em assets/js/renderers-core.js');
-    return {};
-  }
-  return Function('"use strict"; return (' + m[1] + ')')();
+  return require(path.join(JS_DIR, 'marcadores.js')).PREFIXO_PARA_SECAO;
 }
 
 function listarJsons(dir) {

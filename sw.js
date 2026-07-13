@@ -4,10 +4,18 @@
 // segundo plano (stale-while-revalidate). Alinhado ao princípio "offline-first"
 // do design system: depois da primeira visita, o app deve abrir instantaneamente
 // mesmo sem rede (uso típico: mesa de RPG com wifi ruim ou inexistente).
+//
+// Instalação tolerante a falhas: cada asset é cacheado individualmente
+// (allSettled) — um único 404 não aborta mais a instalação inteira, como
+// acontecia com cache.addAll.
+//
+// Atualização controlada: o SW novo NÃO assume na hora (sem skipWaiting
+// automático); ele espera o utils.js avisar o usuário ("Nova versão
+// disponível") e só assume quando receber SKIP_WAITING.
 
 'use strict';
 
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v8';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
@@ -18,6 +26,7 @@ const CORE_ASSETS = [
   'assets/css/styles.css',
   'assets/css/tailwind.css',
   'assets/js/app.js',
+  'assets/js/marcadores.js',
   'assets/js/renderers-bestiario.js',
   'assets/js/renderers-busca.js',
   'assets/js/renderers-condicoes-eventos.js',
@@ -29,6 +38,9 @@ const CORE_ASSETS = [
   'assets/apple-touch-icon.png',
   'assets/favicon-32.png',
   'assets/favicon.svg',
+  'assets/icon-192.png',
+  'assets/icon-512-maskable.png',
+  'assets/icon-512.png',
   'data/aventuras.json',
   'data/condicoes.json',
   'data/eventos-estrada.json',
@@ -39,10 +51,20 @@ const CORE_ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(CORE_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) =>
+      Promise.allSettled(
+        CORE_ASSETS.map((url) =>
+          cache.add(url).catch((e) => {
+            console.warn('[sw] não foi possível pré-cachear:', url, e);
+          })
+        )
+      )
+    )
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
