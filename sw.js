@@ -7,7 +7,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
@@ -15,20 +15,20 @@ const CORE_ASSETS = [
   'index.html',
   'aventura.html',
   'manifest.json',
-  'assets/css/tailwind.css',
   'assets/css/styles.css',
-  'assets/js/utils.js',
-  'assets/js/renderers-core.js',
+  'assets/css/tailwind.css',
+  'assets/js/app.js',
   'assets/js/renderers-bestiario.js',
-  'assets/js/renderers-npcs-itens.js',
+  'assets/js/renderers-busca.js',
+  'assets/js/renderers-condicoes-eventos.js',
+  'assets/js/renderers-core.js',
   'assets/js/renderers-ganchos-missoes.js',
   'assets/js/renderers-locais.js',
-  'assets/js/renderers-condicoes-eventos.js',
-  'assets/js/renderers-busca.js',
-  'assets/js/app.js',
-  'assets/favicon.svg',
-  'assets/favicon-32.png',
+  'assets/js/renderers-npcs-itens.js',
+  'assets/js/utils.js',
   'assets/apple-touch-icon.png',
+  'assets/favicon-32.png',
+  'assets/favicon.svg',
   'data/aventuras.json',
   'data/condicoes.json',
   'data/eventos-estrada.json',

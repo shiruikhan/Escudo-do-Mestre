@@ -2,9 +2,12 @@
 (function () {
   'use strict';
 
-  const { normalizar, resultadoDetalhe } = window.Renderers._;
+  const { normalizar, resultadoDetalhe, textoPlano } = window.Renderers._;
 
   function construirIndice(aventura) {
+    // Campos de texto livre podem conter marcadores de drill-down (npc:*, etc.);
+    // tp() troca cada marcador pelo nome da entidade para busca e prévia.
+    const tp = s => textoPlano(s, aventura);
     const idx = [];
     for (const [id, b] of Object.entries(aventura.bestiario || {}))
       idx.push({ tipo: 'bestiario', id, label: 'Monstro', nome: b.nome, sub: b.tipo_alinhamento,
@@ -14,15 +17,15 @@
         campos: [normalizar(n.nome), normalizar(n.papel), normalizar(n.local)] });
     for (const [id, i] of Object.entries(aventura.itens || {}))
       idx.push({ tipo: 'itens', id, label: 'Item', nome: i.nome, sub: i.tipo,
-        campos: [normalizar(i.nome), normalizar(i.tipo), normalizar(i.efeito)] });
+        campos: [normalizar(i.nome), normalizar(i.tipo), normalizar(tp(i.efeito))] });
     for (const [id, l] of Object.entries(aventura.locais || {}))
       idx.push({ tipo: 'locais', id, label: 'Local', nome: l.nome, sub: l.tipo,
-        campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(l.resumo)] });
+        campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(tp(l.resumo))] });
     (aventura.missoes || []).forEach((m, i) =>
       idx.push({ tipo: 'missoes', id: String(i), label: 'Missão', nome: m.titulo, sub: m.localizacao,
-        campos: [normalizar(m.titulo), normalizar(m.objetivo), normalizar(m.localizacao)] }));
+        campos: [normalizar(m.titulo), normalizar(tp(m.objetivo)), normalizar(m.localizacao)] }));
     (aventura.ganchos || []).forEach((g, i) => {
-      const texto = typeof g === 'object' ? g.texto : g;
+      const texto = tp(typeof g === 'object' ? g.texto : g);
       const fonte = typeof g === 'object' ? g.fonte : '';
       idx.push({ tipo: 'ganchos', id: String(i), label: 'Gancho', nome: fonte || 'Gancho',
         sub: (texto || '').slice(0, 70), campos: [normalizar(texto), normalizar(fonte)] });
@@ -71,6 +74,8 @@
   function exportarMarkdown(aventura) {
     const md = [];
     const sep = () => md.push('');
+    // Sem tp(), o .md exportado sairia com marcadores crus (ex.: "npc:sildar").
+    const tp = s => textoPlano(s, aventura);
 
     md.push(`# ${aventura.titulo || 'Aventura'}`);
     if (aventura.nivel_recomendado) md.push(`**Níveis:** ${aventura.nivel_recomendado}`);
@@ -82,7 +87,7 @@
       md.push('## Ganchos');
       ganchos.forEach(g => {
         const fonte = typeof g === 'object' ? g.fonte : null;
-        const texto = typeof g === 'object' ? g.texto : g;
+        const texto = tp(typeof g === 'object' ? g.texto : g);
         if (fonte) md.push(`**${fonte}**`);
         md.push(texto || ''); sep();
       });
@@ -93,9 +98,9 @@
       aventura.missoes.forEach(m => {
         md.push(`### ${m.titulo} [${m.status || '—'}]`);
         if (m.localizacao) md.push(`*${m.localizacao}*`);
-        if (m.objetivo) { sep(); md.push(m.objetivo); }
-        if (m.recompensa) md.push(`**Recompensa:** ${m.recompensa}`);
-        if (m.notas_dm) md.push(`> 🗒 ${m.notas_dm}`);
+        if (m.objetivo) { sep(); md.push(tp(m.objetivo)); }
+        if (m.recompensa) md.push(`**Recompensa:** ${tp(m.recompensa)}`);
+        if (m.notas_dm) md.push(`> 🗒 ${tp(m.notas_dm)}`);
         sep();
       });
     }
@@ -106,10 +111,10 @@
       locais.forEach(l => {
         md.push(`### ${l.nome}`);
         if (l.tipo) md.push(`*${l.tipo}*`);
-        if (l.resumo) { sep(); md.push(l.resumo); }
-        if (l.perigos) md.push(`**Perigos:** ${l.perigos}`);
-        if (l.tesouro) md.push(`**Tesouro:** ${l.tesouro}`);
-        if (l.conexoes) md.push(`**Conexões:** ${l.conexoes}`);
+        if (l.resumo) { sep(); md.push(tp(l.resumo)); }
+        if (l.perigos) md.push(`**Perigos:** ${tp(l.perigos)}`);
+        if (l.tesouro) md.push(`**Tesouro:** ${tp(l.tesouro)}`);
+        if (l.conexoes) md.push(`**Conexões:** ${tp(l.conexoes)}`);
         sep();
       });
     }
@@ -121,10 +126,10 @@
         md.push(`### ${n.nome}`);
         if (n.papel) md.push(`*${n.papel}*`);
         if (n.local) md.push(`**Local:** ${n.local}`);
-        if (n.descricao) { sep(); md.push(n.descricao); }
-        if (n.motivacao) md.push(`**Motivação:** ${n.motivacao}`);
-        if (n.segredos) md.push(`**Segredos:** ${n.segredos}`);
-        if (n.interacao) md.push(`**Interação:** ${n.interacao}`);
+        if (n.descricao) { sep(); md.push(tp(n.descricao)); }
+        if (n.motivacao) md.push(`**Motivação:** ${tp(n.motivacao)}`);
+        if (n.segredos) md.push(`**Segredos:** ${tp(n.segredos)}`);
+        if (n.interacao) md.push(`**Interação:** ${tp(n.interacao)}`);
         sep();
       });
     }
@@ -150,7 +155,7 @@
       itens.forEach(i => {
         md.push(`### ${i.nome}`);
         if (i.tipo) md.push(`*${i.tipo}*`);
-        if (i.efeito) { sep(); md.push(i.efeito); }
+        if (i.efeito) { sep(); md.push(tp(i.efeito)); }
         sep();
       });
     }

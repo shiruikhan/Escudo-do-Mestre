@@ -38,9 +38,10 @@ escudo-do-mestre/
 ├── manifest.json           # Manifest PWA (instalação na tela inicial)
 ├── sw.js                   # Service Worker (cache offline-first)
 ├── tailwind.config.js      # Configuração do build local do Tailwind
-├── package.json            # Scripts de build (build:css, validar-dados)
+├── package.json            # Scripts de build (build:css, validar-dados, gerar-sw)
 ├── scripts/
-│   └── validar-dados.js    # Valida sintaxe JSON e marcadores de drill-down
+│   ├── validar-dados.js    # Valida sintaxe JSON e marcadores de drill-down
+│   └── gerar-sw.js         # Regenera CORE_ASSETS do sw.js e sobe a versão do cache
 ├── assets/
 │   ├── css/
 │   │   ├── tailwind-src.css  # Entrada do build (@tailwind base/components/utilities)
@@ -74,7 +75,8 @@ escudo-do-mestre/
 
 1. Copie `templates/aventura.exemplo.json` para `data/aventuras/nome-da-aventura.json` e preencha seguindo `templates/aventura.schema.json`.
 2. Adicione a entrada correspondente em `data/aventuras.json`.
-3. Rode `npm run validar-dados` (veja abaixo).
+3. Rode `npm run gerar-sw` — reescreve o `CORE_ASSETS` do `sw.js` e incrementa a versão do cache (sem isso a aventura nova não fica disponível offline).
+4. Rode `npm run validar-dados` (veja abaixo).
 
 Guia completo, com a tabela de quais campos aceitam marcador de drill-down e um prompt pronto para gerar o JSON com IA a partir de um módulo: **[docs/guia-criar-aventura.md](docs/guia-criar-aventura.md)**.
 
@@ -96,6 +98,17 @@ npm run validar-dados
 ```
 
 O script (`scripts/validar-dados.js`, sem dependências externas) verifica se todo `data/*.json` tem sintaxe válida, se `data/aventuras.json` aponta para arquivos existentes, se todo marcador de drill-down corresponde a uma chave real na respectiva seção (`npcs`, `bestiario` ou `itens`), se os arquivos globais (`condicoes.json`, `eventos-estrada.json`) não usam marcadores (eles não têm seções próprias para resolvê-los) e se `sw.js` lista todo `.js`/dado necessário para o app funcionar offline. Sai com código 1 em caso de erro — pode ser plugado em CI.
+
+## CI
+
+O workflow em `.github/workflows/ci.yml` roda em todo push/PR na `main`:
+
+```bash
+npm run validar-dados   # sintaxe, marcadores e cobertura do sw.js
+npm run check-sw        # falha se o CORE_ASSETS do sw.js estiver desatualizado
+```
+
+Se o `check-sw` falhar, rode `npm run gerar-sw` localmente e commite o `sw.js` atualizado.
 
 ## Configurar GitHub Pages
 
@@ -125,5 +138,7 @@ Este é um **projeto pessoal**, mas qualquer pessoa é livre para usar, adaptar 
 O conteúdo das aventuras aqui reunidas (bestiário, NPCs, locais, ganchos, missões e itens) é derivado do **Livro do Jogador** e dos módulos de aventura de **Dungeons & Dragons (edição 2024)** — *Dragão da Espiral de Gelo*, *A Mina Perdida de Phandelver* e *A Maldição de Strahd*. Esse conteúdo provavelmente pertence à **Wizards of the Coast** — eu apenas o reorganizei e adaptei para consulta rápida em mesa. Este projeto **não é oficial** e não é afiliado nem endossado pela Wizards of the Coast, e **não tem fins comerciais**.
 
 *Dungeons & Dragons*, *D&D* e os nomes relacionados são marcas da Wizards of the Coast. Se você detém os direitos e deseja a remoção de algo, basta abrir uma *issue* neste repositório.
+
+As regras genéricas (condições, blocos de estatística de monstros comuns etc.) baseiam-se no **System Reference Document 5.2** ("SRD 5.2"), da Wizards of the Coast LLC, disponível em <https://www.dndbeyond.com/srd> e licenciado sob **Creative Commons Attribution 4.0 International** (<https://creativecommons.org/licenses/by/4.0/legalcode>). Este projeto inclui material do SRD 5.2 nos termos dessa licença. O restante do conteúdo dos módulos de aventura **não** está coberto pelo SRD nem por esta atribuição.
 
 O **código** deste site (HTML/CSS/JS) é open-source sob a licença **MIT** (veja o arquivo [`LICENSE`](LICENSE)) — fique à vontade para copiar, adaptar e reutilizar. _A licença MIT cobre apenas o código, **não** o conteúdo das aventuras._
