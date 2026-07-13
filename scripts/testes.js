@@ -28,7 +28,7 @@ const sandbox = {
 sandbox.window = sandbox; // window === globalThis do sandbox
 vm.createContext(sandbox);
 
-for (const f of ['utils.js', 'marcadores.js', 'renderers-core.js', 'renderers-busca.js']) {
+for (const f of ['utils.js', 'marcadores.js', 'renderers-core.js', 'renderers-busca.js', 'renderers-combate.js']) {
   vm.runInContext(fs.readFileSync(JS(f), 'utf-8'), sandbox, { filename: f });
 }
 
@@ -129,6 +129,30 @@ teste('exportação Markdown sem marcadores crus',
   !RE_CRU.test(md));
 teste('exportação Markdown contém as seções',
   md.includes('## Missões') && md.includes('## NPCs') && md.includes('## Bestiário'));
+
+// ---------- Rastreador de combate ----------
+teste('lista de combate renderiza estado vazio sem erro',
+  (() => {
+    const h = R.listas.combate(aventura);
+    return h.includes('cb-add-manual') && h.includes('Nenhum combatente');
+  })());
+
+teste('lista de combate renderiza combatentes ordenados por iniciativa',
+  (() => {
+    sandbox.localStorage.getItem = (k) =>
+      k === 'escudo_combate_teste'
+        ? JSON.stringify({ combatentes: [
+            { n: 'Jogador', i: 12 },
+            { n: 'Goblin', i: 18, tipo: 'bestiario', ref: 'goblin', pv: 1, max: 7 },
+          ], turno: 0, rodada: 2 })
+        : null;
+    const h = R.listas.combate(aventura);
+    sandbox.localStorage.getItem = () => null;
+    const posGoblin = h.indexOf('Goblin');
+    const posJogador = h.indexOf('Jogador');
+    return posGoblin > -1 && posJogador > -1 && posGoblin < posJogador &&
+      h.includes('cb-ativo') && h.includes('Rodada') && h.includes('pv-baixo');
+  })());
 
 // ---------- Resultado ----------
 console.log('');

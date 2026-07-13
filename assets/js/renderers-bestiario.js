@@ -36,6 +36,13 @@
       </div>`;
   }
 
+  // Botão de entrada no rastreador de combate (aba ⚔️): o app.js rola a
+  // iniciativa (1d20+mod) e adiciona o monstro com PV cheio.
+  function botaoCombate(id) {
+    return `
+      <button type="button" class="cb-add-monstro" data-id="${escHtml(id)}">⚔️ Adicionar ao combate</button>`;
+  }
+
   function detalheBestiario(aventura, id) {
     const b = aventura.bestiario && aventura.bestiario[id];
     if (!b) return vazio('Monstro não encontrado.');
@@ -75,6 +82,7 @@
       </div>
 
       ${trackerPv(aventura, id, b)}
+      ${botaoCombate(id)}
 
       <div class="stat-divider"></div>
       <div class="stat-grid">${grid}</div>

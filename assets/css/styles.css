@@ -334,3 +334,204 @@ html.light .pv-atual.pv-baixo { color: #b91c1c; }
 /* Badge de status clicável no detalhe da missão */
 .badge-toggle { cursor: pointer; }
 .badge-toggle:active { filter: brightness(1.3); }
+
+/* ---------- Rastreador de combate (aba ⚔️) ---------- */
+.cb-form {
+  display: flex;
+  gap: 0.4rem;
+}
+.cb-input {
+  flex: 1;
+  min-width: 0;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #fafafa;
+  outline: none;
+}
+.cb-input:focus { border-color: var(--cor-ambar); }
+.cb-input-num { flex: 0 0 4.2rem; text-align: center; }
+html.light .cb-input { background: #ffffff; color: #18181b; }
+
+.cb-btn {
+  flex-shrink: 0;
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #d4d4d8;
+  cursor: pointer;
+}
+.cb-btn:active { background: #27272a; }
+html.light .cb-btn { color: #3f3f46; }
+html.light .cb-btn:active { background: #e4e4e7; }
+.cb-btn-destaque {
+  background: var(--cor-ambar);
+  border-color: var(--cor-ambar);
+  color: #1c1917;
+}
+.cb-btn-destaque:active { filter: brightness(1.1); background: var(--cor-ambar); }
+
+.cb-controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+}
+.cb-controles-botoes { display: flex; gap: 0.4rem; }
+
+.cb-linha {
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+.cb-linha.cb-ativo {
+  border-color: var(--cor-ambar);
+  box-shadow: 0 0 0 1px var(--cor-ambar);
+}
+.cb-topo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.cb-nome, .cb-nome-link {
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  color: #fafafa;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.cb-nome-link { color: var(--cor-ambar); cursor: pointer; text-decoration: underline dotted; text-underline-offset: 2px; }
+html.light .cb-nome { color: #18181b; }
+
+.cb-init-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  border-radius: 9999px;
+  padding: 0.15rem 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+html.light .cb-init-badge { background: #f4f4f5; }
+.cb-init-badge strong { min-width: 1.4rem; text-align: center; color: var(--cor-ambar); }
+.cb-init {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  background: var(--cor-painel);
+  color: #a1a1aa;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+.cb-init:active { background: #27272a; }
+
+.cb-del {
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 9999px;
+  border: none;
+  background: none;
+  color: #71717a;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+.cb-del:active { color: #f87171; }
+
+.cb-pv-linha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.cb-pv-linha .pv-btn { min-width: 2rem; height: 2rem; font-size: 0.8rem; }
+
+/* Botão "adicionar ao combate" na ficha do monstro */
+.cb-add-monstro {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(251, 191, 36, .08);
+  border: 1px solid rgba(251, 191, 36, .3);
+  border-radius: 0.75rem;
+  color: #fcd34d;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cb-add-monstro:active { background: rgba(251, 191, 36, .18); }
+html.light .cb-add-monstro { color: #92400e; }
+
+/* ---------- Painel de anotações do Mestre (botão 📝) ---------- */
+.painel-notas {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(100vw, 42rem);
+  height: 55vh;
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-bottom: none;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, .45);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+}
+.painel-notas-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.painel-notas-fechar {
+  background: none;
+  border: none;
+  color: #71717a;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.painel-notas-texto {
+  flex: 1;
+  width: 100%;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #fafafa;
+}
+html.light .painel-notas-texto { color: #18181b; }

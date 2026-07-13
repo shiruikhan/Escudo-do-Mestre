@@ -82,7 +82,17 @@
   <!-- Main -->
   <main class="flex-1 px-4 pb-8">
 
-    <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4 mt-4">
+    <!-- Busca global: procura monstros, NPCs, itens e locais em TODAS as
+         aventuras. Os dados são carregados sob demanda na primeira digitação
+         e os resultados usam deep-link (aventura.html?id=x#tipo/id). -->
+    <div class="mb-4 mt-4">
+      <input id="busca-global" type="search" inputmode="search" autocomplete="off"
+             placeholder="Buscar em todas as aventuras…"
+             class="busca-input" aria-label="Busca global" />
+    </div>
+    <div id="resultados-globais"></div>
+
+    <h2 id="titulo-lista" class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">
       Selecione uma Aventura
     </h2>
 
@@ -98,8 +108,16 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="pb-6"></footer>
+  <!-- Footer: backup do estado de sessão (status de missões, PV, combate,
+       anotações — tudo em localStorage, que não sobrevive à troca de aparelho) -->
+  <footer class="pb-6 px-4 text-center">
+    <p class="text-xs text-zinc-600">
+      <button type="button" id="btn-backup" class="underline underline-offset-2 active:text-amber-400">Exportar sessão</button>
+      ·
+      <button type="button" id="btn-restaurar" class="underline underline-offset-2 active:text-amber-400">Importar sessão</button>
+    </p>
+    <input type="file" id="arquivo-restaurar" accept="application/json,.json" class="hidden" />
+  </footer>
 
   <script>
     // Carrega o manifest em data/aventuras.json
@@ -141,6 +159,130 @@
         </li>
       `).join('');
     }
+
+    // ---------- Busca global entre aventuras ----------
+    // Indexa apenas seções com chaves estáveis no JSON (bestiário, NPCs,
+    // itens e locais); missões/ganchos ficam na busca interna da aventura.
+    let indiceGlobal = null;
+    let carregandoIndice = null;
+
+    async function montarIndiceGlobal() {
+      const manifest = await loadManifest();
+      const TIPOS = { bestiario: 'Monstro', npcs: 'NPC', itens: 'Item', locais: 'Local' };
+      const idx = [];
+      await Promise.all(manifest.map(async meta => {
+        try {
+          const av = await fetch('data/aventuras/' + meta.arquivo).then(r => r.json());
+          for (const [secao, label] of Object.entries(TIPOS)) {
+            for (const [id, obj] of Object.entries(av[secao] || {})) {
+              idx.push({ av: meta.id, avTitulo: meta.titulo, secao, label, id,
+                         nome: obj.nome || id, chave: normalizarBusca(obj.nome || id) });
+            }
+          }
+        } catch (_) { /* aventura inacessível — segue com as demais */ }
+      }));
+      return idx;
+    }
+
+    function normalizarBusca(s) {
+      return String(s == null ? '' : s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    }
+
+    function renderResultadosGlobais(res, q) {
+      const alvo = document.getElementById('resultados-globais');
+      const titulo = document.getElementById('titulo-lista');
+      const lista = document.getElementById('adventure-list');
+      const mostrando = q.length > 0;
+      titulo.classList.toggle('hidden', mostrando);
+      lista.classList.toggle('hidden', mostrando);
+      if (!mostrando) { alvo.innerHTML = ''; return; }
+      if (!res.length) {
+        alvo.innerHTML = '<p class="text-sm text-zinc-600 text-center my-8">Nada encontrado.</p>';
+        return;
+      }
+      alvo.innerHTML = '<ul class="space-y-2 mb-6">' + res.slice(0, 30).map(e => `
+        <li>
+          <a href="aventura.html?id=${encodeURIComponent(e.av)}#${encodeURIComponent(e.secao)}/${encodeURIComponent(e.id)}"
+             class="flex items-center gap-3 w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="font-semibold text-zinc-100 truncate">${escHtml(e.nome)}</p>
+                <span class="res-tag">${escHtml(e.label)}</span>
+              </div>
+              <p class="text-xs text-zinc-500 truncate">${escHtml(e.avTitulo)}</p>
+            </div>
+            <span class="text-zinc-600 text-lg flex-shrink-0">›</span>
+          </a>
+        </li>`).join('') + '</ul>';
+    }
+
+    (function initBuscaGlobal() {
+      const campo = document.getElementById('busca-global');
+      if (!campo) return;
+      let t = null;
+      campo.addEventListener('input', () => {
+        clearTimeout(t);
+        t = setTimeout(async () => {
+          const q = normalizarBusca(campo.value.trim());
+          if (!q) { renderResultadosGlobais([], ''); return; }
+          if (!indiceGlobal) {
+            document.getElementById('resultados-globais').innerHTML =
+              '<p class="text-sm text-zinc-600 text-center my-8">Carregando dados das aventuras…</p>';
+            carregandoIndice = carregandoIndice || montarIndiceGlobal();
+            indiceGlobal = await carregandoIndice;
+          }
+          renderResultadosGlobais(indiceGlobal.filter(e => e.chave.includes(q)), q);
+        }, 200);
+      });
+    })();
+
+    // ---------- Backup / restauração do estado de sessão ----------
+    (function initBackup() {
+      const btnB = document.getElementById('btn-backup');
+      const btnR = document.getElementById('btn-restaurar');
+      const arq = document.getElementById('arquivo-restaurar');
+      if (!btnB || !btnR || !arq) return;
+
+      btnB.addEventListener('click', () => {
+        const dados = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.startsWith('escudo_')) dados[k] = localStorage.getItem(k);
+        }
+        if (!Object.keys(dados).length) {
+          if (window.mostrarToast) window.mostrarToast('Nenhum dado de sessão para exportar.');
+          return;
+        }
+        const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'escudo-sessao-' + new Date().toISOString().slice(0, 10) + '.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      btnR.addEventListener('click', () => arq.click());
+      arq.addEventListener('change', () => {
+        const f = arq.files && arq.files[0];
+        if (!f) return;
+        const leitor = new FileReader();
+        leitor.onload = () => {
+          try {
+            const dados = JSON.parse(leitor.result);
+            const chaves = Object.keys(dados).filter(k => k.startsWith('escudo_'));
+            if (!chaves.length) throw new Error('sem chaves');
+            if (!window.confirm('Importar ' + chaves.length + ' registro(s) de sessão? Dados atuais com a mesma chave serão sobrescritos.')) return;
+            for (const k of chaves) localStorage.setItem(k, String(dados[k]));
+            if (window.mostrarToast) window.mostrarToast('Sessão restaurada: ' + chaves.length + ' registro(s).');
+          } catch (_) {
+            if (window.mostrarToast) window.mostrarToast('Arquivo inválido — use um backup exportado pelo Escudo do Mestre.');
+          }
+          arq.value = '';
+        };
+        leitor.readAsText(f);
+      });
+    })();
 
     loadManifest().then(renderAdventures).catch(() => {
       // Sem o manifest a lista fica vazia para sempre — mostra o empty state

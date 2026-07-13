@@ -15,7 +15,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'v8';
+const CACHE_VERSION = 'v9';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
@@ -29,6 +29,7 @@ const CORE_ASSETS = [
   'assets/js/marcadores.js',
   'assets/js/renderers-bestiario.js',
   'assets/js/renderers-busca.js',
+  'assets/js/renderers-combate.js',
   'assets/js/renderers-condicoes-eventos.js',
   'assets/js/renderers-core.js',
   'assets/js/renderers-ganchos-missoes.js',

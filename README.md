@@ -14,7 +14,13 @@ O **Escudo do Mestre** substitui o escudo físico e os PDFs pesados durante a me
 - Fichas rápidas de NPCs (localização, motivação, segredos)
 - Itens mágicos e itens de missão
 - Ganchos de aventura e rumores
-- Rastreador de missões (Disponível / Em Andamento / Concluída)
+- Rastreador de missões (Disponível / Em Andamento / Concluída) — status alterável na tela, salvo no aparelho
+- Rastreador de combate (aba ⚔️): ordem de iniciativa, turnos, rodadas e PV por combatente
+- Rolagem de dados: toda notação (2d6, 1d8+3…) nos textos é clicável e rola na hora
+- PV dos monstros ajustável na própria ficha durante a sessão
+- Anotações do Mestre (📝) por aventura, incluídas na exportação Markdown
+- Busca global na página inicial (monstros, NPCs, itens e locais de todas as aventuras)
+- Backup/restauração do estado de sessão (exporta/importa um JSON na página inicial)
 
 A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links clicáveis dentro dos textos de missões e ganchos (drill-down), com botão de retorno ao contexto anterior (drill-up).
 
@@ -41,15 +47,18 @@ escudo-do-mestre/
 ├── package.json            # Scripts de build (build:css, validar-dados, gerar-sw)
 ├── scripts/
 │   ├── validar-dados.js    # Valida sintaxe JSON e marcadores de drill-down
-│   └── gerar-sw.js         # Regenera CORE_ASSETS do sw.js e sobe a versão do cache
+│   ├── gerar-sw.js         # Regenera CORE_ASSETS do sw.js e sobe a versão do cache
+│   └── testes.js           # Testes unitários das funções puras (npm test)
 ├── assets/
 │   ├── css/
 │   │   ├── tailwind-src.css  # Entrada do build (@tailwind base/components/utilities)
 │   │   ├── tailwind.css      # CSS gerado e commitado — servido em runtime
 │   │   └── styles.css        # Estilos customizados (complementam o Tailwind)
 │   └── js/
-│       ├── app.js                        # Lógica principal (roteamento, estado)
+│       ├── app.js                        # Lógica principal (roteamento por hash, estado, sessão)
+│       ├── marcadores.js                 # Mapa de marcadores (compartilhado com o validador)
 │       ├── renderers-core.js             # Helpers de renderização compartilhados
+│       ├── renderers-combate.js          # Rastreador de combate/iniciativa
 │       ├── renderers-bestiario.js        # Bestiário
 │       ├── renderers-npcs-itens.js       # NPCs e Itens
 │       ├── renderers-ganchos-missoes.js  # Ganchos e Missões
@@ -99,12 +108,17 @@ npm run validar-dados
 
 O script (`scripts/validar-dados.js`, sem dependências externas) verifica se todo `data/*.json` tem sintaxe válida, se `data/aventuras.json` aponta para arquivos existentes, se todo marcador de drill-down corresponde a uma chave real na respectiva seção (`npcs`, `bestiario` ou `itens`), se os arquivos globais (`condicoes.json`, `eventos-estrada.json`) não usam marcadores (eles não têm seções próprias para resolvê-los) e se `sw.js` lista todo `.js`/dado necessário para o app funcionar offline. Sai com código 1 em caso de erro — pode ser plugado em CI.
 
+## Estado de sessão
+
+Status de missões, PV de monstros, combate e anotações ficam em `localStorage` — por aparelho. Para trocar de celular sem perder a sessão, use **Exportar sessão / Importar sessão** no rodapé da página inicial.
+
 ## CI
 
 O workflow em `.github/workflows/ci.yml` roda em todo push/PR na `main`:
 
 ```bash
 npm run validar-dados   # sintaxe, marcadores e cobertura do sw.js
+npm test                # testes unitários dos renderers (scripts/testes.js)
 npm run check-sw        # falha se o CORE_ASSETS do sw.js estiver desatualizado
 ```
 
