@@ -1,9 +1,9 @@
 {
   "climas": [
-    { "id": "ambiente", "rotulo": "Ambiente", "icone": "🌫️", "uri": "", "shuffle": true },
-    { "id": "combate", "rotulo": "Combate", "icone": "⚔️", "uri": "", "shuffle": true },
-    { "id": "tensa", "rotulo": "Tensa", "icone": "👁️", "uri": "", "shuffle": true },
-    { "id": "chefe", "rotulo": "Chefe", "icone": "🐉", "uri": "", "shuffle": false },
-    { "id": "taberna", "rotulo": "Taberna", "icone": "🍺", "uri": "", "shuffle": true }
+    { "id": "ambiente", "rotulo": "Ambiente", "icone": "🌫️", "uri": "spotify:playlist:4MDzUUHA0V2UC9nKNJxkXV", "shuffle": true },
+    { "id": "combate", "rotulo": "Combate", "icone": "⚔️", "uri": "spotify:playlist:3j6OoomA0n8B1pGQA83NtB", "shuffle": true },
+    { "id": "tensa", "rotulo": "Tensa", "icone": "👁️", "uri": "spotify:playlist:2uu2Pz8f4Q8N3dOQJfB74R", "shuffle": true },
+    { "id": "chefe", "rotulo": "Chefe", "icone": "🐉", "uri": "spotify:playlist:7vs8BFwsJ86erekxx7WIxQ", "shuffle": false },
+    { "id": "taberna", "rotulo": "Taberna", "icone": "🍺", "uri": "spotify:playlist:3pPWq6jd6EmGreN9wKb7Ec", "shuffle": true }
   ]
 }

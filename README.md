@@ -136,8 +136,16 @@ gratuita) e um app próprio no [Spotify Developer Dashboard](https://developer.s
    repositório, e o **Client Secret não é usado** — o login usa PKCE, que dispensa segredo.
 4. Cole o link de uma playlist em cada clima e toque em **Conectar ao Spotify**.
 
+As 5 playlists já vêm preenchidas em `data/trilha.json` — o passo 4 só é necessário se você
+quiser trocá-las. A precedência é **aventura → configuração no ⚙ → padrão do `trilha.json`**.
+
 Uma aventura pode ter trilha própria: o campo opcional `trilha` no JSON da aventura sobrescreve
 os climas daquela campanha (veja `templates/aventura.schema.json`).
+
+> **Ao editar `data/trilha.json` depois de publicado:** o service worker é cache-first e a
+> versão do cache só sobe quando a *lista* de assets muda, não o conteúdo de um arquivo. Quem
+> já tiver o site em cache continua vendo as playlists antigas por **uma** visita. Para trocar
+> playlist sem esperar, use o painel ⚙ — a configuração local vence o `trilha.json`.
 
 **Se a Alexa não aparecer na lista de dispositivos:** ela só é listada quando está ativa no
 Spotify Connect. Diga "Alexa, tocar Spotify" uma vez e toque em ⟳ para atualizar a lista.
