@@ -4,6 +4,7 @@ module.exports = {
   content: [
     './index.html',
     './aventura.html',
+    './callback.html',
     './assets/js/**/*.js',
   ],
   theme: {

@@ -20,6 +20,7 @@ O **Escudo do Mestre** substitui o escudo físico e os PDFs pesados durante a me
 - PV dos monstros ajustável na própria ficha durante a sessão
 - Anotações do Mestre (📝) por aventura, incluídas na exportação Markdown
 - Busca global na página inicial (monstros, NPCs, itens e locais de todas as aventuras)
+- Trilha sonora (🎵): barra fixa que troca o clima da mesa — Ambiente, Combate, Tensa, Chefe e Taberna — controlando o Spotify no dispositivo que você já usa (Alexa, celular, PC)
 - Backup/restauração do estado de sessão (exporta/importa um JSON na página inicial)
 
 A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links clicáveis dentro dos textos de missões e ganchos (drill-down), com botão de retorno ao contexto anterior (drill-up).
@@ -41,6 +42,7 @@ A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links cl
 ```
 escudo-do-mestre/
 ├── index.html              # Shell da aplicação (SPA)
+├── callback.html           # Retorno do OAuth do Spotify (PKCE)
 ├── manifest.json           # Manifest PWA (instalação na tela inicial)
 ├── sw.js                   # Service Worker (cache offline-first)
 ├── tailwind.config.js      # Configuração do build local do Tailwind
@@ -64,9 +66,12 @@ escudo-do-mestre/
 │       ├── renderers-ganchos-missoes.js  # Ganchos e Missões
 │       ├── renderers-locais.js           # Locais
 │       ├── renderers-condicoes-eventos.js # Condições e Eventos de Estrada
-│       └── renderers-busca.js            # Índice de busca e exportação Markdown
+│       ├── renderers-busca.js            # Índice de busca e exportação Markdown
+│       ├── spotify.js                    # Cliente da Spotify Web API (PKCE, sem backend)
+│       └── trilha.js                     # Barra fixa de trilha sonora
 ├── data/
 │   ├── aventuras.json      # Índice de aventuras disponíveis
+│   ├── trilha.json         # Catálogo de climas da trilha sonora
 │   └── aventuras/
 │       ├── dragao-espiral-gelo.json   # Dados completos da aventura
 │       ├── mina-perdida-phandelver.json
@@ -112,6 +117,33 @@ O script (`scripts/validar-dados.js`, sem dependências externas) verifica se to
 
 Status de missões, PV de monstros, combate e anotações ficam em `localStorage` — por aparelho. Para trocar de celular sem perder a sessão, use **Exportar sessão / Importar sessão** no rodapé da página inicial.
 
+## Trilha sonora (Spotify)
+
+A barra 🎵 no rodapé é um **controle remoto**: o áudio sai de um dispositivo que já esteja
+ligado à sua conta Spotify (Echo/Alexa, celular, PC). Nada toca dentro do navegador.
+
+**Requisitos:** conta **Spotify Premium** (a API de controle de playback não funciona na conta
+gratuita) e um app próprio no [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+
+**Configuração (uma vez, no botão ⚙ da barra):**
+
+1. No Dashboard, crie um app e marque **apenas `Web API`**.
+2. Cadastre os Redirect URIs:
+   - `https://shiruikhan.github.io/Escudo-do-Mestre/callback.html` (produção)
+   - `http://127.0.0.1:3000/callback.html` (desenvolvimento — o Spotify **recusa** `localhost`,
+     use o IP)
+3. Copie o **Client ID** e cole no campo do painel ⚙. Nenhum Client ID é versionado neste
+   repositório, e o **Client Secret não é usado** — o login usa PKCE, que dispensa segredo.
+4. Cole o link de uma playlist em cada clima e toque em **Conectar ao Spotify**.
+
+Uma aventura pode ter trilha própria: o campo opcional `trilha` no JSON da aventura sobrescreve
+os climas daquela campanha (veja `templates/aventura.schema.json`).
+
+**Se a Alexa não aparecer na lista de dispositivos:** ela só é listada quando está ativa no
+Spotify Connect. Diga "Alexa, tocar Spotify" uma vez e toque em ⟳ para atualizar a lista.
+
+Detalhes de arquitetura, limitações e decisões: [docs/specs/plano-trilha-spotify.md](docs/specs/plano-trilha-spotify.md).
+
 ## CI
 
 O workflow em `.github/workflows/ci.yml` roda em todo push/PR na `main`:
@@ -143,6 +175,7 @@ Se o `check-sw` falhar, rode `npm run gerar-sw` localmente e commite o `sw.js` a
 - [Guia — Criar uma Aventura Nova](docs/guia-criar-aventura.md) (com templates prontos para IA)
 - [Especificação do Produto](docs/specs/product_spec.md)
 - [Especificação Técnica](docs/specs/tech_spec.md)
+- [Plano — Trilha Sonora (Spotify)](docs/specs/plano-trilha-spotify.md)
 - [System Prompt / Prompt de Desenvolvimento](docs/specs/system_prompt.md)
 
 ## Aviso legal e conteúdo

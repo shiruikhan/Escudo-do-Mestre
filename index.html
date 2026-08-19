@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <script src="assets/js/utils.js"></script>
+  <script src="assets/js/spotify.js" defer></script>
+  <script src="assets/js/trilha.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -247,7 +249,12 @@
         const dados = {};
         for (let i = 0; i < localStorage.length; i++) {
           const k = localStorage.key(i);
-          if (k && k.startsWith('escudo_')) dados[k] = localStorage.getItem(k);
+          // Credenciais do Spotify vivem sob sptfy_ justamente para ficarem
+          // fora deste varredor; a checagem explícita é defesa em profundidade
+          // caso alguma chave seja renomeada no futuro.
+          if (k && k.startsWith('escudo_') && !k.startsWith('sptfy_')) {
+            dados[k] = localStorage.getItem(k);
+          }
         }
         if (!Object.keys(dados).length) {
           if (window.mostrarToast) window.mostrarToast('Nenhum dado de sessão para exportar.');

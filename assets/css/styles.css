@@ -535,3 +535,238 @@ html.light .cb-add-monstro { color: #92400e; }
   color: #fafafa;
 }
 html.light .painel-notas-texto { color: #18181b; }
+
+/* ---------- Trilha sonora (barra fixa de controle do Spotify) ---------- */
+/* Fica sobre o conteúdo o tempo todo: o Mestre troca o clima da mesa sem sair
+   da ficha que está lendo. body.com-trilha reserva a altura no final da página. */
+.trilha-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  background: var(--cor-painel);
+  border-top: 1px solid var(--cor-borda);
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .35);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+body.com-trilha { padding-bottom: 3.75rem; }
+/* O toast padrão nasce em bottom:1.25rem e ficaria atrás da barra. */
+body.com-trilha .toast { bottom: 4.5rem; }
+
+.trilha-topo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  min-height: 3.5rem;
+}
+
+.trilha-toggle {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 2.75rem;
+  padding: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+.trilha-emoji { font-size: 1.25rem; line-height: 1; flex-shrink: 0; }
+.trilha-info { min-width: 0; display: flex; flex-direction: column; }
+.trilha-faixa {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fafafa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.trilha-sub {
+  font-size: 0.75rem;
+  color: #71717a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trilha-icone-btn {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.trilha-icone-btn:active { background: #27272a; color: var(--cor-ambar); }
+.trilha-icone-btn:disabled { opacity: .35; cursor: default; }
+.trilha-icone-btn:disabled:active { background: none; color: #a1a1aa; }
+
+/* ---------- Painel expandido ---------- */
+.trilha-painel {
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.trilha-painel[hidden] { display: none; }
+
+/* Três colunas cabem em 360px mantendo o alvo de toque acima de 44px. */
+.trilha-climas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.trilha-clima {
+  min-height: 3.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.35rem 0.25rem;
+  border-radius: 0.75rem;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  color: #d4d4d8;
+  cursor: pointer;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.trilha-clima:active { background: #27272a; }
+.trilha-clima.ativo {
+  background: var(--cor-ambar);
+  border-color: var(--cor-ambar);
+  color: #1c1917;
+}
+.trilha-clima:disabled { opacity: .35; cursor: default; }
+.trilha-clima:disabled:active { background: #0c0a09; }
+.trilha-clima-emoji { font-size: 1.15rem; line-height: 1; }
+.trilha-clima-rotulo { font-size: 0.6875rem; font-weight: 600; }
+
+.trilha-linha { display: flex; align-items: center; gap: 0.5rem; }
+.trilha-rotulo {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  color: #71717a;
+  width: 4.25rem;
+}
+.trilha-select {
+  flex: 1;
+  min-width: 0;
+  height: 2.75rem;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+  color: #fafafa;
+  font-size: 0.8125rem;
+  padding: 0 0.6rem;
+}
+.trilha-select:disabled { opacity: .5; }
+.trilha-range { flex: 1; min-width: 0; height: 2.75rem; accent-color: var(--cor-ambar); }
+.trilha-range:disabled { opacity: .4; }
+
+/* Offline ou desconectado: a barra continua no lugar, só que apagada — o
+   layout não pode pular no meio da sessão (plano §10). */
+.trilha-bar.trilha-off .trilha-emoji { opacity: .4; }
+.trilha-bar.trilha-off .trilha-faixa { color: #a1a1aa; }
+
+/* ---------- Painel de configuração (bottom sheet) ---------- */
+.trilha-config-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, .55);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.trilha-config {
+  width: min(100vw, 42rem);
+  max-height: 88vh;
+  background: var(--cor-painel);
+  border: 1px solid var(--cor-borda);
+  border-bottom: none;
+  border-radius: 1rem 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+}
+.trilha-config-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+.trilha-config-corpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.trilha-config-acoes {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--cor-borda);
+}
+.trilha-campo { display: flex; flex-direction: column; gap: 0.25rem; }
+.trilha-campo > span { font-size: 0.75rem; color: #a1a1aa; font-weight: 600; }
+.trilha-campo input {
+  height: 2.75rem;
+  background: #0c0a09;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.75rem;
+  color: #fafafa;
+  font-size: 0.875rem;
+  padding: 0 0.75rem;
+  width: 100%;
+}
+.trilha-campo input:disabled { opacity: .5; }
+.trilha-campo input::placeholder { color: #52525b; }
+.trilha-ajuda { font-size: 0.75rem; color: #71717a; line-height: 1.45; }
+.trilha-ajuda code {
+  display: inline-block;
+  word-break: break-all;
+  color: var(--cor-ambar);
+  font-size: 0.7rem;
+}
+.trilha-btn-primario, .trilha-btn-secundario {
+  flex: 1;
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.trilha-btn-primario { background: var(--cor-ambar); border: none; color: #1c1917; }
+.trilha-btn-secundario { background: none; border: 1px solid var(--cor-borda); color: #a1a1aa; }
+.trilha-btn-secundario:active { background: #27272a; }
+
+/* ---------- Tema claro ---------- */
+html.light .trilha-bar { background: #ffffff; border-top-color: #e4e4e7; }
+html.light .trilha-faixa { color: #18181b; }
+html.light .trilha-icone-btn { color: #52525b; }
+html.light .trilha-icone-btn:active { background: #e4e4e7; }
+html.light .trilha-clima { background: #f4f4f5; border-color: #e4e4e7; color: #3f3f46; }
+html.light .trilha-clima:active { background: #e4e4e7; }
+html.light .trilha-clima.ativo { background: var(--cor-ambar-escuro); border-color: var(--cor-ambar-escuro); color: #ffffff; }
+html.light .trilha-select { background: #ffffff; border-color: #e4e4e7; color: #18181b; }
+html.light .trilha-config { background: #ffffff; border-color: #e4e4e7; }
+html.light .trilha-config-topo, html.light .trilha-config-acoes { border-color: #e4e4e7; }
+html.light .trilha-campo input { background: #ffffff; border-color: #e4e4e7; color: #18181b; }
+html.light .trilha-ajuda code { color: var(--cor-ambar-escuro); }
+html.light .trilha-btn-primario { background: var(--cor-ambar-escuro); color: #ffffff; }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Conectando ao Spotify — Escudo do Mestre</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#09090b" />
+  <link rel="stylesheet" href="assets/css/tailwind.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex items-center justify-center px-6">
+
+  <div class="text-center max-w-sm">
+    <div id="cb-icone" class="text-4xl mb-4">🎵</div>
+    <p id="cb-msg" class="text-sm text-zinc-400">Concluindo a conexão com o Spotify…</p>
+    <a id="cb-voltar" href="index.html"
+       class="hidden inline-block mt-6 text-sm font-semibold text-amber-400 active:text-amber-300">
+      ‹ Voltar ao Escudo
+    </a>
+  </div>
+
+  <script src="assets/js/spotify.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const msg = document.getElementById('cb-msg');
+      const icone = document.getElementById('cb-icone');
+      const voltar = document.getElementById('cb-voltar');
+
+      function falhar(texto) {
+        icone.textContent = '⚠️';
+        msg.textContent = texto;
+        voltar.classList.remove('hidden');
+      }
+
+      const p = new URLSearchParams(location.search);
+      const erro = p.get('error');
+      const code = p.get('code');
+      const estado = p.get('state');
+
+      // O usuário pode ter recusado a autorização na tela do Spotify.
+      if (erro) {
+        falhar(erro === 'access_denied'
+          ? 'Autorização cancelada. A trilha sonora continua desativada.'
+          : 'O Spotify recusou a autorização: ' + erro);
+        return;
+      }
+      if (!code) {
+        falhar('Nenhum código de autorização recebido.');
+        return;
+      }
+
+      window.SpotifyAPI.concluirLogin(code, estado)
+        .then(function (retorno) {
+          msg.textContent = 'Conectado! Voltando…';
+          location.replace(retorno);
+        })
+        .catch(function (e) {
+          falhar(e.message || 'Não foi possível concluir a conexão.');
+        });
+    })();
+  </script>
+</body>
+</html>

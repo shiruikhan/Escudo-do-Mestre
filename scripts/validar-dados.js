@@ -139,6 +139,60 @@ function main() {
     }
   }
 
+  // 4.1 Trilha sonora: catálogo de climas e URIs de playlist.
+  // Um URI errado só apareceria como erro do Spotify no meio da sessão, então
+  // o formato é checado aqui. Nenhum Client ID deve existir em data/ — ele é
+  // digitado pelo usuário e vive em localStorage (plano §10.1).
+  const URI_RE = /^spotify:(playlist|album|artist|show|episode):[A-Za-z0-9]+$/;
+  const trilhaPath = path.join(DATA_DIR, 'trilha.json');
+  const trilha = dados.get(trilhaPath);
+  const climasConhecidos = new Set();
+  const errosAntes = erros;
+  if (trilha) {
+    if (!Array.isArray(trilha.climas) || !trilha.climas.length) {
+      erro('data/trilha.json: campo "climas" ausente ou vazio.');
+    } else {
+      for (const clima of trilha.climas) {
+        if (!clima.id || !clima.rotulo) {
+          erro(`data/trilha.json: clima sem "id" ou "rotulo": ${JSON.stringify(clima)}`);
+          continue;
+        }
+        if (climasConhecidos.has(clima.id)) {
+          erro(`data/trilha.json: clima "${clima.id}" duplicado.`);
+        }
+        climasConhecidos.add(clima.id);
+        if (clima.uri && !URI_RE.test(clima.uri)) {
+          erro(`data/trilha.json: clima "${clima.id}" tem URI inválido: ${clima.uri}`);
+        }
+      }
+      if (Object.prototype.hasOwnProperty.call(trilha, 'client_id_padrao')) {
+        erro('data/trilha.json: Client ID não deve ser versionado — o campo é digitado pelo usuário no app.');
+      }
+      if (erros === errosAntes) ok(`data/trilha.json: ${climasConhecidos.size} clima(s) válido(s)`);
+    }
+  }
+
+  // 4.2 Override de trilha por aventura: ids de clima precisam existir no
+  // catálogo, senão o botão nunca receberia a playlist e falharia em silêncio.
+  if (climasConhecidos.size && fs.existsSync(aventurasDir)) {
+    let comTrilha = 0;
+    for (const caminho of listarJsons(aventurasDir)) {
+      const aventura = dados.get(caminho);
+      if (!aventura || !aventura.trilha) continue;
+      comTrilha++;
+      const relativo = path.relative(ROOT, caminho);
+      for (const [id, uri] of Object.entries(aventura.trilha)) {
+        if (!climasConhecidos.has(id)) {
+          erro(`${relativo}: trilha refere-se ao clima "${id}", ausente de data/trilha.json`);
+        }
+        if (!URI_RE.test(uri)) {
+          erro(`${relativo}: trilha["${id}"] tem URI inválido: ${uri}`);
+        }
+      }
+    }
+    ok(`${comTrilha} aventura(s) com trilha própria`);
+  }
+
   // 5. sw.js precisa listar todo asset servido, ou o app quebra offline após a
   // primeira visita (silenciosamente, já que o cache-first não avisa sobre 404).
   const swPath = path.join(ROOT, 'sw.js');
@@ -153,7 +207,7 @@ function main() {
     for (const arq of fs.readdirSync(JS_DIR)) {
       if (arq.endsWith('.js')) esperados.push('assets/js/' + arq);
     }
-    esperados.push('data/aventuras.json', 'data/condicoes.json', 'data/eventos-estrada.json');
+    esperados.push('data/aventuras.json', 'data/condicoes.json', 'data/eventos-estrada.json', 'data/trilha.json');
     if (manifest) {
       for (const item of manifest) {
         if (item.arquivo) esperados.push('data/aventuras/' + item.arquivo);

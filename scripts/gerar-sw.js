@@ -34,8 +34,9 @@ function listar(dir, filtro) {
 function montarLista() {
   const assets = [];
 
-  // App shell (ordem fixa)
-  assets.push('./', 'index.html', 'aventura.html', 'manifest.json');
+  // App shell (ordem fixa). callback.html só é acessado online (retorno do
+  // OAuth do Spotify), mas entra no cache junto com o resto do shell.
+  assets.push('./', 'index.html', 'aventura.html', 'callback.html', 'manifest.json');
 
   // CSS servido em runtime (tailwind-src.css é só entrada de build)
   assets.push(...listar('assets/css', f => f.endsWith('.css') && f !== 'tailwind-src.css'));
@@ -46,8 +47,10 @@ function montarLista() {
   // Ícones na raiz de assets/
   assets.push(...listar('assets', f => /\.(svg|png|ico)$/.test(f)));
 
-  // Dados globais + manifest
-  assets.push('data/aventuras.json', 'data/condicoes.json', 'data/eventos-estrada.json');
+  // Dados globais + manifest. trilha.json precisa estar em cache: sem o
+  // catálogo de climas a barra de trilha nem chega a ser desenhada, e a
+  // decisão de produto é que offline ela apareça desabilitada, não que suma.
+  assets.push('data/aventuras.json', 'data/condicoes.json', 'data/eventos-estrada.json', 'data/trilha.json');
 
   // Aventuras referenciadas no manifest (fonte de verdade: data/aventuras.json)
   const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'aventuras.json'), 'utf-8'));

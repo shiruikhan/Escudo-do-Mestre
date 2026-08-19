@@ -548,6 +548,9 @@
     el.sub.textContent = partes.join(' · ');
     document.title = (state.aventura.titulo || 'Aventura') + ' — Escudo do Mestre';
 
+    // O campo "trilha" da aventura sobrescreve as playlists por clima.
+    if (window.Trilha) window.Trilha.aplicarAventura(state.aventura);
+
     if (el.exportar) el.exportar.classList.remove('hidden');
     if (el.notas) el.notas.classList.remove('hidden');
     montarAbas();

@@ -28,6 +28,18 @@
       "type": "string",
       "description": "Onde/quando a aventura se passa. Exibido no subtítulo do cabeçalho, se presente (opcional)."
     },
+    "trilha": {
+      "type": "object",
+      "description": "Playlists de trilha sonora especificas desta aventura (opcional). Sobrescreve, por clima, o que estiver configurado no app e o padrao de data/trilha.json — o \"tensa\" de Strahd nao e o \"tensa\" de Phandelver. As chaves precisam ser ids de clima existentes em data/trilha.json (ambiente, combate, tensa, chefe, taberna); o validador reprova ids desconhecidos. Lido por assets/js/trilha.js.",
+      "patternProperties": {
+        "^[a-z0-9]+(-[a-z0-9]+)*$": {
+          "type": "string",
+          "pattern": "^spotify:(playlist|album|artist|show|episode):[A-Za-z0-9]+$",
+          "description": "URI do Spotify (nao o link https). Ex.: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO"
+        }
+      },
+      "additionalProperties": false
+    },
     "bestiario": {
       "type": "object",
       "description": "Monstros e criaturas, indexados por id kebab-case. Objeto vazio {} é aceito.",

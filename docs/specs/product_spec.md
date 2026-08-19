@@ -15,6 +15,7 @@ Após selecionar uma aventura na tela inicial, o sistema libera a navegação pe
 - [ ] **Itens:** Lista de itens mágicos, tesouros ou itens de missão (incluindo propriedades de Maestria em Armas se aplicável).
 - [ ] **Ganchos de Aventura (Rumores):** Lista de boatos, pistas e ganchos disponíveis para guiar os jogadores[cite: 3].
 - [ ] **Missões Possíveis (Quests):** Rastreador do status das missões (Disponível, Em Andamento, Concluída) com os objetivos principais[cite: 3].
+- [ ] **Trilha Sonora (Spotify):** barra fixa de controle remoto do Spotify com 5 climas (Ambiente, Combate, Tensa, Chefe, Taberna). O áudio sai em um dispositivo do Spotify Connect que o Mestre já usa — tipicamente um Echo/Alexa — e nunca dentro do navegador. Exige Spotify Premium e conexão; offline os controles ficam desabilitados. Detalhes em [plano-trilha-spotify.md](plano-trilha-spotify.md).
 
 ## 4. Funcionalidade Drill-Down e Drill-Up (Navegação Reativa)
 * **Drill-Down Automático:** Se o nome de um NPC, Monstro ou Item cadastrado aparecer listado no texto de uma missão ou gancho, o sistema deve renderizá-lo automaticamente como um link clicável. Ao clicar, a interface redireciona o mestre diretamente para a aba e ficha detalhada do objeto em questão.

@@ -15,13 +15,14 @@
 
 'use strict';
 
-const CACHE_VERSION = 'v9';
+const CACHE_VERSION = 'v10';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
   './',
   'index.html',
   'aventura.html',
+  'callback.html',
   'manifest.json',
   'assets/css/styles.css',
   'assets/css/tailwind.css',
@@ -35,6 +36,8 @@ const CORE_ASSETS = [
   'assets/js/renderers-ganchos-missoes.js',
   'assets/js/renderers-locais.js',
   'assets/js/renderers-npcs-itens.js',
+  'assets/js/spotify.js',
+  'assets/js/trilha.js',
   'assets/js/utils.js',
   'assets/apple-touch-icon.png',
   'assets/favicon-32.png',
@@ -45,6 +48,7 @@ const CORE_ASSETS = [
   'data/aventuras.json',
   'data/condicoes.json',
   'data/eventos-estrada.json',
+  'data/trilha.json',
   'data/aventuras/dragao-espiral-gelo.json',
   'data/aventuras/mina-perdida-phandelver.json',
   'data/aventuras/maldicao-de-strahd.json',

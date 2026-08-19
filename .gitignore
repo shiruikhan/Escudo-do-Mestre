@@ -9,6 +9,7 @@ desktop.ini
 *.swp
 *.swo
 *~
+.env
 
 # Node (se ferramentas de build forem adicionadas futuramente)
 node_modules/
