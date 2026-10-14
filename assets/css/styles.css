@@ -770,3 +770,19 @@ html.light .trilha-config-topo, html.light .trilha-config-acoes { border-color: 
 html.light .trilha-campo input { background: #ffffff; border-color: #e4e4e7; color: #18181b; }
 html.light .trilha-ajuda code { color: var(--cor-ambar-escuro); }
 html.light .trilha-btn-primario { background: var(--cor-ambar-escuro); color: #ffffff; }
+
+/* Encontros por local ("Quem está aqui" / "Aparece em") */
+.enc-area { margin-top: .5rem; }
+.enc-area-nome { font-size: .75rem; font-weight: 700; color: #a1a1aa; margin-bottom: .25rem; }
+.enc-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
+.enc-linha { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.enc-qtd { font-size: .8rem; font-weight: 800; color: #fcd34d; }
+.enc-nota { font-size: .75rem; color: #a1a1aa; font-style: italic; }
+
+/* Áreas/salas de um local */
+.area-det { border: 1px solid rgba(63,63,70,.8); border-radius: .6rem; margin-top: .4rem; background: rgba(39,39,42,.35); }
+.area-det > summary { cursor: pointer; padding: .55rem .75rem; font-size: .85rem; font-weight: 600; color: #fcd34d; list-style: none; }
+.area-det > summary::-webkit-details-marker { display: none; }
+.area-det > summary::before { content: "\25B8"; margin-right: .4rem; opacity: .6; display: inline-block; transition: transform .15s; }
+.area-det[open] > summary::before { transform: rotate(90deg); }
+.area-corpo { padding: 0 .75rem .7rem; }

@@ -77,6 +77,21 @@
       "description": "Ganchos de aventura / rumores. ATENÇÃO: o app identifica cada gancho pela POSIÇÃO no array (índice 0, 1, 2...), não pelo campo \"id\" do item — reordenar este array muda para onde um link salvo (localStorage) aponta.",
       "items": { "$ref": "#/definitions/gancho" }
     },
+    "guia": {
+      "type": "array",
+      "description": "Regras e referências gerais da aventura (progressão de nível, comportamento do dragão, contexto, final), exibidas na aba \"Guia\" (aparece só quando este campo existe). Cada entrada: id kebab-case, titulo, resumo (uma linha, para a lista) e texto (string com parágrafos separados por quebra de linha, ou array de parágrafos; suporta marcadores).",
+      "items": {
+        "type": "object",
+        "required": ["id", "titulo", "texto"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "titulo": { "type": "string" },
+          "resumo": { "type": "string" },
+          "texto": { "type": ["string", "array"], "items": { "type": "string" } }
+        }
+      }
+    },
     "missoes": {
       "type": "array",
       "description": "Missões rastreáveis (Disponível/Em Andamento/Concluída). Mesma ressalva de \"ganchos\": endereçadas pela posição no array, não pelo campo \"id\" do item.",
@@ -198,6 +213,36 @@
           "type": "array",
           "items": { "type": "string", "pattern": "^npc:[a-z0-9]+(-[a-z0-9]+)*$" },
           "description": "Marcadores EXATOS no formato \"npc:id\" (o item inteiro do array, não um marcador embutido em texto). Cada um vira um chip clicável na tela do local."
+        },
+        "encontros": {
+          "type": "array",
+          "description": "Quem está no local e em que quantidade. Cada entrada vira uma linha \"Nome ×qtd\" na seção \"Quem está aqui\" da tela do local, agrupada por \"area\". Também alimenta o bloco \"Aparece em\" na ficha do monstro/NPC. Complementa (não substitui) criaturas/npcs: entradas antigas ali que não aparecem em nenhum encontro continuam sendo exibidas, sem quantidade.",
+          "items": {
+            "type": "object",
+            "required": ["ref"],
+            "additionalProperties": false,
+            "properties": {
+              "area": { "type": "string", "description": "Sala/área dentro do local (ex.: \"A27 — Aposentos da Banshee\"). Texto simples. Encontros com a mesma área são agrupados." },
+              "ref": { "type": "string", "pattern": "^(bestiario|npc):[a-z0-9]+(-[a-z0-9]+)*$", "description": "Marcador EXATO \"bestiario:id\" ou \"npc:id\"." },
+              "qtd": { "type": ["integer", "string"], "minimum": 1, "description": "Quantidade: inteiro (4) ou texto (\"2d4\" — notação de dado fica clicável —, \"1 por jogador\"). Omitir = quantidade não especificada; 1 não exibe ×1." },
+              "nota": { "type": "string", "description": "Contexto curto: \"dormindo\", \"emboscada\", \"só à noite\". Suporta marcadores de drill-down e dados clicáveis." }
+            }
+          }
+        },
+        "areas": {
+          "type": "array",
+          "description": "Áreas/salas do local (A1, W13, M4...), exibidas como lista recolhível \"Áreas\" na tela do local. Resuma o texto do módulo com suas palavras, mas preserve toda a mecânica: CDs, dano, quantidades, tesouros, gatilhos. Mencione criaturas/NPCs/itens com marcadores (suportados).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "codigo": { "type": "string", "description": "Código do mapa, ex.: \"A5\"." },
+              "nome": { "type": "string", "description": "Nome da área, ex.: \"Salão Oeste\"." },
+              "texto": { "type": "string", "description": "Resumo da área. Suporta marcadores de drill-down e dados clicáveis." },
+              "armadilha": { "type": "string", "description": "Armadilha/perigo da área, com CD e dano. Suporta marcadores." },
+              "tesouro": { "type": "string", "description": "Tesouro da área. Suporta marcadores." }
+            }
+          }
         },
         "criaturas": {
           "type": "array",

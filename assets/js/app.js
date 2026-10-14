@@ -27,6 +27,7 @@
     { id: 'ganchos',   rotulo: 'Ganchos',   icone: '\u{1FA9D}' },
     { id: 'missoes',   rotulo: 'Missões',   icone: '\u{1F4DC}' },
     { id: 'locais',    rotulo: 'Locais',    icone: '\u{1F5FA}' },
+    { id: 'guia',      rotulo: 'Guia',      icone: '\u{1F4D6}' },
     { id: 'condicoes', rotulo: 'Condições', icone: '\u{1F300}' },
     { id: 'eventos',   rotulo: 'Eventos de Estrada', icone: '\u{1F3B2}' },
   ];
@@ -163,7 +164,8 @@
 
   // ---------- Render ----------
   function montarAbas() {
-    el.tabs.innerHTML = ABAS.map(a => `
+    const temGuia = !!(state.aventura && state.aventura.guia && state.aventura.guia.length);
+    el.tabs.innerHTML = ABAS.filter(a => a.id !== 'guia' || temGuia).map(a => `
       <button type="button" class="tab-btn" data-aba="${a.id}" aria-label="${a.rotulo}" title="${a.rotulo}">
         <span aria-hidden="true">${a.icone}</span>
       </button>`).join('');

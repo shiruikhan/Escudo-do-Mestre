@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, linha, listaBlocos, dicParaArray, itemListaCard, vazio, marcarDados, lerSessao } = window.Renderers._;
+  const { painelCard, linha, listaBlocos, dicParaArray, itemListaCard, vazio, marcarDados, lerSessao, blocoApareceEm } = window.Renderers._;
 
   function listaBestiario(aventura) {
     const itens = dicParaArray(aventura.bestiario)
@@ -103,6 +103,7 @@
       ${listaBlocos('Reações', b.reacoes, aventura)}
       ${listaBlocos('Ações Lendárias', b.acoes_lendarias, aventura)}
 
+      ${blocoApareceEm(aventura, 'bestiario', id)}
       ${b.localizacao ? `<div class="stat-divider"></div>${linha('Localização', b.localizacao)}` : ''}
       ${b.notas_dm ? `<div class="mt-2 text-sm text-amber-200/80 bg-amber-500/5 border border-amber-500/20 rounded-lg p-3">
           <span class="font-semibold text-amber-300">Nota do Mestre:</span> ${parseLinks(b.notas_dm, aventura)}

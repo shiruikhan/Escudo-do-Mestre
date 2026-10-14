@@ -120,6 +120,64 @@ function main() {
     }
   }
 
+  // 3.1 Encontros por local: ref deve ser bestiario:/npc: existente, qtd número
+  // inteiro >= 1 ou texto não vazio, e nenhum campo desconhecido.
+  const ENC_CAMPOS = new Set(['area', 'ref', 'qtd', 'nota']);
+  if (fs.existsSync(aventurasDir)) {
+    for (const caminho of listarJsons(aventurasDir)) {
+      const aventura = dados.get(caminho);
+      if (!aventura || !aventura.locais) continue;
+      const relativo = path.relative(ROOT, caminho);
+      const errosAntesEnc = erros;
+      let totalEnc = 0;
+      for (const [lid, l] of Object.entries(aventura.locais)) {
+        if (l.encontros === undefined) continue;
+        if (!Array.isArray(l.encontros)) { erro(`${relativo}: locais.${lid}.encontros deve ser array`); continue; }
+        l.encontros.forEach((e, i) => {
+          totalEnc++;
+          const onde = `${relativo}: locais.${lid}.encontros[${i}]`;
+          for (const k of Object.keys(e)) if (!ENC_CAMPOS.has(k)) erro(`${onde}: campo desconhecido "${k}"`);
+          const m = /^(npc|bestiario):([a-z0-9-]+)$/.exec(e.ref || '');
+          if (!m) { erro(`${onde}: "ref" deve ser "bestiario:id" ou "npc:id" (recebido: ${JSON.stringify(e.ref)})`); return; }
+          const secao = PREFIXO_PARA_SECAO[m[1]];
+          if (!(aventura[secao] || {})[m[2]]) erro(`${onde}: ref "${e.ref}" não existe em "${secao}"`);
+          if (e.qtd !== undefined && !((Number.isInteger(e.qtd) && e.qtd >= 1) || (typeof e.qtd === 'string' && e.qtd.trim()))) {
+            erro(`${onde}: "qtd" deve ser inteiro >= 1 ou texto (ex.: "2d4", "1 por jogador")`);
+          }
+        });
+      }
+      if (totalEnc && erros === errosAntesEnc) ok(`${relativo}: ${totalEnc} encontro(s) válido(s)`);
+    }
+  }
+
+  // 3.2 areas[] (locais) e guia[] (aventura): formato e marcadores resolvidos em 3.
+  if (fs.existsSync(aventurasDir)) {
+    for (const caminho of listarJsons(aventurasDir)) {
+      const aventura = dados.get(caminho);
+      if (!aventura) continue;
+      const relativo = path.relative(ROOT, caminho);
+      const antes = erros;
+      let nAreas = 0;
+      for (const [lid, l] of Object.entries(aventura.locais || {})) {
+        if (l.areas === undefined) continue;
+        if (!Array.isArray(l.areas)) { erro(`${relativo}: locais.${lid}.areas deve ser array`); continue; }
+        l.areas.forEach((a, i) => {
+          nAreas++;
+          for (const k of Object.keys(a)) if (!['codigo', 'nome', 'texto', 'armadilha', 'tesouro'].includes(k)) erro(`${relativo}: locais.${lid}.areas[${i}]: campo desconhecido "${k}"`);
+          if (!a.codigo && !a.nome) erro(`${relativo}: locais.${lid}.areas[${i}]: precisa de "codigo" ou "nome"`);
+          if (!a.texto) erro(`${relativo}: locais.${lid}.areas[${i}]: falta "texto"`);
+        });
+      }
+      const idsGuia = new Set();
+      (aventura.guia || []).forEach((g, i) => {
+        if (!g.id || !g.titulo || !g.texto) erro(`${relativo}: guia[${i}] precisa de id, titulo e texto`);
+        if (idsGuia.has(g.id)) erro(`${relativo}: guia[${i}]: id duplicado "${g.id}"`);
+        idsGuia.add(g.id);
+      });
+      if ((nAreas || idsGuia.size) && erros === antes) ok(`${relativo}: ${nAreas} área(s) e ${idsGuia.size} entrada(s) de guia válidas`);
+    }
+  }
+
   // 4. Arquivos globais (condicoes.json, eventos-estrada.json) são compartilhados entre
   // todas as aventuras e não têm seções próprias de npcs/bestiario/itens — um marcador de
   // drill-down ali só resolveria por coincidência, então é sempre tratado como erro.

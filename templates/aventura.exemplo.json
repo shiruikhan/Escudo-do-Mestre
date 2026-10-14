@@ -90,6 +90,11 @@
       "resumo": "Pequeno povoado de pescadores às margens de um rio, vizinho ao Poço Antigo. Alvo recente de incursões de bestiario:goblin-batedor vindos da floresta próxima.",
       "npcs": ["npc:elara-vidente", "npc:borin-ferreiro"],
       "criaturas": ["bestiario:goblin-batedor"],
+      "encontros": [
+        { "area": "Trilha ao norte", "ref": "bestiario:goblin-batedor", "qtd": "1d4+1", "nota": "emboscada à noite" },
+        { "area": "Casa da vidente", "ref": "npc:elara-vidente" },
+        { "area": "Forja", "ref": "npc:borin-ferreiro" }
+      ],
       "perigos": "Emboscadas noturnas de bestiario:goblin-batedor nas trilhas ao redor da vila.",
       "tesouro": "item:amuleto-da-mare, guardado por npc:elara-vidente.",
       "conexoes": "Trilha ao norte leva ao Poço Antigo; estrada ao sul leva à cidade mais próxima."

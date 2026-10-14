@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  const { normalizar, resultadoDetalhe, textoPlano, listasComId } = window.Renderers._;
+  const { normalizar, resultadoDetalhe, textoPlano, listasComId, ocupantesDoLocal, resolverRef, locaisDe } = window.Renderers._;
 
   function construirIndice(aventura) {
     // Campos de texto livre podem conter marcadores de drill-down (npc:*, etc.);
@@ -19,7 +19,10 @@
         campos: [normalizar(i.nome), normalizar(i.tipo), normalizar(tp(i.efeito))] });
     for (const [id, l] of Object.entries(aventura.locais || {}))
       idx.push({ tipo: 'locais', id, label: 'Local', nome: l.nome, sub: l.tipo,
-        campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(tp(l.resumo))] });
+        campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(tp(l.resumo)),
+          // quem está no local (nome + área), para achar "onde fica o goblin?"
+          normalizar(ocupantesDoLocal(l).map(o => { const r = resolverRef(o.ref, aventura); return (r ? r.obj.nome : '') + ' ' + o.area; }).join(' ')),
+          normalizar((l.areas || []).map(a => [a.codigo, a.nome, tp(a.texto), tp(a.tesouro), tp(a.armadilha)].join(' ')).join(' '))] });
     listasComId(aventura).missoes.forEach(({ id, obj: m }) =>
       idx.push({ tipo: 'missoes', id, label: 'Missão', nome: m.titulo, sub: tp(m.localizacao),
         campos: [normalizar(m.titulo), normalizar(tp(m.objetivo)), normalizar(tp(m.localizacao))] }));
@@ -29,6 +32,9 @@
       idx.push({ tipo: 'ganchos', id, label: 'Gancho', nome: fonte || 'Gancho',
         sub: (texto || '').slice(0, 70), campos: [normalizar(texto), normalizar(fonte)] });
     });
+    (aventura.guia || []).forEach(g =>
+      idx.push({ tipo: 'guia', id: g.id, label: 'Guia', nome: g.titulo, sub: tp(g.resumo),
+        campos: [normalizar(g.titulo), normalizar(tp(g.resumo)), normalizar(tp(Array.isArray(g.texto) ? g.texto.join(' ') : g.texto))] }));
     for (const [id, c] of Object.entries(aventura.condicoes || {}))
       idx.push({ tipo: 'condicoes', id, label: 'Condição', nome: c.nome, sub: c.resumo,
         campos: [normalizar(c.nome), normalizar(c.resumo)] });
@@ -104,6 +110,15 @@
       });
     }
 
+    if ((aventura.guia || []).length) {
+      md.push('## Guia');
+      aventura.guia.forEach(g => {
+        md.push(`### ${g.titulo}`);
+        md.push(tp(Array.isArray(g.texto) ? g.texto.join('\n\n') : g.texto));
+        sep();
+      });
+    }
+
     const locais = Object.values(aventura.locais || {});
     if (locais.length) {
       md.push('## Locais');
@@ -111,6 +126,20 @@
         md.push(`### ${l.nome}`);
         if (l.tipo) md.push(`*${l.tipo}*`);
         if (l.resumo) { sep(); md.push(tp(l.resumo)); }
+        const ocup = ocupantesDoLocal(l).map(o => {
+          const r = resolverRef(o.ref, aventura);
+          if (!r) return null;
+          const q = o.qtd == null || o.qtd === '' ? '' : ` ×${o.qtd}`;
+          return `- ${o.area ? o.area + ': ' : ''}${r.obj.nome}${q}${o.nota ? ' — ' + o.nota : ''}`;
+        }).filter(Boolean);
+        if (ocup.length) { sep(); md.push('**Quem está aqui:**'); md.push(...ocup); sep(); }
+        if ((l.areas || []).length) {
+          sep(); md.push('**Áreas:**');
+          l.areas.forEach(a => {
+            md.push(`- **${[a.codigo, a.nome].filter(Boolean).join(' — ')}:** ${tp(a.texto || '')}${a.armadilha ? ' *Armadilha:* ' + tp(a.armadilha) : ''}${a.tesouro ? ' *Tesouro:* ' + tp(a.tesouro) : ''}`);
+          });
+          sep();
+        }
         if (l.perigos) md.push(`**Perigos:** ${tp(l.perigos)}`);
         if (l.tesouro) md.push(`**Tesouro:** ${tp(l.tesouro)}`);
         if (l.conexoes) md.push(`**Conexões:** ${tp(l.conexoes)}`);

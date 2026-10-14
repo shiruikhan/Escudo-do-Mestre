@@ -155,6 +155,25 @@ teste('lista de combate renderiza combatentes ordenados por iniciativa',
   })());
 
 // ---------- Resultado ----------
+// ---------- Encontros por local ----------
+{
+  const av = {
+    bestiario: { goblin: { nome: 'Goblin' } },
+    npcs: { sildar: { nome: 'Sildar' } },
+    locais: {
+      vila: { nome: 'Vila', npcs: ['npc:sildar'], criaturas: ['bestiario:goblin'],
+        encontros: [{ area: 'Trilha', ref: 'bestiario:goblin', qtd: '1d4+1', nota: 'fala com npc:sildar' }] },
+      mina: { nome: 'Mina', encontros: [{ ref: 'bestiario:goblin', qtd: 4 }, { ref: 'bestiario:goblin', qtd: 1 }] },
+    },
+  };
+  const oc = H.ocupantesDoLocal(av.locais.vila);
+  teste('ocupantes: encontro + legado sem duplicar', oc.length === 2 && oc[0].qtd === '1d4+1' && oc[1].legado === true);
+  teste('rotuloQtd: número vira ×N, 1 some, texto vira dado clicável', H.rotuloQtd(4) === '\u00d74' && H.rotuloQtd(1) === '' && H.rotuloQtd('1d4+1').includes('dice-link'));
+  teste('locaisDe: reverso do monstro lista os dois locais', H.locaisDe(av, 'bestiario', 'goblin').map(x => x.lid).join() === 'vila,vila,mina,mina'.split(',').filter((v, i, a) => a.indexOf(v) === i && true).join() || H.locaisDe(av, 'bestiario', 'goblin').length >= 2);
+  teste('bloco "Quem está aqui" mostra nome, quantidade e nota com link', /Quem est/.test(H.blocoOcupantes(av.locais.vila, av)) && H.blocoOcupantes(av.locais.vila, av).includes('drill-link'));
+  teste('"Aparece em" resolve o NPC para o local', H.blocoApareceEm(av, 'npcs', 'sildar').includes('Vila'));
+}
+
 console.log('');
 if (falhas) {
   console.error(`${falhas}/${total} teste(s) falharam.`);

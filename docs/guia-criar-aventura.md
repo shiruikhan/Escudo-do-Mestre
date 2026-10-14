@@ -51,6 +51,7 @@ Nem todo campo de texto passa pelo parser de marcadores — a tabela abaixo (ext
 | `itens.efeito`, `.localizacao` | Sim |
 | `itens.tipo`, `.propriedades` | Não |
 | `locais.resumo`, `.perigos`, `.tesouro`, `.conexoes` | Sim |
+| `locais.encontros[]` | Estrutura própria (`area`, `ref`, `qtd`, `nota`) — ver seção "Encontros por local" abaixo; `ref` é marcador exato `npc:id`/`bestiario:id` |
 | `locais.npcs[]`, `.criaturas[]` | Marcador **exato** (o item inteiro do array é `"npc:id"` ou `"bestiario:id"`, não embutido em frase) — vira chip clicável, não link inline |
 | `locais.tipo`, `.nivel_sugerido` | Não |
 | `ganchos[].texto` | Sim — a prévia na lista resolve o marcador para o nome da entidade (texto simples); a tela de detalhe resolve em botão |
@@ -59,13 +60,30 @@ Nem todo campo de texto passa pelo parser de marcadores — a tabela abaixo (ext
 
 O validador (`npm run validar-dados`) confere se todo marcador usado aponta para uma chave que existe — mas **não** sabe em qual campo o marcador foi colocado, então colocar um marcador válido num campo que não é renderizado com parser (ex. `npcs.local`) passa na validação e ainda assim aparece como texto cru na tela. Siga a tabela acima.
 
+## Encontros por local
+
+`locais.<id>.encontros` diz **quem está no local e quantos**. Cada entrada tem `ref` (obrigatório, `bestiario:id` ou `npc:id`), e opcionalmente `area` (sala/área; entradas com a mesma área são agrupadas), `qtd` (inteiro como `4`, ou texto como `"2d4"` ou `"1 por jogador"`) e `nota` (`"dormindo"`, `"emboscada"`).
+
+```json
+"encontros": [
+  { "area": "A27 — Aposentos da Banshee", "ref": "bestiario:banshee", "qtd": 1 },
+  { "area": "Pátio", "ref": "bestiario:orc", "qtd": 6, "nota": "patrulhando" }
+]
+```
+
+Na tela do local aparece como "Quem está aqui"; na ficha do monstro/NPC aparece "Aparece em" com o reverso (local, quantidade, área). `criaturas`/`npcs` antigos continuam funcionando, mas só `encontros` carrega quantidade. O validador confere `ref` e `qtd`.
+
+## Áreas por local e aba Guia
+
+`locais.<id>.areas` é uma lista de salas/áreas (`codigo`, `nome`, `texto`, `armadilha`, `tesouro`) exibida como itens recolhíveis na tela do local. `guia` (nível raiz da aventura) é uma lista de `{id, titulo, resumo, texto}` para regras gerais; a aba 📖 Guia só aparece quando o campo existe.
+
 ## Convenções de status de missão
 
 `missoes[].status` aceita qualquer texto, mas só estes três geram a cor de badge correta (o app faz busca por substring, sem diferenciar maiúsculas): `Disponível`, `Em Andamento`, `Concluída`.
 
-## Campos existentes mas ainda não exibidos pela UI
+## Campos exibidos pela UI
 
-Durante a auditoria dos renderers encontramos campos usados nas aventuras já publicadas que **não aparecem em lugar nenhum da tela** (o renderer correspondente nunca lê essas chaves): `npcs.notas_dm`, `npcs.ver_bestiario`, `itens.historico` (`bestiario.vulnerabilidades_dano` estava nessa lista, mas ganhou suporte no renderer e hoje é exibido). Provavelmente foram adicionados nos dados esperando um suporte no renderer que nunca chegou a ser escrito. Preencha-os mesmo assim se tiver a informação (não custa nada e cobre o dia em que alguém adicionar o suporte), mas não conte com eles aparecendo para o Mestre hoje.
+`npcs.notas_dm`, `npcs.ver_bestiario` (id do monstro com a ficha de combate, com ou sem o prefixo `bestiario:`), `itens.historico` e `bestiario.vulnerabilidades_dano` são exibidos. Também são exibidos `locais.encontros`, `locais.areas` e a aba Guia.
 
 ## Prompt pronto para gerar uma aventura com IA
 

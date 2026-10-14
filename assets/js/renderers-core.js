@@ -210,6 +210,105 @@
       </div>`;
   }
 
+  // ---------- Encontros por local ----------
+  // local.encontros: [{ area?, ref: "bestiario:id"|"npc:id", qtd?, nota? }].
+  // Cada ref vira linha "Nome ×qtd". qtd: número (4 -> ×4) ou texto ("2d4",
+  // "1 por jogador"). Entradas antigas em local.criaturas/npcs (sem
+  // quantidade) continuam valendo e são mescladas nos helpers abaixo.
+  const REF_RE = new RegExp('^' + PREFIXOS_RE + ':([a-z0-9\\-]+)$');
+
+  function resolverRef(ref, aventura) {
+    const m = REF_RE.exec(ref || '');
+    if (!m) return null;
+    const secao = PREFIXO_PARA_SECAO[m[1]];
+    const id = m[2];
+    const obj = secao && aventura[secao] ? aventura[secao][id] : null;
+    return obj ? { secao, id, obj } : null;
+  }
+
+  function rotuloQtd(qtd) {
+    if (qtd == null || qtd === '') return '';
+    if (typeof qtd === 'number') return qtd === 1 ? '' : '×' + qtd;
+    return marcarDados(escHtml(String(qtd)));
+  }
+
+  // Lista normalizada de ocupantes de um local: encontros + legado
+  // (criaturas/npcs que não aparecem em nenhum encontro).
+  function ocupantesDoLocal(l) {
+    const lista = (l.encontros || []).map(e => ({ area: e.area || '', ref: e.ref, qtd: e.qtd, nota: e.nota || '' }));
+    const jaTem = new Set(lista.map(e => e.ref));
+    [...(l.criaturas || []), ...(l.npcs || [])].forEach(ref => {
+      if (!jaTem.has(ref)) { jaTem.add(ref); lista.push({ area: '', ref, qtd: null, nota: '', legado: true }); }
+    });
+    return lista;
+  }
+
+  // Reverso: em quais locais uma criatura/NPC aparece.
+  function locaisDe(aventura, secao, id) {
+    const res = [];
+    for (const [lid, l] of Object.entries(aventura.locais || {})) {
+      ocupantesDoLocal(l).forEach(o => {
+        const r = resolverRef(o.ref, aventura);
+        if (r && r.secao === secao && r.id === id) res.push({ lid, nome: l.nome, area: o.area, qtd: o.qtd, nota: o.nota });
+      });
+    }
+    return res;
+  }
+
+  function linhaOcupante(o, aventura) {
+    const r = resolverRef(o.ref, aventura);
+    if (!r) return '';
+    const q = rotuloQtd(o.qtd);
+    return `<li class="enc-linha">
+      <button type="button" class="chip-link" data-tipo="${escHtml(r.secao)}" data-id="${escHtml(r.id)}">${escHtml(r.obj.nome)}</button>
+      ${q ? `<span class="enc-qtd">${q}</span>` : ''}
+      ${o.nota ? `<span class="enc-nota">${parseLinks(o.nota, aventura)}</span>` : ''}
+    </li>`;
+  }
+
+  // Bloco "Quem está aqui" agrupado por área/sala (ordem de aparição).
+  function blocoOcupantes(l, aventura) {
+    const todos = ocupantesDoLocal(l);
+    if (!todos.length) return '';
+    const grupos = new Map();
+    todos.forEach(o => {
+      const k = o.area || '';
+      if (!grupos.has(k)) grupos.set(k, []);
+      grupos.get(k).push(o);
+    });
+    const html = [...grupos.entries()].map(([area, os]) => {
+      const linhas = os.map(o => linhaOcupante(o, aventura)).join('');
+      if (!linhas) return '';
+      return `<div class="enc-area">
+        ${area ? `<p class="enc-area-nome">${escHtml(area)}</p>` : ''}
+        <ul class="enc-lista">${linhas}</ul>
+      </div>`;
+    }).join('');
+    if (!html) return '';
+    return `<div class="mt-3">
+      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Quem está aqui</h4>
+      ${html}
+    </div>`;
+  }
+
+  // Seção "Aparece em" na ficha de monstro/NPC.
+  function blocoApareceEm(aventura, secao, id) {
+    const locs = locaisDe(aventura, secao, id);
+    if (!locs.length) return '';
+    const linhas = locs.map(x => {
+      const q = rotuloQtd(x.qtd);
+      return `<li class="enc-linha">
+        <button type="button" class="chip-link" data-tipo="locais" data-id="${escHtml(x.lid)}">${escHtml(x.nome)}</button>
+        ${q ? `<span class="enc-qtd">${q}</span>` : ''}
+        ${x.area ? `<span class="enc-nota">${escHtml(x.area)}</span>` : ''}
+        ${x.nota ? `<span class="enc-nota">${parseLinks(x.nota, aventura)}</span>` : ''}
+      </li>`;
+    }).join('');
+    return `<div class="stat-divider"></div>
+      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500">Aparece em</h4>
+      <ul class="enc-lista">${linhas}</ul>`;
+  }
+
   function classeBadge(status) {
     const s = (status || '').toLowerCase();
     if (s.includes('conclu')) return 'badge-concluida';
@@ -273,6 +372,12 @@
       textoPlano,
       chip,
       grupoChips,
+      resolverRef,
+      rotuloQtd,
+      ocupantesDoLocal,
+      locaisDe,
+      blocoOcupantes,
+      blocoApareceEm,
       classeBadge,
       normalizar,
       resultadoDetalhe,

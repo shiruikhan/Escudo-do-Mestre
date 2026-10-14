@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, linha, dicParaArray, itemListaCard, vazio, campoDestaque } = window.Renderers._;
+  const { painelCard, linha, dicParaArray, itemListaCard, vazio, campoDestaque, blocoApareceEm } = window.Renderers._;
 
   function listaNpcs(aventura) {
     const itens = dicParaArray(aventura.npcs)
@@ -29,6 +29,9 @@
       ${campoDestaque('Motivação', n.motivacao, aventura, 'amber')}
       ${campoDestaque('Segredos', n.segredos, aventura, 'rose')}
       ${campoDestaque('Interação', n.interacao, aventura, 'sky')}
+      ${campoDestaque('Notas do Mestre', n.notas_dm, aventura, 'amber')}
+      ${n.ver_bestiario ? `<div class="mt-2 text-sm"><span class="text-zinc-500">Ficha de combate:</span> ${parseLinks(/^[a-z]+:/.test(n.ver_bestiario) ? n.ver_bestiario : 'bestiario:' + n.ver_bestiario, aventura)}</div>` : ''}
+      ${blocoApareceEm(aventura, 'npcs', id)}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
@@ -54,6 +57,7 @@
       ${linha('Propriedades', i.propriedades)}
       ${i.efeito ? `<p class="text-sm text-zinc-300 mt-2 leading-snug">${parseLinks(i.efeito, aventura)}</p>` : ''}
       ${i.localizacao ? campoDestaque('Localização', i.localizacao, aventura, 'emerald') : ''}
+      ${campoDestaque('Histórico', i.historico, aventura, 'sky')}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
