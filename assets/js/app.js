@@ -32,6 +32,10 @@
     { id: 'eventos',   rotulo: 'Eventos de Estrada', icone: '\u{1F3B2}' },
   ];
 
+  // Tipos de detalhe que não têm aba própria e pertencem a uma aba existente.
+  const ABA_DO_TIPO = { sala: 'locais' };
+  const abaDoTipo = tipo => ABA_DO_TIPO[tipo] || (ABAS.some(a => a.id === tipo) ? tipo : null);
+
   const state = {
     aventura: null,
     indice: [],
@@ -103,7 +107,7 @@
 
     if (alvo && alvo.foco) {
       state.foco = alvo.foco;
-      if (ABAS.some(a => a.id === alvo.foco.tipo)) state.aba = alvo.foco.tipo;
+      if (abaDoTipo(alvo.foco.tipo)) state.aba = abaDoTipo(alvo.foco.tipo);
     } else if (alvo && alvo.aba) {
       state.aba = alvo.aba;
       state.foco = null;
@@ -563,7 +567,7 @@
     if (alvoInicial) {
       if (alvoInicial.foco) {
         state.foco = alvoInicial.foco;
-        if (ABAS.some(a => a.id === alvoInicial.foco.tipo)) state.aba = alvoInicial.foco.tipo;
+        if (abaDoTipo(alvoInicial.foco.tipo)) state.aba = abaDoTipo(alvoInicial.foco.tipo);
       } else {
         state.aba = alvoInicial.aba;
       }

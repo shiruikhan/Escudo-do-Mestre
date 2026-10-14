@@ -232,6 +232,35 @@
     return marcarDados(escHtml(String(qtd)));
   }
 
+  // ---------- Salas (areas[] do local) ----------
+  // Cada área vira uma "sala" endereçável: id = <idLocal>:<slug>, único dentro do local.
+  function rotuloArea(a) { return [a.codigo, a.nome].filter(Boolean).join(' \u2014 '); }
+
+  function salasDoLocal(aventura, lid) {
+    const l = aventura.locais && aventura.locais[lid];
+    if (!l || !l.areas) return [];
+    const usados = Object.create(null);
+    return l.areas.map((a, i) => {
+      let base = slug(a.codigo || a.nome || 'sala') || 'sala';
+      let s = base, n = 2;
+      while (usados[s]) s = base + '-' + (n++);
+      usados[s] = true;
+      return { id: lid + ':' + s, lid, indice: i, area: a, rotulo: rotuloArea(a) };
+    });
+  }
+
+  function resolverSala(aventura, id) {
+    const lid = String(id || '').split(':')[0];
+    const lista = salasDoLocal(aventura, lid);
+    const i = lista.findIndex(s => s.id === id);
+    return i < 0 ? null : { sala: lista[i], anterior: lista[i - 1] || null, proxima: lista[i + 1] || null, total: lista.length, posicao: i + 1, lista };
+  }
+
+  // Ocupantes (encontros) cuja `area` é exatamente o rótulo da sala.
+  function ocupantesDaSala(l, rotulo) {
+    return (l.encontros || []).filter(e => e.area && e.area === rotulo);
+  }
+
   // Lista normalizada de ocupantes de um local: encontros + legado
   // (criaturas/npcs que não aparecem em nenhum encontro).
   function ocupantesDoLocal(l) {
@@ -245,11 +274,15 @@
 
   // Reverso: em quais locais uma criatura/NPC aparece.
   function locaisDe(aventura, secao, id) {
+    const salaPorRotulo = {};
     const res = [];
     for (const [lid, l] of Object.entries(aventura.locais || {})) {
       ocupantesDoLocal(l).forEach(o => {
         const r = resolverRef(o.ref, aventura);
-        if (r && r.secao === secao && r.id === id) res.push({ lid, nome: l.nome, area: o.area, qtd: o.qtd, nota: o.nota });
+        if (r && r.secao === secao && r.id === id) {
+          const sala = o.area ? salasDoLocal(aventura, lid).find(s => s.rotulo === o.area) : null;
+          res.push({ lid, nome: l.nome, area: o.area, qtd: o.qtd, nota: o.nota, salaId: sala ? sala.id : null });
+        }
       });
     }
     return res;
@@ -267,8 +300,12 @@
   }
 
   // Bloco "Quem está aqui" agrupado por área/sala (ordem de aparição).
-  function blocoOcupantes(l, aventura) {
-    const todos = ocupantesDoLocal(l);
+  function blocoOcupantes(l, aventura, soSemSala) {
+    let todos = ocupantesDoLocal(l);
+    if (soSemSala) {
+      const rotulos = new Set((l.areas || []).map(rotuloArea));
+      todos = todos.filter(o => !(o.area && rotulos.has(o.area)));
+    }
     if (!todos.length) return '';
     const grupos = new Map();
     todos.forEach(o => {
@@ -286,7 +323,7 @@
     }).join('');
     if (!html) return '';
     return `<div class="mt-3">
-      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Quem está aqui</h4>
+      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">${soSemSala ? 'Fora das salas (geral / viagem)' : 'Quem está aqui'}</h4>
       ${html}
     </div>`;
   }
@@ -300,7 +337,9 @@
       return `<li class="enc-linha">
         <button type="button" class="chip-link" data-tipo="locais" data-id="${escHtml(x.lid)}">${escHtml(x.nome)}</button>
         ${q ? `<span class="enc-qtd">${q}</span>` : ''}
-        ${x.area ? `<span class="enc-nota">${escHtml(x.area)}</span>` : ''}
+        ${x.area ? (x.salaId
+          ? `<button type="button" class="chip-link" data-tipo="sala" data-id="${escHtml(x.salaId)}">${escHtml(x.area)}</button>`
+          : `<span class="enc-nota">${escHtml(x.area)}</span>`) : ''}
         ${x.nota ? `<span class="enc-nota">${parseLinks(x.nota, aventura)}</span>` : ''}
       </li>`;
     }).join('');
@@ -377,6 +416,11 @@
       ocupantesDoLocal,
       locaisDe,
       blocoOcupantes,
+      rotuloArea,
+      salasDoLocal,
+      resolverSala,
+      ocupantesDaSala,
+      linhaOcupante,
       blocoApareceEm,
       classeBadge,
       normalizar,

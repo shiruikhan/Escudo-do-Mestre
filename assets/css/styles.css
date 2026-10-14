@@ -786,3 +786,9 @@ html.light .trilha-btn-primario { background: var(--cor-ambar-escuro); color: #f
 .area-det > summary::before { content: "\25B8"; margin-right: .4rem; opacity: .6; display: inline-block; transition: transform .15s; }
 .area-det[open] > summary::before { transform: rotate(90deg); }
 .area-corpo { padding: 0 .75rem .7rem; }
+
+/* Navegação entre salas */
+.sala-navbar { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-top: 1rem; }
+.sala-nav { text-align: left; background: rgba(39,39,42,.5); border: 1px solid rgba(63,63,70,.8); border-radius: .6rem; padding: .5rem .75rem; min-width: 0; }
+.sala-nav:last-child:not(:first-child) { text-align: right; }
+.sala-resumo { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  const { normalizar, resultadoDetalhe, textoPlano, listasComId, ocupantesDoLocal, resolverRef, locaisDe } = window.Renderers._;
+  const { normalizar, resultadoDetalhe, textoPlano, listasComId, ocupantesDoLocal, resolverRef, locaisDe, salasDoLocal, ocupantesDaSala } = window.Renderers._;
 
   function construirIndice(aventura) {
     // Campos de texto livre podem conter marcadores de drill-down (npc:*, etc.);
@@ -22,7 +22,15 @@
         campos: [normalizar(l.nome), normalizar(l.tipo), normalizar(tp(l.resumo)),
           // quem está no local (nome + área), para achar "onde fica o goblin?"
           normalizar(ocupantesDoLocal(l).map(o => { const r = resolverRef(o.ref, aventura); return (r ? r.obj.nome : '') + ' ' + o.area; }).join(' ')),
-          normalizar((l.areas || []).map(a => [a.codigo, a.nome, tp(a.texto), tp(a.tesouro), tp(a.armadilha)].join(' ')).join(' '))] });
+          ] });
+    for (const lid of Object.keys(aventura.locais || {})) {
+      const l = aventura.locais[lid];
+      salasDoLocal(aventura, lid).forEach(({ id, area, rotulo }) => {
+        const ocup = ocupantesDaSala(l, rotulo).map(e => { const r = resolverRef(e.ref, aventura); return r ? r.obj.nome : ''; }).join(' ');
+        idx.push({ tipo: 'sala', id, label: 'Sala', nome: rotulo || 'Área', sub: l.nome,
+          campos: [normalizar(rotulo), normalizar(tp(area.texto)), normalizar(tp(area.tesouro)), normalizar(tp(area.armadilha)), normalizar(ocup)] });
+      });
+    }
     listasComId(aventura).missoes.forEach(({ id, obj: m }) =>
       idx.push({ tipo: 'missoes', id, label: 'Missão', nome: m.titulo, sub: tp(m.localizacao),
         campos: [normalizar(m.titulo), normalizar(tp(m.objetivo)), normalizar(tp(m.localizacao))] }));

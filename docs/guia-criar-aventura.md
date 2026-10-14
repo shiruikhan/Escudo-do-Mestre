@@ -75,7 +75,7 @@ Na tela do local aparece como "Quem está aqui"; na ficha do monstro/NPC aparece
 
 ## Áreas por local e aba Guia
 
-`locais.<id>.areas` é uma lista de salas/áreas (`codigo`, `nome`, `texto`, `armadilha`, `tesouro`) exibida como itens recolhíveis na tela do local. `guia` (nível raiz da aventura) é uma lista de `{id, titulo, resumo, texto}` para regras gerais; a aba 📖 Guia só aparece quando o campo existe.
+`locais.<id>.areas` é uma lista de salas/áreas (`codigo`, `nome`, `texto`, `armadilha`, `tesouro`). Na tela do local cada área vira uma linha (⚠ armadilha, ◆ tesouro, ocupantes com quantidade) que abre uma tela própria da sala, com link direto (`#sala/<local>:<codigo>`), botões Anterior/Próxima e voltar ao local. Os ocupantes de uma sala são os `encontros` cuja `area` é exatamente `"<codigo> — <nome>"`; encontros sem sala correspondente (viagem, geral) aparecem no bloco "Fora das salas" do local. A ordem de `areas` define a navegação. `guia` (nível raiz da aventura) é uma lista de `{id, titulo, resumo, texto}` para regras gerais; a aba 📖 Guia só aparece quando o campo existe.
 
 ## Convenções de status de missão
 
