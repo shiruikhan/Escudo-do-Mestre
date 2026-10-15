@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Conectando ao Spotify — Escudo do Mestre</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -10,27 +10,29 @@
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen flex items-center justify-center px-6">
+<body class="min-h-screen flex items-center justify-center px-4">
 
-  <div class="text-center max-w-sm">
-    <div id="cb-icone" class="text-4xl mb-4">🎵</div>
-    <p id="cb-msg" class="text-sm text-zinc-400">Concluindo a conexão com o Spotify…</p>
-    <a id="cb-voltar" href="index.html"
-       class="hidden inline-block mt-6 text-sm font-semibold text-amber-400 active:text-amber-300">
-      ‹ Voltar ao Escudo
-    </a>
-  </div>
+  <main class="vazio !mt-0 max-w-sm w-full">
+    <img src="assets/favicon.svg" alt="" width="48" height="48" class="mx-auto mb-4" />
+    <h1 class="titulo-entidade">Trilha sonora</h1>
+    <p id="cb-msg" class="subtitulo-entidade mt-2" role="status" aria-live="polite">Concluindo a conexão com o Spotify…</p>
+    <div id="cb-carregando" class="spinner mt-6" aria-hidden="true"></div>
+    <!-- .btn define display: a ocultação fica no invólucro -->
+    <div id="cb-voltar" class="mt-6 hidden">
+      <a href="index.html" class="btn btn-primario btn-largo">Voltar ao Escudo</a>
+    </div>
+  </main>
 
   <script src="assets/js/spotify.js"></script>
   <script>
     (function () {
       'use strict';
       const msg = document.getElementById('cb-msg');
-      const icone = document.getElementById('cb-icone');
+      const carregando = document.getElementById('cb-carregando');
       const voltar = document.getElementById('cb-voltar');
 
       function falhar(texto) {
-        icone.textContent = '⚠️';
+        carregando.remove();
         msg.textContent = texto;
         voltar.classList.remove('hidden');
       }

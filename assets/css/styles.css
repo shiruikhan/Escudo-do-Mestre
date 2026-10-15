@@ -585,6 +585,8 @@ body.com-nav .toast { bottom: calc(var(--barra-nav) + env(safe-area-inset-bottom
 }
 .painel-notas-titulo { font-family: var(--font-rubrica); font-weight: 700; font-size: 18px; color: var(--tinta); }
 .painel-notas-fechar {
+  display: grid;
+  place-items: center;
   width: var(--alvo-toque);
   height: var(--alvo-toque);
   background: none;
@@ -689,6 +691,7 @@ body.com-nav.com-trilha .toast { bottom: calc(var(--barra-nav) + 4.5rem + env(sa
   cursor: pointer;
 }
 .trilha-icone-btn:active { background: var(--ouro-fundo); color: var(--ouro); }
+#trilha-play { color: var(--ouro); }
 .trilha-icone-btn:disabled { opacity: .35; cursor: default; }
 .trilha-icone-btn:disabled:active { background: none; color: var(--tinta-suave); }
 

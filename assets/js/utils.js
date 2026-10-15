@@ -90,6 +90,12 @@
     mais: '<path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M5 18a2 2 0 0 1 2-2h12M9 8h6"/>',
     exportar: '<path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/>',
     fechar: '<path d="M6 6l12 12M18 6L6 18"/>',
+    // Trilha sonora
+    tocar: '<path d="M8 5v14l11-7z"/>',
+    pausar: '<rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/>',
+    proxima: '<path d="M6 5v14l9-7z"/><path d="M18 5v14"/>',
+    ajustes: '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',
+    atualizar: '<path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/>',
   };
   function icone(nome, classe) {
     const d = ICONES[nome];

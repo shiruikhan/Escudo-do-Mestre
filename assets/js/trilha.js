@@ -23,6 +23,7 @@
   const INTERVALO_POLL = 20000;
 
   const api = window.SpotifyAPI;
+  const icone = window.icone;
 
   const state = {
     climas: [],          // catálogo vindo de data/trilha.json
@@ -105,7 +106,7 @@
           <label class="trilha-rotulo" for="trilha-device">Tocar em</label>
           <select id="trilha-device" class="trilha-select" aria-label="Dispositivo de reprodução"></select>
           <button type="button" id="trilha-refresh" class="trilha-icone-btn"
-                  title="Atualizar dispositivos" aria-label="Atualizar dispositivos">⟳</button>
+                  title="Atualizar dispositivos" aria-label="Atualizar dispositivos">${icone('atualizar')}</button>
         </div>
         <div class="trilha-linha">
           <label class="trilha-rotulo" for="trilha-volume">Volume</label>
@@ -123,11 +124,11 @@
           </span>
         </button>
         <button type="button" id="trilha-next" class="trilha-icone-btn"
-                title="Próxima faixa" aria-label="Próxima faixa">⏭</button>
+                title="Próxima faixa" aria-label="Próxima faixa">${icone('proxima')}</button>
         <button type="button" id="trilha-play" class="trilha-icone-btn"
-                title="Tocar ou pausar" aria-label="Tocar ou pausar">▶</button>
+                title="Tocar" aria-label="Tocar">${icone('tocar')}</button>
         <button type="button" id="trilha-cfg" class="trilha-icone-btn"
-                title="Configurar trilha" aria-label="Configurar trilha">⚙</button>
+                title="Configurar trilha" aria-label="Configurar trilha">${icone('ajustes')}</button>
       </div>`;
     document.body.appendChild(barra);
     document.body.classList.add('com-trilha');
@@ -186,7 +187,7 @@
       const temUri = !!(clima && uriDoClima(clima));
       b.disabled = !ok || !temUri;
       b.classList.toggle('sem-uri', ok && !temUri);
-      b.title = temUri ? clima.rotulo : clima.rotulo + ' — playlist não configurada (⚙)';
+      b.title = temUri ? clima.rotulo : clima.rotulo + ' — playlist não configurada (toque na engrenagem)';
     });
 
     if (semRede) {
@@ -194,7 +195,7 @@
       el.sub.textContent = 'Sem conexão';
     } else if (!api.estaConectado()) {
       el.faixa.textContent = 'Trilha sonora';
-      el.sub.textContent = api.clientId() ? 'Toque em ⚙ para conectar' : 'Toque em ⚙ para configurar';
+      el.sub.textContent = api.clientId() ? 'Toque na engrenagem para conectar' : 'Toque na engrenagem para configurar';
     }
   }
 
@@ -216,7 +217,7 @@
       el.device.appendChild(o);
       state.deviceId = '';
       if (!silencioso) {
-        aviso('Nenhum dispositivo ativo. Diga "Alexa, tocar Spotify" para acordar a caixa e atualize (⟳).');
+        aviso('Nenhum dispositivo ativo. Diga "Alexa, tocar Spotify" para acordar a caixa e toque em Atualizar dispositivos.');
       }
       atualizarRodape();
       return;
@@ -277,7 +278,13 @@
 
   function atualizarRodape() {
     if (!pronto()) { atualizarHabilitacao(); return; }
-    el.play.textContent = state.tocando ? '⏸' : '▶';
+    const rotuloPlay = state.tocando ? 'Pausar' : 'Tocar';
+    if (el.play.dataset.estado !== rotuloPlay) {
+      el.play.dataset.estado = rotuloPlay;
+      el.play.innerHTML = icone(state.tocando ? 'pausar' : 'tocar');
+      el.play.title = rotuloPlay;
+      el.play.setAttribute('aria-label', rotuloPlay);
+    }
     el.faixa.textContent = state.faixa || 'Nada tocando';
     const nome = nomeDoDevice(state.deviceId);
     const clima = state.climas.find((c) => c.id === state.climaAtivo);
@@ -291,7 +298,7 @@
   // ---------- Ações ----------
   async function acionarClima(clima) {
     const uri = uriDoClima(clima);
-    if (!uri) { aviso('Playlist de "' + clima.rotulo + '" não configurada (⚙).'); return; }
+    if (!uri) { aviso('Playlist de "' + clima.rotulo + '" não configurada (toque na engrenagem).'); return; }
     if (!state.deviceId) {
       await carregarDispositivos();
       if (!state.deviceId) return;
@@ -380,7 +387,7 @@
       <div class="trilha-config" role="dialog" aria-modal="true" aria-label="Configurar trilha sonora">
         <div class="trilha-config-topo">
           <h2 class="painel-notas-titulo">Trilha sonora</h2>
-          <button type="button" class="painel-notas-fechar" aria-label="Fechar">×</button>
+          <button type="button" class="painel-notas-fechar" aria-label="Fechar">${icone('fechar')}</button>
         </div>
         <div class="trilha-config-corpo">
           <label class="trilha-campo">
