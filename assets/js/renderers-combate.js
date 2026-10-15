@@ -36,7 +36,7 @@
                placeholder="Init" aria-label="Iniciativa" />
         <button type="button" class="cb-btn cb-add-manual">Adicionar</button>
       </div>
-      <p class="text-[0.65rem] text-zinc-600 mt-1 mb-3">Monstros entram direto pela ficha (botão ⚔️), com iniciativa rolada automaticamente. Tudo é salvo neste aparelho.</p>`;
+      <p class="ajuda mt-2 mb-3">Monstros entram pela ficha (Adicionar ao combate), com iniciativa rolada automaticamente. Tudo é salvo neste aparelho.</p>`;
 
     if (!c.combatentes.length) {
       return `<div class="fade-in">${form}${vazio('Nenhum combatente. Adicione os jogadores acima e os monstros pela ficha.')}</div>`;
@@ -78,10 +78,10 @@
       <div class="fade-in">
         ${form}
         <div class="cb-controles">
-          <span class="text-sm text-zinc-400">Rodada <strong class="text-amber-400">${c.rodada}</strong></span>
+          <span class="cb-rodada"><span class="rotulo-secao">Rodada</span><strong>${c.rodada}</strong></span>
           <div class="cb-controles-botoes">
             <button type="button" class="cb-btn cb-prev" title="Turno anterior" aria-label="Turno anterior">&#9198;</button>
-            <button type="button" class="cb-btn cb-btn-destaque cb-next">Próximo &#9654;</button>
+            <button type="button" class="cb-btn cb-btn-destaque cb-next">Próximo turno</button>
             <button type="button" class="cb-btn cb-limpar">Encerrar</button>
           </div>
         </div>

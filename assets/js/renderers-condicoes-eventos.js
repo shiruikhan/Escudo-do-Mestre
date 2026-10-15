@@ -3,7 +3,7 @@
   'use strict';
 
   const escHtml = window.escHtml;
-  const { painelCard, dicParaArray, vazio } = window.Renderers._;
+  const { painelCard, campo, listaVerbetes, dicParaArray, vazio } = window.Renderers._;
 
   function listaCondicoes(aventura) {
     const itens = dicParaArray(aventura.condicoes)
@@ -15,36 +15,33 @@
     }
     const cards = itens.map(c => `
       <li>
-        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+        <button type="button" class="open-detail verbete"
                 data-tipo="condicoes" data-id="${escHtml(c.id)}">
-          <span class="text-2xl flex-shrink-0">${escHtml(c.icone || '\u{1F300}')}</span>
-          <div class="flex-1 min-w-0">
-            <p class="font-semibold text-zinc-100 truncate">${escHtml(c.nome)}</p>
-            <p class="text-xs text-zinc-500 line-clamp-2">${escHtml(c.resumo || '')}</p>
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+          <span class="verbete-icone" aria-hidden="true">${escHtml(c.icone || '\u{1F300}')}</span>
+          <span class="verbete-corpo">
+            <span class="verbete-nome">${escHtml(c.nome)}</span>
+            <span class="verbete-sub sala-resumo">${escHtml(c.resumo || '')}</span>
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   function detalheCondicao(aventura, id) {
     const c = aventura.condicoes && aventura.condicoes[id];
     if (!c) return vazio('Condição não encontrada.');
     const efeitos = (c.efeitos || []).map(ef => `
-      <div class="mt-2">
-        <p class="text-sm font-semibold text-amber-300">${escHtml(ef.nome)}</p>
-        <p class="text-sm text-zinc-300 leading-snug">${escHtml(ef.descricao)}</p>
-      </div>`).join('');
+      <p class="texto-livro"><span class="acao-nome">${escHtml(ef.nome)}.</span> ${escHtml(ef.descricao)}</p>`).join('');
     const corpo = `
+      <p class="rotulo-secao">Condição</p>
       <div class="flex items-center gap-3">
-        <span class="text-3xl">${escHtml(c.icone || '\u{1F300}')}</span>
-        <h3 class="text-lg font-bold text-amber-400">${escHtml(c.nome)}</h3>
+        <span class="text-3xl" aria-hidden="true">${escHtml(c.icone || '\u{1F300}')}</span>
+        <h3 class="titulo-entidade">${escHtml(c.nome)}</h3>
       </div>
-      ${c.resumo ? `<p class="text-sm italic text-zinc-400 mt-1">${escHtml(c.resumo)}</p>` : ''}
-      <div class="stat-divider"></div>
-      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500">Efeitos</h4>
-      ${efeitos || '<p class="text-sm text-zinc-500">Sem efeitos detalhados.</p>'}
+      ${c.resumo ? `<p class="subtitulo-entidade mt-1">${escHtml(c.resumo)}</p>` : ''}
+      <h4 class="titulo-secao">Efeitos</h4>
+      ${efeitos || '<p class="ajuda">Sem efeitos detalhados.</p>'}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
@@ -58,43 +55,35 @@
     }
     const cards = itens.map(e => `
       <li>
-        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+        <button type="button" class="open-detail verbete"
                 data-tipo="eventos" data-id="${escHtml(e.id)}">
-          <span class="text-2xl flex-shrink-0">${escHtml(e.icone || '\u{1F3B2}')}</span>
-          <div class="flex-1 min-w-0">
-            <p class="font-semibold text-zinc-100 truncate">${escHtml(e.nome)}</p>
-            <p class="text-xs text-zinc-500 line-clamp-2">${escHtml(e.narrativa || '')}</p>
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+          <span class="verbete-icone" aria-hidden="true">${escHtml(e.icone || '\u{1F3B2}')}</span>
+          <span class="verbete-corpo">
+            <span class="verbete-nome">${escHtml(e.nome)}</span>
+            <span class="verbete-sub sala-resumo">${escHtml(e.narrativa || '')}</span>
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`).join('');
     return `
-      <p class="text-xs text-zinc-500 mb-2">Role 1d20 ou escolha um evento durante a viagem.</p>
-      <ul class="space-y-2 fade-in">${cards}</ul>`;
+      <p class="rotulo-secao mb-2">Role 1d20 ou escolha um evento durante a viagem</p>
+      ${listaVerbetes(cards)}`;
   }
 
   function detalheEvento(aventura, id) {
     const e = aventura.eventos && aventura.eventos[id];
     if (!e) return vazio('Evento não encontrado.');
     const corpo = `
+      <p class="rotulo-secao">Evento de estrada</p>
       <div class="flex items-center gap-3">
-        <span class="text-3xl">${escHtml(e.icone || '\u{1F3B2}')}</span>
-        <h3 class="text-lg font-bold text-amber-400">${escHtml(e.nome)}</h3>
+        <span class="text-3xl" aria-hidden="true">${escHtml(e.icone || '\u{1F3B2}')}</span>
+        <h3 class="titulo-entidade">${escHtml(e.nome)}</h3>
       </div>
-      <div class="stat-divider"></div>
-      ${e.narrativa ? `<p class="text-sm text-zinc-200 leading-snug">${escHtml(e.narrativa)}</p>` : ''}
-      ${e.teste ? `<div class="mt-3 text-sm border rounded-lg p-3 bg-sky-500/5 border-sky-500/20">
-          <span class="font-semibold text-sky-300">Teste sugerido:</span> <span class="text-zinc-300">${escHtml(e.teste)}</span>
-        </div>` : ''}
-      ${e.recompensa ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-emerald-500/5 border-emerald-500/20">
-          <span class="font-semibold text-emerald-300">Recompensa possível:</span> <span class="text-zinc-300">${escHtml(e.recompensa)}</span>
-        </div>` : ''}
-      ${e.risco ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-rose-500/5 border-rose-500/20">
-          <span class="font-semibold text-rose-300">Risco / dano menor:</span> <span class="text-zinc-300">${escHtml(e.risco)}</span>
-        </div>` : ''}
-      ${e.nota_dm ? `<div class="mt-2 text-sm text-zinc-400 bg-zinc-800/40 border border-zinc-700/50 rounded-lg p-3">
-          <span class="font-semibold text-zinc-300">Nota do Mestre:</span> ${escHtml(e.nota_dm)}
-        </div>` : ''}
+      ${e.narrativa ? `<p class="texto-livro mt-3">${escHtml(e.narrativa)}</p>` : ''}
+      ${e.teste ? campo('Teste sugerido', escHtml(e.teste), 'arcano') : ''}
+      ${e.recompensa ? campo('Recompensa possível', escHtml(e.recompensa), 'musgo') : ''}
+      ${e.risco ? campo('Risco / dano menor', escHtml(e.risco), 'perigo') : ''}
+      ${e.nota_dm ? campo('Nota do Mestre', escHtml(e.nota_dm), 'mestre') : ''}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }

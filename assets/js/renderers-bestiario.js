@@ -4,17 +4,16 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, linha, listaBlocos, dicParaArray, itemListaCard, vazio, marcarDados, lerSessao, blocoApareceEm } = window.Renderers._;
+  const { painelCard, listaBlocos, dicParaArray, itemListaCard, listaVerbetes, vazio, marcarDados, lerSessao, blocoApareceEm, campo } = window.Renderers._;
 
   function listaBestiario(aventura) {
     const itens = dicParaArray(aventura.bestiario)
       .sort((a, b) => (a.nome || '').localeCompare(b.nome || '', 'pt'));
     if (!itens.length) return vazio('Nenhum monstro cadastrado.');
-    const cards = itens.map(b => itemListaCard('bestiario', b.id, b.nome, [
-      b.tipo_alinhamento,
-      `ND ${b.nd ?? '?'} · CA ${b.ca ?? '?'} · PV ${b.pv ?? '?'}`,
-    ])).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    const cards = itens.map(b => itemListaCard('bestiario', b.id, b.nome,
+      [b.tipo_alinhamento],
+      [{ v: b.nd, r: 'ND' }, { v: b.ca, r: 'CA' }])).join('');
+    return listaVerbetes(cards);
   }
 
   // Rastreador de PV da sessão: mostra o PV atual (override do localStorage,
@@ -40,7 +39,7 @@
   // iniciativa (1d20+mod) e adiciona o monstro com PV cheio.
   function botaoCombate(id) {
     return `
-      <button type="button" class="cb-add-monstro" data-id="${escHtml(id)}">⚔️ Adicionar ao combate</button>`;
+      <button type="button" class="cb-add-monstro" data-id="${escHtml(id)}">${window.icone('combate')} Adicionar ao combate</button>`;
   }
 
   function detalheBestiario(aventura, id) {
@@ -55,31 +54,30 @@
         <div class="valor">${escHtml(mods[ab] ?? '—')}</div>
       </div>`).join('');
 
-    const caLinha = b.ca != null
-      ? `CA ${escHtml(b.ca)}${b.ca_descricao ? ` (${escHtml(b.ca_descricao)})` : ''}` : '';
-    const pvLinha = b.pv != null
-      ? `PV ${escHtml(b.pv)}${b.pv_formula ? ` (${marcarDados(escHtml(b.pv_formula))})` : ''}` : '';
+    // Números de combate em grade: CA, PV, Deslocamento, Iniciativa.
+    const num = (rot, valor, nota) => valor == null || valor === '' ? '' : `
+      <div><dt>${rot}</dt><dd>${escHtml(valor)}</dd>${nota ? `<small>${nota}</small>` : ''}</div>`;
+    const ini = b.iniciativa != null ? String(b.iniciativa) : '';
+    const iniValor = ini.replace(/\s*\(.*\)\s*$/, '');
+    const iniNota = (/\(([^)]*)\)/.exec(ini) || [])[1];
+    const nums = [
+      num('CA', b.ca, b.ca_descricao ? escHtml(b.ca_descricao) : ''),
+      num('PV', b.pv, b.pv_formula ? marcarDados(escHtml(b.pv_formula)) : ''),
+      num('Desl.', b.deslocamento),
+      num('Inic.', iniValor, iniNota ? escHtml(iniNota) : ''),
+    ].join('');
 
     const listaTexto = (rotulo, arr) =>
-      arr && arr.length
-        ? `<p class="text-sm text-zinc-300 mt-1"><span class="text-zinc-500">${rotulo}:</span> ${escHtml(arr.join(', '))}</p>`
-        : '';
+      arr && arr.length ? `<p><b>${rotulo}</b> ${escHtml(arr.join(', '))}</p>` : '';
+    const linhaTexto = (rotulo, v) => v == null || v === '' ? '' : `<p><b>${rotulo}</b> ${escHtml(v)}</p>`;
+    const cabecaRotulo = ['Bestiário', b.nd != null ? `ND ${b.nd}` : '', b.xp != null ? `${b.xp} XP` : ''].filter(Boolean).join(' · ');
 
     const corpo = `
-      <h3 class="text-lg font-bold text-amber-400">${escHtml(b.nome)}</h3>
-      <p class="text-xs italic text-zinc-400">${escHtml(b.tipo_alinhamento || '')}</p>
+      <p class="rotulo-secao cabeca">${escHtml(cabecaRotulo)}</p>
+      <h3 class="titulo-entidade">${escHtml(b.nome)}</h3>
+      ${b.tipo_alinhamento ? `<p class="subtitulo-entidade">${escHtml(b.tipo_alinhamento)}</p>` : ''}
       <div class="stat-divider"></div>
-
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-zinc-200">
-        ${caLinha ? `<span><strong>${caLinha}</strong></span>` : ''}
-        ${pvLinha ? `<span><strong>${pvLinha}</strong></span>` : ''}
-        ${b.deslocamento ? `<span>Deslocamento ${escHtml(b.deslocamento)}</span>` : ''}
-      </div>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-zinc-200 mt-1">
-        ${b.iniciativa ? `<span>Iniciativa ${escHtml(b.iniciativa)}</span>` : ''}
-        ${b.percepcao_passiva != null ? `<span>Perc. Passiva ${escHtml(b.percepcao_passiva)}</span>` : ''}
-        ${b.nd != null ? `<span>ND ${escHtml(b.nd)}${b.xp != null ? ` (${escHtml(b.xp)} XP)` : ''}</span>` : ''}
-      </div>
+      <dl class="ficha-nums">${nums}</dl>
 
       ${trackerPv(aventura, id, b)}
       ${botaoCombate(id)}
@@ -88,14 +86,16 @@
       <div class="stat-grid">${grid}</div>
       <div class="stat-divider"></div>
 
-      ${listaTexto('Salvaguardas', b.salvaguardas)}
-      ${listaTexto('Perícias', b.pericias)}
-      ${listaTexto('Vulnerabilidades a Dano', b.vulnerabilidades_dano)}
-      ${listaTexto('Imunidades a Dano', b.imunidades_dano)}
-      ${listaTexto('Resistências a Dano', b.resistencias_dano)}
-      ${listaTexto('Imunidades a Condição', b.imunidades_condicao)}
-      ${linha('Sentidos', b.sentidos)}
-      ${linha('Idiomas', b.idiomas)}
+      <div class="ficha-linhas">
+        ${listaTexto('Salvaguardas', b.salvaguardas)}
+        ${listaTexto('Perícias', b.pericias)}
+        ${listaTexto('Vulnerabilidades a Dano', b.vulnerabilidades_dano)}
+        ${listaTexto('Imunidades a Dano', b.imunidades_dano)}
+        ${listaTexto('Resistências a Dano', b.resistencias_dano)}
+        ${listaTexto('Imunidades a Condição', b.imunidades_condicao)}
+        ${linhaTexto('Sentidos', [b.sentidos, b.percepcao_passiva != null ? `Percepção passiva ${b.percepcao_passiva}` : ''].filter(Boolean).join('; '))}
+        ${linhaTexto('Idiomas', b.idiomas)}
+      </div>
 
       ${listaBlocos('Características', b.caracteristicas, aventura)}
       ${listaBlocos('Ações', b.acoes, aventura)}
@@ -104,12 +104,10 @@
       ${listaBlocos('Ações Lendárias', b.acoes_lendarias, aventura)}
 
       ${blocoApareceEm(aventura, 'bestiario', id)}
-      ${b.localizacao ? `<div class="stat-divider"></div>${linha('Localização', b.localizacao)}` : ''}
-      ${b.notas_dm ? `<div class="mt-2 text-sm text-amber-200/80 bg-amber-500/5 border border-amber-500/20 rounded-lg p-3">
-          <span class="font-semibold text-amber-300">Nota do Mestre:</span> ${parseLinks(b.notas_dm, aventura)}
-        </div>` : ''}
+      ${b.localizacao ? campo('Localização', parseLinks(b.localizacao, aventura), 'musgo') : ''}
+      ${b.notas_dm ? campo('Nota do Mestre', parseLinks(b.notas_dm, aventura), 'mestre') : ''}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return `<div class="fade-in">${painelCard(corpo, 'ficha')}</div>`;
   }
 
   window.Renderers.listas.bestiario = listaBestiario;

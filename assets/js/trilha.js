@@ -379,7 +379,7 @@
     fundo.innerHTML = `
       <div class="trilha-config" role="dialog" aria-modal="true" aria-label="Configurar trilha sonora">
         <div class="trilha-config-topo">
-          <h2 class="text-sm font-bold text-amber-400">Trilha sonora</h2>
+          <h2 class="painel-notas-titulo">Trilha sonora</h2>
           <button type="button" class="painel-notas-fechar" aria-label="Fechar">×</button>
         </div>
         <div class="trilha-config-corpo">

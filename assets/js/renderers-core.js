@@ -121,27 +121,43 @@
   }
 
   // ---------- Blocos visuais ----------
+  // Painel de detalhe. `extra` acrescenta classes (ex.: "ficha" na criatura;
+  // "painel-neutro" troca a régua vermelha por filete neutro).
   function painelCard(conteudo, extra) {
-    return `<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 ${extra || ''}">${conteudo}</div>`;
+    return `<div class="painel ${extra || 'painel-neutro'}">${conteudo}</div>`;
+  }
+
+  // Cabeçalho de detalhe: rótulo de seção → nome → linha em itálico.
+  function cabecalhoDetalhe(rotulo, nome, sub) {
+    return `
+      ${rotulo ? `<p class="rotulo-secao cabeca">${escHtml(rotulo)}</p>` : ''}
+      <h3 class="titulo-entidade">${escHtml(nome)}</h3>
+      ${sub ? `<p class="subtitulo-entidade">${escHtml(sub)}</p>` : ''}`;
   }
 
   function linha(rotulo, valor) {
     if (valor == null || valor === '') return '';
-    return `<p class="text-sm text-zinc-300 mt-1"><span class="text-zinc-500">${escHtml(rotulo)}:</span> ${escHtml(valor)}</p>`;
+    return `<p class="text-[15px] text-zinc-400 mt-1"><span class="font-bold text-zinc-300">${escHtml(rotulo)}</span> ${escHtml(valor)}</p>`;
   }
 
   function listaBlocos(titulo, itens, aventura) {
     if (!itens || !itens.length) return '';
     const linhas = itens.map(it => `
-      <div class="mt-2">
-        <p class="text-sm font-semibold text-amber-300">${escHtml(it.nome)}</p>
-        <p class="text-sm text-zinc-300 leading-snug">${parseLinks(it.descricao, aventura)}</p>
-      </div>`).join('');
+      <p class="texto-livro"><span class="acao-nome">${escHtml(it.nome)}.</span> ${parseLinks(it.descricao, aventura)}</p>`).join('');
     return `
-      <div class="mt-3">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500">${escHtml(titulo)}</h4>
-        ${linhas}
-      </div>`;
+      <h4 class="titulo-secao">${escHtml(titulo)}</h4>
+      ${linhas}`;
+  }
+
+  // Campo rotulado de detalhe. Tons: ouro | arcano | musgo (losango no
+  // rótulo), segredo | perigo (fundo tingido), mestre (caixa tracejada).
+  // `htmlValor` já deve vir escapado (parseLinks/escHtml).
+  function campo(rotulo, htmlValor, tom) {
+    if (!htmlValor) return '';
+    return `<div class="campo campo-${tom || 'ouro'}">
+      <p class="rotulo-secao">${escHtml(rotulo)}</p>
+      <p class="texto-livro">${htmlValor}</p>
+    </div>`;
   }
 
   function dicParaArray(dic) {
@@ -149,44 +165,42 @@
     return Object.keys(dic).map(id => ({ id, ...dic[id] }));
   }
 
-  function itemListaCard(tipo, id, nome, sublinhas) {
+  // Lista de verbetes: um painel com linhas separadas por filete.
+  function listaVerbetes(itensHtml, extra) {
+    return `<ul class="lista-verbetes fade-in ${extra || ''}">${itensHtml}</ul>`;
+  }
+
+  // Verbete de lista. `dados` (opcional): [{ v: '1/4', r: 'ND' }, …] alinhados à direita.
+  function itemListaCard(tipo, id, nome, sublinhas, dados) {
     const subs = (sublinhas || [])
       .filter(Boolean)
-      .map(s => `<p class="text-xs text-zinc-500 truncate">${escHtml(s)}</p>`)
+      .map(s => `<span class="verbete-sub">${escHtml(s)}</span>`)
       .join('');
+    const dd = (dados || []).filter(d => d && d.v != null && d.v !== '')
+      .map(d => `<span class="verbete-dado"><b>${escHtml(d.v)}</b><small>${escHtml(d.r)}</small></span>`).join('');
     return `
       <li>
-        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+        <button type="button" class="open-detail verbete"
                 data-tipo="${escHtml(tipo)}" data-id="${escHtml(id)}">
-          <div class="flex-1 min-w-0">
-            <p class="font-semibold text-zinc-100 truncate">${escHtml(nome)}</p>
+          <span class="verbete-corpo">
+            <span class="verbete-nome">${escHtml(nome)}</span>
             ${subs}
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+          </span>
+          ${dd ? `<span class="verbete-dados">${dd}</span>` : ''}
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`;
   }
 
   function vazio(msg) {
-    return `<div class="text-center text-zinc-600 mt-16">
-      <div class="text-4xl mb-3">\u{1F4DC}</div>
-      <p class="text-sm">${escHtml(msg)}</p>
-    </div>`;
+    return `<p class="vazio">${escHtml(msg)}</p>`;
   }
 
+  // Compatível com as chamadas antigas (cor amber/rose/sky/emerald).
+  const TOM_DA_COR = { amber: 'ouro', rose: 'segredo', sky: 'arcano', emerald: 'musgo' };
   function campoDestaque(rotulo, valor, aventura, cor) {
     if (!valor) return '';
-    const cores = {
-      amber:   'bg-amber-500/5 border-amber-500/20 text-amber-300',
-      rose:    'bg-rose-500/5 border-rose-500/20 text-rose-300',
-      sky:     'bg-sky-500/5 border-sky-500/20 text-sky-300',
-      emerald: 'bg-emerald-500/5 border-emerald-500/20 text-emerald-300',
-    };
-    const c = cores[cor] || cores.amber;
-    return `<div class="mt-2 text-sm border rounded-lg p-3 ${c.split(' ').slice(0,2).join(' ')}">
-      <span class="font-semibold ${c.split(' ')[2]}">${escHtml(rotulo)}:</span>
-      <span class="text-zinc-300">${parseLinks(valor, aventura)}</span>
-    </div>`;
+    return campo(rotulo, parseLinks(valor, aventura), TOM_DA_COR[cor] || cor || 'ouro');
   }
 
   function chip(marker, aventura) {
@@ -204,8 +218,8 @@
     const chips = markers.map(mk => chip(mk, aventura)).filter(Boolean).join('');
     if (!chips) return '';
     return `
-      <div class="mt-3">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">${escHtml(titulo)}</h4>
+      <div class="mt-4">
+        <h4 class="rotulo-secao">${escHtml(titulo)}</h4>
         <div class="flex flex-wrap gap-2">${chips}</div>
       </div>`;
   }
@@ -322,8 +336,8 @@
       </div>`;
     }).join('');
     if (!html) return '';
-    return `<div class="mt-3">
-      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">${soSemSala ? 'Fora das salas (geral / viagem)' : 'Quem está aqui'}</h4>
+    return `<div class="mt-4">
+      <h4 class="rotulo-secao">${soSemSala ? 'Fora das salas (geral / viagem)' : 'Quem está aqui'}</h4>
       ${html}
     </div>`;
   }
@@ -344,7 +358,7 @@
       </li>`;
     }).join('');
     return `<div class="stat-divider"></div>
-      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500">Aparece em</h4>
+      <h4 class="rotulo-secao">Aparece em</h4>
       <ul class="enc-lista">${linhas}</ul>`;
   }
 
@@ -358,16 +372,16 @@
   function resultadoDetalhe(tipo, id, nome, label, sub) {
     return `
       <li>
-        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+        <button type="button" class="open-detail verbete"
                 data-tipo="${escHtml(tipo)}" data-id="${escHtml(id)}">
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2">
-              <p class="font-semibold text-zinc-100 truncate">${escHtml(nome)}</p>
+          <span class="verbete-corpo">
+            <span class="flex items-center gap-2 min-w-0">
+              <span class="verbete-nome">${escHtml(nome)}</span>
               <span class="res-tag">${escHtml(label)}</span>
-            </div>
-            ${sub ? `<p class="text-xs text-zinc-500 truncate">${escHtml(sub)}</p>` : ''}
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+            </span>
+            ${sub ? `<span class="verbete-sub">${escHtml(sub)}</span>` : ''}
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`;
   }
@@ -375,16 +389,16 @@
   function resultadoAba(aba, nome, label, sub) {
     return `
       <li>
-        <button type="button" class="goto-aba w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+        <button type="button" class="goto-aba verbete"
                 data-aba="${escHtml(aba)}">
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2">
-              <p class="font-semibold text-zinc-100 truncate">${escHtml(nome)}</p>
+          <span class="verbete-corpo">
+            <span class="flex items-center gap-2 min-w-0">
+              <span class="verbete-nome">${escHtml(nome)}</span>
               <span class="res-tag">${escHtml(label)}</span>
-            </div>
-            ${sub ? `<p class="text-xs text-zinc-500 truncate">${escHtml(sub)}</p>` : ''}
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+            </span>
+            ${sub ? `<span class="verbete-sub">${escHtml(sub)}</span>` : ''}
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`;
   }
@@ -402,6 +416,9 @@
       resolverLista,
       lerSessao,
       painelCard,
+      cabecalhoDetalhe,
+      campo,
+      listaVerbetes,
       linha,
       listaBlocos,
       dicParaArray,

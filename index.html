@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,7 +25,7 @@
   <link rel="alternate icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#111214" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <script src="assets/js/utils.js"></script>
@@ -55,12 +55,12 @@
   }
   </script>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col">
 
   <!-- Header -->
-  <header class="relative px-4 pt-8 pb-4 text-center">
+  <header class="relative px-4 pt-10 pb-2">
     <a href="https://github.com/shiruikhan/Escudo-do-Mestre" target="_blank" rel="noopener"
-       class="absolute top-3 left-3 text-zinc-500 active:text-amber-400"
+       class="icone-btn absolute top-2 right-2"
        title="Ver código no GitHub" aria-label="Ver código no GitHub">
       <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
@@ -73,12 +73,11 @@
                  1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
       </svg>
     </a>
-    <button type="button" id="btn-tema"
-            class="absolute top-3 right-3 text-zinc-500 text-lg active:text-amber-400"
-            title="Alternar tema" aria-label="Alternar tema claro/escuro">&#127769;</button>
-    <div class="text-4xl mb-2">🛡️</div>
-    <h1 class="text-2xl font-bold tracking-wide text-amber-400">Escudo do Mestre</h1>
-    <p class="text-zinc-400 text-sm mt-1">D&amp;D 5.5e · Painel do Narrador</p>
+    <div class="marca">
+      <img src="assets/favicon.svg" alt="" width="48" height="48" />
+      <h1>Escudo do Mestre</h1>
+      <p>D&amp;D 5.5e · Painel do Narrador</p>
+    </div>
   </header>
 
   <!-- Main -->
@@ -87,25 +86,23 @@
     <!-- Busca global: procura monstros, NPCs, itens e locais em TODAS as
          aventuras. Os dados são carregados sob demanda na primeira digitação
          e os resultados usam deep-link (aventura.html?id=x#tipo/id). -->
-    <div class="mb-4 mt-4">
+    <label class="busca mb-6 mt-5">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
       <input id="busca-global" type="search" inputmode="search" autocomplete="off"
              placeholder="Buscar em todas as aventuras…"
              class="busca-input" aria-label="Busca global" />
-    </div>
+    </label>
     <div id="resultados-globais"></div>
 
-    <h2 id="titulo-lista" class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-4">
-      Selecione uma Aventura
-    </h2>
+    <h2 id="titulo-lista" class="rotulo-secao mb-2">Aventuras</h2>
 
     <!-- Adventure list — populated by JS -->
     <ul id="adventure-list" class="space-y-3"></ul>
 
     <!-- Empty state (shown while loading or if no adventures found) -->
-    <div id="empty-state" class="hidden mt-16 text-center text-zinc-600">
-      <div class="text-5xl mb-4">📜</div>
-      <p class="text-sm" id="empty-state-msg">Nenhuma aventura encontrada.</p>
-      <p class="text-xs mt-1">Adicione arquivos JSON em <code class="text-zinc-400">data/aventuras/</code>.</p>
+    <div id="empty-state" class="hidden vazio">
+      <p id="empty-state-msg">Nenhuma aventura encontrada.</p>
+      <p class="ajuda mt-1">Adicione arquivos JSON em <code>data/aventuras/</code>.</p>
     </div>
 
   </main>
@@ -113,10 +110,10 @@
   <!-- Footer: backup do estado de sessão (status de missões, PV, combate,
        anotações — tudo em localStorage, que não sobrevive à troca de aparelho) -->
   <footer class="pb-6 px-4 text-center">
-    <p class="text-xs text-zinc-600">
-      <button type="button" id="btn-backup" class="underline underline-offset-2 active:text-amber-400">Exportar sessão</button>
+    <p class="ajuda flex justify-center gap-2 items-center">
+      <button type="button" id="btn-backup" class="min-h-[44px] px-2 underline underline-offset-4 active:text-amber-400">Exportar sessão</button>
       ·
-      <button type="button" id="btn-restaurar" class="underline underline-offset-2 active:text-amber-400">Importar sessão</button>
+      <button type="button" id="btn-restaurar" class="min-h-[44px] px-2 underline underline-offset-4 active:text-amber-400">Importar sessão</button>
     </p>
     <input type="file" id="arquivo-restaurar" accept="application/json,.json" class="hidden" />
   </footer>
@@ -140,23 +137,15 @@
 
       ul.innerHTML = list.map(adv => `
         <li>
-          <a
-            href="aventura.html?id=${encodeURIComponent(adv.id)}"
-            class="flex items-center gap-4 w-full bg-zinc-900 border border-zinc-800
-                   rounded-xl px-4 py-4 active:bg-zinc-800 transition-colors
-                   focus:outline-none focus:ring-2 focus:ring-amber-500"
-          >
-            <span class="text-3xl leading-none">${escHtml(adv.icone ?? '📖')}</span>
-            <div class="flex-1 min-w-0">
-              <p class="font-semibold text-zinc-100 truncate">${escHtml(adv.titulo)}</p>
-              ${adv.nivel_recomendado
-                ? `<p class="text-xs text-zinc-500 mt-0.5">Níveis ${escHtml(adv.nivel_recomendado)} · ${escHtml(adv.num_jogadores ?? '?')} jogadores</p>`
-                : ''}
-              ${adv.descricao
-                ? `<p class="text-xs text-zinc-600 mt-1 line-clamp-2">${escHtml(adv.descricao)}</p>`
-                : ''}
-            </div>
-            <span class="text-zinc-600 text-lg flex-shrink-0">›</span>
+          <a href="aventura.html?id=${encodeURIComponent(adv.id)}" class="aventura-card">
+            ${adv.cenario ? `<span class="rotulo-secao">${escHtml(adv.cenario)}</span>` : ''}
+            <h2>${escHtml(adv.titulo)}</h2>
+            ${adv.descricao ? `<p class="aventura-desc">${escHtml(adv.descricao)}</p>` : ''}
+            ${adv.nivel_recomendado || adv.num_jogadores ? `
+            <div class="aventura-dados">
+              ${adv.nivel_recomendado ? `<div><b>${escHtml(adv.nivel_recomendado)}</b><span class="rotulo-secao">Níveis</span></div>` : ''}
+              ${adv.num_jogadores ? `<div><b>${escHtml(adv.num_jogadores)}</b><span class="rotulo-secao">Jogadores</span></div>` : ''}
+            </div>` : ''}
           </a>
         </li>
       `).join('');
@@ -202,18 +191,18 @@
         alvo.innerHTML = '<p class="text-sm text-zinc-600 text-center my-8">Nada encontrado.</p>';
         return;
       }
-      alvo.innerHTML = '<ul class="space-y-2 mb-6">' + res.slice(0, 30).map(e => `
+      alvo.innerHTML = '<ul class="lista-verbetes mb-6">' + res.slice(0, 30).map(e => `
         <li>
           <a href="aventura.html?id=${encodeURIComponent(e.av)}#${encodeURIComponent(e.secao)}/${encodeURIComponent(e.id)}"
-             class="flex items-center gap-3 w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors">
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-2">
-                <p class="font-semibold text-zinc-100 truncate">${escHtml(e.nome)}</p>
+             class="verbete">
+            <span class="verbete-corpo">
+              <span class="flex items-center gap-2 min-w-0">
+                <span class="verbete-nome">${escHtml(e.nome)}</span>
                 <span class="res-tag">${escHtml(e.label)}</span>
-              </div>
-              <p class="text-xs text-zinc-500 truncate">${escHtml(e.avTitulo)}</p>
-            </div>
-            <span class="text-zinc-600 text-lg flex-shrink-0">›</span>
+              </span>
+              <span class="verbete-sub">${escHtml(e.avTitulo)}</span>
+            </span>
+            <span class="verbete-seta" aria-hidden="true"></span>
           </a>
         </li>`).join('') + '</ul>';
     }

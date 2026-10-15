@@ -63,8 +63,8 @@
       for (const [id, obj] of Object.entries(aventura[g.chave] || {}).slice(0, 3))
         res.push(resultadoDetalhe(g.tipo, id, obj.nome, g.label, g.getSub(obj)));
     if (!res.length) return '';
-    return `<p class="text-xs text-zinc-500 mb-2">Acesso rápido</p>
-      <ul class="space-y-2 fade-in">${res.join('')}</ul>`;
+    return `<p class="rotulo-secao mb-2">Acesso rápido</p>
+      <ul class="lista-verbetes fade-in">${res.join('')}</ul>`;
   }
 
   function resultadosBusca(aventura, indice, query) {
@@ -80,8 +80,8 @@
         <p class="text-sm">Nada encontrado para "${window.escHtml(query)}".</p>
       </div>`;
     }
-    return `<p class="text-xs text-zinc-500 mb-2">${res.length} resultado(s)</p>
-      <ul class="space-y-2 fade-in">${res.join('')}</ul>`;
+    return `<p class="rotulo-secao mb-2">${res.length} resultado(s)</p>
+      <ul class="lista-verbetes fade-in">${res.join('')}</ul>`;
   }
 
   function exportarMarkdown(aventura) {

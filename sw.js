@@ -15,7 +15,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'v13';
+const CACHE_VERSION = 'v14';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
@@ -45,6 +45,14 @@ const CORE_ASSETS = [
   'assets/icon-192.png',
   'assets/icon-512-maskable.png',
   'assets/icon-512.png',
+  'assets/fonts/Alegreya-Italic-VF.woff2',
+  'assets/fonts/Alegreya-VF.woff2',
+  'assets/fonts/AlegreyaSC-Bold.woff2',
+  'assets/fonts/AlegreyaSans-Bold.woff2',
+  'assets/fonts/AlegreyaSans-ExtraBold.woff2',
+  'assets/fonts/AlegreyaSans-Medium.woff2',
+  'assets/fonts/AlegreyaSans-Regular.woff2',
+  'assets/fonts/AlegreyaSansSC-Bold.woff2',
   'data/aventuras.json',
   'data/condicoes.json',
   'data/eventos-estrada.json',

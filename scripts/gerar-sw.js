@@ -47,6 +47,9 @@ function montarLista() {
   // Ícones na raiz de assets/
   assets.push(...listar('assets', f => /\.(svg|png|ico)$/.test(f)));
 
+  // Fontes locais (Alegreya): sem elas, offline o texto cai no fallback
+  assets.push(...listar('assets/fonts', f => f.endsWith('.woff2')));
+
   // Dados globais + manifest. trilha.json precisa estar em cache: sem o
   // catálogo de climas a barra de trilha nem chega a ser desenhada, e a
   // decisão de produto é que offline ela apareça desabilitada, não que suma.

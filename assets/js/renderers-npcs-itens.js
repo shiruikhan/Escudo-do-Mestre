@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, linha, dicParaArray, itemListaCard, vazio, campoDestaque, blocoApareceEm } = window.Renderers._;
+  const { painelCard, cabecalhoDetalhe, campo, linha, dicParaArray, itemListaCard, listaVerbetes, vazio, campoDestaque, blocoApareceEm } = window.Renderers._;
 
   function listaNpcs(aventura) {
     const itens = dicParaArray(aventura.npcs)
@@ -14,23 +14,21 @@
       n.papel,
       n.local,
     ])).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   function detalheNpc(aventura, id) {
     const n = aventura.npcs && aventura.npcs[id];
     if (!n) return vazio('NPC não encontrado.');
     const corpo = `
-      <h3 class="text-lg font-bold text-amber-400">${escHtml(n.nome)}</h3>
-      ${n.papel ? `<p class="text-xs italic text-zinc-400">${escHtml(n.papel)}</p>` : ''}
-      <div class="stat-divider"></div>
+      ${cabecalhoDetalhe('NPC', n.nome, n.papel)}
       ${linha('Local', n.local)}
-      ${n.descricao ? `<p class="text-sm text-zinc-300 mt-2 leading-snug">${parseLinks(n.descricao, aventura)}</p>` : ''}
-      ${campoDestaque('Motivação', n.motivacao, aventura, 'amber')}
-      ${campoDestaque('Segredos', n.segredos, aventura, 'rose')}
-      ${campoDestaque('Interação', n.interacao, aventura, 'sky')}
-      ${campoDestaque('Notas do Mestre', n.notas_dm, aventura, 'amber')}
-      ${n.ver_bestiario ? `<div class="mt-2 text-sm"><span class="text-zinc-500">Ficha de combate:</span> ${parseLinks(/^[a-z]+:/.test(n.ver_bestiario) ? n.ver_bestiario : 'bestiario:' + n.ver_bestiario, aventura)}</div>` : ''}
+      ${n.descricao ? `<p class="texto-livro mt-3">${parseLinks(n.descricao, aventura)}</p>` : ''}
+      ${campoDestaque('Motivação', n.motivacao, aventura, 'ouro')}
+      ${campoDestaque('Segredos', n.segredos, aventura, 'segredo')}
+      ${campoDestaque('Interação', n.interacao, aventura, 'arcano')}
+      ${n.ver_bestiario ? campo('Ficha de combate', parseLinks(/^[a-z]+:/.test(n.ver_bestiario) ? n.ver_bestiario : 'bestiario:' + n.ver_bestiario, aventura), 'ouro') : ''}
+      ${campoDestaque('Notas do Mestre', n.notas_dm, aventura, 'mestre')}
       ${blocoApareceEm(aventura, 'npcs', id)}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
@@ -44,20 +42,18 @@
       i.tipo,
       i.propriedades,
     ])).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   function detalheItem(aventura, id) {
     const i = aventura.itens && aventura.itens[id];
     if (!i) return vazio('Item não encontrado.');
     const corpo = `
-      <h3 class="text-lg font-bold text-amber-400">${escHtml(i.nome)}</h3>
-      ${i.tipo ? `<p class="text-xs italic text-zinc-400">${escHtml(i.tipo)}</p>` : ''}
-      <div class="stat-divider"></div>
+      ${cabecalhoDetalhe('Item', i.nome, i.tipo)}
       ${linha('Propriedades', i.propriedades)}
-      ${i.efeito ? `<p class="text-sm text-zinc-300 mt-2 leading-snug">${parseLinks(i.efeito, aventura)}</p>` : ''}
-      ${i.localizacao ? campoDestaque('Localização', i.localizacao, aventura, 'emerald') : ''}
-      ${campoDestaque('Histórico', i.historico, aventura, 'sky')}
+      ${i.efeito ? `<p class="texto-livro mt-3">${parseLinks(i.efeito, aventura)}</p>` : ''}
+      ${campoDestaque('Localização', i.localizacao, aventura, 'musgo')}
+      ${campoDestaque('Histórico', i.historico, aventura, 'arcano')}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }

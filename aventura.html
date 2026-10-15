@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,53 +10,38 @@
   <link rel="alternate icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#111214" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col">
+<body class="com-nav min-h-screen flex flex-col">
 
-  <!-- Header fixo -->
-  <header class="sticky top-0 z-20 bg-zinc-950/95 backdrop-blur border-b border-zinc-800">
-    <div class="px-4 pt-3 pb-2">
-      <div class="flex items-center gap-3">
-        <a href="index.html" class="text-zinc-400 text-xl flex-shrink-0 active:text-amber-400" aria-label="Início">&#8962;</a>
-        <button type="button" id="btn-voltar"
-                class="hidden text-amber-400 text-sm font-semibold flex-shrink-0 active:text-amber-300">
-          &lsaquo; Voltar
-        </button>
-        <div class="flex-1 min-w-0 text-right">
-          <h1 id="titulo-aventura" class="text-base font-bold text-amber-400 truncate">Carregando…</h1>
-          <p id="sub-aventura" class="text-xs text-zinc-500 truncate"></p>
-        </div>
-        <button type="button" id="btn-notas"
-                class="hidden text-zinc-500 text-lg flex-shrink-0 active:text-amber-400"
-                title="Anotações do Mestre" aria-label="Anotações do Mestre">&#128221;</button>
-        <button type="button" id="btn-exportar"
-                class="hidden text-zinc-500 text-lg flex-shrink-0 active:text-amber-400"
-                title="Exportar como Markdown" aria-label="Exportar como Markdown">⬇</button>
-        <button type="button" id="btn-tema"
-                class="text-zinc-500 text-lg flex-shrink-0 active:text-amber-400"
-                title="Alternar tema" aria-label="Alternar tema claro/escuro">&#127769;</button>
+  <!-- Cabeçalho fixo: início/voltar, título, anotações e busca -->
+  <header class="cabecalho sticky top-0 z-20 px-2 pt-1 pb-3">
+    <div class="cabecalho-linha">
+      <a href="index.html" id="btn-inicio" class="icone-btn" title="Início" aria-label="Início"></a>
+      <button type="button" id="btn-voltar" class="icone-btn ouro hidden" title="Voltar" aria-label="Voltar"></button>
+      <div class="cabecalho-titulo">
+        <h1 id="titulo-aventura">Carregando…</h1>
+        <p id="sub-aventura"></p>
       </div>
+      <button type="button" id="btn-notas" class="icone-btn hidden"
+              title="Anotações do Mestre" aria-label="Anotações do Mestre"></button>
     </div>
     <!-- Busca geral -->
-    <div class="px-4 pb-2">
+    <label class="busca mx-2 mt-1">
+      <span id="icone-busca"></span>
       <input id="busca" type="search" inputmode="search" autocomplete="off"
              placeholder="Pesquisar monstros, NPCs, itens, locais…"
              class="busca-input" aria-label="Pesquisa geral" />
-    </div>
-    <!-- Barra de abas com indicador de scroll -->
-    <div class="relative">
-      <nav id="tabs" class="tabs-bar px-4 pb-3"></nav>
-      <div class="tabs-fade-right" aria-hidden="true"></div>
-    </div>
+    </label>
   </header>
 
   <!-- Conteúdo principal -->
-  <main id="conteudo" class="flex-1 px-4 py-4" aria-live="polite" aria-atomic="false"></main>
+  <main id="conteudo" class="flex-1 px-4 pt-4 pb-8" aria-live="polite" aria-atomic="false"></main>
 
-  <footer class="pb-6 pt-2"></footer>
+  <!-- Navegação inferior (montada pelo app.js) -->
+  <nav id="tabs" class="nav-inferior" aria-label="Seções da aventura"></nav>
 
   <!-- Ordem importa: utils expõe window.escHtml; renderers-core monta window.Renderers
        e os helpers internos; os módulos de domínio se registram em window.Renderers;

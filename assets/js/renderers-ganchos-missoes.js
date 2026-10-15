@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, vazio, classeBadge, textoPlano, listasComId, resolverLista, lerSessao } = window.Renderers._;
+  const { painelCard, campo, listaVerbetes, vazio, classeBadge, textoPlano, listasComId, resolverLista, lerSessao } = window.Renderers._;
 
   // Status efetivo: override da sessão (localStorage) tem precedência sobre o JSON.
   function statusEfetivo(aventura, id, m) {
@@ -21,19 +21,17 @@
       const preview = (texto || '').slice(0, 120) + ((texto || '').length > 120 ? '…' : '');
       return `
         <li>
-          <button type="button" class="open-detail w-full text-left bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+          <button type="button" class="open-detail verbete verbete-bloco"
                   data-tipo="ganchos" data-id="${escHtml(id)}">
-            <div class="flex items-start justify-between gap-2">
-              <div class="flex-1 min-w-0">
-                ${fonte ? `<p class="text-xs font-bold uppercase tracking-wider text-amber-500/80 mb-1">${escHtml(fonte)}</p>` : ''}
-                <p class="text-sm text-zinc-300 leading-snug">${escHtml(preview)}</p>
-              </div>
-              <span class="text-zinc-600 text-lg flex-shrink-0 mt-0.5">&rsaquo;</span>
-            </div>
+            <span class="verbete-corpo">
+              ${fonte ? `<span class="rotulo-secao block text-amber-400">${escHtml(fonte)}</span>` : ''}
+              <span class="verbete-trecho">${escHtml(preview)}</span>
+            </span>
+            <span class="verbete-seta" aria-hidden="true"></span>
           </button>
         </li>`;
     }).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   function detalheGancho(aventura, id) {
@@ -42,8 +40,9 @@
     const fonte = textoPlano(typeof g === 'object' ? g.fonte : null, aventura);
     const texto = typeof g === 'object' ? g.texto : g;
     const corpo = `
-      ${fonte ? `<p class="text-xs font-bold uppercase tracking-wider text-amber-500/80 mb-3">${escHtml(fonte)}</p>` : ''}
-      <p class="text-sm text-zinc-200 leading-relaxed">${parseLinks(texto || '', aventura)}</p>
+      <p class="rotulo-secao">Gancho</p>
+      ${fonte ? `<h3 class="titulo-entidade">${escHtml(fonte)}</h3>` : ''}
+      <p class="texto-livro mt-3">${parseLinks(texto || '', aventura)}</p>
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
@@ -55,23 +54,18 @@
       const status = statusEfetivo(aventura, id, m);
       return `
       <li>
-        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 active:bg-zinc-800 transition-colors"
+        <button type="button" class="open-detail verbete verbete-bloco"
                 data-tipo="missoes" data-id="${escHtml(id)}">
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 flex-wrap">
-              <p class="font-semibold text-zinc-100 truncate">${escHtml(m.titulo)}</p>
-              <span class="badge ${classeBadge(status)} flex-shrink-0">${escHtml(status || '—')}</span>
-            </div>
-            <div class="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5 text-xs text-zinc-500">
-              ${m.nivel_sugerido != null ? `<span>Nível ${escHtml(m.nivel_sugerido)}</span>` : ''}
-              ${m.localizacao ? `<span>${escHtml(textoPlano(m.localizacao, aventura))}</span>` : ''}
-            </div>
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+          <span class="verbete-corpo">
+            <span class="verbete-nome whitespace-normal">${escHtml(m.titulo)}</span>
+            <span class="verbete-sub">${[m.nivel_sugerido != null ? 'Nível ' + escHtml(m.nivel_sugerido) : '', m.localizacao ? escHtml(textoPlano(m.localizacao, aventura)) : ''].filter(Boolean).join(' · ')}</span>
+            <span class="badge ${classeBadge(status)} mt-2">${escHtml(status || '—')}</span>
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`;
     }).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   function detalheMissao(aventura, id) {
@@ -79,21 +73,17 @@
     if (!m) return vazio('Missão não encontrada.');
     const status = statusEfetivo(aventura, id, m);
     const corpo = `
-      <div class="flex items-start justify-between gap-2">
-        <h3 class="text-base font-bold text-zinc-100">${escHtml(m.titulo)}</h3>
-        <button type="button" class="badge badge-toggle ${classeBadge(status)} flex-shrink-0"
+      <p class="rotulo-secao">Missão${m.nivel_sugerido != null ? ' · Nível ' + escHtml(m.nivel_sugerido) : ''}</p>
+      <h3 class="titulo-entidade">${escHtml(m.titulo)}</h3>
+      ${m.localizacao ? `<p class="subtitulo-entidade">${escHtml(textoPlano(m.localizacao, aventura))}</p>` : ''}
+      <div class="flex items-center gap-2 mt-3">
+        <button type="button" class="badge badge-toggle ${classeBadge(status)}"
                 data-id="${escHtml(id)}" title="Tocar para mudar o status">${escHtml(status || '—')}</button>
+        <span class="ajuda">Toque para alternar o status (salvo neste aparelho).</span>
       </div>
-      <div class="flex flex-wrap gap-x-3 gap-y-1 mt-1 text-xs text-zinc-500">
-        ${m.nivel_sugerido != null ? `<span>Nível ${escHtml(m.nivel_sugerido)}</span>` : ''}
-        ${m.localizacao ? `<span>${escHtml(textoPlano(m.localizacao, aventura))}</span>` : ''}
-      </div>
-      ${m.objetivo ? `<p class="text-sm text-zinc-300 mt-3 leading-snug">${parseLinks(m.objetivo, aventura)}</p>` : ''}
-      ${m.recompensa ? `<p class="text-sm text-amber-300/90 mt-2"><span class="text-zinc-500">Recompensa:</span> ${parseLinks(m.recompensa, aventura)}</p>` : ''}
-      ${m.notas_dm ? `<div class="mt-3 text-sm text-zinc-400 bg-zinc-800/40 border border-zinc-700/50 rounded-lg p-3">
-          <span class="font-semibold text-zinc-300">Notas do Mestre:</span> ${parseLinks(m.notas_dm, aventura)}
-        </div>` : ''}
-      <p class="text-[0.65rem] text-zinc-600 mt-3">Toque no status para alternar Disponível → Em Andamento → Concluída (salvo neste aparelho).</p>
+      ${m.objetivo ? campo('Objetivo', parseLinks(m.objetivo, aventura), 'arcano') : ''}
+      ${m.recompensa ? campo('Recompensa', parseLinks(m.recompensa, aventura), 'ouro') : ''}
+      ${m.notas_dm ? campo('Notas do Mestre', parseLinks(m.notas_dm, aventura), 'mestre') : ''}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }

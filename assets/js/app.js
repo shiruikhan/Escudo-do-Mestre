@@ -19,17 +19,19 @@
 (function () {
   'use strict';
 
+  // Abas principais ficam na navegação inferior; as demais entram na folha
+  // "Mais". A ordem aqui é a ordem de exibição em cada grupo.
   const ABAS = [
-    { id: 'bestiario', rotulo: 'Bestiário', icone: '\u{1F409}' },
-    { id: 'combate',   rotulo: 'Combate',   icone: '⚔️' },
-    { id: 'npcs',      rotulo: 'NPCs',      icone: '\u{1F9D9}' },
-    { id: 'itens',     rotulo: 'Itens',     icone: '✨' },
-    { id: 'ganchos',   rotulo: 'Ganchos',   icone: '\u{1FA9D}' },
-    { id: 'missoes',   rotulo: 'Missões',   icone: '\u{1F4DC}' },
-    { id: 'locais',    rotulo: 'Locais',    icone: '\u{1F5FA}' },
-    { id: 'guia',      rotulo: 'Guia',      icone: '\u{1F4D6}' },
-    { id: 'condicoes', rotulo: 'Condições', icone: '\u{1F300}' },
-    { id: 'eventos',   rotulo: 'Eventos de Estrada', icone: '\u{1F3B2}' },
+    { id: 'locais',    rotulo: 'Locais',    principal: true },
+    { id: 'bestiario', rotulo: 'Bestiário', principal: true },
+    { id: 'npcs',      rotulo: 'NPCs',      principal: true },
+    { id: 'combate',   rotulo: 'Combate',   principal: true },
+    { id: 'missoes',   rotulo: 'Missões',   sub: 'Status de cada missão' },
+    { id: 'ganchos',   rotulo: 'Ganchos',   sub: 'Como os personagens entram na história' },
+    { id: 'itens',     rotulo: 'Itens',     sub: 'Tesouros e itens mágicos' },
+    { id: 'guia',      rotulo: 'Guia',      sub: 'Regras e referências da aventura' },
+    { id: 'condicoes', rotulo: 'Condições', sub: 'Regras das condições 2024' },
+    { id: 'eventos',   rotulo: 'Eventos de Estrada', sub: 'Encontros e imprevistos de viagem' },
   ];
 
   // Tipos de detalhe que não têm aba própria e pertencem a uma aba existente.
@@ -168,18 +170,80 @@
 
   // ---------- Render ----------
   function montarAbas() {
+    const botao = (id, rotulo, iconeNome) => `
+      <button type="button" class="tab-btn" data-aba="${id}">
+        <span class="tab-icone">${window.icone(iconeNome)}</span>
+        <span class="tab-rotulo">${rotulo}</span>
+      </button>`;
+    el.tabs.innerHTML = ABAS.filter(a => a.principal).map(a => botao(a.id, a.rotulo, a.id)).join('') +
+      botao('mais', 'Mais', 'mais');
+  }
+
+  function abasSecundarias() {
     const temGuia = !!(state.aventura && state.aventura.guia && state.aventura.guia.length);
-    el.tabs.innerHTML = ABAS.filter(a => a.id !== 'guia' || temGuia).map(a => `
-      <button type="button" class="tab-btn" data-aba="${a.id}" aria-label="${a.rotulo}" title="${a.rotulo}">
-        <span aria-hidden="true">${a.icone}</span>
-      </button>`).join('');
+    return ABAS.filter(a => !a.principal && (a.id !== 'guia' || temGuia));
+  }
+
+  // Folha inferior com as seções secundárias e as ações da aventura.
+  function abrirMais() {
+    fecharMais();
+    const fundo = document.createElement('div');
+    fundo.id = 'folha-mais';
+    fundo.className = 'folha-fundo';
+    const esc = window.escHtml;
+    const itens = abasSecundarias().map(a => `
+      <li><button type="button" class="verbete goto-aba" data-aba="${a.id}">
+        <span class="verbete-corpo"><span class="verbete-nome">${esc(a.rotulo)}</span>
+        <span class="verbete-sub">${esc(a.sub || '')}</span></span>
+        <span class="verbete-seta" aria-hidden="true"></span>
+      </button></li>`).join('');
+    fundo.innerHTML = `
+      <div class="folha" role="dialog" aria-modal="true" aria-label="Mais seções">
+        <div class="folha-puxador" aria-hidden="true"></div>
+        <div class="folha-titulo">
+          <p class="rotulo-secao">Mais seções</p>
+          <button type="button" class="icone-btn" data-fechar aria-label="Fechar">${window.icone('fechar')}</button>
+        </div>
+        <ul class="lista-verbetes">${itens}</ul>
+        <button type="button" class="btn btn-secundario btn-largo mt-4" data-exportar>
+          ${window.icone('exportar')} Exportar como Markdown
+        </button>
+      </div>`;
+    fundo.addEventListener('click', e => {
+      if (e.target === fundo || e.target.closest('[data-fechar]')) { fecharMais(); return; }
+      const ir = e.target.closest('.goto-aba');
+      if (ir) { fecharMais(); irParaAba(ir.dataset.aba); return; }
+      if (e.target.closest('[data-exportar]')) { fecharMais(); exportarMarkdown(); }
+    });
+    document.body.appendChild(fundo);
+    const primeiro = fundo.querySelector('.goto-aba');
+    if (primeiro) primeiro.focus();
+  }
+
+  function fecharMais() {
+    const f = document.getElementById('folha-mais');
+    if (f) f.remove();
+  }
+
+  function exportarMarkdown() {
+    let md = window.Renderers.exportarMarkdown(state.aventura);
+    const notas = lerNotas();
+    if (notas.trim()) md += '\n## Anotações do Mestre\n\n' + notas + '\n';
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (state.aventura.titulo || 'aventura').toLowerCase().replace(/\s+/g, '-') + '.md';
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   function render() {
+    const principal = ABAS.some(a => a.principal && a.id === state.aba);
     Array.from(el.tabs.querySelectorAll('.tab-btn')).forEach(btn => {
-      const ativa = btn.dataset.aba === state.aba;
+      const ativa = btn.dataset.aba === state.aba || (btn.dataset.aba === 'mais' && !principal);
       btn.classList.toggle('ativa', ativa);
-      if (ativa) btn.setAttribute('aria-current', 'true');
+      if (ativa) btn.setAttribute('aria-current', 'page');
       else btn.removeAttribute('aria-current');
     });
 
@@ -413,7 +477,7 @@
     painel.className = 'painel-notas';
     painel.innerHTML = `
       <div class="painel-notas-topo">
-        <span class="text-sm font-bold text-amber-400">\u{1F4DD} Anotações do Mestre</span>
+        <span class="painel-notas-titulo">Anotações do Mestre</span>
         <button type="button" id="fechar-notas" class="painel-notas-fechar" aria-label="Fechar anotações">×</button>
       </div>
       <textarea id="texto-notas" class="painel-notas-texto"
@@ -430,7 +494,13 @@
   function ligarEventos() {
     el.tabs.addEventListener('click', e => {
       const btn = e.target.closest('.tab-btn');
-      if (btn) irParaAba(btn.dataset.aba);
+      if (!btn) return;
+      if (btn.dataset.aba === 'mais') abrirMais();
+      else irParaAba(btn.dataset.aba);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') fecharMais();
     });
 
     el.voltar.addEventListener('click', voltar);
@@ -494,21 +564,6 @@
 
     if (el.notas) el.notas.addEventListener('click', alternarNotas);
 
-    if (el.exportar) {
-      el.exportar.addEventListener('click', () => {
-        let md = window.Renderers.exportarMarkdown(state.aventura);
-        const notas = lerNotas();
-        if (notas.trim()) md += '\n## Anotações do Mestre\n\n' + notas + '\n';
-        const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = (state.aventura.titulo || 'aventura').toLowerCase().replace(/\s+/g, '-') + '.md';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-    }
-
     window.addEventListener('hashchange', aplicarHash);
   }
 
@@ -520,12 +575,18 @@
     el.titulo = document.getElementById('titulo-aventura');
     el.sub = document.getElementById('sub-aventura');
     el.busca = document.getElementById('busca');
-    el.exportar = document.getElementById('btn-exportar');
     el.notas = document.getElementById('btn-notas');
+
+    // Ícones do cabeçalho (SVG inline de utils.js)
+    const pinta = (id, nome) => { const n = document.getElementById(id); if (n) n.innerHTML = window.icone(nome); };
+    pinta('btn-inicio', 'inicio');
+    pinta('btn-voltar', 'voltar');
+    pinta('btn-notas', 'notas');
+    pinta('icone-busca', 'busca');
 
     const id = getParam('id');
     if (!id) {
-      el.conteudo.innerHTML = '<p class="text-center text-zinc-500 mt-16">Nenhuma aventura selecionada.</p>';
+      el.conteudo.innerHTML = '<p class="vazio">Nenhuma aventura selecionada.</p>';
       return;
     }
 
@@ -557,7 +618,6 @@
     // O campo "trilha" da aventura sobrescreve as playlists por clima.
     if (window.Trilha) window.Trilha.aplicarAventura(state.aventura);
 
-    if (el.exportar) el.exportar.classList.remove('hidden');
     if (el.notas) el.notas.classList.remove('hidden');
     montarAbas();
     ligarEventos();

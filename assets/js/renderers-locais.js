@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, dicParaArray, itemListaCard, vazio, blocoOcupantes, textoPlano, salasDoLocal, resolverSala, ocupantesDaSala, linhaOcupante, resolverRef } = window.Renderers._;
+  const { painelCard, cabecalhoDetalhe, campo, listaVerbetes, dicParaArray, itemListaCard, vazio, blocoOcupantes, textoPlano, salasDoLocal, resolverSala, ocupantesDaSala, linhaOcupante, resolverRef } = window.Renderers._;
 
   function listaLocais(aventura) {
     const itens = dicParaArray(aventura.locais);
@@ -13,7 +13,7 @@
       l.tipo,
       l.nivel_sugerido && l.nivel_sugerido !== '—' ? `Nível sugerido ${l.nivel_sugerido}` : null,
     ])).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   // Lista de salas do local: cada linha abre a sala (tipo "sala").
@@ -30,20 +30,20 @@
       const resumo = textoPlano(area.texto || '', aventura);
       const curto = resumo.length > 110 ? resumo.slice(0, 110).replace(/\s+\S*$/, '') + '\u2026' : resumo;
       return `<li>
-        <button type="button" class="open-detail w-full text-left flex items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-xl px-3 py-2 active:bg-zinc-800 transition-colors"
+        <button type="button" class="open-detail verbete verbete-bloco"
                 data-tipo="sala" data-id="${escHtml(id)}">
-          <div class="flex-1 min-w-0">
-            <p class="font-semibold text-zinc-100 text-sm">${escHtml(rotulo || 'Área')}${area.armadilha ? ' <span title="Armadilha" class="text-rose-400">\u26A0</span>' : ''}${area.tesouro ? ' <span title="Tesouro" class="text-amber-400">\u25C6</span>' : ''}</p>
-            ${ocup ? `<p class="text-xs text-amber-300/90 truncate">${escHtml(ocup)}</p>` : ''}
-            ${curto ? `<p class="text-xs text-zinc-500 sala-resumo">${escHtml(curto)}</p>` : ''}
-          </div>
-          <span class="text-zinc-600 text-lg flex-shrink-0">&rsaquo;</span>
+          <span class="verbete-corpo">
+            <span class="verbete-nome whitespace-normal">${escHtml(rotulo || 'Área')}${area.armadilha ? '<span class="marca-armadilha">Armadilha</span>' : ''}${area.tesouro ? '<span class="marca-tesouro">Tesouro</span>' : ''}</span>
+            ${ocup ? `<span class="verbete-ocupantes">${escHtml(ocup)}</span>` : ''}
+            ${curto ? `<span class="verbete-sub sala-resumo">${escHtml(curto)}</span>` : ''}
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
         </button>
       </li>`;
     }).join('');
-    return `<div class="mt-3">
-      <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Salas e áreas (${salas.length})</h4>
-      <ul class="space-y-1.5">${linhas}</ul>
+    return `<div class="mt-4">
+      <h4 class="rotulo-secao">Salas e áreas (${salas.length})</h4>
+      <ul class="lista-verbetes">${linhas}</ul>
     </div>`;
   }
 
@@ -55,20 +55,17 @@
     const l = aventura.locais[sala.lid];
     const a = sala.area;
     const ocup = ocupantesDaSala(l, sala.rotulo).map(e => linhaOcupante(e, aventura)).join('');
-    const bloco = (rot, cor, v) => v ? `<div class="mt-3 text-sm border rounded-lg p-3 ${cor.bg}">
-        <span class="font-semibold ${cor.txt}">${rot}:</span> <span class="text-zinc-300">${parseLinks(v, aventura)}</span></div>` : '';
     const nav = (s, rotulo) => s
-      ? `<button type="button" class="open-detail sala-nav" data-tipo="sala" data-id="${escHtml(s.id)}"><span class="text-xs text-zinc-500">${rotulo}</span><span class="block text-sm font-semibold text-amber-300 truncate">${escHtml(s.rotulo || 'Área')}</span></button>`
+      ? `<button type="button" class="open-detail sala-nav" data-tipo="sala" data-id="${escHtml(s.id)}"><span class="rotulo-secao block">${rotulo}</span><span class="block text-[15px] font-bold text-amber-400 truncate">${escHtml(s.rotulo || 'Área')}</span></button>`
       : '<span></span>';
     const corpo = `
       <button type="button" class="chip-link" data-tipo="locais" data-id="${escHtml(sala.lid)}">${escHtml(l.nome)}</button>
-      <h3 class="text-lg font-bold text-amber-400 mt-2">${escHtml(sala.rotulo || 'Área')}</h3>
-      <p class="text-xs text-zinc-500">Sala ${posicao} de ${total}</p>
-      <div class="stat-divider"></div>
-      ${ocup ? `<div class="mb-3"><h4 class="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Quem está aqui</h4><ul class="enc-lista">${ocup}</ul></div>` : ''}
-      ${a.texto ? `<p class="text-sm text-zinc-300 leading-snug">${parseLinks(a.texto, aventura)}</p>` : ''}
-      ${bloco('Armadilha', { bg: 'bg-rose-500/5 border-rose-500/20', txt: 'text-rose-300' }, a.armadilha)}
-      ${bloco('Tesouro', { bg: 'bg-amber-500/5 border-amber-500/20', txt: 'text-amber-300' }, a.tesouro)}
+      <p class="rotulo-secao mt-3">Sala ${posicao} de ${total}</p>
+      <h3 class="titulo-entidade">${escHtml(sala.rotulo || 'Área')}</h3>
+      ${ocup ? `<div class="mt-3"><h4 class="rotulo-secao">Quem está aqui</h4><ul class="enc-lista">${ocup}</ul></div>` : ''}
+      ${a.texto ? `<p class="texto-livro mt-3">${parseLinks(a.texto, aventura)}</p>` : ''}
+      ${a.armadilha ? campo('Armadilha', parseLinks(a.armadilha, aventura), 'perigo') : ''}
+      ${a.tesouro ? campo('Tesouro', parseLinks(a.tesouro, aventura), 'ouro') : ''}
       <div class="sala-navbar">${nav(anterior, '\u2039 Anterior')}${nav(proxima, 'Próxima \u203A')}</div>`;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
@@ -77,24 +74,13 @@
     const l = aventura.locais && aventura.locais[id];
     if (!l) return vazio('Localidade não encontrada.');
     const corpo = `
-      <h3 class="text-lg font-bold text-amber-400">${escHtml(l.nome)}</h3>
-      <div class="flex flex-wrap gap-x-3 gap-y-1 mt-1 text-xs text-zinc-500">
-        ${l.tipo ? `<span>${escHtml(l.tipo)}</span>` : ''}
-        ${l.nivel_sugerido && l.nivel_sugerido !== '—' ? `<span>Nível sugerido ${escHtml(l.nivel_sugerido)}</span>` : ''}
-      </div>
-      <div class="stat-divider"></div>
-      ${l.resumo ? `<p class="text-sm text-zinc-300 leading-snug">${parseLinks(l.resumo, aventura)}</p>` : ''}
+      ${cabecalhoDetalhe(['Local', l.nivel_sugerido && l.nivel_sugerido !== '—' ? 'Nível ' + l.nivel_sugerido : ''].filter(Boolean).join(' · '), l.nome, l.tipo)}
+      ${l.resumo ? `<p class="texto-livro mt-3">${parseLinks(l.resumo, aventura)}</p>` : ''}
       ${blocoOcupantes(l, aventura, !!(l.areas && l.areas.length))}
       ${blocoSalas(l, id, aventura)}
-      ${l.perigos ? `<div class="mt-3 text-sm border rounded-lg p-3 bg-rose-500/5 border-rose-500/20">
-          <span class="font-semibold text-rose-300">Perigos:</span> <span class="text-zinc-300">${parseLinks(l.perigos, aventura)}</span>
-        </div>` : ''}
-      ${l.tesouro ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-amber-500/5 border-amber-500/20">
-          <span class="font-semibold text-amber-300">Tesouro:</span> <span class="text-zinc-300">${parseLinks(l.tesouro, aventura)}</span>
-        </div>` : ''}
-      ${l.conexoes ? `<div class="mt-2 text-sm border rounded-lg p-3 bg-sky-500/5 border-sky-500/20">
-          <span class="font-semibold text-sky-300">Acesso e conexões:</span> <span class="text-zinc-300">${parseLinks(l.conexoes, aventura)}</span>
-        </div>` : ''}
+      ${l.perigos ? campo('Perigos', parseLinks(l.perigos, aventura), 'perigo') : ''}
+      ${l.tesouro ? campo('Tesouro', parseLinks(l.tesouro, aventura), 'ouro') : ''}
+      ${l.conexoes ? campo('Acesso e conexões', parseLinks(l.conexoes, aventura), 'arcano') : ''}
     `;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
@@ -104,7 +90,7 @@
     const itens = aventura.guia || [];
     if (!itens.length) return vazio('Nenhum guia cadastrado.');
     const cards = itens.map(g => itemListaCard('guia', g.id, g.titulo, [textoPlano(g.resumo || '', aventura)])).join('');
-    return `<ul class="space-y-2 fade-in">${cards}</ul>`;
+    return listaVerbetes(cards);
   }
 
   function detalheGuia(aventura, id) {
@@ -112,8 +98,8 @@
     if (!g) return vazio('Entrada do guia não encontrada.');
     const paragrafos = (Array.isArray(g.texto) ? g.texto : String(g.texto || '').split(/\n+/))
       .filter(Boolean)
-      .map(p => `<p class="text-sm text-zinc-300 leading-snug mt-2">${parseLinks(p, aventura)}</p>`).join('');
-    const corpo = `<h3 class="text-lg font-bold text-amber-400">${escHtml(g.titulo)}</h3>${paragrafos}`;
+      .map(p => `<p class="texto-livro mt-3">${parseLinks(p, aventura)}</p>`).join('');
+    const corpo = `<p class="rotulo-secao">Guia</p><h3 class="titulo-entidade">${escHtml(g.titulo)}</h3>${paragrafos}`;
     return `<div class="fade-in">${painelCard(corpo)}</div>`;
   }
 

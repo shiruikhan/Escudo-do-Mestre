@@ -75,33 +75,29 @@
     });
   }
 
-  // ---------- Tema claro/escuro ----------
-  // Aplicado o quanto antes (antes do body renderizar) para evitar flash do
-  // tema errado. Persistido em localStorage; alterna via #btn-tema.
-  try {
-    if (localStorage.getItem('escudo_tema') === 'light') {
-      document.documentElement.classList.add('light');
-    }
-  } catch (_) {}
-
-  function initTemaToggle() {
-    const btn = document.getElementById('btn-tema');
-    if (!btn) return;
-
-    function atualizarIcone() {
-      const claro = document.documentElement.classList.contains('light');
-      btn.textContent = claro ? '☀️' : '\u{1F319}';
-      btn.setAttribute('aria-label', claro ? 'Mudar para tema escuro' : 'Mudar para tema claro');
-      btn.setAttribute('title', claro ? 'Mudar para tema escuro' : 'Mudar para tema claro');
-    }
-
-    atualizarIcone();
-    btn.addEventListener('click', () => {
-      const claro = document.documentElement.classList.toggle('light');
-      try { localStorage.setItem('escudo_tema', claro ? 'light' : 'dark'); } catch (_) {}
-      atualizarIcone();
-    });
+  // ---------- Ícones de interface ----------
+  // Traço 24×24, 1.75px, herdam a cor do texto (currentColor). Emoji ficam
+  // só onde são conteúdo (clima da trilha, condições, eventos).
+  const ICONES = {
+    inicio: '<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/>',
+    voltar: '<path d="M15 5l-7 7 7 7"/>',
+    notas: '<path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h4"/>',
+    busca: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/>',
+    locais: '<path d="M5 21V9l2-1V5h2v2h2V5h2v2h2V5h2v3l2 1v12z"/><path d="M10 21v-4a2 2 0 0 1 4 0v4"/>',
+    bestiario: '<path d="M7 4c2.5 5 2.5 11 0 16M12 3c2.5 6 2.5 12 0 18M17 4c2.5 5 2.5 11 0 16"/>',
+    npcs: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-7 8-7s7 2.5 8 7"/>',
+    combate: '<path d="M5 3l11 11M19 3L8 14M7 13l4 4M17 13l-4 4M4 20l3-3M20 20l-3-3"/>',
+    mais: '<path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M5 18a2 2 0 0 1 2-2h12M9 8h6"/>',
+    exportar: '<path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/>',
+    fechar: '<path d="M6 6l12 12M18 6L6 18"/>',
+  };
+  function icone(nome, classe) {
+    const d = ICONES[nome];
+    if (!d) return '';
+    return `<svg class="icone${classe ? ' ' + classe : ''}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${d}</svg>`;
   }
+  window.icone = icone;
 
-  document.addEventListener('DOMContentLoaded', initTemaToggle);
+  // Tema único escuro: limpa a preferência do antigo alternador claro/escuro.
+  try { localStorage.removeItem('escudo_tema'); } catch (_) {}
 })();
