@@ -67,6 +67,19 @@ function montarLista() {
     assets.push('data/aventuras/' + item.arquivo);
   }
 
+  // Livros das aventuras (Markdown referenciado pelo campo "livro" de cada
+  // aventura) — sem eles a aba Livro fica vazia offline.
+  for (const item of manifest) {
+    if (!item.arquivo) continue;
+    const aventura = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'aventuras', item.arquivo), 'utf-8'));
+    if (!aventura.livro) continue;
+    if (!fs.existsSync(path.join(ROOT, 'data', 'livros', aventura.livro))) {
+      console.error(`✗ ${item.arquivo}: "livro" aponta para arquivo inexistente: data/livros/${aventura.livro}`);
+      process.exit(1);
+    }
+    assets.push('data/livros/' + aventura.livro);
+  }
+
   return assets;
 }
 

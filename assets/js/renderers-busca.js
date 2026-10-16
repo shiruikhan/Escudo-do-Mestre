@@ -43,6 +43,16 @@
     (aventura.guia || []).forEach(g =>
       idx.push({ tipo: 'guia', id: g.id, label: 'Guia', nome: g.titulo, sub: tp(g.resumo),
         campos: [normalizar(g.titulo), normalizar(tp(g.resumo)), normalizar(tp(Array.isArray(g.texto) ? g.texto.join(' ') : g.texto))] }));
+    // Capítulos do livro da aventura (renderers-livro.js é opcional aqui —
+    // os testes carregam a busca sem ele).
+    const livroDe = window.Renderers._.livroDe;
+    const livro = livroDe ? livroDe(aventura) : null;
+    if (livro) {
+      const mdTxt = window.Renderers._.mdParaTexto;
+      livro.capitulos.forEach(c =>
+        idx.push({ tipo: 'livro', id: c.id, label: 'Livro', nome: c.titulo, sub: livro.titulo,
+          campos: [normalizar(c.titulo), normalizar(mdTxt(c.md, aventura))] }));
+    }
     for (const [id, c] of Object.entries(aventura.condicoes || {}))
       idx.push({ tipo: 'condicoes', id, label: 'Condição', nome: c.nome, sub: c.resumo,
         campos: [normalizar(c.nome), normalizar(c.resumo)] });

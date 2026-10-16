@@ -4,8 +4,9 @@
 // 1. Verifica se todo JSON em data/ tem sintaxe válida.
 // 2. Verifica se cada entrada de data/aventuras.json aponta para um arquivo existente.
 // 3. Verifica se todo marcador de drill-down (npc:, bestiario:, itens:/item:,
-//    locais:/local:) usado nos textos de cada aventura corresponde a uma chave
-//    real na respectiva seção.
+//    locais:/local:) usado nos textos de cada aventura — inclusive no livro
+//    em Markdown (data/livros/) — corresponde a uma chave real na respectiva
+//    seção.
 //
 // Uso: node scripts/validar-dados.js  (ou: npm run validar-dados)
 // Sai com código 1 se encontrar algum erro — pode ser usado em CI.
@@ -178,6 +179,44 @@ function main() {
     }
   }
 
+  // 3.3 Livro da aventura (campo "livro" → data/livros/<arquivo>.md): o arquivo
+  // existe e todo marcador de drill-down usado no texto aponta para uma chave
+  // real da aventura (o Markdown não passa pelo passo 3, que só lê o JSON).
+  if (fs.existsSync(aventurasDir)) {
+    for (const caminho of listarJsons(aventurasDir)) {
+      const aventura = dados.get(caminho);
+      if (!aventura || aventura.livro === undefined) continue;
+      const relativo = path.relative(ROOT, caminho);
+      if (typeof aventura.livro !== 'string' || !/^[a-z0-9-]+\.md$/.test(aventura.livro)) {
+        erro(`${relativo}: "livro" deve ser o nome de um arquivo .md em kebab-case (recebido: ${JSON.stringify(aventura.livro)})`);
+        continue;
+      }
+      const livroPath = path.join(DATA_DIR, 'livros', aventura.livro);
+      if (!fs.existsSync(livroPath)) { erro(`${relativo}: "livro" aponta para arquivo inexistente: data/livros/${aventura.livro}`); continue; }
+      const md = fs.readFileSync(livroPath, 'utf-8');
+      const secoes = {
+        npcs: aventura.npcs || {}, bestiario: aventura.bestiario || {},
+        itens: aventura.itens || {}, locais: aventura.locais || {},
+      };
+      const antesLivro = erros;
+      const vistos = new Set();
+      let n = 0;
+      let m;
+      MARCADOR_RE.lastIndex = 0;
+      while ((m = MARCADOR_RE.exec(md)) !== null) {
+        n++;
+        const chave = `${m[1]}:${m[2]}`;
+        if (!secoes[PREFIXO_PARA_SECAO[m[1]]][m[2]] && !vistos.has(chave)) {
+          vistos.add(chave);
+          erro(`data/livros/${aventura.livro}: marcador "${chave}" não corresponde a nenhuma chave em "${PREFIXO_PARA_SECAO[m[1]]}"`);
+        }
+      }
+      const capitulos = (md.match(/^##\s+/gm) || []).length;
+      if (!capitulos) erro(`data/livros/${aventura.livro}: nenhum capítulo ("## ") encontrado`);
+      if (erros === antesLivro) ok(`data/livros/${aventura.livro}: ${capitulos} capítulo(s), ${n} marcador(es) válidos`);
+    }
+  }
+
   // 4. Arquivos globais (condicoes.json, eventos-estrada.json) são compartilhados entre
   // todas as aventuras e não têm seções próprias de npcs/bestiario/itens — um marcador de
   // drill-down ali só resolveria por coincidência, então é sempre tratado como erro.
@@ -268,7 +307,10 @@ function main() {
     esperados.push('data/aventuras.json', 'data/condicoes.json', 'data/eventos-estrada.json', 'data/trilha.json');
     if (manifest) {
       for (const item of manifest) {
-        if (item.arquivo) esperados.push('data/aventuras/' + item.arquivo);
+        if (!item.arquivo) continue;
+        esperados.push('data/aventuras/' + item.arquivo);
+        const av = dados.get(path.join(DATA_DIR, 'aventuras', item.arquivo));
+        if (av && typeof av.livro === 'string') esperados.push('data/livros/' + av.livro);
       }
     }
 

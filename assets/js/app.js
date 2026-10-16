@@ -6,6 +6,7 @@
 // Roteamento por hash: o fragmento da URL é a fonte de verdade da navegação.
 //   #bestiario            → aba
 //   #npcs/sildar          → detalhe (tipo/id)
+//   #livro/capitulo-1     → capítulo do livro da aventura
 // Cada navegação vira uma entrada real no histórico do navegador, então o
 // botão físico "voltar" do celular funciona, e uma ficha específica pode ser
 // favoritada ou compartilhada (aventura.html?id=x#npcs/sildar).
@@ -26,6 +27,7 @@
     { id: 'bestiario', rotulo: 'Bestiário', principal: true },
     { id: 'npcs',      rotulo: 'NPCs',      principal: true },
     { id: 'combate',   rotulo: 'Combate',   principal: true },
+    { id: 'livro',     rotulo: 'Livro',     sub: 'História completa da aventura' },
     { id: 'missoes',   rotulo: 'Missões',   sub: 'Status de cada missão' },
     { id: 'ganchos',   rotulo: 'Ganchos',   sub: 'Como os personagens entram na história' },
     { id: 'itens',     rotulo: 'Itens',     sub: 'Tesouros e itens mágicos' },
@@ -161,9 +163,22 @@
         dados.erros[chave] = true;
       }
     }
+    // Livro da aventura (Markdown opcional em data/livros/): texto completo
+    // da história, renderizado na aba "Livro" por renderers-livro.js.
+    async function carregarLivro() {
+      if (!dados.livro) return;
+      try {
+        const r = await fetch('data/livros/' + dados.livro);
+        if (r.ok) dados.livro_md = await r.text();
+        else dados.erros.livro = true;
+      } catch (_) {
+        dados.erros.livro = true;
+      }
+    }
     await Promise.all([
       carregarGlobal('data/condicoes.json', 'condicoes'),
       carregarGlobal('data/eventos-estrada.json', 'eventos'),
+      carregarLivro(),
     ]);
     return dados;
   }
@@ -181,7 +196,9 @@
 
   function abasSecundarias() {
     const temGuia = !!(state.aventura && state.aventura.guia && state.aventura.guia.length);
-    return ABAS.filter(a => !a.principal && (a.id !== 'guia' || temGuia));
+    const temLivro = !!(state.aventura && state.aventura.livro);
+    return ABAS.filter(a => !a.principal &&
+      (a.id !== 'guia' || temGuia) && (a.id !== 'livro' || temLivro));
   }
 
   // Folha inferior com as seções secundárias e as ações da aventura.
@@ -532,6 +549,14 @@
 
       const badge = e.target.closest('.badge-toggle');
       if (badge) { ciclarStatus(badge); return; }
+
+      // Livro: atalho para uma seção dentro do capítulo aberto.
+      const ancora = e.target.closest('.livro-ancora');
+      if (ancora) {
+        const alvo = document.getElementById(ancora.dataset.alvo);
+        if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
 
       const irAba = e.target.closest('.goto-aba');
       if (irAba) { irParaAba(irAba.dataset.aba); return; }

@@ -19,6 +19,7 @@ O **Escudo do Mestre** substitui o escudo físico e os PDFs pesados durante a me
 - Rolagem de dados: toda notação (2d6, 1d8+3…) nos textos é clicável e rola na hora
 - PV dos monstros ajustável na própria ficha durante a sessão
 - Anotações do Mestre (📝) por aventura, incluídas na exportação Markdown
+- Livro da aventura (aba Livro): documento completo da história em Markdown, dividido em capítulos, com atalhos por seção — usado nas aventuras autorais no lugar do PDF do módulo
 - Busca global na página inicial (monstros, NPCs, itens e locais de todas as aventuras)
 - Trilha sonora (🎵): barra fixa que troca o clima da mesa — Ambiente, Combate, Tensa, Chefe e Taberna — controlando o Spotify no dispositivo que você já usa (Alexa, celular, PC)
 - Backup/restauração do estado de sessão (exporta/importa um JSON na página inicial)
@@ -36,6 +37,7 @@ A navegação é reativa: nomes de NPCs, monstros e itens aparecem como links cl
 | Dragão da Espiral de Gelo | Disponível |
 | A Mina Perdida de Phandelver | Disponível |
 | A Maldição de Strahd | Disponível |
+| A Torre nas Brumas (autoral, título provisório) | Em desenvolvimento |
 
 ## Estrutura do projeto
 
@@ -65,6 +67,7 @@ escudo-do-mestre/
 │       ├── renderers-npcs-itens.js       # NPCs e Itens
 │       ├── renderers-ganchos-missoes.js  # Ganchos e Missões
 │       ├── renderers-locais.js           # Locais
+│       ├── renderers-livro.js            # Livro da aventura (Markdown → capítulos)
 │       ├── renderers-condicoes-eventos.js # Condições e Eventos de Estrada
 │       ├── renderers-busca.js            # Índice de busca e exportação Markdown
 │       ├── spotify.js                    # Cliente da Spotify Web API (PKCE, sem backend)
@@ -75,7 +78,10 @@ escudo-do-mestre/
 │   └── aventuras/
 │       ├── dragao-espiral-gelo.json   # Dados completos da aventura
 │       ├── mina-perdida-phandelver.json
-│       └── maldicao-de-strahd.json
+│       ├── maldicao-de-strahd.json
+│       └── torre-nas-brumas.json
+│   └── livros/
+│       └── torre-nas-brumas.md   # Livro completo da aventura autoral (aba Livro)
 ├── templates/
 │   ├── aventura.schema.json  # JSON Schema comentado (uma description por campo)
 │   └── aventura.exemplo.json # Aventura mínima e válida para copiar

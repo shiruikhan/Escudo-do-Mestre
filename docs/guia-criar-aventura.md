@@ -77,6 +77,23 @@ Na tela do local aparece como "Quem está aqui"; na ficha do monstro/NPC aparece
 
 `locais.<id>.areas` é uma lista de salas/áreas (`codigo`, `nome`, `texto`, `armadilha`, `tesouro`). Na tela do local cada área vira uma linha (⚠ armadilha, ◆ tesouro, ocupantes com quantidade) que abre uma tela própria da sala, com link direto (`#sala/<local>:<codigo>`), botões Anterior/Próxima e voltar ao local. Os ocupantes de uma sala são os `encontros` cuja `area` é exatamente `"<codigo> — <nome>"`; encontros sem sala correspondente (viagem, geral) aparecem no bloco "Fora das salas" do local. A ordem de `areas` define a navegação. `guia` (nível raiz da aventura) é uma lista de `{id, titulo, resumo, texto}` para regras gerais; a aba 📖 Guia só aparece quando o campo existe.
 
+## Livro da aventura (aba Livro)
+
+Para aventuras autorais, que não têm um PDF de módulo, o campo opcional `livro` (nível raiz) aponta para um arquivo Markdown em `data/livros/` com o documento completo da história:
+
+```json
+"livro": "torre-nas-brumas.md"
+```
+
+A aba 📖 **Livro** só aparece quando o campo existe. Regras do arquivo:
+
+- O `# Título` inicial é o título do livro; o texto antes do primeiro `## ` é a apresentação, mostrada acima do sumário.
+- Cada `## ` vira um capítulo, com tela própria (`#livro/<id-do-capítulo>`) e navegação Anterior/Próximo. O id é o slug do título.
+- Cada `### ` vira uma seção, com atalho no topo do capítulo. `#### ` é um subtítulo simples.
+- Suporta parágrafos, listas (`-`, `*`, `1.`), citações (`>` — use para texto de ler em voz alta e props), tabelas com `|`, `---`, blocos ```` ``` ````, `**negrito**`, `*itálico*` e `` `código` ``.
+- Marcadores de drill-down (`npc:id`, `bestiario:id`, `itens:id`, `local:id`) e notações de dado funcionam como nos campos do JSON. O `npm run validar-dados` confere os marcadores do livro também.
+- Os capítulos entram na busca da aventura, e o `npm run gerar-sw` inclui o `.md` no cache offline.
+
 ## Convenções de status de missão
 
 `missoes[].status` aceita qualquer texto, mas só estes três geram a cor de badge correta (o app faz busca por substring, sem diferenciar maiúsculas): `Disponível`, `Em Andamento`, `Concluída`.

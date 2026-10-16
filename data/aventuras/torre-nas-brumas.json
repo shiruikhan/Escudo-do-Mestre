@@ -1,0 +1,350 @@
+{
+  "id": "torre-nas-brumas",
+  "titulo": "A Torre nas Brumas",
+  "nivel_recomendado": "7–10 (11 opcional)",
+  "num_jogadores": "5–6",
+  "cenario": "Aventura autoral, continuação de Dragão da Espiral de Gelo — arredores de Phandalin e o domínio da torre de Vessaly",
+  "livro": "torre-nas-brumas.md",
+
+  "guia": [
+    {
+      "id": "escopo",
+      "titulo": "Escopo da aventura",
+      "resumo": "Título provisório · níveis 7–10 (11) · 5–6 jogadores · 8–12 sessões · rascunho v0.1",
+      "texto": [
+        "Aventura autoral que continua Dragão da Espiral de Gelo depois da luta contra o dragão branco. Substitui a ida completa a Baróvia: o clima de horror gótico vem de um Domínio do Pavor pequeno, criado por npc:vessaly — a própria local:torre-nas-brumas.",
+        "Estrutura em 4 atos: (I) os mortos de npc:robin cercam Phandalin; (II) as memórias roubadas voltam e a torre reaparece no lugar onde o grupo um dia achou estar o Moinho de Adabra; (III) a subida pelos andares da torre; (IV) o Observatório, Vessaly e a escolha da herdeira.",
+        "Cada ato fecha sozinho. Se a mesa encolher, dá para encerrar a campanha ao fim do Ato III sem pontas soltas. O texto completo está na aba Livro."
+      ]
+    },
+    {
+      "id": "regras-do-dominio",
+      "titulo": "Regras do domínio",
+      "resumo": "Entrar é entrar no domínio; sair é cair no esquecimento",
+      "texto": [
+        "A torre é muito maior por dentro do que por fora, e a escada sobe sem fim até a chave de cada andar ser resolvida.",
+        "Quem sai da torre sem a permissão de Vessaly (ou sem destruir a âncora) é esquecido por todos e vira um bestiario:esquecido. É a saída narrativa para personagens cujos jogadores deixam a mesa.",
+        "Magias de teletransporte e viagem planar falham dentro da torre: o conjurador chega a outro andar escolhido pelo Mestre e perde uma Âncora."
+      ]
+    },
+    {
+      "id": "ancoras",
+      "titulo": "Âncoras de memória",
+      "resumo": "Cada personagem tem 3 memórias; perder as 3 é ser esquecido",
+      "texto": [
+        "Antes de entrar na torre, cada jogador escreve 3 Âncoras: memórias importantes do personagem, em uma frase cada.",
+        "Efeitos da torre (Ecos, Traças, falhas em testes de Sabedoria nos andares, descanso longo fora do Jardim da Lareira) rasgam uma Âncora. O jogador escolhe qual e risca.",
+        "Com 0 Âncoras, o personagem é esquecido: vira NPC da torre. Uma Âncora pode ser recuperada quando outro personagem conta, em cena, uma lembrança verdadeira vivida com ele."
+      ]
+    },
+    {
+      "id": "progressao",
+      "titulo": "Progressão de nível",
+      "resumo": "7 no Ato I · 8 ao entrar na torre · 9 no Jardim · 10 após Alissent · 11 opcional",
+      "texto": [
+        "Nível 7: início do Ato I, logo depois do dragão branco.",
+        "Nível 8: ao atravessar a porta da torre (fim do Ato II).",
+        "Nível 9: no Jardim da Lareira (andar 5).",
+        "Nível 10: depois do Ossuário de Robin e do Quarto de Alissent.",
+        "Nível 11 (opcional): antes do Observatório, se o grupo estiver com dificuldade, ou como recompensa do epílogo."
+      ]
+    },
+    {
+      "id": "escala",
+      "titulo": "Escala para 5–6 jogadores",
+      "resumo": "Chefe com lacaios, ações de covil e duas fases",
+      "texto": [
+        "Evite monstro sozinho: 6 personagens derrubam um chefe solitário em uma rodada. Use chefe + lacaios, ações de covil da torre na iniciativa 20 e uma segunda fase com PV renovados.",
+        "Para fichas-base abaixo do nível do grupo, some 50% aos PV, +1 ou +2 no ataque e na CD, e dê um ataque extra ao chefe.",
+        "Inimigos que roubam Âncoras criam tensão sem precisar de mais dano."
+      ]
+    },
+    {
+      "id": "pendencias",
+      "titulo": "Pendências de desenvolvimento",
+      "resumo": "Nome da aventura, carta Tarokka, fichas e detalhes de Alissent",
+      "texto": [
+        "Definir o nome definitivo da aventura (título atual é provisório).",
+        "Confirmar qual carta Tarokka está com npc:robin (sugestões: O Cavaleiro, As Brumas, A Marionete).",
+        "Preencher dados de npc:alissent: classe, aparência, histórico e o que os 2 jogadores que lembram dela sabem.",
+        "Fichas completas do bestiário (hoje só há a base e o ND sugerido).",
+        "Revisar a lista de andares da torre e os desfechos possíveis."
+      ]
+    }
+  ],
+
+  "npcs": {
+    "vessaly": {
+      "nome": "Vessaly, a Arquimaga do Limiar",
+      "local": "Observatório, no topo da torre",
+      "papel": "Senhora do domínio e antagonista central",
+      "descricao": "Arquimaga de poder absurdo que arrancou a própria torre do mundo para nunca ser esquecida. Alta, cabelos prateados que se desfazem em névoa nas pontas; o rosto parece um pouco diferente cada vez que alguém desvia o olhar. As vestes são bordadas com nomes que se desfiam sozinhos.",
+      "motivacao": "Não ser esquecida. Está se apagando — inclusive para si mesma — e precisa de uma herdeira que vire a nova âncora da torre. Quando o grupo foi puxado pelas brumas ao procurar o Moinho de Adabra, foi ela quem os recebeu usando o rosto de Adabra.",
+      "segredos": "Não inventou o ritual: copiou o que estudou sobre Baróvia (ver itens:tratado-das-brumas). Já não lembra o próprio nome verdadeiro; quem o devolver pode deixá-la descansar sem combate.",
+      "interacao": "\"Vocês se lembram de mim? Não. Ninguém lembra. É por isso que eu ainda estou aqui.\"",
+      "notas_dm": "Fala com o grupo no Jardim da Lareira pelas chamas, sem aparecer. Ficha-base: bestiario:vessaly-arquimaga."
+    },
+    "robin": {
+      "nome": "Robin, a Necromante",
+      "local": "Primeiro em Phandalin (Ato I), depois subindo a torre à frente do grupo",
+      "papel": "Ex-integrante do grupo, rival e candidata a herdeira",
+      "descricao": "A antiga maga do grupo, removida na Mina de Ouro dos Lambisratos e de volta depois do dragão — completamente diferente. Monta o cavalo esqueleto da Colina do Dragão, que ela reconstruiu do pó.",
+      "motivacao": "Acredita (com razão) que existe um ritual de poder ativo na região. Descobriu que o ritual é a torre e quer ser a herdeira. A porta só abre para quem foi marcado pelas brumas — o grupo foi, ela não —, então cerca Phandalin com os mortos para obrigá-los a ir até lá.",
+      "segredos": "A carta Tarokka (itens:carta-tarokka) é a chave dela: por isso sente a torre, entra nela e descobre a chave de cada andar antes do grupo. Sem a carta, perde a vantagem.",
+      "interacao": "\"Vocês acharam que eu tinha azar. Era a torre me chamando.\"",
+      "notas_dm": "Ficha-base: bestiario:robin-necromante. Pode morrer, fugir, ser convencida a se juntar ao grupo ou herdar a torre (gancho para campanha futura)."
+    },
+    "alissent": {
+      "nome": "Alissent, a Primeira Candidata",
+      "local": "Quarto de Alissent (andar 8 da torre)",
+      "papel": "Personagem desaparecida; resgate e clímax emocional",
+      "descricao": "A personagem que as brumas levaram. Foi a primeira candidata de Vessaly a herdeira, resistiu e não foi descartada: ficou presa, se apagando aos poucos. [Preencher: classe, aparência e traços marcantes.]",
+      "motivacao": "Continuar existindo. Ela só ainda existe porque 2 personagens do grupo se lembram dela.",
+      "segredos": "A carta de despedida (itens:carta-de-alissent) foi escrita no instante em que as brumas a levaram — quem a tocou e falhou no teste teve a lembrança dela devorada pela torre.",
+      "interacao": "\"Vocês demoraram. Eu já não sei se estou esperando ou se só esqueci de ir embora.\"",
+      "notas_dm": "Ficha-base da forma corrompida: bestiario:alissent-esvaziada. O resgate usa as lembranças de quem se lembra dela (ver Livro, Ato III, andar 8)."
+    },
+    "porteiro-sem-rosto": {
+      "nome": "O Porteiro sem Rosto",
+      "local": "Saguão do Limiar (andar 1)",
+      "papel": "Guardião da entrada e explicador das regras",
+      "descricao": "Figura alta de libré antiga, com o rosto liso como cera. Cobra um pedágio de cada visitante: uma lembrança pequena, contada em voz alta.",
+      "motivacao": "Cumprir a função. Não é hostil, mas não deixa ninguém passar sem pagar.",
+      "segredos": "Já foi um visitante. Se alguém lembrar a ele o próprio nome (escrito na local:torre-nas-brumas, na Biblioteca dos Nomes), ele ajuda o grupo uma vez.",
+      "interacao": "\"Bem-vindos. Cada um deixa uma lembrança. Pequena serve. Ninguém sobe de mãos vazias.\""
+    },
+    "bibliotecario": {
+      "nome": "O Bibliotecário",
+      "local": "Biblioteca dos Nomes (andar 2)",
+      "papel": "Guardião da biblioteca; informante perigoso",
+      "descricao": "Criatura de um olho só, curvada sob mantos de pergaminho, que enxerga os segredos de quem a encara. Cataloga cada pessoa que a torre devorou.",
+      "motivacao": "Proteger os livros. Troca informação por segredos ditos em voz alta.",
+      "segredos": "Sabe onde está o livro de npc:alissent e que o livro de npc:vessaly existe, mas está em branco.",
+      "interacao": "\"Silêncio. Cada palavra dita aqui é escrita em algum lugar.\"",
+      "ver_bestiario": "bibliotecario"
+    }
+  },
+
+  "itens": {
+    "carta-tarokka": {
+      "nome": "Carta Tarokka",
+      "tipo": "Item de Missão (artefato menor)",
+      "propriedades": "Não requer sintonização",
+      "efeito": "Fragmento de bruma solidificado. Quem a segura sente a direção da torre, consegue abrir a porta mesmo sem ter sido marcado pelas brumas e descobre a chave de cada andar (1 vez por andar). Custo: sonhos com um castelo distante, e 1 Âncora rasgada no primeiro descanso longo com ela.",
+      "localizacao": "Com npc:robin. Pode ser tomada no Ossuário (andar 7).",
+      "historico": "Deixada por uma das brumas numa sessão anterior. É a única carta que falta num baralho Vistani — alguém lá fora sente falta dela. Carta específica a definir."
+    },
+    "tratado-das-brumas": {
+      "nome": "Tratado das Brumas",
+      "tipo": "Item de Missão (livro)",
+      "propriedades": "—",
+      "efeito": "Livro aberto na Sala de Leitura da Biblioteca dos Nomes. Revela que npc:vessaly copiou o ritual do que estudou sobre Baróvia, e que as brumas existem lá também. Texto completo para ler na mesa no Livro (capítulo de Itens e Props).",
+      "localizacao": "local:torre-nas-brumas, andar 2."
+    },
+    "carta-de-alissent": {
+      "nome": "Carta de despedida de Alissent",
+      "tipo": "Item de Missão (prop)",
+      "propriedades": "—",
+      "efeito": "Quem a tocou precisou passar num teste de Sabedoria ou esqueceu npc:alissent (hoje só 2 personagens se lembram). No Ato I, cópias da carta reaparecem nas mãos dos mortos; no Ato II, tocá-la de novo permite um novo teste para recuperar fragmentos da lembrança.",
+      "localizacao": "Com o grupo (original). Cópias com os mortos de npc:robin."
+    }
+  },
+
+  "bestiario": {
+    "esquecido": {
+      "nome": "Esquecido",
+      "tipo_alinhamento": "Morto-vivo Médio, Neutro — base: Carniçal (Ghoul) ou Wight",
+      "nd": "1–3",
+      "localizacao": "Qualquer andar; em bando.",
+      "notas_dm": "Pessoas ocas que repetem um gesto da vida (varrer, rezar, chamar um nome). Ficha em desenvolvimento. Para 5–6 jogadores, use grupos de 6–10."
+    },
+    "eco": {
+      "nome": "Eco",
+      "tipo_alinhamento": "Morto-vivo Médio, Neutro e Mau — base: Espectro (Specter) / Wraith",
+      "nd": "1–5",
+      "localizacao": "Escadaria, Vila Afogada, Salão dos Espelhos.",
+      "notas_dm": "O toque drena Âncoras em vez de PV máximos (falha na salvaguarda de Sabedoria = 1 Âncora rasgada). Ficha em desenvolvimento."
+    },
+    "enxame-de-tracas": {
+      "nome": "Enxame de Traças de Memória",
+      "tipo_alinhamento": "Enxame Médio de Feras Miúdas, Sem Alinhamento — base: Enxame de Insetos",
+      "nd": "1/2–2",
+      "localizacao": "Biblioteca dos Nomes.",
+      "notas_dm": "Comem palavras: quem sofre dano do enxame não pode conjurar a última magia que conjurou até o fim do próximo turno. Ficha em desenvolvimento."
+    },
+    "convidado-de-cera": {
+      "nome": "Convidado de Cera",
+      "tipo_alinhamento": "Constructo Médio, Sem Alinhamento — base: Armadura Animada; o Anfitrião usa Golem de Carne",
+      "nd": "1 (Anfitrião: 5)",
+      "localizacao": "O Baile Parado (andar 3).",
+      "notas_dm": "Dançarinos congelados numa festa de séculos atrás. Só atacam quando alguém quebra o ritmo da dança. Ficha em desenvolvimento."
+    },
+    "cao-da-bruma": {
+      "nome": "Cão da Bruma",
+      "tipo_alinhamento": "Monstruosidade Média, Neutro e Mau — base: Cão da Morte (Death Dog)",
+      "nd": "1–3",
+      "localizacao": "Escadaria — caçam quem tenta descer.",
+      "notas_dm": "Somem na névoa como ação bônus e reaparecem a até 9 m. Ficha em desenvolvimento."
+    },
+    "reflexo": {
+      "nome": "Reflexo",
+      "tipo_alinhamento": "Monstruosidade Média (metamorfo), Neutro — base: Doppelganger",
+      "nd": "3",
+      "localizacao": "Salão dos Espelhos (andar 6).",
+      "notas_dm": "A versão de cada personagem que a torre quer criar, feita das Âncoras que ele já perdeu. Um por personagem. Ficha em desenvolvimento."
+    },
+    "morto-de-robin": {
+      "nome": "Morto de Robin",
+      "tipo_alinhamento": "Morto-vivo Médio, Neutro e Mau — base: Zumbi / Esqueleto / Zumbi Ogro",
+      "nd": "1/4–2",
+      "localizacao": "Cerco de Phandalin (Ato I) e Ossuário de Robin (andar 7).",
+      "notas_dm": "Mineiros, lenhadores e vítimas do dragão. Alguns carregam cópias da carta de npc:alissent. Ficha em desenvolvimento."
+    },
+    "cavalo-esqueleto-de-robin": {
+      "nome": "Cavalo Esqueleto de Robin",
+      "tipo_alinhamento": "Morto-vivo Grande, Leal e Mau — base: Cavalo de Guerra Esqueleto",
+      "nd": "1/2 (ajustado: 2)",
+      "localizacao": "Montaria de npc:robin.",
+      "notas_dm": "O cavalo do túmulo da Colina do Dragão, que virou pó quando a espada foi retirada. Robin o reconstruiu. Entra na fase 2 da luta contra ela. Ficha em desenvolvimento."
+    },
+    "bibliotecario": {
+      "nome": "O Bibliotecário",
+      "tipo_alinhamento": "Aberração Média, Neutro e Mau — base: Nothic",
+      "nd": "2 (ajustado: 4)",
+      "localizacao": "Biblioteca dos Nomes (andar 2).",
+      "notas_dm": "Prefere negociar a lutar. Ver npc:bibliotecario. Ficha em desenvolvimento."
+    },
+    "robin-necromante": {
+      "nome": "Robin, a Necromante",
+      "tipo_alinhamento": "Humanoide Médio, Neutro e Mau — base: Mago (Mage) com magias de necromancia",
+      "nd": "6 (ajustado: 8–9)",
+      "localizacao": "Phandalin (Ato I) e Ossuário de Robin (andar 7).",
+      "notas_dm": "Duas fases: a pé com os mortos; depois montada no bestiario:cavalo-esqueleto-de-robin. Ver npc:robin. Ficha em desenvolvimento."
+    },
+    "alissent-esvaziada": {
+      "nome": "Alissent, a Esvaziada",
+      "tipo_alinhamento": "Morto-vivo Médio, Neutro — base: Wraith + Lamento da Banshee (recarga)",
+      "nd": "5 (ajustado: 7)",
+      "localizacao": "Quarto de Alissent (andar 8).",
+      "notas_dm": "Não precisa ser derrotada: o combate termina quando o grupo devolve lembranças suficientes a ela. Ver npc:alissent. Ficha em desenvolvimento."
+    },
+    "vessaly-arquimaga": {
+      "nome": "Vessaly, a Arquimaga do Limiar",
+      "tipo_alinhamento": "Humanoide Médio, Neutro e Mau — base: Arquimago (Archmage) + ações de covil da torre",
+      "nd": "12 (ajustado: 13–14)",
+      "localizacao": "Observatório (andar 9).",
+      "notas_dm": "A torre é o filactério dela. Fase 2 quando o Coração da Torre é atingido. Ver npc:vessaly. Ficha em desenvolvimento."
+    }
+  },
+
+  "locais": {
+    "phandalin-sitiada": {
+      "nome": "Phandalin Sitiada",
+      "tipo": "Cidade sob cerco (Ato I)",
+      "nivel_sugerido": "7",
+      "resumo": "Depois do dragão, os mortos de npc:robin cercam Phandalin sem matar ninguém: só fecham as estradas e repetem a mesma frase. Alguns carregam cópias da itens:carta-de-alissent. O recado é para o grupo: ir à torre na noite das brumas.",
+      "perigos": "Quem tenta sair da cidade é empurrado de volta. Os mortos só lutam se forem atacados ou se alguém tentar romper o cerco.",
+      "conexoes": "Leva à local:torre-nas-brumas, a nordeste, cerca de um dia e meio de caminhada.",
+      "encontros": [
+        { "area": "Estradas de saída", "ref": "bestiario:morto-de-robin", "qtd": "2d6", "nota": "fechando a passagem" },
+        { "area": "Praça", "ref": "npc:robin", "qtd": 1, "nota": "aparece no fim do ato, montada" },
+        { "area": "Praça", "ref": "bestiario:cavalo-esqueleto-de-robin", "qtd": 1 }
+      ]
+    },
+    "torre-nas-brumas": {
+      "nome": "A Torre nas Brumas",
+      "tipo": "Domínio do Pavor menor",
+      "nivel_sugerido": "8–10",
+      "resumo": "A torre de npc:vessaly reaparece envolta em brumas no mesmo lugar onde o grupo um dia achou estar o Moinho de Adabra. Entrar nela é entrar no domínio; por dentro, é muito maior do que por fora, e a escada parece subir para sempre. Cada andar é uma memória roubada de alguém que a torre devorou.",
+      "perigos": "Sair sem permissão é cair no esquecimento. Descanso longo fora do Jardim da Lareira rasga uma Âncora. Teletransporte falha.",
+      "tesouro": "O itens:tratado-das-brumas na Biblioteca dos Nomes; a itens:carta-tarokka, se tomada de npc:robin.",
+      "conexoes": "A porta só abre para quem foi marcado pelas brumas (o grupo) ou para quem tem a itens:carta-tarokka.",
+      "areas": [
+        { "codigo": "1", "nome": "Saguão do Limiar", "texto": "Social. npc:porteiro-sem-rosto explica as regras da torre e cobra o pedágio: cada visitante conta uma lembrança pequena em voz alta. Chave: pagar o pedágio (ou enganá-lo — ele percebe depois e cobra em dobro)." },
+        { "codigo": "2", "nome": "Biblioteca dos Nomes", "texto": "Puzzle. Prateleiras infinitas com um livro para cada pessoa devorada pela torre. Chave: encontrar o livro de npc:alissent e preencher as páginas em branco com lembranças verdadeiras dela. Na Sala de Leitura fica o itens:tratado-das-brumas, aberto na página sobre Baróvia.", "tesouro": "itens:tratado-das-brumas" },
+        { "codigo": "3", "nome": "O Baile Parado", "texto": "Social/combate. A memória de uma festa de séculos atrás, com convidados de cera congelados no meio de uma valsa. Chave: completar a dança sem quebrar o ritmo, ou achar o único convidado que ainda está vivo.", "armadilha": "Quebrar o ritmo da dança acorda os convidados e o Anfitrião." },
+        { "codigo": "4", "nome": "A Vila Afogada", "texto": "Exploração/combate. A memória de uma vila de pescadores engolida pelo mar. A água sobe a cada rodada. Chave: tocar o sino da capela para que a vila lembre de afundar. npc:robin passou por aqui antes e deixou mortos de emboscada.", "armadilha": "Água sobe 30 cm por rodada a partir do início do combate." },
+        { "codigo": "5", "nome": "Jardim da Lareira", "texto": "Descanso. O único lugar seguro da torre: descanso longo aqui não rasga Âncoras. npc:vessaly fala com o grupo pelas chamas, sem aparecer, e propõe um acordo. Subida para o nível 9." },
+        { "codigo": "6", "nome": "Salão dos Espelhos", "texto": "Pessoal. Cada personagem enfrenta o próprio Reflexo, feito das Âncoras que já perdeu. Chave: cada um aceita ou rejeita a versão que a torre quer criar. Opcional: o espelho mostra a próxima evolução do artefato do personagem." },
+        { "codigo": "7", "nome": "O Ossuário de Robin", "texto": "Chefe. O covil que npc:robin montou dentro da torre. Luta em duas fases (a pé; depois montada). Chance de tomar a itens:carta-tarokka." },
+        { "codigo": "8", "nome": "Quarto de Alissent", "texto": "Clímax emocional. A memória mais forte de npc:alissent [preencher]. Ela está esvaziada; o combate termina quando o grupo devolve lembranças suficientes a ela. Subida para o nível 10." },
+        { "codigo": "9", "nome": "O Observatório", "texto": "Final. npc:vessaly, o Coração da Torre e a escolha da herdeira." }
+      ],
+      "encontros": [
+        { "area": "1 — Saguão do Limiar", "ref": "npc:porteiro-sem-rosto", "qtd": 1 },
+        { "area": "2 — Biblioteca dos Nomes", "ref": "npc:bibliotecario", "qtd": 1 },
+        { "area": "2 — Biblioteca dos Nomes", "ref": "bestiario:enxame-de-tracas", "qtd": "1 por jogador", "nota": "se algum livro for danificado" },
+        { "area": "3 — O Baile Parado", "ref": "bestiario:convidado-de-cera", "qtd": 8, "nota": "dançando" },
+        { "area": "4 — A Vila Afogada", "ref": "bestiario:esquecido", "qtd": "2d4+2" },
+        { "area": "4 — A Vila Afogada", "ref": "bestiario:eco", "qtd": 2 },
+        { "area": "4 — A Vila Afogada", "ref": "bestiario:morto-de-robin", "qtd": 4, "nota": "emboscada deixada por Robin" },
+        { "area": "6 — Salão dos Espelhos", "ref": "bestiario:reflexo", "qtd": "1 por jogador" },
+        { "area": "7 — O Ossuário de Robin", "ref": "bestiario:robin-necromante", "qtd": 1 },
+        { "area": "7 — O Ossuário de Robin", "ref": "bestiario:cavalo-esqueleto-de-robin", "qtd": 1, "nota": "fase 2" },
+        { "area": "7 — O Ossuário de Robin", "ref": "bestiario:morto-de-robin", "qtd": "2 por jogador" },
+        { "area": "8 — Quarto de Alissent", "ref": "bestiario:alissent-esvaziada", "qtd": 1 },
+        { "area": "8 — Quarto de Alissent", "ref": "bestiario:eco", "qtd": 2 },
+        { "area": "9 — O Observatório", "ref": "bestiario:vessaly-arquimaga", "qtd": 1 },
+        { "area": "Escadaria", "ref": "bestiario:cao-da-bruma", "qtd": "1d4+2", "nota": "encontro aleatório entre andares" }
+      ]
+    }
+  },
+
+  "ganchos": [
+    { "fonte": "Rumor em Phandalin", "texto": "Dizem que os mortos da mina dos Lambisratos não estão mais nas covas. Os lenhadores juram ter visto um cavalo de ossos entre as árvores." },
+    { "fonte": "Os mortos", "texto": "Todos os mortos de npc:robin repetem a mesma frase: \"Na noite das brumas, a torre se abre. Venham, ou eu continuo.\"" },
+    { "fonte": "A carta", "texto": "Uma cópia da itens:carta-de-alissent aparece na mão de um morto. Quem a toca sente que está esquecendo alguma coisa importante." },
+    { "fonte": "Sonhos", "texto": "Os personagens marcados pelas brumas sonham com uma torre a nordeste, no lugar onde um dia procuraram o Moinho de Adabra." }
+  ],
+
+  "missoes": [
+    {
+      "titulo": "Ato I — Os Mortos de Phandalin",
+      "status": "Disponível",
+      "localizacao": "Phandalin",
+      "objetivo": "Descobrir quem está levantando os mortos e por que eles cercam a cidade sem atacar. Encontrar npc:robin e ouvir o recado.",
+      "recompensa": "A data da noite das brumas e a direção da torre.",
+      "notas_dm": "Ver local:phandalin-sitiada. Começa no nível 7, logo depois do dragão branco."
+    },
+    {
+      "titulo": "Ato II — A Noite das Brumas",
+      "status": "Disponível",
+      "localizacao": "A nordeste de Phandalin (um dia e meio de caminhada)",
+      "objetivo": "Recuperar fragmentos das memórias roubadas, chegar ao lugar da torre e atravessar a porta.",
+      "recompensa": "Nível 8 ao entrar na torre.",
+      "notas_dm": "Cada jogador escreve 3 Âncoras antes de entrar. npc:robin entra junto ou logo atrás."
+    },
+    {
+      "titulo": "Ato III — A Subida",
+      "status": "Disponível",
+      "localizacao": "local:torre-nas-brumas, andares 1 a 8",
+      "objetivo": "Subir a torre, resgatar npc:alissent e chegar ao topo antes de npc:robin.",
+      "recompensa": "Nível 9 no Jardim da Lareira; nível 10 após o Quarto de Alissent.",
+      "notas_dm": "Ponto de encerramento seguro se a mesa encolher."
+    },
+    {
+      "titulo": "Ato IV — O Observatório",
+      "status": "Disponível",
+      "localizacao": "local:torre-nas-brumas, andar 9",
+      "objetivo": "Enfrentar ou convencer npc:vessaly e decidir o destino da torre.",
+      "recompensa": "As memórias devolvidas e o desfecho escolhido.",
+      "notas_dm": "Desfechos: destruir a âncora; alguém herda a torre; devolver o nome de Vessaly."
+    },
+    {
+      "titulo": "Paralela — Tomar a carta de Robin",
+      "status": "Disponível",
+      "localizacao": "local:torre-nas-brumas",
+      "objetivo": "Tirar a itens:carta-tarokka de npc:robin para acabar com a vantagem dela na corrida.",
+      "recompensa": "A carta funciona como bússola para o grupo, com custo.",
+      "notas_dm": "Melhor chance no Ossuário (andar 7)."
+    },
+    {
+      "titulo": "Paralela — O nome de Vessaly",
+      "status": "Disponível",
+      "localizacao": "local:torre-nas-brumas",
+      "objetivo": "Descobrir o nome verdadeiro de npc:vessaly, que nem ela lembra mais.",
+      "recompensa": "Abre o desfecho sem combate no Observatório.",
+      "notas_dm": "Pistas na Biblioteca (livro em branco), no Jardim e no Salão dos Espelhos."
+    }
+  ]
+}

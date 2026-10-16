@@ -77,6 +77,11 @@
       "description": "Ganchos de aventura / rumores. ATENÇÃO: o app identifica cada gancho pela POSIÇÃO no array (índice 0, 1, 2...), não pelo campo \"id\" do item — reordenar este array muda para onde um link salvo (localStorage) aponta.",
       "items": { "$ref": "#/definitions/gancho" }
     },
+    "livro": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*\\.md$",
+      "description": "Opcional. Nome de um arquivo Markdown em data/livros/ com o documento completo da história (o equivalente ao PDF do módulo, para aventuras autorais). Exibido na aba \"Livro\" (aparece só quando este campo existe): cada título \"## \" vira um capítulo, o \"# \" inicial é o título do livro e o texto antes do primeiro \"## \" é a apresentação. Suporta ###/####, listas, citações (>), tabelas, **negrito**, *itálico*, `código` e marcadores de drill-down, validados por npm run validar-dados."
+    },
     "guia": {
       "type": "array",
       "description": "Regras e referências gerais da aventura (progressão de nível, comportamento do dragão, contexto, final), exibidas na aba \"Guia\" (aparece só quando este campo existe). Cada entrada: id kebab-case, titulo, resumo (uma linha, para a lista) e texto (string com parágrafos separados por quebra de linha, ou array de parágrafos; suporta marcadores).",

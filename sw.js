@@ -15,7 +15,7 @@
 
 'use strict';
 
-const CACHE_VERSION = 'v14';
+const CACHE_VERSION = 'v15';
 const CACHE_NAME = 'escudo-do-mestre-' + CACHE_VERSION;
 
 const CORE_ASSETS = [
@@ -34,6 +34,7 @@ const CORE_ASSETS = [
   'assets/js/renderers-condicoes-eventos.js',
   'assets/js/renderers-core.js',
   'assets/js/renderers-ganchos-missoes.js',
+  'assets/js/renderers-livro.js',
   'assets/js/renderers-locais.js',
   'assets/js/renderers-npcs-itens.js',
   'assets/js/spotify.js',
@@ -60,6 +61,8 @@ const CORE_ASSETS = [
   'data/aventuras/dragao-espiral-gelo.json',
   'data/aventuras/mina-perdida-phandelver.json',
   'data/aventuras/maldicao-de-strahd.json',
+  'data/aventuras/torre-nas-brumas.json',
+  'data/livros/torre-nas-brumas.md',
 ];
 
 self.addEventListener('install', (event) => {

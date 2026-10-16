@@ -28,7 +28,7 @@ const sandbox = {
 sandbox.window = sandbox; // window === globalThis do sandbox
 vm.createContext(sandbox);
 
-for (const f of ['utils.js', 'marcadores.js', 'renderers-core.js', 'renderers-busca.js', 'renderers-combate.js']) {
+for (const f of ['utils.js', 'marcadores.js', 'renderers-core.js', 'renderers-livro.js', 'renderers-busca.js', 'renderers-combate.js']) {
   vm.runInContext(fs.readFileSync(JS(f), 'utf-8'), sandbox, { filename: f });
 }
 
@@ -172,6 +172,60 @@ teste('lista de combate renderiza combatentes ordenados por iniciativa',
   teste('locaisDe: reverso do monstro lista os dois locais', H.locaisDe(av, 'bestiario', 'goblin').map(x => x.lid).join() === 'vila,vila,mina,mina'.split(',').filter((v, i, a) => a.indexOf(v) === i && true).join() || H.locaisDe(av, 'bestiario', 'goblin').length >= 2);
   teste('bloco "Quem está aqui" mostra nome, quantidade e nota com link', /Quem est/.test(H.blocoOcupantes(av.locais.vila, av)) && H.blocoOcupantes(av.locais.vila, av).includes('drill-link'));
   teste('"Aparece em" resolve o NPC para o local', H.blocoApareceEm(av, 'npcs', 'sildar').includes('Vila'));
+}
+
+// ---------- Livro da aventura (Markdown) ----------
+{
+  const md = [
+    '# Livro de Teste',
+    'Apresentação com **negrito**.',
+    '',
+    '## Capítulo 1 — Início',
+    'Fale com npc:sildar e role 2d6.',
+    '',
+    '### Seção A',
+    '- item *um*',
+    '- item `dois`',
+    '',
+    '> Texto para ler em voz alta.',
+    '',
+    '| Col | Val |',
+    '|---|---|',
+    '| a | bestiario:goblin |',
+    '',
+    '### Seção B',
+    '1. primeiro',
+    '2. segundo',
+    '',
+    '## Capítulo 1 — Início',
+    'Título repetido de propósito.',
+  ].join('\n');
+  const livro = H.parseLivro(md);
+  teste('parseLivro: título, apresentação e capítulos por "## "',
+    livro.titulo === 'Livro de Teste' && livro.intro.startsWith('Apresentação') && livro.capitulos.length === 2);
+  teste('parseLivro: ids de capítulo estáveis e desambiguados',
+    livro.capitulos[0].id === 'capitulo-1-inicio' && livro.capitulos[1].id === 'capitulo-1-inicio-2');
+  const ctx = { secoes: [], usados: Object.create(null) };
+  const html = H.mdParaHtml(livro.capitulos[0].md, aventura, ctx);
+  teste('mdParaHtml: marcadores viram drill-link e dados viram dice-link',
+    html.includes('class="drill-link"') && html.includes('Sildar Hallwinter') && html.includes('class="dice-link"'));
+  teste('mdParaHtml: listas, citação e tabela',
+    html.includes('<ul class="livro-lista">') && html.includes('<ol class="livro-lista">') &&
+    html.includes('<blockquote class="livro-citacao">') && html.includes('<th>Col</th>') && html.includes('Goblin'));
+  teste('mdParaHtml: ênfase e código inline',
+    html.includes('<em>um</em>') && html.includes('<code class="livro-codigo">dois</code>'));
+  teste('mdParaHtml: seções "### " coletadas para os atalhos',
+    ctx.secoes.length === 2 && ctx.secoes[0].id === 'sec-secao-a' && html.includes('id="sec-secao-a"'));
+  teste('mdParaHtml escapa HTML cru', H.mdParaHtml('<img src=x onerror=alert(1)>', aventura).includes('&lt;img'));
+  const avLivro = Object.assign({}, aventura, { livro: 'x.md', livro_md: md });
+  delete avLivro._listasId;
+  teste('Livro: lista mostra o sumário e o detalhe abre o capítulo',
+    R.listas.livro(avLivro).includes('Sumário (2 capítulos)') &&
+    R.detalhes.livro(avLivro, 'capitulo-1-inicio').includes('Capítulo 1 de 2') &&
+    R.detalhes.livro(avLivro, 'capitulo-1-inicio').includes('livro-ancora'));
+  teste('Livro: capítulos entram na busca sem marcadores crus',
+    R.construirIndice(avLivro).some(e => e.tipo === 'livro' && e.campos.join(' ').includes('sildar hallwinter') && !e.campos.join(' ').includes('npc:')));
+  teste('Livro: aventura sem livro mostra mensagem vazia', R.listas.livro(aventura).includes('Nenhum livro'));
 }
 
 console.log('');

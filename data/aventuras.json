@@ -22,5 +22,13 @@
     "num_jogadores": "4–5",
     "descricao": "Névoas sobrenaturais arrastam o grupo para Baróvia, um domínio isolado do resto da realidade e governado pelo vampiro Conde Strahd von Zarovich. Entre a Vila de Baróvia, a cidade de Vallaki, o vilarejo de Krezk e o próprio Castelo Ravenloft, os aventureiros precisam reunir aliados, decifrar a leitura das cartas Tarokka e encontrar uma forma de derrotar Strahd em seu próprio domínio.",
     "arquivo": "maldicao-de-strahd.json"
+  },
+  {
+    "id": "torre-nas-brumas",
+    "titulo": "A Torre nas Brumas",
+    "nivel_recomendado": "7–10",
+    "num_jogadores": "5–6",
+    "descricao": "Aventura autoral (título provisório) que continua Dragão da Espiral de Gelo. Os mortos de Phandalin se levantam a mando de Robin, e as brumas que roubaram as memórias do grupo revelam sua origem: a torre da arquimaga Vessaly, um pequeno Domínio do Pavor que se alimenta de lembranças e procura uma herdeira.",
+    "arquivo": "torre-nas-brumas.json"
   }
 ]
