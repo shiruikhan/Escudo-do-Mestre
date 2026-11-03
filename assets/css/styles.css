@@ -67,10 +67,14 @@ body {
 .num { font-variant-numeric: tabular-nums lining-nums; }
 
 /* ---------- Tipografia de conteúdo ---------- */
-.titulo-entidade { font-family: var(--font-rubrica); font-weight: 700; font-size: 26px; line-height: 30px; color: var(--tinta); margin: 2px 0; overflow-wrap: anywhere; }
+.titulo-entidade { font-family: var(--font-livro); font-weight: 800; font-size: 30px; line-height: 34px; letter-spacing: -.01em; color: var(--tinta); margin: 2px 0; overflow-wrap: anywhere; text-wrap: balance; }
 .subtitulo-entidade { font-family: var(--font-livro); font-style: italic; font-size: 16px; line-height: 22px; color: var(--tinta-suave); }
 .rotulo-secao { font-family: var(--font-rotulo); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: .06em; color: var(--tinta-apagada); margin: 0 0 var(--space-1); }
-.titulo-secao { font-family: var(--font-rubrica); font-weight: 700; font-size: 18px; line-height: 24px; letter-spacing: .02em; color: var(--tinta); margin: var(--space-5) 0 var(--space-2); padding-bottom: var(--space-1); border-bottom: 1px solid var(--borda); }
+/* Título de seção: filete acima, nome em livro; .secao-pre é o rótulo
+   opcional ("Andar 1"). .secao-ancora entra na barra/folha de seções. */
+.titulo-secao { font-family: var(--font-livro); font-weight: 700; font-size: 22px; line-height: 28px; color: var(--tinta); margin: var(--space-6) 0 var(--space-3); padding-top: var(--space-5); border-top: 1px solid var(--borda); text-wrap: balance; scroll-margin-top: calc(var(--cabecalho-alt, 110px) + 56px); }
+.secao-pre { display: block; font-family: var(--font-rotulo); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: .05em; color: var(--tinta-apagada); margin-bottom: 2px; }
+.secao-nome { display: block; }
 .texto-livro { font-family: var(--font-livro); font-size: 17px; line-height: 26px; color: var(--tinta); }
 .texto-livro + .texto-livro { margin-top: var(--space-3); }
 .meta { font-size: 14px; line-height: 20px; color: var(--tinta-apagada); }
@@ -885,22 +889,49 @@ body.com-nav.com-trilha .toast { bottom: calc(var(--barra-nav) + 4.5rem + env(sa
 .aventura-dados b { font-variant-numeric: tabular-nums lining-nums; font-weight: 800; font-size: 18px; line-height: 22px; }
 .vazio { text-align: center; color: var(--tinta-apagada); margin-top: 4rem; font-size: 15px; }
 
-/* ---------- Livro da aventura (aba Livro — renderers-livro.js) ----------
-   O capítulo é lido direto na página, fora de painel. O texto para os
-   jogadores (citações >) sai no bloco "voz": pergaminho de borda a borda,
-   itálico maior — distinguível de relance das notas do Mestre. Ouro fica
-   reservado a links, dados e à barra de seções. */
-.livro-pagina { max-width: 40rem; margin: 0 auto; }
-.livro-abertura { padding: var(--space-2) 0 var(--space-5); }
-.livro-titulo { font-family: var(--font-livro); font-weight: 800; font-size: 32px; line-height: 36px; letter-spacing: -.01em; color: var(--tinta); margin: var(--space-1) 0 0; text-wrap: balance; }
+/* ---------- Página de detalhe (paginaDetalhe — renderers-core.js) ----------
+   Toda tela de detalhe é lida direto na página, fora de painel, como um
+   livro: abertura (rótulo, título, subtítulo), barra fixa de seções quando
+   há três ou mais, e o corpo. Ouro fica reservado a links, dados e à barra. */
+.pagina { max-width: 40rem; margin: 0 auto; }
+.abertura { padding: var(--space-2) 0 var(--space-5); }
+.abertura .subtitulo-entidade { margin-top: var(--space-1); }
+.titulo-icone { margin-right: .3em; font-weight: 400; }
+.pagina > .chip-link { margin-top: var(--space-1); }
 
+/* Barra fixa: seção em leitura; o toque abre a folha de seções */
+.barra-secoes {
+  position: sticky; top: var(--cabecalho-alt, 110px); z-index: 15;
+  display: flex; align-items: center; gap: var(--space-3);
+  width: calc(100% + 2 * var(--space-4)); min-height: 48px;
+  margin: 0 calc(-1 * var(--space-4)) var(--space-5); padding: 0 var(--space-4);
+  background: var(--fundo); border: 0; border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda);
+  color: var(--tinta); text-align: left; cursor: pointer; transition: background-color .15s;
+}
+.barra-secoes:active { background: var(--painel-alto); }
+.barra-secoes .icone { flex: 0 0 auto; color: var(--ouro); }
+.barra-secoes-texto { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: var(--space-2); }
+.barra-secoes-pre { flex: 0 1 auto; max-width: 45%; font-family: var(--font-rotulo); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: .05em; color: var(--tinta-apagada); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.barra-secoes-atual { flex: 1 1 auto; min-width: 0; font-family: var(--font-livro); font-weight: 700; font-size: 16px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.barra-secoes + .titulo-secao, .barra-secoes + .livro > .titulo-secao:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.secao-link.atual .verbete-nome { color: var(--ouro); }
+/* Filetes não se acumulam: barra ou régua da ficha já separam a seção. */
+.barra-secoes + .stat-divider { display: none; }
+.stat-divider + .titulo-secao { margin-top: var(--space-4); padding-top: 0; border-top: 0; }
+
+/* Texto de mesa (voz): ler em voz alta ou entregar como prop. Pergaminho de
+   borda a borda, itálico maior — distinguível de relance das notas do Mestre. */
+.pagina .voz { margin: var(--space-5) calc(-1 * var(--space-4)); padding: var(--space-5); background: var(--voz-fundo); border-top: 1px solid var(--voz-fio); border-bottom: 1px solid var(--voz-fio); }
+.pagina .voz + .voz { margin-top: calc(-1 * var(--space-5)); border-top-style: dashed; }
+.voz .texto-livro { font-style: italic; font-size: 19px; line-height: 30px; color: var(--voz); }
+.voz em { font-style: normal; }
+.voz strong { color: var(--voz); }
+.voz > * + * { margin-top: var(--space-3); }
+
+/* ---------- Livro da aventura (aba Livro — renderers-livro.js) ---------- */
 .livro > * + * { margin-top: var(--space-3); }
 .livro .texto-livro + .texto-livro { margin-top: var(--space-3); }
-
-.livro-h3 { margin: var(--space-6) 0 var(--space-3); padding-top: var(--space-5); border-top: 1px solid var(--borda); scroll-margin-top: calc(var(--cabecalho-alt, 110px) + 56px); }
-.livro > .livro-h3:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
-.livro-h3-pre { display: block; font-family: var(--font-rotulo); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: .05em; color: var(--tinta-apagada); margin-bottom: 2px; }
-.livro-h3-nome { display: block; font-family: var(--font-livro); font-weight: 700; font-size: 23px; line-height: 28px; color: var(--tinta); text-wrap: balance; }
+.livro > .titulo-secao:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 .livro-h4 { font-family: var(--font-rotulo); font-weight: 700; font-size: 15px; line-height: 20px; letter-spacing: .05em; color: var(--tinta-suave); margin: var(--space-4) 0 0; }
 .livro strong { color: var(--tinta); font-weight: 700; }
 .livro em { font-style: italic; }
@@ -913,34 +944,10 @@ ol.livro-lista { list-style: decimal; }
 .livro-lista li + li { margin-top: var(--space-1); }
 .livro-lista li::marker { color: var(--tinta-apagada); }
 
-/* Texto de mesa: ler em voz alta ou entregar como prop */
-.livro > .livro-voz { margin: var(--space-5) calc(-1 * var(--space-4)); padding: var(--space-5) var(--space-5); background: var(--voz-fundo); border-top: 1px solid var(--voz-fio); border-bottom: 1px solid var(--voz-fio); }
-.livro > .livro-voz + .livro-voz { margin-top: calc(-1 * var(--space-5)); border-top-style: dashed; }
-.livro-voz .texto-livro { font-style: italic; font-size: 19px; line-height: 30px; color: var(--voz); }
-.livro-voz em { font-style: normal; }
-.livro-voz strong { color: var(--voz); }
-.livro-voz > * + * { margin-top: var(--space-3); }
-
 .livro-tabela { overflow-x: auto; border: 1px solid var(--borda); border-radius: var(--raio-md); background: var(--painel); }
 .livro-tabela table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 21px; }
 .livro-tabela th { font-family: var(--font-rotulo); font-weight: 700; letter-spacing: .04em; text-align: left; color: var(--tinta-suave); background: var(--painel-alto); padding: var(--space-2) var(--space-3); white-space: nowrap; }
 .livro-tabela td { padding: var(--space-2) var(--space-3); border-top: 1px solid var(--borda); vertical-align: top; color: var(--tinta); }
-
-/* Barra fixa do capítulo: seção em leitura; o toque abre a folha de seções */
-.livro-barra {
-  position: sticky; top: var(--cabecalho-alt, 110px); z-index: 15;
-  display: flex; align-items: center; gap: var(--space-3);
-  width: calc(100% + 2 * var(--space-4)); min-height: 48px;
-  margin: 0 calc(-1 * var(--space-4)) var(--space-5); padding: 0 var(--space-4);
-  background: var(--fundo); border: 0; border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda);
-  color: var(--tinta); text-align: left; cursor: pointer; transition: background-color .15s;
-}
-.livro-barra:active { background: var(--painel-alto); }
-.livro-barra .icone { flex: 0 0 auto; color: var(--ouro); }
-.livro-barra-texto { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: var(--space-2); }
-.livro-barra-pre { flex: 0 0 auto; font-family: var(--font-rotulo); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: .05em; color: var(--tinta-apagada); }
-.livro-barra-atual { min-width: 0; font-family: var(--font-livro); font-weight: 700; font-size: 16px; line-height: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.livro-ancora.atual .verbete-nome { color: var(--ouro); }
 
 /* Sumário */
 .livro-sumario-item { gap: var(--space-3); }

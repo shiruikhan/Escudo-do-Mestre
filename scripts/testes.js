@@ -211,7 +211,7 @@ teste('lista de combate renderiza combatentes ordenados por iniciativa',
     html.includes('class="drill-link"') && html.includes('Sildar Hallwinter') && html.includes('class="dice-link"'));
   teste('mdParaHtml: listas, citação e tabela',
     html.includes('<ul class="livro-lista">') && html.includes('<ol class="livro-lista">') &&
-    html.includes('<blockquote class="livro-voz">') && html.includes('<th>Col</th>') && html.includes('Goblin'));
+    html.includes('<blockquote class="voz">') && html.includes('<th>Col</th>') && html.includes('Goblin'));
   teste('mdParaHtml: ênfase e código inline',
     html.includes('<em>um</em>') && html.includes('<code class="livro-codigo">dois</code>'));
   teste('mdParaHtml: seções "### " coletadas para os atalhos',
@@ -223,9 +223,9 @@ teste('lista de combate renderiza combatentes ordenados por iniciativa',
   teste('Livro: lista mostra o sumário e o detalhe abre o capítulo',
     R.listas.livro(avLivro).includes('Sumário') &&
     (R.listas.livro(avLivro).match(/livro-sumario-item/g) || []).length === 2 &&
-    capHtml.includes('Capítulo 1') && capHtml.includes('class="livro-barra"') && capHtml.includes('data-secoes'));
+    capHtml.includes('Capítulo 1') && capHtml.includes('class="barra-secoes"') && capHtml.includes('data-secoes'));
   teste('Livro: título "Prefixo — Nome" vira rótulo + nome',
-    capHtml.includes('<p class="rotulo-secao">Capítulo 1</p>') && capHtml.includes('class="livro-h3-nome"'));
+    capHtml.includes('<p class="rotulo-secao cabeca">Capítulo 1</p>') && capHtml.includes('class="secao-nome"'));
   teste('Livro: capítulos entram na busca sem marcadores crus',
     R.construirIndice(avLivro).some(e => e.tipo === 'livro' && e.campos.join(' ').includes('sildar hallwinter') && !e.campos.join(' ').includes('npc:')));
   teste('Livro: aventura sem livro mostra mensagem vazia', R.listas.livro(aventura).includes('Nenhum livro'));

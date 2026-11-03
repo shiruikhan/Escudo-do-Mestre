@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, listaBlocos, dicParaArray, itemListaCard, listaVerbetes, vazio, marcarDados, lerSessao, blocoApareceEm, campo } = window.Renderers._;
+  const { paginaDetalhe, cabecalhoDetalhe, listaBlocos, dicParaArray, itemListaCard, listaVerbetes, vazio, marcarDados, lerSessao, blocoApareceEm, campo } = window.Renderers._;
 
   function listaBestiario(aventura) {
     const itens = dicParaArray(aventura.bestiario)
@@ -73,9 +73,6 @@
     const cabecaRotulo = ['Bestiário', b.nd != null ? `ND ${b.nd}` : '', b.xp != null ? `${b.xp} XP` : ''].filter(Boolean).join(' · ');
 
     const corpo = `
-      <p class="rotulo-secao cabeca">${escHtml(cabecaRotulo)}</p>
-      <h3 class="titulo-entidade">${escHtml(b.nome)}</h3>
-      ${b.tipo_alinhamento ? `<p class="subtitulo-entidade">${escHtml(b.tipo_alinhamento)}</p>` : ''}
       <div class="stat-divider"></div>
       <dl class="ficha-nums">${nums}</dl>
 
@@ -107,7 +104,7 @@
       ${b.localizacao ? campo('Localização', parseLinks(b.localizacao, aventura), 'musgo') : ''}
       ${b.notas_dm ? campo('Nota do Mestre', parseLinks(b.notas_dm, aventura), 'mestre') : ''}
     `;
-    return `<div class="fade-in">${painelCard(corpo, 'ficha')}</div>`;
+    return paginaDetalhe(cabecalhoDetalhe(cabecaRotulo, b.nome, b.tipo_alinhamento), corpo, { extra: 'ficha', rotuloBarra: b.nome });
   }
 
   window.Renderers.listas.bestiario = listaBestiario;

@@ -22,7 +22,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { slug, vazio, listaVerbetes, textoPlano } = window.Renderers._;
+  const { slug, vazio, listaVerbetes, textoPlano, cabecalhoDetalhe, tituloSecao, barraSecoes } = window.Renderers._;
 
   // ---------- Parse em capítulos ----------
   function parseLivro(md) {
@@ -143,8 +143,7 @@
             ctx.secoes.push({ id, titulo: limparEnfase(t[2]) });
           }
           const p = partirTitulo(t[2]);
-          const pre = p.pre ? `<span class="livro-h3-pre">${inline(p.pre, aventura)}</span>` : '';
-          out.push(`<h4 class="livro-h3" id="${escHtml(id)}">${pre}<span class="livro-h3-nome">${inline(p.nome, aventura)}</span></h4>`);
+          out.push(tituloSecao(inline(p.nome, aventura), id, p.pre ? inline(p.pre, aventura) : ''));
         } else {
           out.push(`<h5 class="livro-h4">${inline(t[2], aventura)}</h5>`);
         }
@@ -157,7 +156,7 @@
       if (/^\s*>/.test(l)) {
         const buf = [];
         while (i < L.length && /^\s*>/.test(L[i])) buf.push(L[i++].replace(/^\s*>\s?/, ''));
-        out.push(`<blockquote class="livro-voz">${mdParaHtml(buf.join('\n'), aventura, null)}</blockquote>`);
+        out.push(`<blockquote class="voz">${mdParaHtml(buf.join('\n'), aventura, null)}</blockquote>`);
         continue;
       }
 
@@ -204,9 +203,6 @@
   }
 
   // ---------- Telas ----------
-  // Texto da barra antes da primeira seção (o título está logo acima).
-  const REPOUSO = 'Seções do capítulo';
-
   function semLivro(aventura) {
     if (aventura && aventura.erros && aventura.erros.livro) {
       return vazio('Não foi possível carregar o livro da aventura. Abra uma vez com internet para guardá-lo offline.');
@@ -222,10 +218,7 @@
 
   // Abertura de página: rótulo pequeno (prefixo do título) e nome grande.
   function abertura(rotulo, tituloHtml) {
-    return `<header class="livro-abertura">
-      <p class="rotulo-secao">${escHtml(rotulo)}</p>
-      <h3 class="livro-titulo">${tituloHtml}</h3>
-    </header>`;
+    return cabecalhoDetalhe(rotulo, '', '', tituloHtml);
   }
 
   function listaLivro(aventura) {
@@ -234,7 +227,7 @@
     const titulo = livro.titulo || aventura.titulo || 'Livro da aventura';
     const intro = abertura('Livro da aventura', inline(titulo, aventura)) +
       (livro.intro ? `<div class="livro">${mdParaHtml(livro.intro, aventura, null)}</div>` : '');
-    if (!livro.capitulos.length) return `<div class="livro-pagina fade-in">${intro}</div>`;
+    if (!livro.capitulos.length) return `<div class="pagina fade-in">${intro}</div>`;
     // Capítulos numerados ganham o número numa coluna própria; os demais
     // (apêndices) mantêm o título inteiro.
     const itens = livro.capitulos.map(c => {
@@ -252,7 +245,7 @@
         </button>
       </li>`;
     }).join('');
-    return `<div class="livro-pagina fade-in">${intro}
+    return `<div class="pagina fade-in">${intro}
       <h4 class="rotulo-secao mt-6 mb-2">Sumário</h4>
       ${listaVerbetes(itens)}</div>`;
   }
@@ -269,21 +262,13 @@
     const corpoHtml = mdParaHtml(c.md, aventura, ctx);
     // Barra fixa: mostra a seção em leitura (atualizada pelo app.js ao rolar)
     // e abre a folha com as seções do capítulo e o atalho para o sumário.
-    const barra = `
-      <button type="button" class="livro-barra" data-secoes aria-haspopup="dialog" data-repouso="${REPOUSO}">
-        <span class="livro-barra-texto">
-          <span class="livro-barra-pre">${escHtml(rotulo)}</span>
-          <span class="livro-barra-atual">${REPOUSO}</span>
-        </span>
-        <span class="sr-only">(abrir a lista de seções)</span>
-        ${window.icone('secoes')}
-      </button>`;
+    const barra = barraSecoes(rotulo, 'Seções do capítulo');
     const ant = livro.capitulos[pos - 1];
     const prox = livro.capitulos[pos + 1];
     const nav = (cap, rotuloNav) => cap
       ? `<button type="button" class="open-detail sala-nav" data-tipo="livro" data-id="${escHtml(cap.id)}"><span class="rotulo-secao block">${rotuloNav}</span><span class="block text-[15px] font-bold text-amber-400 truncate">${escHtml(partirTitulo(cap.titulo).nome)}</span></button>`
       : '<span></span>';
-    return `<article class="livro-pagina fade-in">
+    return `<article class="pagina fade-in">
       ${abertura(rotulo, escHtml(p.nome))}
       ${barra}
       <div class="livro">${corpoHtml}</div>

@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, cabecalhoDetalhe, campo, listaVerbetes, dicParaArray, itemListaCard, vazio, blocoOcupantes, textoPlano, salasDoLocal, resolverSala, ocupantesDaSala, linhaOcupante, resolverRef } = window.Renderers._;
+  const { paginaDetalhe, cabecalhoDetalhe, tituloSecao, campo, listaVerbetes, dicParaArray, itemListaCard, vazio, blocoOcupantes, textoPlano, salasDoLocal, resolverSala, ocupantesDaSala, linhaOcupante, resolverRef } = window.Renderers._;
 
   function listaLocais(aventura) {
     const itens = dicParaArray(aventura.locais);
@@ -41,10 +41,8 @@
         </button>
       </li>`;
     }).join('');
-    return `<div class="mt-4">
-      <h4 class="rotulo-secao">Salas e áreas (${salas.length})</h4>
-      <ul class="lista-verbetes">${linhas}</ul>
-    </div>`;
+    return `${tituloSecao(`Salas e áreas (${salas.length})`, 'sec-salas')}
+      <ul class="lista-verbetes">${linhas}</ul>`;
   }
 
   // Tela de uma sala: ocupantes, texto, armadilha, tesouro e navegação entre salas.
@@ -58,31 +56,31 @@
     const nav = (s, rotulo) => s
       ? `<button type="button" class="open-detail sala-nav" data-tipo="sala" data-id="${escHtml(s.id)}"><span class="rotulo-secao block">${rotulo}</span><span class="block text-[15px] font-bold text-amber-400 truncate">${escHtml(s.rotulo || 'Área')}</span></button>`
       : '<span></span>';
-    const corpo = `
+    const cabeca = `
       <button type="button" class="chip-link" data-tipo="locais" data-id="${escHtml(sala.lid)}">${escHtml(l.nome)}</button>
-      <p class="rotulo-secao mt-3">Sala ${posicao} de ${total}</p>
-      <h3 class="titulo-entidade">${escHtml(sala.rotulo || 'Área')}</h3>
-      ${ocup ? `<div class="mt-3"><h4 class="rotulo-secao">Quem está aqui</h4><ul class="enc-lista">${ocup}</ul></div>` : ''}
-      ${a.texto ? `<p class="texto-livro mt-3">${parseLinks(a.texto, aventura)}</p>` : ''}
+      ${cabecalhoDetalhe(`Sala ${posicao} de ${total}`, sala.rotulo || 'Área')}`;
+    const corpo = `
+      ${a.texto ? `<p class="texto-livro">${parseLinks(a.texto, aventura)}</p>` : ''}
+      ${ocup ? `${tituloSecao('Quem está aqui', 'sec-ocupantes')}<ul class="enc-lista">${ocup}</ul>` : ''}
       ${a.armadilha ? campo('Armadilha', parseLinks(a.armadilha, aventura), 'perigo') : ''}
       ${a.tesouro ? campo('Tesouro', parseLinks(a.tesouro, aventura), 'ouro') : ''}
       <div class="sala-navbar">${nav(anterior, '\u2039 Anterior')}${nav(proxima, 'Próxima \u203A')}</div>`;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabeca, corpo, { barra: false });
   }
 
   function detalheLocal(aventura, id) {
     const l = aventura.locais && aventura.locais[id];
     if (!l) return vazio('Localidade não encontrada.');
+    const cabeca = cabecalhoDetalhe(['Local', l.nivel_sugerido && l.nivel_sugerido !== '—' ? 'Nível ' + l.nivel_sugerido : ''].filter(Boolean).join(' · '), l.nome, l.tipo);
     const corpo = `
-      ${cabecalhoDetalhe(['Local', l.nivel_sugerido && l.nivel_sugerido !== '—' ? 'Nível ' + l.nivel_sugerido : ''].filter(Boolean).join(' · '), l.nome, l.tipo)}
-      ${l.resumo ? `<p class="texto-livro mt-3">${parseLinks(l.resumo, aventura)}</p>` : ''}
+      ${l.resumo ? `<p class="texto-livro">${parseLinks(l.resumo, aventura)}</p>` : ''}
       ${blocoOcupantes(l, aventura, !!(l.areas && l.areas.length))}
       ${blocoSalas(l, id, aventura)}
       ${l.perigos ? campo('Perigos', parseLinks(l.perigos, aventura), 'perigo') : ''}
       ${l.tesouro ? campo('Tesouro', parseLinks(l.tesouro, aventura), 'ouro') : ''}
       ${l.conexoes ? campo('Acesso e conexões', parseLinks(l.conexoes, aventura), 'arcano') : ''}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabeca, corpo, { rotuloBarra: l.nome });
   }
 
   // ---------- Guia: regras e referências gerais da aventura ----------
@@ -98,9 +96,8 @@
     if (!g) return vazio('Entrada do guia não encontrada.');
     const paragrafos = (Array.isArray(g.texto) ? g.texto : String(g.texto || '').split(/\n+/))
       .filter(Boolean)
-      .map(p => `<p class="texto-livro mt-3">${parseLinks(p, aventura)}</p>`).join('');
-    const corpo = `<p class="rotulo-secao">Guia</p><h3 class="titulo-entidade">${escHtml(g.titulo)}</h3>${paragrafos}`;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+      .map(p => `<p class="texto-livro">${parseLinks(p, aventura)}</p>`).join('');
+    return paginaDetalhe(cabecalhoDetalhe('Guia', g.titulo), `<div class="livro">${paragrafos}</div>`);
   }
 
   window.Renderers.detalhes.sala = detalheSala;

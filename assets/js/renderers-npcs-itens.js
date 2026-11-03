@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, cabecalhoDetalhe, campo, linha, dicParaArray, itemListaCard, listaVerbetes, vazio, campoDestaque, blocoApareceEm } = window.Renderers._;
+  const { paginaDetalhe, cabecalhoDetalhe, campo, linha, dicParaArray, itemListaCard, listaVerbetes, vazio, campoDestaque, blocoApareceEm } = window.Renderers._;
 
   function listaNpcs(aventura) {
     const itens = dicParaArray(aventura.npcs)
@@ -21,7 +21,6 @@
     const n = aventura.npcs && aventura.npcs[id];
     if (!n) return vazio('NPC não encontrado.');
     const corpo = `
-      ${cabecalhoDetalhe('NPC', n.nome, n.papel)}
       ${linha('Local', n.local)}
       ${n.descricao ? `<p class="texto-livro mt-3">${parseLinks(n.descricao, aventura)}</p>` : ''}
       ${campoDestaque('Motivação', n.motivacao, aventura, 'ouro')}
@@ -31,7 +30,7 @@
       ${campoDestaque('Notas do Mestre', n.notas_dm, aventura, 'mestre')}
       ${blocoApareceEm(aventura, 'npcs', id)}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabecalhoDetalhe('NPC', n.nome, n.papel), corpo, { rotuloBarra: n.nome });
   }
 
   function listaItens(aventura) {
@@ -49,13 +48,12 @@
     const i = aventura.itens && aventura.itens[id];
     if (!i) return vazio('Item não encontrado.');
     const corpo = `
-      ${cabecalhoDetalhe('Item', i.nome, i.tipo)}
       ${linha('Propriedades', i.propriedades)}
       ${i.efeito ? `<p class="texto-livro mt-3">${parseLinks(i.efeito, aventura)}</p>` : ''}
       ${campoDestaque('Localização', i.localizacao, aventura, 'musgo')}
       ${campoDestaque('Histórico', i.historico, aventura, 'arcano')}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabecalhoDetalhe('Item', i.nome, i.tipo), corpo, { rotuloBarra: i.nome });
   }
 
   window.Renderers.listas.npcs = listaNpcs;

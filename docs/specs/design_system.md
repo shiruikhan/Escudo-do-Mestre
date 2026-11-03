@@ -2,7 +2,7 @@
 
 Diretrizes do sistema de design do **Escudo do Mestre** (painel do Mestre para D&D 5.5e): princípios, restrições inegociáveis, tokens e componentes. É a referência para qualquer alteração visual ou estrutural da interface.
 
-- **Versão:** 2.1 (tema "Noite", tipografia Alegreya, navegação inferior; leitor do Livro com texto de mesa "voz")
+- **Versão:** 2.2 (tema "Noite", tipografia Alegreya, navegação inferior; telas de detalhe lidas na página, com barra de seções e texto de mesa "voz")
 - **Plataforma alvo:** navegador mobile (smartphone), hospedado em GitHub Pages
 - **Stack:** HTML5 + JavaScript Vanilla (ES6+) + Tailwind CSS (build local commitado) + CSS próprio em `assets/css/styles.css`
 - **Referência visual:** design system publicado em <https://claude.ai/artifact/J8HhVSwGJs5rgyt4duwwoC>
@@ -11,7 +11,7 @@ Diretrizes do sistema de design do **Escudo do Mestre** (painel do Mestre para D
 
 1. Tokens no `:root` de `assets/css/styles.css`;
 2. Escalas de cor e famílias em `tailwind.config.js` (espelham os tokens);
-3. Helpers de renderização em `assets/js/renderers-core.js` (`painelCard`, `cabecalhoDetalhe`, `campo`, `listaVerbetes`, `itemListaCard`…) e ícones em `assets/js/utils.js` (`window.icone`).
+3. Helpers de renderização em `assets/js/renderers-core.js` (`paginaDetalhe`, `cabecalhoDetalhe`, `tituloSecao`, `campo`, `listaVerbetes`, `itemListaCard`…) e ícones em `assets/js/utils.js` (`window.icone`).
 
 Ao mudar um deles, atualize este documento no mesmo commit.
 
@@ -143,8 +143,8 @@ Pilhas de reserva: Georgia/Times para as serifadas, `system-ui` para as sem-seri
 
 | Classe | Tamanho/altura | Família |
 |---|---|---|
-| `.titulo-entidade` | 26/30 | Rubrica |
-| `.titulo-secao` | 18/24, filete inferior | Rubrica |
+| `.titulo-entidade` | 30/34, peso 800 | Livro |
+| `.titulo-secao` | 22/28, peso 700, filete acima | Livro |
 | `.verbete-nome` | 18/22 | Rubrica |
 | `.texto-livro` | 17/26 | Livro |
 | `.subtitulo-entidade` | 16/22 itálico | Livro |
@@ -195,11 +195,16 @@ O átomo de navegação. Um painel único com linhas separadas por filete; cada 
 
 Variantes: `.verbete-bloco` (texto em várias linhas, `.verbete-trecho`), `.verbete-ocupantes` (quem está na sala, em ouro).
 
-### 5.5 Painel de detalhe (`painelCard` → `.painel`)
-Contêiner `--painel` + borda + `--raio-md` + 16px. Por padrão leva `painel-neutro` (filete neutro); a ficha de criatura usa `ficha` (régua `--sangue`).
+### 5.5 Página de detalhe (`paginaDetalhe(cabeca, corpo, opcoes)` → `article.pagina`)
+Toda tela de detalhe (criatura, NPC, item, local, sala, missão, gancho, guia, condição, evento e capítulo do Livro) é lida **direto na página**, sem painel, numa coluna de até 40rem. Ordem fixa: abertura (`cabecalhoDetalhe`) → barra de seções → corpo. Opções: `extra` (classe da página, ex.: `ficha`, que pinta rótulos e réguas em `--sangue`), `rotuloBarra` (nome curto na barra) e `barra` (força ou suprime; por padrão aparece com **três ou mais** seções).
+- **Barra de seções** (`barraSecoes` → `.barra-secoes`): fixa logo abaixo do cabeçalho (`--cabecalho-alt`, medido pelo `app.js`), de borda a borda, 48px. Mostra o rótulo da página e a seção em leitura (atualizada ao rolar); antes da primeira seção, "Seções desta página". O toque abre a folha "Nesta página" (no Livro, "Neste capítulo" + "Ir para o sumário") com as seções, a atual em ouro.
+- **Títulos de seção** (`tituloSecao(nomeHtml, id, preHtml?)` → `h4.titulo-secao.secao-ancora`): filete acima, nome em livro; `.secao-pre` é o rótulo opcional acima do nome. Só títulos com `.secao-ancora` entram na barra. Régua da ficha (`.stat-divider`) e a barra suprimem o filete seguinte para não dobrar linhas.
+- **Texto de mesa** (`.voz`): ver §5.17. Hoje: citações do Livro e narrativa dos eventos de estrada.
 
-### 5.6 Cabeçalho de detalhe (`cabecalhoDetalhe`)
-Sequência fixa: `.rotulo-secao.cabeca` (tipo da entidade) → `h3.titulo-entidade` (nome) → `.subtitulo-entidade` (linha em itálico). Seções internas usam `.titulo-secao`.
+`painelCard` (`.painel`) fica para blocos contidos dentro de outras telas; não use para telas de detalhe.
+
+### 5.6 Cabeçalho de detalhe (`cabecalhoDetalhe(rotulo, nome, sub, nomeHtml?)` → `header.abertura`)
+Sequência fixa: `.rotulo-secao.cabeca` (tipo da entidade) → `h3.titulo-entidade` (nome, livro 800 30/34) → `.subtitulo-entidade` (linha em itálico). `nomeHtml` permite ícone de conteúdo antes do nome (`.titulo-icone`, condições e eventos).
 
 ### 5.7 Campo rotulado (`campo(rotulo, html, tom)`)
 Rótulo + `.texto-livro`. Tons:
@@ -239,11 +244,10 @@ Formulário de iniciativa, controle de rodada e linhas de combatente; o turno at
 `.marca` (logo + título em livro 34px) e `.aventura-card` (título, descrição limitada a 3 linhas e números da aventura).
 
 
-### 5.17 Leitor do Livro (`renderers-livro.js`, `.livro-*`)
-O capítulo é lido **direto na página**, sem `.painel`, numa coluna de até 40rem.
-- **Abertura** (`.livro-abertura`): títulos `Prefixo — Nome` (ex.: "Capítulo 8 — Ato III: A Subida") se dividem em `.rotulo-secao` + `.livro-titulo` (livro 800, 32/36). O mesmo vale para as seções `###`: `.livro-h3-pre` (rótulo) + `.livro-h3-nome` (livro 700, 23/28), separadas por filete. Títulos não são dourados.
-- **Barra do capítulo** (`.livro-barra`): fixa logo abaixo do cabeçalho (`--cabecalho-alt`, medido pelo `app.js`), de borda a borda, 48px. Mostra o prefixo do capítulo e a seção em leitura (atualizada ao rolar). Antes da primeira seção mostra "Seções do capítulo". O toque abre a folha "Neste capítulo" com as seções (a atual em ouro) e o botão "Ir para o sumário".
-- **Texto de mesa** (`.livro-voz`, citações `>` do Markdown): bloco de borda a borda em `--voz-fundo` com filetes `--voz-fio` em cima e embaixo, Alegreya itálico 19/30 em `--voz`. Citações seguidas se juntam numa só folha, separadas por filete tracejado. É o único lugar do app com fundo de pergaminho — não usar para outra coisa.
+### 5.17 Leitor do Livro e texto de mesa (`renderers-livro.js`, `.livro-*`, `.voz`)
+O capítulo usa a página de detalhe (§5.5) com a barra sempre presente ("Seções do capítulo").
+- **Títulos `Prefixo — Nome`** (ex.: "Capítulo 8 — Ato III: A Subida", "Andar 1 — Saguão do Limiar") se dividem em rótulo pequeno + nome grande, na abertura e nas seções `###`. Títulos não são dourados.
+- **Texto de mesa** (`.voz`): o que se lê em voz alta ou se entrega como prop — citações `>` do Livro e a narrativa dos eventos de estrada. Bloco de borda a borda em `--voz-fundo` com filetes `--voz-fio` em cima e embaixo, Alegreya itálico 19/30 em `--voz`. Blocos seguidos se juntam numa só folha, separados por filete tracejado. É o único fundo de pergaminho do app — não usar para notas do Mestre nem para outra coisa.
 - **Sumário**: lista de verbetes com o número do capítulo em coluna própria (`.livro-num`), nome em livro 700 (`.livro-sumario-nome`) e a primeira frase do capítulo.
 
 ---
@@ -297,7 +301,7 @@ O capítulo é lido **direto na página**, sem `.painel`, numa coluna de até 40
 - [ ] Utilizável em **360px**, coluna única, sem rolagem horizontal (conferir em 375px).
 - [ ] Alvos de toque **≥ 44px**; nada depende de hover.
 - [ ] Usa **tokens** do `:root` (cor, espaço, raio) e, se mexeu na paleta, sincronizou `tailwind.config.js`.
-- [ ] Reutiliza um **componente/helper existente** (`painelCard`, `cabecalhoDetalhe`, `campo`, `listaVerbetes`, `itemListaCard`…).
+- [ ] Reutiliza um **componente/helper existente** (`paginaDetalhe`, `cabecalhoDetalhe`, `tituloSecao`, `campo`, `listaVerbetes`, `itemListaCard`…).
 - [ ] **Ouro é a única cor de ação**; demais cores são semânticas.
 - [ ] Texto de dados passa por **escape** antes do DOM.
 - [ ] Ícones de interface vêm de **`window.icone`**; controles só-ícone têm **`aria-label`**.

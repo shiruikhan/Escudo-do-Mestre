@@ -121,18 +121,57 @@
   }
 
   // ---------- Blocos visuais ----------
-  // Painel de detalhe. `extra` acrescenta classes (ex.: "ficha" na criatura;
-  // "painel-neutro" troca a régua vermelha por filete neutro).
+  // Painel de detalhe. `extra` acrescenta classes (ex.: "painel-neutro" troca
+  // a régua vermelha por filete neutro). As telas de detalhe usam
+  // paginaDetalhe; o painel fica para blocos dentro de outras telas.
   function painelCard(conteudo, extra) {
     return `<div class="painel ${extra || 'painel-neutro'}">${conteudo}</div>`;
   }
 
   // Cabeçalho de detalhe: rótulo de seção → nome → linha em itálico.
-  function cabecalhoDetalhe(rotulo, nome, sub) {
-    return `
+  // `nomeHtml` (opcional) substitui o nome escapado (ex.: ícone + nome).
+  function cabecalhoDetalhe(rotulo, nome, sub, nomeHtml) {
+    return `<header class="abertura">
       ${rotulo ? `<p class="rotulo-secao cabeca">${escHtml(rotulo)}</p>` : ''}
-      <h3 class="titulo-entidade">${escHtml(nome)}</h3>
-      ${sub ? `<p class="subtitulo-entidade">${escHtml(sub)}</p>` : ''}`;
+      <h3 class="titulo-entidade">${nomeHtml || escHtml(nome)}</h3>
+      ${sub ? `<p class="subtitulo-entidade">${escHtml(sub)}</p>` : ''}
+    </header>`;
+  }
+
+  // Título de seção navegável: entra na barra/folha de seções da página.
+  // `pre` (opcional) é o rótulo pequeno acima do nome ("Andar 1").
+  function tituloSecao(nomeHtml, id, preHtml) {
+    return `<h4 class="titulo-secao secao-ancora" id="${escHtml(id)}">${preHtml ? `<span class="secao-pre">${preHtml}</span>` : ''}<span class="secao-nome">${nomeHtml}</span></h4>`;
+  }
+
+  // Barra fixa da página: mostra a seção em leitura (o app.js atualiza ao
+  // rolar) e abre a folha com as seções. `rotulo` identifica a página.
+  const REPOUSO_BARRA = 'Seções desta página';
+  function barraSecoes(rotulo, repouso) {
+    const r = escHtml(repouso || REPOUSO_BARRA);
+    return `
+      <button type="button" class="barra-secoes" data-secoes aria-haspopup="dialog" data-repouso="${r}">
+        <span class="barra-secoes-texto">
+          <span class="barra-secoes-pre">${escHtml(rotulo)}</span>
+          <span class="barra-secoes-atual">${r}</span>
+        </span>
+        <span class="sr-only">(abrir a lista de seções)</span>
+        ${window.icone ? window.icone('secoes') : ''}
+      </button>`;
+  }
+
+  // Tela de detalhe lida direto na página (sem painel): abertura, barra de
+  // seções quando a página tem três ou mais e o corpo. `extra`: classes da
+  // página (ex.: "ficha"); `barra`: força (true) ou suprime (false) a barra.
+  function paginaDetalhe(cabeca, corpo, opcoes) {
+    const o = opcoes || {};
+    const secoes = (corpo.match(/secao-ancora/g) || []).length;
+    const comBarra = o.barra != null ? o.barra : secoes >= 3;
+    return `<article class="pagina fade-in${o.extra ? ' ' + o.extra : ''}">
+      ${cabeca}
+      ${comBarra ? barraSecoes(o.rotuloBarra || '', o.repouso) : ''}
+      ${corpo}
+    </article>`;
   }
 
   function linha(rotulo, valor) {
@@ -145,7 +184,7 @@
     const linhas = itens.map(it => `
       <p class="texto-livro"><span class="acao-nome">${escHtml(it.nome)}.</span> ${parseLinks(it.descricao, aventura)}</p>`).join('');
     return `
-      <h4 class="titulo-secao">${escHtml(titulo)}</h4>
+      ${tituloSecao(escHtml(titulo), 'sec-' + slug(titulo))}
       ${linhas}`;
   }
 
@@ -336,10 +375,9 @@
       </div>`;
     }).join('');
     if (!html) return '';
-    return `<div class="mt-4">
-      <h4 class="rotulo-secao">${soSemSala ? 'Fora das salas (geral / viagem)' : 'Quem está aqui'}</h4>
-      ${html}
-    </div>`;
+    const titulo = soSemSala ? 'Fora das salas (geral / viagem)' : 'Quem está aqui';
+    return `${tituloSecao(escHtml(titulo), 'sec-ocupantes')}
+      ${html}`;
   }
 
   // Seção "Aparece em" na ficha de monstro/NPC.
@@ -357,8 +395,7 @@
         ${x.nota ? `<span class="enc-nota">${parseLinks(x.nota, aventura)}</span>` : ''}
       </li>`;
     }).join('');
-    return `<div class="stat-divider"></div>
-      <h4 class="rotulo-secao">Aparece em</h4>
+    return `${tituloSecao('Aparece em', 'sec-aparece-em')}
       <ul class="enc-lista">${linhas}</ul>`;
   }
 
@@ -417,6 +454,9 @@
       lerSessao,
       painelCard,
       cabecalhoDetalhe,
+      tituloSecao,
+      barraSecoes,
+      paginaDetalhe,
       campo,
       listaVerbetes,
       linha,

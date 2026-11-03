@@ -242,40 +242,43 @@
     if (f) f.remove();
   }
 
-  // Livro: folha com as seções do capítulo aberto (lidas do DOM) e o atalho
-  // para o sumário. A seção em leitura vem marcada.
+  // Folha com as seções da página aberta (títulos .secao-ancora lidos do
+  // DOM). A seção em leitura vem marcada; no Livro há também o atalho para
+  // o sumário.
   function abrirSecoes() {
     fecharMais();
-    const titulos = Array.from(el.conteudo.querySelectorAll('.livro-h3'));
+    const titulos = Array.from(el.conteudo.querySelectorAll('.secao-ancora'));
     const atual = secaoAtual();
     const esc = window.escHtml;
     const itens = titulos.map(h => {
-      const pre = h.querySelector('.livro-h3-pre');
-      const nome = h.querySelector('.livro-h3-nome');
+      const pre = h.querySelector('.secao-pre');
+      const nome = h.querySelector('.secao-nome');
       const eAtual = h === atual;
-      return `<li><button type="button" class="verbete livro-ancora${eAtual ? ' atual' : ''}" data-alvo="${esc(h.id)}"${eAtual ? ' aria-current="location"' : ''}>
+      return `<li><button type="button" class="verbete secao-link${eAtual ? ' atual' : ''}" data-alvo="${esc(h.id)}"${eAtual ? ' aria-current="location"' : ''}>
         <span class="verbete-corpo">
           ${pre ? `<span class="verbete-sub">${esc(pre.textContent)}</span>` : ''}
           <span class="verbete-nome">${esc((nome || h).textContent)}</span>
         </span>
       </button></li>`;
     }).join('');
+    const noLivro = !!(state.foco && state.foco.tipo === 'livro');
+    const titulo = noLivro ? 'Neste capítulo' : 'Nesta página';
     const fundo = document.createElement('div');
     fundo.id = 'folha-mais';
     fundo.className = 'folha-fundo';
     fundo.innerHTML = `
-      <div class="folha" role="dialog" aria-modal="true" aria-label="Seções do capítulo">
+      <div class="folha" role="dialog" aria-modal="true" aria-label="${titulo}">
         <div class="folha-puxador" aria-hidden="true"></div>
         <div class="folha-titulo">
-          <p class="rotulo-secao">Neste capítulo</p>
+          <p class="rotulo-secao">${titulo}</p>
           <button type="button" class="icone-btn" data-fechar aria-label="Fechar">${window.icone('fechar')}</button>
         </div>
-        ${itens ? `<ul class="lista-verbetes">${itens}</ul>` : '<p class="vazio">Este capítulo não tem seções.</p>'}
-        <button type="button" class="btn btn-secundario btn-largo mt-4 goto-aba" data-aba="livro">Ir para o sumário</button>
+        ${itens ? `<ul class="lista-verbetes">${itens}</ul>` : '<p class="vazio">Esta página não tem seções.</p>'}
+        ${noLivro ? '<button type="button" class="btn btn-secundario btn-largo mt-4 goto-aba" data-aba="livro">Ir para o sumário</button>' : ''}
       </div>`;
     fundo.addEventListener('click', e => {
       if (e.target === fundo || e.target.closest('[data-fechar]')) { fecharMais(); return; }
-      const ancora = e.target.closest('.livro-ancora');
+      const ancora = e.target.closest('.secao-link');
       if (ancora) {
         fecharMais();
         const alvo = document.getElementById(ancora.dataset.alvo);
@@ -287,17 +290,17 @@
       if (ir) { fecharMais(); irParaAba(ir.dataset.aba); }
     });
     document.body.appendChild(fundo);
-    const foco = fundo.querySelector('.livro-ancora.atual') || fundo.querySelector('.livro-ancora, .goto-aba');
+    const foco = fundo.querySelector('.secao-link.atual') || fundo.querySelector('.secao-link, .goto-aba');
     if (foco) { foco.focus(); foco.scrollIntoView({ block: 'nearest' }); }
   }
 
   // Última seção cujo título já passou por baixo da barra fixa.
   function secaoAtual() {
-    const barra = el.conteudo.querySelector('.livro-barra');
+    const barra = el.conteudo.querySelector('.barra-secoes');
     if (!barra) return null;
     const limite = barra.getBoundingClientRect().bottom + 24;
     let atual = null;
-    for (const h of el.conteudo.querySelectorAll('.livro-h3')) {
+    for (const h of el.conteudo.querySelectorAll('.secao-ancora')) {
       if (h.getBoundingClientRect().top <= limite) atual = h;
       else break;
     }
@@ -305,12 +308,12 @@
   }
 
   function atualizarBarraLivro() {
-    const barra = el.conteudo.querySelector('.livro-barra');
+    const barra = el.conteudo.querySelector('.barra-secoes');
     if (!barra) return;
     const h = secaoAtual();
-    const nome = h && h.querySelector('.livro-h3-nome');
+    const nome = h && h.querySelector('.secao-nome');
     const texto = h ? (nome || h).textContent : barra.dataset.repouso;
-    const alvo = barra.querySelector('.livro-barra-atual');
+    const alvo = barra.querySelector('.barra-secoes-atual');
     if (alvo && alvo.textContent !== texto) alvo.textContent = texto;
   }
 
@@ -622,7 +625,7 @@
       const badge = e.target.closest('.badge-toggle');
       if (badge) { ciclarStatus(badge); return; }
 
-      // Livro: a barra fixa do capítulo abre a folha de seções.
+      // Barra fixa da página (Livro, fichas, locais) abre a folha de seções.
       if (e.target.closest('[data-secoes]')) { abrirSecoes(); return; }
 
       const irAba = e.target.closest('.goto-aba');
@@ -669,7 +672,7 @@
     el.busca = document.getElementById('busca');
     el.notas = document.getElementById('btn-notas');
 
-    // Altura do cabeçalho fixo em CSS: a barra do livro gruda logo abaixo dele.
+    // Altura do cabeçalho fixo em CSS: a barra de seções gruda logo abaixo dele.
     const cabecalho = document.querySelector('.cabecalho');
     if (cabecalho) {
       const medir = () => document.documentElement.style.setProperty('--cabecalho-alt', cabecalho.offsetHeight + 'px');
@@ -677,7 +680,7 @@
       if ('ResizeObserver' in window) new ResizeObserver(medir).observe(cabecalho);
     }
 
-    // Livro: a barra fixa acompanha a seção em leitura.
+    // A barra fixa da página acompanha a seção em leitura.
     let quadro = 0;
     window.addEventListener('scroll', () => {
       if (quadro) return;

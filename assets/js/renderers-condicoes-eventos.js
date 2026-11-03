@@ -3,7 +3,7 @@
   'use strict';
 
   const escHtml = window.escHtml;
-  const { painelCard, campo, listaVerbetes, dicParaArray, vazio } = window.Renderers._;
+  const { paginaDetalhe, cabecalhoDetalhe, tituloSecao, campo, listaVerbetes, dicParaArray, vazio } = window.Renderers._;
 
   function listaCondicoes(aventura) {
     const itens = dicParaArray(aventura.condicoes)
@@ -33,17 +33,12 @@
     if (!c) return vazio('Condição não encontrada.');
     const efeitos = (c.efeitos || []).map(ef => `
       <p class="texto-livro"><span class="acao-nome">${escHtml(ef.nome)}.</span> ${escHtml(ef.descricao)}</p>`).join('');
+    const nome = `<span class="titulo-icone" aria-hidden="true">${escHtml(c.icone || '\u{1F300}')}</span>${escHtml(c.nome)}`;
     const corpo = `
-      <p class="rotulo-secao">Condição</p>
-      <div class="flex items-center gap-3">
-        <span class="text-3xl" aria-hidden="true">${escHtml(c.icone || '\u{1F300}')}</span>
-        <h3 class="titulo-entidade">${escHtml(c.nome)}</h3>
-      </div>
-      ${c.resumo ? `<p class="subtitulo-entidade mt-1">${escHtml(c.resumo)}</p>` : ''}
-      <h4 class="titulo-secao">Efeitos</h4>
+      ${tituloSecao('Efeitos', 'sec-efeitos')}
       ${efeitos || '<p class="ajuda">Sem efeitos detalhados.</p>'}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabecalhoDetalhe('Condição', c.nome, c.resumo, nome), corpo);
   }
 
   function listaEventos(aventura) {
@@ -73,19 +68,16 @@
   function detalheEvento(aventura, id) {
     const e = aventura.eventos && aventura.eventos[id];
     if (!e) return vazio('Evento não encontrado.');
+    const nome = `<span class="titulo-icone" aria-hidden="true">${escHtml(e.icone || '\u{1F3B2}')}</span>${escHtml(e.nome)}`;
+    // A narrativa é lida para a mesa: sai no bloco de pergaminho (voz).
     const corpo = `
-      <p class="rotulo-secao">Evento de estrada</p>
-      <div class="flex items-center gap-3">
-        <span class="text-3xl" aria-hidden="true">${escHtml(e.icone || '\u{1F3B2}')}</span>
-        <h3 class="titulo-entidade">${escHtml(e.nome)}</h3>
-      </div>
-      ${e.narrativa ? `<p class="texto-livro mt-3">${escHtml(e.narrativa)}</p>` : ''}
+      ${e.narrativa ? `<blockquote class="voz"><p class="texto-livro">${escHtml(e.narrativa)}</p></blockquote>` : ''}
       ${e.teste ? campo('Teste sugerido', escHtml(e.teste), 'arcano') : ''}
       ${e.recompensa ? campo('Recompensa possível', escHtml(e.recompensa), 'musgo') : ''}
       ${e.risco ? campo('Risco / dano menor', escHtml(e.risco), 'perigo') : ''}
       ${e.nota_dm ? campo('Nota do Mestre', escHtml(e.nota_dm), 'mestre') : ''}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabecalhoDetalhe('Evento de estrada', e.nome, '', nome), corpo);
   }
 
   window.Renderers.listas.condicoes = listaCondicoes;

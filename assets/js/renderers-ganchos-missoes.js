@@ -4,7 +4,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, campo, listaVerbetes, vazio, classeBadge, textoPlano, listasComId, resolverLista, lerSessao } = window.Renderers._;
+  const { paginaDetalhe, cabecalhoDetalhe, campo, listaVerbetes, vazio, classeBadge, textoPlano, listasComId, resolverLista, lerSessao } = window.Renderers._;
 
   // Status efetivo: override da sessão (localStorage) tem precedência sobre o JSON.
   function statusEfetivo(aventura, id, m) {
@@ -39,12 +39,8 @@
     if (g == null) return vazio('Gancho não encontrado.');
     const fonte = textoPlano(typeof g === 'object' ? g.fonte : null, aventura);
     const texto = typeof g === 'object' ? g.texto : g;
-    const corpo = `
-      <p class="rotulo-secao">Gancho</p>
-      ${fonte ? `<h3 class="titulo-entidade">${escHtml(fonte)}</h3>` : ''}
-      <p class="texto-livro mt-3">${parseLinks(texto || '', aventura)}</p>
-    `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabecalhoDetalhe('Gancho', fonte || 'Rumor'),
+      `<p class="texto-livro">${parseLinks(texto || '', aventura)}</p>`);
   }
 
   function listaMissoes(aventura) {
@@ -72,11 +68,10 @@
     const m = resolverLista(aventura, 'missoes', id);
     if (!m) return vazio('Missão não encontrada.');
     const status = statusEfetivo(aventura, id, m);
+    const cabeca = cabecalhoDetalhe('Missão' + (m.nivel_sugerido != null ? ' · Nível ' + m.nivel_sugerido : ''),
+      m.titulo, m.localizacao ? textoPlano(m.localizacao, aventura) : '');
     const corpo = `
-      <p class="rotulo-secao">Missão${m.nivel_sugerido != null ? ' · Nível ' + escHtml(m.nivel_sugerido) : ''}</p>
-      <h3 class="titulo-entidade">${escHtml(m.titulo)}</h3>
-      ${m.localizacao ? `<p class="subtitulo-entidade">${escHtml(textoPlano(m.localizacao, aventura))}</p>` : ''}
-      <div class="flex items-center gap-2 mt-3">
+      <div class="flex items-center gap-2">
         <button type="button" class="badge badge-toggle ${classeBadge(status)}"
                 data-id="${escHtml(id)}" title="Tocar para mudar o status">${escHtml(status || '—')}</button>
         <span class="ajuda">Toque para alternar o status (salvo neste aparelho).</span>
@@ -85,7 +80,7 @@
       ${m.recompensa ? campo('Recompensa', parseLinks(m.recompensa, aventura), 'ouro') : ''}
       ${m.notas_dm ? campo('Notas do Mestre', parseLinks(m.notas_dm, aventura), 'mestre') : ''}
     `;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+    return paginaDetalhe(cabeca, corpo);
   }
 
   window.Renderers.listas.ganchos = listaGanchos;
