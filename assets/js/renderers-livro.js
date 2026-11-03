@@ -7,8 +7,9 @@
 // O Markdown é dividido em capítulos pelos títulos "## ". O "# " inicial é o
 // título do livro, e o texto antes do primeiro "## " vira a apresentação
 // mostrada acima do sumário. Cada capítulo é um detalhe próprio
-// (#livro/<id>), com atalhos para as seções "### " e navegação
-// Anterior/Próximo.
+// (#livro/<id>), com barra fixa da seção atual (abre a folha de seções,
+// montada pelo app.js) e navegação Anterior/Próximo. Citações (>) são texto
+// para os jogadores e saem no bloco "voz" (pergaminho).
 //
 // Subconjunto de Markdown suportado, sem dependências: títulos ### e ####,
 // parágrafos, listas (- * + 1.), citações (>), tabelas com |, blocos ```,
@@ -21,7 +22,7 @@
 
   const escHtml = window.escHtml;
   const { parseLinks } = window.Renderers;
-  const { painelCard, slug, vazio, listaVerbetes, itemListaCard, textoPlano } = window.Renderers._;
+  const { slug, vazio, listaVerbetes, textoPlano } = window.Renderers._;
 
   // ---------- Parse em capítulos ----------
   function parseLivro(md) {
@@ -62,6 +63,13 @@
 
   function limparEnfase(s) {
     return String(s || '').replace(/\*\*|__|\*|`/g, '');
+  }
+
+  // "Andar 1 — Saguão do Limiar" → { pre: 'Andar 1', nome: 'Saguão do Limiar' }.
+  // Só divide prefixos curtos (rótulos de sequência), nunca uma frase.
+  function partirTitulo(t) {
+    const m = /^(.{1,24}?)\s+[—–]\s+(.+)$/.exec(String(t || ''));
+    return m ? { pre: m[1], nome: m[2] } : { pre: '', nome: String(t || '') };
   }
 
   // Texto puro de um trecho Markdown (prévias e busca).
@@ -134,7 +142,9 @@
             ctx.usados[id] = true;
             ctx.secoes.push({ id, titulo: limparEnfase(t[2]) });
           }
-          out.push(`<h4 class="livro-h3" id="${escHtml(id)}">${inline(t[2], aventura)}</h4>`);
+          const p = partirTitulo(t[2]);
+          const pre = p.pre ? `<span class="livro-h3-pre">${inline(p.pre, aventura)}</span>` : '';
+          out.push(`<h4 class="livro-h3" id="${escHtml(id)}">${pre}<span class="livro-h3-nome">${inline(p.nome, aventura)}</span></h4>`);
         } else {
           out.push(`<h5 class="livro-h4">${inline(t[2], aventura)}</h5>`);
         }
@@ -147,7 +157,7 @@
       if (/^\s*>/.test(l)) {
         const buf = [];
         while (i < L.length && /^\s*>/.test(L[i])) buf.push(L[i++].replace(/^\s*>\s?/, ''));
-        out.push(`<blockquote class="livro-citacao">${mdParaHtml(buf.join('\n'), aventura, null)}</blockquote>`);
+        out.push(`<blockquote class="livro-voz">${mdParaHtml(buf.join('\n'), aventura, null)}</blockquote>`);
         continue;
       }
 
@@ -194,6 +204,9 @@
   }
 
   // ---------- Telas ----------
+  // Texto da barra antes da primeira seção (o título está logo acima).
+  const REPOUSO = 'Seções do capítulo';
+
   function semLivro(aventura) {
     if (aventura && aventura.erros && aventura.erros.livro) {
       return vazio('Não foi possível carregar o livro da aventura. Abra uma vez com internet para guardá-lo offline.');
@@ -207,21 +220,41 @@
     return t.length > 110 ? t.slice(0, 110).replace(/\s+\S*$/, '') + '…' : t;
   }
 
+  // Abertura de página: rótulo pequeno (prefixo do título) e nome grande.
+  function abertura(rotulo, tituloHtml) {
+    return `<header class="livro-abertura">
+      <p class="rotulo-secao">${escHtml(rotulo)}</p>
+      <h3 class="livro-titulo">${tituloHtml}</h3>
+    </header>`;
+  }
+
   function listaLivro(aventura) {
     const livro = livroDe(aventura);
     if (!livro) return semLivro(aventura);
     const titulo = livro.titulo || aventura.titulo || 'Livro da aventura';
-    const intro = painelCard(`
-      <p class="rotulo-secao">Livro da aventura</p>
-      <h3 class="titulo-entidade">${inline(titulo, aventura)}</h3>
-      ${livro.intro ? `<div class="livro mt-3">${mdParaHtml(livro.intro, aventura, null)}</div>` : ''}`);
-    if (!livro.capitulos.length) return `<div class="fade-in">${intro}</div>`;
-    const cards = livro.capitulos
-      .map(c => itemListaCard('livro', c.id, c.titulo, [resumoCapitulo(c, aventura)]))
-      .join('');
-    return `<div class="fade-in">${intro}
-      <h4 class="rotulo-secao mt-4">Sumário (${livro.capitulos.length} capítulos)</h4>
-      ${listaVerbetes(cards)}</div>`;
+    const intro = abertura('Livro da aventura', inline(titulo, aventura)) +
+      (livro.intro ? `<div class="livro">${mdParaHtml(livro.intro, aventura, null)}</div>` : '');
+    if (!livro.capitulos.length) return `<div class="livro-pagina fade-in">${intro}</div>`;
+    // Capítulos numerados ganham o número numa coluna própria; os demais
+    // (apêndices) mantêm o título inteiro.
+    const itens = livro.capitulos.map(c => {
+      const p = partirTitulo(c.titulo);
+      const num = /^cap[ií]tulo\s+(\d+)$/i.exec(p.pre);
+      return `
+      <li>
+        <button type="button" class="open-detail verbete verbete-bloco livro-sumario-item" data-tipo="livro" data-id="${escHtml(c.id)}">
+          <span class="livro-num">${num ? escHtml(num[1]) : ''}</span>
+          <span class="verbete-corpo">
+            <span class="livro-sumario-nome">${escHtml(num ? p.nome : c.titulo)}</span>
+            <span class="verbete-sub">${escHtml(resumoCapitulo(c, aventura))}</span>
+          </span>
+          <span class="verbete-seta" aria-hidden="true"></span>
+        </button>
+      </li>`;
+    }).join('');
+    return `<div class="livro-pagina fade-in">${intro}
+      <h4 class="rotulo-secao mt-6 mb-2">Sumário</h4>
+      ${listaVerbetes(itens)}</div>`;
   }
 
   function detalheLivro(aventura, id) {
@@ -230,25 +263,32 @@
     const pos = livro.capitulos.findIndex(c => c.id === id);
     if (pos < 0) return vazio('Capítulo não encontrado.');
     const c = livro.capitulos[pos];
+    const p = partirTitulo(c.titulo);
+    const rotulo = p.pre || `Capítulo ${pos + 1}`;
     const ctx = { secoes: [], usados: Object.create(null) };
     const corpoHtml = mdParaHtml(c.md, aventura, ctx);
-    const atalhos = ctx.secoes.length > 1
-      ? `<nav class="livro-atalhos" aria-label="Seções do capítulo">${ctx.secoes.map(s =>
-          `<button type="button" class="livro-ancora" data-alvo="${escHtml(s.id)}">${escHtml(s.titulo)}</button>`).join('')}</nav>`
-      : '';
+    // Barra fixa: mostra a seção em leitura (atualizada pelo app.js ao rolar)
+    // e abre a folha com as seções do capítulo e o atalho para o sumário.
+    const barra = `
+      <button type="button" class="livro-barra" data-secoes aria-haspopup="dialog" data-repouso="${REPOUSO}">
+        <span class="livro-barra-texto">
+          <span class="livro-barra-pre">${escHtml(rotulo)}</span>
+          <span class="livro-barra-atual">${REPOUSO}</span>
+        </span>
+        <span class="sr-only">(abrir a lista de seções)</span>
+        ${window.icone('secoes')}
+      </button>`;
     const ant = livro.capitulos[pos - 1];
     const prox = livro.capitulos[pos + 1];
-    const nav = (cap, rotulo) => cap
-      ? `<button type="button" class="open-detail sala-nav" data-tipo="livro" data-id="${escHtml(cap.id)}"><span class="rotulo-secao block">${rotulo}</span><span class="block text-[15px] font-bold text-amber-400 truncate">${escHtml(cap.titulo)}</span></button>`
+    const nav = (cap, rotuloNav) => cap
+      ? `<button type="button" class="open-detail sala-nav" data-tipo="livro" data-id="${escHtml(cap.id)}"><span class="rotulo-secao block">${rotuloNav}</span><span class="block text-[15px] font-bold text-amber-400 truncate">${escHtml(partirTitulo(cap.titulo).nome)}</span></button>`
       : '<span></span>';
-    const corpo = `
-      <button type="button" class="chip-link goto-aba" data-aba="livro">Sumário</button>
-      <p class="rotulo-secao mt-3">Capítulo ${pos + 1} de ${livro.capitulos.length}</p>
-      <h3 class="titulo-entidade">${escHtml(c.titulo)}</h3>
-      ${atalhos}
+    return `<article class="livro-pagina fade-in">
+      ${abertura(rotulo, escHtml(p.nome))}
+      ${barra}
       <div class="livro">${corpoHtml}</div>
-      <div class="sala-navbar">${nav(ant, '‹ Anterior')}${nav(prox, 'Próximo ›')}</div>`;
-    return `<div class="fade-in">${painelCard(corpo)}</div>`;
+      <div class="sala-navbar">${nav(ant, '‹ Anterior')}${nav(prox, 'Próximo ›')}</div>
+    </article>`;
   }
 
   window.Renderers.listas.livro = listaLivro;

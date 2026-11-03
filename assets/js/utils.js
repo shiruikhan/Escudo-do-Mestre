@@ -88,6 +88,7 @@
     npcs: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-7 8-7s7 2.5 8 7"/>',
     combate: '<path d="M5 3l11 11M19 3L8 14M7 13l4 4M17 13l-4 4M4 20l3-3M20 20l-3-3"/>',
     mais: '<path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M5 18a2 2 0 0 1 2-2h12M9 8h6"/>',
+    secoes: '<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01"/>',
     exportar: '<path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/>',
     fechar: '<path d="M6 6l12 12M18 6L6 18"/>',
     // Trilha sonora

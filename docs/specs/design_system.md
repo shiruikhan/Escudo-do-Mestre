@@ -2,7 +2,7 @@
 
 Diretrizes do sistema de design do **Escudo do Mestre** (painel do Mestre para D&D 5.5e): princípios, restrições inegociáveis, tokens e componentes. É a referência para qualquer alteração visual ou estrutural da interface.
 
-- **Versão:** 2.0 (tema "Noite", tipografia Alegreya, navegação inferior)
+- **Versão:** 2.1 (tema "Noite", tipografia Alegreya, navegação inferior; leitor do Livro com texto de mesa "voz")
 - **Plataforma alvo:** navegador mobile (smartphone), hospedado em GitHub Pages
 - **Stack:** HTML5 + JavaScript Vanilla (ES6+) + Tailwind CSS (build local commitado) + CSS próprio em `assets/css/styles.css`
 - **Referência visual:** design system publicado em <https://claude.ai/artifact/J8HhVSwGJs5rgyt4duwwoC>
@@ -122,6 +122,7 @@ Há **um único tema, escuro** (`color-scheme: dark`), pensado para mesas com po
 | `--arcano` | `#93b6e2` | Disponível, conexões, interação |
 | `--musgo` | `#a3c880` | Concluído, localização, cura |
 | `--segredo` | `#dc9cc4` | Segredos do Mestre |
+| `--voz` | `#eadfc6` | Texto de mesa: ler em voz alta ou entregar como prop (Livro). Par com `--voz-fundo` `#1e1b16` e `--voz-fio` `#4f4637` |
 
 **Escalas Tailwind.** `tailwind.config.js` remapeia `zinc`, `amber`, `rose`, `sky` e `emerald` para essa paleta (ex.: `zinc-950` = `--fundo`, `zinc-900` = `--painel`, `zinc-100` = `--tinta`, `amber-400` = `--ouro`). Assim utilitários como `text-zinc-400` já saem na paleta nova. **Mantenha os hex em sincronia com o `:root`.** Em código novo, prefira as classes de componente; utilitários de cor servem para ajustes pontuais.
 
@@ -237,6 +238,14 @@ Formulário de iniciativa, controle de rodada e linhas de combatente; o turno at
 ### 5.16 Tela inicial
 `.marca` (logo + título em livro 34px) e `.aventura-card` (título, descrição limitada a 3 linhas e números da aventura).
 
+
+### 5.17 Leitor do Livro (`renderers-livro.js`, `.livro-*`)
+O capítulo é lido **direto na página**, sem `.painel`, numa coluna de até 40rem.
+- **Abertura** (`.livro-abertura`): títulos `Prefixo — Nome` (ex.: "Capítulo 8 — Ato III: A Subida") se dividem em `.rotulo-secao` + `.livro-titulo` (livro 800, 32/36). O mesmo vale para as seções `###`: `.livro-h3-pre` (rótulo) + `.livro-h3-nome` (livro 700, 23/28), separadas por filete. Títulos não são dourados.
+- **Barra do capítulo** (`.livro-barra`): fixa logo abaixo do cabeçalho (`--cabecalho-alt`, medido pelo `app.js`), de borda a borda, 48px. Mostra o prefixo do capítulo e a seção em leitura (atualizada ao rolar). Antes da primeira seção mostra "Seções do capítulo". O toque abre a folha "Neste capítulo" com as seções (a atual em ouro) e o botão "Ir para o sumário".
+- **Texto de mesa** (`.livro-voz`, citações `>` do Markdown): bloco de borda a borda em `--voz-fundo` com filetes `--voz-fio` em cima e embaixo, Alegreya itálico 19/30 em `--voz`. Citações seguidas se juntam numa só folha, separadas por filete tracejado. É o único lugar do app com fundo de pergaminho — não usar para outra coisa.
+- **Sumário**: lista de verbetes com o número do capítulo em coluna própria (`.livro-num`), nome em livro 700 (`.livro-sumario-nome`) e a primeira frase do capítulo.
+
 ---
 
 ## 6. Navegação e interação
@@ -257,6 +266,7 @@ Formulário de iniciativa, controle de rodada e linhas de combatente; o turno at
   - classe `.icone` (22px; 18px dentro da busca e de botões compactos);
   - sempre `aria-hidden`; o rótulo acessível fica no botão;
   - ícone novo entra no `ICONES` no mesmo estilo. Nada de glifos Unicode (⚙, ▶, ⟳, ×…) ou fontes de ícones.
+- Ícone `secoes` (lista) abre a folha de seções do Livro.
 - **Emoji só como conteúdo:** clima da trilha, condições, eventos, ícone de verbete vindo do JSON.
 - **Idioma:** português (Brasil), terminologia D&D 5.5e (2024).
 

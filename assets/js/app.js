@@ -242,6 +242,78 @@
     if (f) f.remove();
   }
 
+  // Livro: folha com as seções do capítulo aberto (lidas do DOM) e o atalho
+  // para o sumário. A seção em leitura vem marcada.
+  function abrirSecoes() {
+    fecharMais();
+    const titulos = Array.from(el.conteudo.querySelectorAll('.livro-h3'));
+    const atual = secaoAtual();
+    const esc = window.escHtml;
+    const itens = titulos.map(h => {
+      const pre = h.querySelector('.livro-h3-pre');
+      const nome = h.querySelector('.livro-h3-nome');
+      const eAtual = h === atual;
+      return `<li><button type="button" class="verbete livro-ancora${eAtual ? ' atual' : ''}" data-alvo="${esc(h.id)}"${eAtual ? ' aria-current="location"' : ''}>
+        <span class="verbete-corpo">
+          ${pre ? `<span class="verbete-sub">${esc(pre.textContent)}</span>` : ''}
+          <span class="verbete-nome">${esc((nome || h).textContent)}</span>
+        </span>
+      </button></li>`;
+    }).join('');
+    const fundo = document.createElement('div');
+    fundo.id = 'folha-mais';
+    fundo.className = 'folha-fundo';
+    fundo.innerHTML = `
+      <div class="folha" role="dialog" aria-modal="true" aria-label="Seções do capítulo">
+        <div class="folha-puxador" aria-hidden="true"></div>
+        <div class="folha-titulo">
+          <p class="rotulo-secao">Neste capítulo</p>
+          <button type="button" class="icone-btn" data-fechar aria-label="Fechar">${window.icone('fechar')}</button>
+        </div>
+        ${itens ? `<ul class="lista-verbetes">${itens}</ul>` : '<p class="vazio">Este capítulo não tem seções.</p>'}
+        <button type="button" class="btn btn-secundario btn-largo mt-4 goto-aba" data-aba="livro">Ir para o sumário</button>
+      </div>`;
+    fundo.addEventListener('click', e => {
+      if (e.target === fundo || e.target.closest('[data-fechar]')) { fecharMais(); return; }
+      const ancora = e.target.closest('.livro-ancora');
+      if (ancora) {
+        fecharMais();
+        const alvo = document.getElementById(ancora.dataset.alvo);
+        const suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (alvo) alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+        return;
+      }
+      const ir = e.target.closest('.goto-aba');
+      if (ir) { fecharMais(); irParaAba(ir.dataset.aba); }
+    });
+    document.body.appendChild(fundo);
+    const foco = fundo.querySelector('.livro-ancora.atual') || fundo.querySelector('.livro-ancora, .goto-aba');
+    if (foco) { foco.focus(); foco.scrollIntoView({ block: 'nearest' }); }
+  }
+
+  // Última seção cujo título já passou por baixo da barra fixa.
+  function secaoAtual() {
+    const barra = el.conteudo.querySelector('.livro-barra');
+    if (!barra) return null;
+    const limite = barra.getBoundingClientRect().bottom + 24;
+    let atual = null;
+    for (const h of el.conteudo.querySelectorAll('.livro-h3')) {
+      if (h.getBoundingClientRect().top <= limite) atual = h;
+      else break;
+    }
+    return atual;
+  }
+
+  function atualizarBarraLivro() {
+    const barra = el.conteudo.querySelector('.livro-barra');
+    if (!barra) return;
+    const h = secaoAtual();
+    const nome = h && h.querySelector('.livro-h3-nome');
+    const texto = h ? (nome || h).textContent : barra.dataset.repouso;
+    const alvo = barra.querySelector('.livro-barra-atual');
+    if (alvo && alvo.textContent !== texto) alvo.textContent = texto;
+  }
+
   function exportarMarkdown() {
     let md = window.Renderers.exportarMarkdown(state.aventura);
     const notas = lerNotas();
@@ -550,13 +622,8 @@
       const badge = e.target.closest('.badge-toggle');
       if (badge) { ciclarStatus(badge); return; }
 
-      // Livro: atalho para uma seção dentro do capítulo aberto.
-      const ancora = e.target.closest('.livro-ancora');
-      if (ancora) {
-        const alvo = document.getElementById(ancora.dataset.alvo);
-        if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
+      // Livro: a barra fixa do capítulo abre a folha de seções.
+      if (e.target.closest('[data-secoes]')) { abrirSecoes(); return; }
 
       const irAba = e.target.closest('.goto-aba');
       if (irAba) { irParaAba(irAba.dataset.aba); return; }
@@ -601,6 +668,21 @@
     el.sub = document.getElementById('sub-aventura');
     el.busca = document.getElementById('busca');
     el.notas = document.getElementById('btn-notas');
+
+    // Altura do cabeçalho fixo em CSS: a barra do livro gruda logo abaixo dele.
+    const cabecalho = document.querySelector('.cabecalho');
+    if (cabecalho) {
+      const medir = () => document.documentElement.style.setProperty('--cabecalho-alt', cabecalho.offsetHeight + 'px');
+      medir();
+      if ('ResizeObserver' in window) new ResizeObserver(medir).observe(cabecalho);
+    }
+
+    // Livro: a barra fixa acompanha a seção em leitura.
+    let quadro = 0;
+    window.addEventListener('scroll', () => {
+      if (quadro) return;
+      quadro = requestAnimationFrame(() => { quadro = 0; atualizarBarraLivro(); });
+    }, { passive: true });
 
     // Ícones do cabeçalho (SVG inline de utils.js)
     const pinta = (id, nome) => { const n = document.getElementById(id); if (n) n.innerHTML = window.icone(nome); };

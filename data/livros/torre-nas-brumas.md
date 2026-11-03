@@ -13,7 +13,7 @@
 
 Este livro reúne toda a história, as regras do domínio, os personagens, os andares da torre e os textos de mesa. As fichas, encontros e itens também estão nas outras abas do Escudo; os nomes destacados no texto abrem a ficha correspondente.
 
-**Convenções.** Texto em caixa dourada é para ler em voz alta ou entregar como prop. Itens marcados com **[preencher]** ainda dependem de decisões do Mestre (ver o apêndice de pendências).
+**Convenções.** Texto em itálico sobre fundo de pergaminho, de uma borda à outra da tela, é para ler em voz alta ou entregar como prop. Itens marcados com **[preencher]** ainda dependem de decisões do Mestre (ver o apêndice de pendências).
 
 ## Capítulo 1 — Visão Geral
 
