@@ -69,6 +69,107 @@
       "localizacao": "Fortaleza da Espiral de Gelo (boss principal); pode ser encontrado em qualquer lugar do mapa (role d20 na tabela de localização do dragão).",
       "notas_dm": "Rolar d20 sempre que os personagens chegarem a ou partirem de um local marcado no mapa para determinar a posição de Cryovain. Matar Cryovain concede um nível extra aos personagens."
     },
+    "cryovain-senhor-do-pico": {
+      "nome": "Cryovain, Senhor do Pico — variante para 6 jogadores",
+      "tipo_alinhamento": "Dragão Grande, Caótico e Mau",
+      "ca": 17,
+      "ca_descricao": "armadura natural",
+      "pv": 200,
+      "pv_formula": "variante (+50%)",
+      "deslocamento": "12 m; escavação 6 m; natação 12 m; voo 24 m",
+      "iniciativa": "+0 (10)",
+      "percepcao_passiva": 16,
+      "modificadores": {
+        "FOR": "+4",
+        "DES": "+0",
+        "CON": "+4",
+        "INT": "-2",
+        "SAB": "+0",
+        "CAR": "+1"
+      },
+      "salvaguardas": [
+        "DES +3",
+        "CON +7",
+        "SAB +3",
+        "CAR +4"
+      ],
+      "pericias": [
+        "Furtividade +7",
+        "Percepção +6"
+      ],
+      "imunidades_dano": [
+        "frio"
+      ],
+      "sentidos": "Percepção às cegas 9 m, Visão no Escuro 36 m",
+      "idiomas": "Comum, Dracônico",
+      "nd": "~9 (variante)",
+      "caracteristicas": [
+        {
+          "nome": "Andar no Gelo",
+          "descricao": "Cryovain pode atravessar e escalar superfícies com gelo sem precisar fazer um teste de atributo."
+        },
+        {
+          "nome": "Resistência Lendária (2/Dia)",
+          "descricao": "Se Cryovain falhar em uma salvaguarda, ele pode escolher ser bem-sucedido."
+        },
+        {
+          "nome": "Fase 2: a Nevasca (em 100 PV)",
+          "descricao": "Na primeira vez que cair a 100 PV ou menos, Cryovain ruge: o Sopro Gélido recarrega na hora e passa a ter Recarga 4–6. O telhado fica levemente obscurecido pela neve; Cryovain enxerga normalmente nela com a Percepção às Cegas de 9 m."
+        },
+        {
+          "nome": "Ação de Covil — Pingentes (iniciativa 20)",
+          "descricao": "Três círculos de 3 m de raio à escolha de Cryovain. Cada criatura neles faz salvaguarda de Destreza CD 13 ou sofre 10 (3d6) de dano perfurante. Não repita a mesma ação de covil em rodadas seguidas."
+        },
+        {
+          "nome": "Ação de Covil — Rajada (iniciativa 20)",
+          "descricao": "Cada criatura no telhado faz salvaguarda de Força CD 13 ou é empurrada 3 m em direção à borda. Quem passaria da borda se agarra com Destreza CD 13 ou cai 6 m sobre o entulho (H10), sofrendo 7 (2d6) de dano contundente."
+        },
+        {
+          "nome": "Ação de Covil — Névoa Gélida (iniciativa 20)",
+          "descricao": "Uma esfera de 6 m de raio fica fortemente obscurecida até a próxima iniciativa 20. Cryovain enxerga dentro dela pela Percepção às Cegas."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "Cryovain faz três ataques: um com a mordida e dois com as garras."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 3 m, um alvo. Dano: 15 (2d10 + 4) de dano perfurante mais 4 (1d8) de dano gélido."
+        },
+        {
+          "nome": "Garra",
+          "descricao": "Ataque de Arma Corpo a Corpo: +7 para acertar, alcance 1,5 m, um alvo. Dano: 11 (2d6 + 4) de dano cortante."
+        },
+        {
+          "nome": "Sopro Gélido (Recarga 5–6)",
+          "descricao": "O dragão exala uma rajada de gelo em um cone de 9 m. Cada criatura na área deve fazer uma salvaguarda de Constituição CD 15. Falha: 45 (10d8) de dano gélido. Sucesso: metade do dano."
+        },
+        {
+          "nome": "Agarrar e Soltar",
+          "descricao": "Quando Cryovain acerta uma criatura Média ou menor com a Garra, ela fica Agarrada (CD 15 para escapar). Na ação seguinte, Cryovain sobe 9 m e a solta: 10 (3d6) de dano contundente da queda. Use uma vez por luta."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Fortaleza da Espiral de Gelo — H20, Telhado (luta final)",
+      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Três ações lendárias por rodada, usadas no fim do turno de outra criatura; recupera as ações gastas no início do próprio turno. No covil luta até a morte. Respostas que funcionam: espalhar-se contra o cone, fogo derrete o gelo do chão, atraí-lo para dentro (lá dentro não voa nem usa Bater Asas). Ficha original do livro: bestiario:cryovain.",
+      "acoes_lendarias": [
+        {
+          "nome": "Espreitar",
+          "descricao": "Cryovain faz um teste de Sabedoria (Percepção)."
+        },
+        {
+          "nome": "Garra",
+          "descricao": "Cryovain faz um ataque de Garra."
+        },
+        {
+          "nome": "Bater Asas (Custa 2 Ações)",
+          "descricao": "Cada criatura a até 3 m faz salvaguarda de Destreza CD 15 ou sofre 11 (2d6 + 4) de dano contundente e fica Caída. Depois Cryovain voa até metade do seu deslocamento de voo."
+        }
+      ]
+    },
     "anacoreta-orc": {
       "nome": "Anacoreta de Talos",
       "tipo_alinhamento": "Humanoide Médio (meio-orc, metamorfo), Neutro e Mau",
@@ -240,6 +341,176 @@
       "localizacao": "Axeholm (sala A27 — Aposentos da Banshee); Torre das Tempestades (Miraal)",
       "notas_dm": "Esta mesma ficha serve a Vyldara, a banshee de Axeholm (espírito da embaixadora élfica aprisionada e morta ali), e a Miraal, na Torre das Tempestades. A banshee abomina espelhos e percebe a chegada dos aventureiros com Detectar Vida."
     },
+    "vyldara": {
+      "nome": "Vyldara, a Embaixadora Esquecida — variante para 6 jogadores",
+      "tipo_alinhamento": "Morto-vivo Médio, Caótico e Mau",
+      "ca": 13,
+      "pv": 110,
+      "pv_formula": "variante",
+      "deslocamento": "0 m; voo 12 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 10,
+      "modificadores": {
+        "FOR": "-5",
+        "DES": "+2",
+        "CON": "+0",
+        "INT": "+1",
+        "SAB": "+0",
+        "CAR": "+3"
+      },
+      "salvaguardas": [
+        "SAB +2",
+        "CAR +5"
+      ],
+      "pericias": [],
+      "resistencias_dano": [
+        "ácido",
+        "elétrico",
+        "ígneo",
+        "trovão",
+        "contundente não-mágico",
+        "cortante não-mágico",
+        "perfurante não-mágico"
+      ],
+      "imunidades_dano": [
+        "frio",
+        "necrótico",
+        "venenoso"
+      ],
+      "imunidades_condicao": [
+        "agarrado",
+        "amedrontado",
+        "caído",
+        "contido",
+        "enfeitiçado",
+        "envenenado",
+        "exaustão",
+        "paralisado",
+        "petrificado"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Comum, Élfico",
+      "nd": "~7 (variante)",
+      "caracteristicas": [
+        {
+          "nome": "Detectar Vida",
+          "descricao": "A banshee pode detectar magicamente a presença de criaturas a até 8 km de distância que não sejam mortos-vivos ou constructos. Ela sabe a direção em que estão, mas não a localização exata."
+        },
+        {
+          "nome": "Movimento Incorpóreo",
+          "descricao": "A banshee pode se mover através de outras criaturas e objetos como se fossem terreno difícil. Ela sofre 5 (1d10) de dano de força se terminar seu turno dentro de um objeto."
+        },
+        {
+          "nome": "Resistência Lendária (1/Dia)",
+          "descricao": "Se Vyldara falhar em uma salvaguarda, ela pode escolher ser bem-sucedida."
+        },
+        {
+          "nome": "Ação de Covil — Machados do Massacre (iniciativa 20)",
+          "descricao": "Dois machados espectrais atacam uma criatura: +5 para acertar, 5 (1d10) de dano de força cada. Não repita a mesma ação de covil em rodadas seguidas."
+        },
+        {
+          "nome": "Ação de Covil — Poeira e Teia (iniciativa 20)",
+          "descricao": "Uma esfera de 6 m de raio fica fortemente obscurecida até a próxima iniciativa 20."
+        },
+        {
+          "nome": "Ação de Covil — Lembre de Mim (iniciativa 20)",
+          "descricao": "Uma criatura faz salvaguarda de Sabedoria CD 13. Falha: ouve o próprio nome gritado e fica Amedrontada até o fim do próximo turno dela."
+        },
+        {
+          "nome": "Ação de Covil — Mobília que Voa (iniciativa 20)",
+          "descricao": "Uma linha de 9 m. Cada criatura nela faz salvaguarda de Destreza CD 13 ou sofre 7 (2d6) de dano contundente e fica Caída."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "Vyldara faz dois ataques de Toque Corrompido."
+        },
+        {
+          "nome": "Toque Corrompido",
+          "descricao": "Ataque de Magia Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 13 (3d6 + 3) de dano necrótico."
+        },
+        {
+          "nome": "Rosto Horripilante",
+          "descricao": "Cada criatura não-morta-viva a até 18 m da banshee que possa vê-la deve ser bem-sucedida em uma salvaguarda de Sabedoria CD 14 ou ficará amedrontada por 1 minuto. Um alvo amedrontado pode repetir a salvaguarda ao final de cada um de seus turnos, com desvantagem se a banshee estiver em sua linha de visão, encerrando o efeito sobre si em um sucesso. Se tiver sucesso na salvaguarda ou o efeito terminar, o alvo fica imune ao Rosto Horripilante da banshee pelas próximas 24 horas."
+        },
+        {
+          "nome": "Lamento (1/Dia)",
+          "descricao": "A banshee solta um triste lamento, desde que não esteja sob a luz do sol. O lamento não tem efeito sobre constructos e mortos-vivos. Todas as outras criaturas a até 18 m dela que possam ouvi-la devem fazer uma salvaguarda de Constituição CD 13. Falha: a criatura cai para 0 pontos de vida. Sucesso: a criatura sofre 10 (3d6) de dano psíquico. Aviso: no turno anterior ao Lamento, Vyldara puxa o ar, as tochas se apagam e a temperatura cai; anuncie isso à mesa. Quem tapar os ouvidos fica Ensurdecido e imune. Opção menos letal: na falha, 21 (6d6) de dano psíquico em vez de cair a 0 PV."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm — A24 (aparições e Lamento) e A27 (confronto final)",
+      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Antes do confronto, aparece 2–3 vezes atravessando paredes, usa o Rosto Horripilante e some (quem passar fica imune por 24 h). Luta com 2 bestiario:guarda-anao-espectral. Saída sem combate: carta dos elfos da lua sob a cama de A27 (Investigação ou Percepção CD 15) e desafio de perícias (3 sucessos antes de 3 falhas, CD 15; Atuação da Lyrien com Vantagem; ler a carta = 1 sucesso automático). Se ela descansar assim, desperta a Lira de Duas Vozes da Lyrien. Ficha original do livro: bestiario:banshee."
+    },
+    "guarda-anao-espectral": {
+      "nome": "Guarda Anão Espectral",
+      "tipo_alinhamento": "Morto-vivo Médio, Leal e Mau — base: Wight (Aparição)",
+      "ca": 14,
+      "ca_descricao": "couro batido",
+      "pv": 45,
+      "pv_formula": "6d8 + 18",
+      "deslocamento": "9 m",
+      "iniciativa": "+2 (12)",
+      "percepcao_passiva": 13,
+      "modificadores": {
+        "FOR": "+2",
+        "DES": "+2",
+        "CON": "+3",
+        "INT": "+0",
+        "SAB": "+1",
+        "CAR": "+2"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Percepção +3",
+        "Furtividade +4"
+      ],
+      "resistencias_dano": [
+        "necrótico",
+        "contundente, cortante e perfurante não-mágicos e não prateados"
+      ],
+      "imunidades_dano": [
+        "venenoso"
+      ],
+      "imunidades_condicao": [
+        "envenenado",
+        "exaustão"
+      ],
+      "sentidos": "Visão no Escuro 18 m",
+      "idiomas": "Anão, Comum",
+      "nd": "3",
+      "xp": 700,
+      "caracteristicas": [
+        {
+          "nome": "Sensibilidade à Luz Solar",
+          "descricao": "Sob a luz do sol, tem desvantagem em jogadas de ataque e em testes de Sabedoria (Percepção) que dependam de visão."
+        },
+        {
+          "nome": "Preso ao Dever",
+          "descricao": "Se alguém mostrar o anel de sinete do regente (A14) ou o escudo de Axeholm (A23) e der uma ordem, Persuasão ou Intimidação CD 14 dispensa o guarda, que se desfaz."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "O guarda faz dois ataques com o machado de batalha. Pode trocar um deles por Drenar Vida."
+        },
+        {
+          "nome": "Machado de Batalha",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, um alvo. Dano: 6 (1d8 + 2) de dano cortante, ou 7 (1d10 + 2) se usado com duas mãos."
+        },
+        {
+          "nome": "Drenar Vida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +4 para acertar, alcance 1,5 m, uma criatura. Dano: 5 (1d6 + 2) de dano necrótico. O alvo faz salvaguarda de Constituição CD 13 ou seu máximo de PV é reduzido no valor do dano até terminar um descanso longo. Se isso reduzir o máximo a 0, o alvo morre."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm — A27, ao lado de bestiario:vyldara",
+      "notas_dm": "Os dois guardas que Vyldara matou ao tentar fugir. Odeiam a elfa, mas continuam guardando a cela dela, presos ao dever. Criação do Mestre para a variante de 6 jogadores."
+    },
     "aranha-gigante": {
       "nome": "Aranha Gigante",
       "tipo_alinhamento": "Besta Grande, Sem Alinhamento",
@@ -293,6 +564,129 @@
       "acoes_bonus": [],
       "reacoes": [],
       "localizacao": "Axeholm (sala A22 — Bastião Superior)"
+    },
+    "aranha-matriarca": {
+      "nome": "A Matriarca do Bastião",
+      "tipo_alinhamento": "Besta Grande, Sem Alinhamento — base: Aranha Gigante",
+      "ca": 15,
+      "ca_descricao": "armadura natural",
+      "pv": 75,
+      "pv_formula": "10d10 + 20",
+      "deslocamento": "9 m; escalada 9 m",
+      "iniciativa": "+3 (13)",
+      "percepcao_passiva": 11,
+      "modificadores": {
+        "FOR": "+4",
+        "DES": "+3",
+        "CON": "+2",
+        "INT": "-4",
+        "SAB": "+1",
+        "CAR": "-3"
+      },
+      "salvaguardas": [],
+      "pericias": [
+        "Furtividade +7"
+      ],
+      "sentidos": "Percepção às Cegas 3 m, Visão no Escuro 18 m",
+      "idiomas": "—",
+      "nd": "5 (variante)",
+      "caracteristicas": [
+        {
+          "nome": "Andar na Teia",
+          "descricao": "Ignora restrições de deslocamento causadas por teias."
+        },
+        {
+          "nome": "Escalada de Aranha",
+          "descricao": "Escala superfícies difíceis, inclusive de cabeça para baixo no teto, sem teste."
+        },
+        {
+          "nome": "Sentido de Teia",
+          "descricao": "Em contato com uma teia, sabe a localização exata de qualquer criatura em contato com a mesma teia."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Ataques Múltiplos",
+          "descricao": "A Matriarca faz dois ataques de Mordida."
+        },
+        {
+          "nome": "Mordida",
+          "descricao": "Ataque de Arma Corpo a Corpo: +6 para acertar, alcance 1,5 m, um alvo. Dano: 8 (1d8 + 4) de dano perfurante, e o alvo faz salvaguarda de Constituição CD 13, sofrendo 9 (2d8) de dano venenoso se falhar, ou metade se tiver sucesso."
+        },
+        {
+          "nome": "Teia em Cone (Recarga 5–6)",
+          "descricao": "Cone de 4,5 m. Cada criatura na área faz salvaguarda de Destreza CD 13 ou fica Contida. Uma criatura contida pode usar uma ação para fazer um teste de Força CD 13 e se soltar."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [
+        {
+          "nome": "Puxar o Fio",
+          "descricao": "Quando uma criatura Contida por teia está a até 9 m, a Matriarca a puxa 3 m para perto de si."
+        }
+      ],
+      "localizacao": "Axeholm — A22, Bastião Superior (canto escuro da metade sul)",
+      "notas_dm": "Criação do Mestre para a variante de 6 jogadores. Terreno de A22: teia é terreno difícil; quem termina o turno numa teia faz salvaguarda de Destreza CD 12 ou fica Contido (Força CD 12 para escapar). Dano de fogo queima um quadrado de teia na hora; acender uma das lareiras espalha fogo por 3 m de teia por rodada."
+    },
+    "enxame-de-aranhas": {
+      "nome": "Enxame de Aranhas",
+      "tipo_alinhamento": "Enxame Médio de Bestas Miúdas, Sem Alinhamento — base: Enxame de Insetos",
+      "ca": 12,
+      "ca_descricao": "armadura natural",
+      "pv": 22,
+      "pv_formula": "5d8",
+      "deslocamento": "6 m; escalada 6 m",
+      "iniciativa": "+1 (11)",
+      "percepcao_passiva": 8,
+      "modificadores": {
+        "FOR": "-4",
+        "DES": "+1",
+        "CON": "+0",
+        "INT": "-5",
+        "SAB": "-2",
+        "CAR": "-5"
+      },
+      "salvaguardas": [],
+      "pericias": [],
+      "resistencias_dano": [
+        "contundente",
+        "cortante",
+        "perfurante"
+      ],
+      "imunidades_condicao": [
+        "agarrado",
+        "amedrontado",
+        "atordoado",
+        "caído",
+        "contido",
+        "enfeitiçado",
+        "paralisado",
+        "petrificado"
+      ],
+      "sentidos": "Percepção às Cegas 3 m",
+      "idiomas": "—",
+      "nd": "1/2",
+      "xp": 100,
+      "caracteristicas": [
+        {
+          "nome": "Enxame",
+          "descricao": "Pode ocupar o espaço de outra criatura e vice-versa, e passar por aberturas do tamanho de uma aranha miúda. Não recupera PV nem ganha PV temporários."
+        },
+        {
+          "nome": "Escalada de Aranha e Andar na Teia",
+          "descricao": "Escala superfícies difíceis e o teto sem teste e ignora restrições de deslocamento causadas por teias."
+        }
+      ],
+      "acoes": [
+        {
+          "nome": "Mordidas",
+          "descricao": "Ataque de Arma Corpo a Corpo: +3 para acertar, alcance 0 m, um alvo no espaço do enxame. Dano: 10 (4d4) de dano perfurante, ou 5 (2d4) se o enxame estiver com metade dos PV ou menos."
+        }
+      ],
+      "acoes_bonus": [],
+      "reacoes": [],
+      "localizacao": "Axeholm — A22, Bastião Superior",
+      "notas_dm": "Dois enxames acompanham a bestiario:aranha-matriarca na variante de 6 jogadores."
     },
     "carnical": {
       "nome": "Carniçal",
@@ -4097,14 +4491,26 @@
         {
           "area": "A22 — Bastião Superior",
           "ref": "bestiario:aranha-gigante",
-          "qtd": "3 + 1 por personagem (sem companheiros)",
-          "nota": "Metade sul, entre teias"
+          "qtd": 7,
+          "nota": "Variante 6 jogadores (livro: 3 + 1 por personagem). Descem do teto em quem estiver atrás."
+        },
+        {
+          "area": "A22 — Bastião Superior",
+          "ref": "bestiario:aranha-matriarca",
+          "qtd": 1,
+          "nota": "Variante 6 jogadores; fica no canto escuro e puxa alguém para dentro das teias"
+        },
+        {
+          "area": "A22 — Bastião Superior",
+          "ref": "bestiario:enxame-de-aranhas",
+          "qtd": 2,
+          "nota": "Variante 6 jogadores"
         },
         {
           "area": "A24 — Salão Mal-Assombrado",
-          "ref": "bestiario:banshee",
+          "ref": "bestiario:vyldara",
           "qtd": 1,
-          "nota": "Vyldara; Rosto Horripilante e depois Lamento, então recua para A27"
+          "nota": "Aparições antes da luta (Rosto e some); aqui usa Rosto, avisa e solta o Lamento, então recua para A27. Ficha do livro: bestiario:banshee"
         },
         {
           "area": "A26 — Banheiro dos Carniçais",
@@ -4114,15 +4520,21 @@
         },
         {
           "area": "A27 — Aposentos da Banshee",
-          "ref": "bestiario:banshee",
+          "ref": "bestiario:vyldara",
           "qtd": 1,
-          "nota": "Confronto final"
+          "nota": "Confronto final com ações de covil; ou desafio de perícias para pô-la em descanso (desperta a lira da Lyrien)"
+        },
+        {
+          "area": "A27 — Aposentos da Banshee",
+          "ref": "bestiario:guarda-anao-espectral",
+          "qtd": 2,
+          "nota": "Variante 6 jogadores; dispensáveis com o anel de sinete ou o escudo de Axeholm (CD 14)"
         },
         {
           "area": "A28 — Aposentos do Regente",
           "ref": "bestiario:stirge",
-          "qtd": "1 por personagem (inclui companheiros)",
-          "nota": "Ninho na chaminé; atacam quem vasculhar a lareira"
+          "qtd": "2 por personagem (12)",
+          "nota": "Variante 6 jogadores (livro: 1 por membro do grupo). Saem todos juntos da lareira; a porta secreta para A29 fica no fundo dela"
         }
       ],
       "perigos": "Carniçais anões (bestiario:carnical): 3 + 3 por personagem (sem companheiros) no total, que se reúnem em A4 ao ouvirem as portas de A1 serem arrombadas; mortos, não há mais. Aranhas gigantes em A22, stirges em A9 e A28, banshee em A24/A27. Balistas (+6, 16 (3d10) perfurante), fendas de seta (3/4 de cobertura), queda na chaminé (2d6), terreno difícil em A17, escuridão total e fedor.",
@@ -4363,9 +4775,9 @@
         },
         {
           "area": "H20 — Telhado",
-          "ref": "bestiario:cryovain",
+          "ref": "bestiario:cryovain-senhor-do-pico",
           "qtd": 1,
-          "nota": "Dormindo no meio do telhado (se ainda vivo); acorda com feitiço ou dano, barulho alto ou o sino de H7"
+          "nota": "Dormindo no meio do telhado (se ainda vivo); acorda com feitiço ou dano, barulho alto ou o sino de H7. Variante 6 jogadores com ações lendárias, covil e Fase 2; ficha do livro: bestiario:cryovain"
         }
       ],
       "perigos": "bestiario:cryovain (dragão branco jovem) dorme no telhado H20. Acorda se for alvo de feitiço ou sofrer dano, ou com barulho alto o bastante (onda trovejante, combate em áreas não fechadas por portas, um sussurro no ouvido dele) ou se alguém tocar o sino de ferro de H7. Se perceber intrusos sem localizá-los, ruge, voa em círculos e volta ao telhado esperando; é pequeno o bastante para passar por portas, mas precisa de incentivo para entrar na fortaleza (detesta espaços confinados) e, como a maioria dos dragões brancos, é palerma e facilmente atraído. O uivo do vento o impede de ouvir intrusos quietos e abafa os passos na trilha (H1) e no portão (H2 a H6). Frio extremo à noite (15 graus negativos ou menos): salvaguarda de CON CD 10 a cada hora; em falha, desvantagem em testes, ataques e salvaguardas e deslocamento pela metade, e congela até a morte após 6 horas seguidas (acaba após 1 h em local aquecido; resistência/imunidade a frio, roupa de clima frio ou adaptação passam automaticamente). Três bestiario:stirge em H12. Telhado H20 coberto de gelo escorregadio (terreno difícil, DES Acrobacia CD 10 ou cai). Os Sicários Frios ameaçam e partem para a violência se ignorados; subornos viram roubo; 2 ou mais caídos fazem os outros negociarem trégua. Matar o dragão concede um nível extra.",

@@ -4,7 +4,7 @@
 
 | Ficha | |
 |---|---|
-| Níveis | 7 a 10 (11 opcional) |
+| Níveis | 6 a 9 (10 opcional) |
 | Jogadores | 5 a 6 |
 | Duração estimada | 8 a 12 sessões |
 | Pré-requisito | Dragão da Espiral de Gelo concluído (dragão branco derrotado) |
@@ -29,27 +29,27 @@ E alguém quer muito esse lugar: npc:robin, a antiga maga do grupo, que voltou c
 
 1. **Ato I — Os Mortos de Phandalin.** Depois do dragão, os mortos da região cercam Phandalin sem matar ninguém. Robin está por trás disso. Ela precisa do grupo, porque a porta da torre só abre para quem foi marcado pelas brumas.
 2. **Ato II — A Noite das Brumas.** As memórias roubadas começam a voltar. A torre reaparece envolta em brumas, no lugar onde o grupo um dia achou estar o Moinho de Adabra. O grupo atravessa a porta.
-3. **Ato III — A Subida.** Andar por andar, cada um feito de uma memória roubada. Uma corrida contra Robin, que sobe em paralelo, e o resgate de npc:alissent, a personagem que as brumas levaram.
+3. **Ato III — A Subida.** Andar por andar, cada um feito de uma memória roubada. Uma corrida contra Robin, que sobe em paralelo, e o resgate de npc:alicent, a personagem que as brumas levaram.
 4. **Ato IV — O Observatório.** Vessaly, o Coração da Torre e a escolha: destruir a âncora, entregar a torre a alguém ou devolver a Vessaly o nome que ela perdeu.
 
 ### Temas
 
 - **Memória e identidade.** O que sobra de alguém quando ninguém mais se lembra dele?
-- **Herança.** Vessaly, Robin e Alissent são três respostas diferentes à mesma oferta.
+- **Herança.** Vessaly, Robin e Alicent são três respostas diferentes à mesma oferta.
 - **A mesa que muda.** Personagens que somem e voltam fazem parte da história (ver Capítulo 4).
 
 ### Estrutura e duração
 
 | Ato | Sessões | Nível | Fecha sozinho? |
 |---|---|---|---|
-| I — Os Mortos de Phandalin | 1–2 | 7 | Sim |
-| II — A Noite das Brumas | 1–2 | 7 → 8 | Sim |
-| III — A Subida | 4–6 | 8 → 10 | Sim (ponto de encerramento seguro) |
-| IV — O Observatório | 1–2 | 10 (11) | Final |
+| I — Os Mortos de Phandalin | 1–2 | 6 | Sim |
+| II — A Noite das Brumas | 1–2 | 6 → 7 | Sim |
+| III — A Subida | 4–6 | 7 → 9 | Sim (ponto de encerramento seguro) |
+| IV — O Observatório | 1–2 | 9 (10) | Final |
 
 ### Princípio de design: cada ato fecha sozinho
 
-A mesa já perdeu jogadores e pode perder outros. Por isso cada ato termina com uma conclusão própria. Se o grupo encolher, você pode encerrar ao fim do Ato III: Alissent resgatada, Robin derrotada, a torre desabando por conta própria. O Observatório vira epílogo narrado.
+A mesa já perdeu jogadores e pode perder outros. Por isso cada ato termina com uma conclusão própria. Se o grupo encolher, você pode encerrar ao fim do Ato III: Alicent resgatada, Robin derrotada, a torre desabando por conta própria. O Observatório vira epílogo narrado.
 
 ## Capítulo 2 — A Verdade por Trás das Brumas
 
@@ -69,7 +69,7 @@ O ritual tem uma falha que Vessaly não previu: ele preserva a torre, não a pes
 
 A única saída que encontrou é passar adiante o papel de âncora. Uma herdeira que aceite a torre mantém o domínio vivo, e Vessaly acredita que, como antiga senhora, continuará existindo dentro da lembrança da nova.
 
-A primeira candidata foi npc:alissent. Ela resistiu. Robin quer ser a próxima.
+A primeira candidata foi npc:alicent. Ela resistiu. Robin quer ser a próxima.
 
 ### Linha do tempo
 
@@ -79,7 +79,7 @@ A primeira candidata foi npc:alissent. Ela resistiu. Robin quer ser a próxima.
 | Gerações seguintes | A torre devora memórias de quem cruza as brumas. Cada vítima vira um andar. |
 | Recentemente | Vessaly começa a se apagar e a torre "vaza" perto de Phandalin, caçando herdeiras. |
 | Serra da Discórdia | As brumas puxam o grupo para a torre enquanto ele procura o Moinho de Adabra. |
-| Depois | Alissent é levada pelas brumas. Sua carta de despedida apaga a lembrança dela da maioria do grupo. |
+| Depois | Alicent é levada pelas brumas. Sua carta de despedida apaga a lembrança dela da maioria do grupo. |
 | Um "ataque" das brumas | Uma carta Tarokka é deixada para trás e acaba com Robin. A palavra "Baróvia" é ouvida. |
 | Mina dos Lambisratos | Robin deixa o grupo, convencida de que existe um ritual de poder na região. |
 | Colina do Dragão | O cavalo esqueleto do túmulo vira pó quando a espada é retirada. Robin recolhe o pó. |
@@ -91,8 +91,8 @@ Esta seção amarra os acontecimentos das sessões anteriores à história da to
 
 - **O moinho no lugar errado.** O Moinho de Adabra foi colocado a nordeste de Phandalin, a cerca de um dia e meio de caminhada. As brumas teleportaram o grupo para corrigir isso. Na verdade, o lugar onde o grupo chegou não era o moinho: era a torre de Vessaly. Se o grupo conversou com uma "Adabra" lá, era Vessaly usando o rosto dela. Ela estava testando os candidatos.
 - **A memória das brumas apagada.** Os personagens não se lembram das brumas porque a torre comeu essas lembranças. Ela não quer ser procurada antes da hora.
-- **Alissent.** Não foi apagada da existência. Foi a primeira candidata, resistiu e está presa na torre, se apagando aos poucos.
-- **A carta de despedida.** Foi escrita no instante em que as brumas a levaram (itens:carta-de-alissent). Quem tocou a carta e falhou no teste de Sabedoria teve a lembrança dela devorada pela torre. Os 2 personagens que ainda lembram são, literalmente, o que mantém Alissent existindo.
+- **Alicent.** Não foi apagada da existência. Foi a primeira candidata, resistiu e está presa na torre, se apagando aos poucos.
+- **A carta de despedida.** Foi escrita no instante em que as brumas a levaram (itens:carta-de-alicent). Quem tocou a carta e falhou no teste de Sabedoria teve a lembrança dela devorada pela torre. Os 2 personagens que ainda lembram são, literalmente, o que mantém Alicent existindo.
 - **A carta Tarokka.** Um fragmento de bruma solidificado, a única carta que falta num baralho Vistani. Hoje está com Robin e é a chave dela (itens:carta-tarokka).
 - **A palavra "Baróvia".** Um eco do lugar que Vessaly imitou. Dentro da torre, o grupo descobre o que ela significa.
 - **As "rolagens azaradas" de Robin.** Robin achava que estava com azar. Era a carta mostrando visões. Ela estava certa: o ritual existe.
@@ -119,7 +119,7 @@ Ficha: bestiario:vessaly-arquimaga.
 
 ### Robin, a Necromante
 
-**Quem é.** A antiga maga do grupo, que o jogador abandonou e que agora é NPC. Deixou o grupo na Mina dos Lambisratos e volta depois do dragão, completamente diferente.
+**Quem é.** A antiga maga do grupo, hoje NPC. A jogadora dela não saiu da mesa: trocou de personagem e agora joga com a Fenna. Converse com ela antes de transformar Robin em vilã, e considere dar à Fenna um papel especial nas cenas com Robin. Deixou o grupo na Mina dos Lambisratos e volta depois do dragão, completamente diferente.
 
 **O que mudou.** Robin seguiu as visões da carta Tarokka até a necromancia. Para ela, levantar os mortos é uma forma de mantê-los lembrados, e na lógica da torre isso é poder. Ela monta o bestiario:cavalo-esqueleto-de-robin, reconstruído do pó que o grupo deixou para trás na Colina do Dragão. É a prova visível de que montaria morta-viva é coisa de vilão.
 
@@ -133,11 +133,11 @@ Ficha: bestiario:vessaly-arquimaga.
 
 Fichas: bestiario:robin-necromante e bestiario:morto-de-robin.
 
-### Alissent, a Primeira Candidata
+### Alicent, a Primeira Candidata
 
 **Quem é.** A personagem que as brumas levaram quando a jogadora deixou a mesa. **[preencher: classe, aparência, traços marcantes, o que os 2 personagens que lembram dela sabem.]**
 
-**O que aconteceu.** Vessaly a escolheu primeiro. Alissent recusou ser âncora e, em vez de descartá-la, a torre a guardou. Desde então, ela se apaga um pouco a cada dia que alguém deixa de pensar nela.
+**O que aconteceu.** Vessaly a escolheu primeiro. Alicent recusou ser âncora e, em vez de descartá-la, a torre a guardou. Desde então, ela se apaga um pouco a cada dia que alguém deixa de pensar nela.
 
 **Estado atual.** Esvaziada, mas não perdida. Ainda há o suficiente dela para ser trazida de volta, desde que o grupo devolva lembranças a ela.
 
@@ -145,7 +145,7 @@ Fichas: bestiario:robin-necromante e bestiario:morto-de-robin.
 
 > "Vocês demoraram. Eu já não sei se estou esperando ou se só esqueci de ir embora."
 
-Ficha da forma corrompida: bestiario:alissent-esvaziada.
+Ficha da forma corrompida: bestiario:alicent-esvaziada.
 
 ### Personagens secundários
 
@@ -208,12 +208,12 @@ Quem morre na torre não vai embora: vira um Eco do andar onde morreu. Magias de
 Use o que a mesa já sabe: **quem sai, a bruma leva**.
 
 - O personagem é engolido pela bruma e pode reaparecer mais tarde na torre, como Esquecido, Eco, Reflexo ou aliado.
-- Quem ainda está no grupo faz um teste de Sabedoria CD 13 para se lembrar dele, como aconteceu com a carta de Alissent.
+- Quem ainda está no grupo faz um teste de Sabedoria CD 13 para se lembrar dele, como aconteceu com a carta de Alicent.
 
 ### Quando um jogador entra na mesa
 
 - O personagem novo pode ser alguém que a torre "cuspiu" de volta: um visitante antigo, sem Âncoras, que precisa reconstruí-las com o grupo.
-- Depois do andar 8, o jogador novo também pode assumir Alissent.
+- Depois do andar 8, o jogador novo também pode assumir Alicent.
 
 ### A torre reage (ações de covil)
 
@@ -248,7 +248,7 @@ Mais tarde, se alguém voltar à Colina, o pó não está mais lá. Robin o reco
 
 ## Capítulo 6 — Ato I: Os Mortos de Phandalin
 
-**Nível 7 · 1 a 2 sessões · Local: local:phandalin-sitiada**
+**Nível 6 · 1 a 2 sessões · Local: local:phandalin-sitiada**
 
 ### Resumo
 
@@ -262,7 +262,7 @@ Poucos dias depois da vitória contra o dragão branco, os mortos da região mar
 
 **A cidade.** Os moradores estão apavorados. O mestre da cidade quer que o grupo resolva isso e alguém vai sugerir queimar todos os mortos.
 
-**A carta.** Um dos mortos segura uma cópia da itens:carta-de-alissent. Quem tocar a cópia sente que esqueceu alguma coisa importante. Os 2 personagens que lembram de Alissent reconhecem a letra.
+**A carta.** Um dos mortos segura uma cópia da itens:carta-de-alicent. Quem tocar a cópia sente que esqueceu alguma coisa importante. Os 2 personagens que lembram de Alicent reconhecem a letra.
 
 ### Encontros sugeridos
 
@@ -293,13 +293,13 @@ Se o grupo aceitar, os mortos se retiram para a floresta. Se recusar, o cerco ap
 
 ## Capítulo 7 — Ato II: A Noite das Brumas
 
-**Nível 7 → 8 · 1 a 2 sessões**
+**Nível 6 → 7 · 1 a 2 sessões**
 
 ### Memórias que voltam
 
 A proximidade da torre afrouxa o que ela roubou. Durante este ato:
 
-- Uma vez por sessão, cada personagem que esqueceu Alissent pode tocar a carta original e fazer um teste de Sabedoria CD 13. Em caso de sucesso, recupera um fragmento: uma imagem, uma frase, um gesto. Descreva o fragmento ou peça a um dos 2 que lembram para contar.
+- Uma vez por sessão, cada personagem que esqueceu Alicent pode tocar a carta original e fazer um teste de Sabedoria CD 13. Em caso de sucesso, recupera um fragmento: uma imagem, uma frase, um gesto. Descreva o fragmento ou peça a um dos 2 que lembram para contar.
 - Personagens começam a lembrar das brumas: a primeira vez que foram puxados, a "Adabra" que conheceram. Entregue esses fragmentos aos poucos, como flashes.
 
 ### A jornada a nordeste
@@ -319,11 +319,11 @@ Robin propõe uma trégua até o topo. Se o grupo aceitar, ela entra junto e se 
 ### Antes de entrar
 
 - Cada jogador escreve as **3 Âncoras** do personagem (Capítulo 4).
-- Ao atravessar a porta, o grupo sobe para o **nível 8**.
+- Ao atravessar a porta, o grupo sobe para o **nível 7**.
 
 ## Capítulo 8 — Ato III: A Subida
 
-**Nível 8 → 10 · 4 a 6 sessões · Local: local:torre-nas-brumas**
+**Nível 7 → 9 · 4 a 6 sessões · Local: local:torre-nas-brumas**
 
 Cada andar é uma memória roubada de alguém que a torre devorou. Todos têm uma **chave**: a condição para a escada voltar a subir. Os andares abaixo são uma ordem sugerida. Você pode trocar, cortar ou acrescentar andares conforme a mesa.
 
@@ -345,7 +345,7 @@ npc:porteiro-sem-rosto explica as regras da torre (o que entrar e sair significa
 
 Cada livro é uma pessoa que a torre devorou. npc:bibliotecario cuida de tudo e troca informações por segredos ditos em voz alta.
 
-**Chave:** encontrar o livro de npc:alissent. Ele está quase todo em branco. Cada lembrança verdadeira contada sobre ela (pelos 2 que lembram, ou por quem recuperou fragmentos no Ato II) preenche uma página. Com 3 páginas, o livro se abre e revela a escada.
+**Chave:** encontrar o livro de npc:alicent. Ele está quase todo em branco. Cada lembrança verdadeira contada sobre ela (pelos 2 que lembram, ou por quem recuperou fragmentos no Ato II) preenche uma página. Com 3 páginas, o livro se abre e revela a escada.
 
 **Descobertas:**
 
@@ -393,7 +393,7 @@ O único lugar seguro da torre. Descanso longo aqui não rasga Âncoras.
 
 **Pistas do nome de Vessaly:** um balanço com iniciais entalhadas, meio apagadas, e uma canção que a lareira cantarola.
 
-**Ao sair do Jardim, o grupo sobe para o nível 9.**
+**Ao sair do Jardim, o grupo sobe para o nível 8.**
 
 ### Andar 6 — Salão dos Espelhos
 
@@ -427,29 +427,29 @@ Cada personagem enfrenta seu bestiario:reflexo, a versão de si que a torre quer
 - **Foge para o topo.** Ela chega ao Observatório primeiro e se oferece a Vessaly.
 - **É convencida.** Persuasão CD 20 (Vantagem para quem lutou ao lado dela no passado). Ela se junta ao grupo até o fim, com seus próprios planos.
 
-### Andar 8 — Quarto de Alissent
+### Andar 8 — Quarto de Alicent
 
-**Tipo:** clímax emocional · **Memória de:** Alissent. **[preencher: a memória mais forte dela, como um quarto, uma estrada ou uma taverna.]**
+**Tipo:** clímax emocional · **Memória de:** Alicent. **[preencher: a memória mais forte dela, como um quarto, uma estrada ou uma taverna.]**
 
 > Vocês conhecem este lugar. Ou alguns de vocês conhecem. Os outros sentem só a saudade, sem saber de quê.
 
-Alissent está aqui como bestiario:alissent-esvaziada: oca, com dois Ecos girando em volta dela. Ela ataca porque não sabe mais quem eles são.
+Alicent está aqui como bestiario:alicent-esvaziada: oca, com dois Ecos girando em volta dela. Ela ataca porque não sabe mais quem eles são.
 
-**Chave: lembrar por ela.** Não é preciso derrotá-la. No seu turno, um personagem pode usar a ação para dizer em voz alta uma lembrança verdadeira de Alissent e fazer um teste de Sabedoria CD 15. Os 2 personagens que lembram dela têm Vantagem. Quem recuperou fragmentos no Ato II pode tentar normalmente. Os demais podem tentar, mas com Desvantagem. Com **3 sucessos**, Alissent volta a si e o combate termina.
+**Chave: lembrar por ela.** Não é preciso derrotá-la. No seu turno, um personagem pode usar a ação para dizer em voz alta uma lembrança verdadeira de Alicent e fazer um teste de Sabedoria CD 15. Os 2 personagens que lembram dela têm Vantagem. Quem recuperou fragmentos no Ato II pode tentar normalmente. Os demais podem tentar, mas com Desvantagem. Com **3 sucessos**, Alicent volta a si e o combate termina.
 
-Se Alissent cair a 0 PV antes disso, ela não morre: se desfaz em bruma e reaparece no Observatório, ao lado de Vessaly.
+Se Alicent cair a 0 PV antes disso, ela não morre: se desfaz em bruma e reaparece no Observatório, ao lado de Vessaly.
 
-**Ao fim do andar, o grupo sobe para o nível 10.** Se for preciso, é aqui que a campanha pode terminar (ver Capítulo 1).
+**Ao fim do andar, o grupo sobe para o nível 9.** Se for preciso, é aqui que a campanha pode terminar (ver Capítulo 1).
 
 ## Capítulo 9 — Ato IV: O Observatório
 
-**Nível 10 (11 opcional) · 1 a 2 sessões**
+**Nível 9 (10 opcional) · 1 a 2 sessões**
 
 ### Vessaly revelada
 
 > No topo não há teto: só um céu cinzento, sem estrelas, e uma cúpula de bronze aberta. No centro, uma esfera de névoa do tamanho de uma pessoa gira devagar. É o Coração da Torre. Ao lado dela, Vessaly finalmente olha para vocês, e por um instante tem o rosto de cada pessoa que vocês já esqueceram.
 
-Vessaly não começa lutando. Ela quer escolher a herdeira. Se Robin chegou primeiro, ela está ao lado de Vessaly. Se Alissent foi resgatada, Vessaly pede a ela de novo.
+Vessaly não começa lutando. Ela quer escolher a herdeira. Se Robin chegou primeiro, ela está ao lado de Vessaly. Se Alicent foi resgatada, Vessaly pede a ela de novo.
 
 ### O combate
 
@@ -463,9 +463,9 @@ Vessaly não começa lutando. Ela quer escolher a herdeira. Se Robin chegou prim
 
 O final depende do que o grupo fizer com o Coração e com a oferta de Vessaly.
 
-1. **Destruir a âncora.** O Coração se parte, a torre desaba e todas as memórias voltam para os donos, inclusive as das brumas e a de Alissent. Vessaly é finalmente esquecida e descansa. As brumas da torre precisam ir para algum lugar e voltam para o domínio original. Quem estiver com a carta Tarokka ouve um chamado.
+1. **Destruir a âncora.** O Coração se parte, a torre desaba e todas as memórias voltam para os donos, inclusive as das brumas e a de Alicent. Vessaly é finalmente esquecida e descansa. As brumas da torre precisam ir para algum lugar e voltam para o domínio original. Quem estiver com a carta Tarokka ouve um chamado.
 2. **Um personagem herda a torre.** Ele vira o novo senhor do domínio e sai da campanha como NPC. É um final perfeito para um jogador que vai deixar a mesa.
-3. **Alissent herda.** Ela aceita o lugar para salvar os outros e vira a guardiã da torre. Agridoce.
+3. **Alicent herda.** Ela aceita o lugar para salvar os outros e vira a guardiã da torre. Agridoce.
 4. **Robin herda.** Ela vira uma pequena senhora sombria. Os Poderes de Baróvia notam. É a vilã pronta para uma campanha futura.
 5. **Devolver o nome de Vessaly.** Se o grupo juntou as pistas (o livro em branco na Biblioteca, as iniciais no Jardim, a menina no espelho), pode dizer o nome verdadeiro dela. Vessaly se lembra de quem era, aceita ser esquecida e desfaz o ritual. Não há combate na fase 2.
 
@@ -473,10 +473,10 @@ O final depende do que o grupo fizer com o Coração e com a oferta de Vessaly.
 
 ### Epílogo
 
-- As memórias roubadas voltam para quem as perdeu. Mostre o momento em que cada jogador "lembra" de Alissent.
+- As memórias roubadas voltam para quem as perdeu. Mostre o momento em que cada jogador "lembra" de Alicent.
 - Phandalin fica livre dos mortos.
 - Se a carta Tarokka sobreviveu, alguém a reclama: um Vistani aparece na estrada perguntando por ela. Esse é o gancho para Baróvia, caso a mesa queira continuar.
-- **Nível 11** opcional, como recompensa.
+- **Nível 10** opcional, como recompensa.
 
 ## Capítulo 10 — Bestiário do Domínio
 
@@ -494,7 +494,7 @@ Todas as criaturas usam fichas do Manual dos Monstros 2024 com nova ambientaçã
 | bestiario:cavalo-esqueleto-de-robin | Cavalo de Guerra Esqueleto | 1/2 (2) | Montaria de Robin |
 | bestiario:bibliotecario | Nothic | 2 (4) | Biblioteca |
 | bestiario:robin-necromante | Mago + necromancia | 6 (8–9) | Phandalin, Ossuário |
-| bestiario:alissent-esvaziada | Wraith + Lamento da Banshee | 5 (7) | Quarto de Alissent |
+| bestiario:alicent-esvaziada | Wraith + Lamento da Banshee | 5 (7) | Quarto de Alicent |
 | bestiario:vessaly-arquimaga | Arquimago + ações de covil | 12 (13–14) | Observatório |
 
 ### Traços comuns do domínio
@@ -531,9 +531,9 @@ A anotação antecipa que Vessaly está se apagando, sem dizer isso de forma exp
 
 > *"Um domínio precisa de um senhor. Quando eu não for mais eu, quem será? Preciso pensar nisso antes de esquecer que preciso."*
 
-### A carta de despedida de Alissent
+### A carta de despedida de Alicent
 
-Use o texto original deixado na mesa (itens:carta-de-alissent). No Ato I, cópias aparecem nas mãos dos mortos, idênticas ao original, com uma única diferença: a última linha está apagada, como se alguém tivesse esquecido de terminar de escrevê-la.
+Use o texto original deixado na mesa (itens:carta-de-alicent). No Ato I, cópias aparecem nas mãos dos mortos, idênticas ao original, com uma única diferença: a última linha está apagada, como se alguém tivesse esquecido de terminar de escrevê-la.
 
 ### Fragmentos de memória (handouts)
 
@@ -544,7 +544,7 @@ Para entregar no Ato II, quando alguém recupera um fragmento:
 - "Um nome dito baixinho, que você não consegue terminar de ouvir."
 - "Uma mulher de cabelos prateados servindo chá num moinho que não era um moinho."
 
-**[preencher: fragmentos específicos de Alissent, com base no que os 2 jogadores lembram.]**
+**[preencher: fragmentos específicos de Alicent, com base no que os 2 jogadores lembram.]**
 
 ## Capítulo 12 — Escalando para 5–6 Jogadores
 
@@ -562,7 +562,7 @@ Para entregar no Ato II, quando alguém recupera um fragmento:
 | Lacaios por encontro | Base | Base + 2 |
 | PV de chefe | +30% | +50% |
 | Coração da Torre | 100 PV | 120 PV |
-| Sucessos para resgatar Alissent | 3 | 3 (CD 16) |
+| Sucessos para resgatar Alicent | 3 | 3 (CD 16) |
 
 ### Se o grupo estiver forte demais
 
@@ -573,14 +573,14 @@ Para entregar no Ato II, quando alguém recupera um fragmento:
 ### Se o grupo estiver fraco demais
 
 - Deixe o Jardim da Lareira mais cedo na ordem dos andares.
-- Dê o nível 11 antes do Observatório.
-- Deixe Alissent resgatada lutar ao lado do grupo.
+- Dê o nível 10 antes do Observatório.
+- Deixe Alicent resgatada lutar ao lado do grupo.
 
 ## Apêndice A — Pendências de Desenvolvimento
 
 - **[preencher]** Nome definitivo da aventura.
 - **[preencher]** Qual carta Tarokka está com Robin.
-- **[preencher]** Dados de Alissent: classe, aparência, histórico, a memória do andar 8, e o que os 2 jogadores que lembram dela sabem.
+- **[preencher]** Dados de Alicent: classe, aparência, histórico, a memória do andar 8, e o que os 2 jogadores que lembram dela sabem.
 - **[preencher]** Nome verdadeiro de Vessaly e as pistas exatas (Biblioteca, Jardim, Espelhos).
 - **[preencher]** O que exatamente o grupo viu na torre quando foi teleportado na Serra da Discórdia.
 - Fichas completas do bestiário (hoje só há a base e o ND).
