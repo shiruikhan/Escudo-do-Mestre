@@ -82,7 +82,7 @@ A primeira candidata foi npc:alicent. Ela resistiu. Robin quer ser a próxima.
 | Depois | Alicent é levada pelas brumas. Sua carta de despedida apaga a lembrança dela da maioria do grupo. |
 | Um "ataque" das brumas | Uma carta Tarokka é deixada para trás e acaba com Robin. A palavra "Baróvia" é ouvida. |
 | Mina dos Lambisratos | Robin deixa o grupo, convencida de que existe um ritual de poder na região. |
-| Colina do Dragão | O cavalo esqueleto do túmulo vira pó quando a espada é retirada. Robin recolhe o pó. |
+| Colina do Dragão | Robin aparece, "revive" o cavalo esqueleto e promete voltar para buscá-lo. Quando o grupo retira a espada, o cavalo vira pó. Robin volta, recolhe o pó e o reconstrói. |
 | Depois do dragão branco | Início desta aventura. |
 
 ### O que já aconteceu na mesa, explicado
@@ -90,7 +90,7 @@ A primeira candidata foi npc:alicent. Ela resistiu. Robin quer ser a próxima.
 Esta seção amarra os acontecimentos das sessões anteriores à história da torre.
 
 - **O moinho no lugar errado.** O Moinho de Adabra foi colocado a nordeste de Phandalin, a cerca de um dia e meio de caminhada. As brumas teleportaram o grupo para corrigir isso. Na verdade, o lugar onde o grupo chegou não era o moinho: era a torre de Vessaly. Se o grupo conversou com uma "Adabra" lá, era Vessaly usando o rosto dela. Ela estava testando os candidatos.
-- **A memória das brumas apagada.** Os personagens não se lembram das brumas porque a torre comeu essas lembranças. Ela não quer ser procurada antes da hora.
+- **A memória das brumas apagada.** A maioria dos personagens não se lembra das brumas porque a torre comeu essas lembranças. Ela não quer ser procurada antes da hora. Dois jogadores ainda lembram. Robin também lembra: a carta Tarokka protegeu a mente dela, mas ela fingiu ter esquecido, como os outros.
 - **Alicent.** Não foi apagada da existência. Foi a primeira candidata, resistiu e está presa na torre, se apagando aos poucos.
 - **A carta de despedida.** Foi escrita no instante em que as brumas a levaram (itens:carta-de-alicent). Quem tocou a carta e falhou no teste de Sabedoria teve a lembrança dela devorada pela torre. Os 2 personagens que ainda lembram são, literalmente, o que mantém Alicent existindo.
 - **A carta Tarokka.** Um fragmento de bruma solidificado, a única carta que falta num baralho Vistani. Hoje está com Robin e é a chave dela (itens:carta-tarokka).
@@ -125,7 +125,9 @@ Ficha: bestiario:vessaly-arquimaga.
 
 **Objetivo.** Ser a herdeira. Ela não é a vilã final: é a candidata que Vessaly está disposta a usar.
 
-**Por que precisa do grupo.** A porta só abre para quem foi marcado pelas brumas, e o grupo foi. A carta permite que Robin entre, mas não que abra a porta sozinha.
+**Por que precisa do grupo.** A porta só abre para quem a torre já provou, alguém de quem ela comeu memórias, e o grupo foi provado. Robin não foi: a carta protegeu a mente dela, e a torre nunca comeu nada dela. A carta deixa Robin atravessar a porta, mas não abri-la sozinha.
+
+**A mentira.** Robin nunca esqueceu as brumas. Ela fingiu ter esquecido, como o resto do grupo. A revelação vem na porta da torre (Ato II): "Eu nunca esqueci. Só fingi, como vocês."
 
 **Na torre.** Ela entra junto com o grupo (ou logo atrás) e **sobe em paralelo**, usando a carta para descobrir a chave de cada andar antes deles. Os dois lados se cruzam em alguns andares. Ela tem um andar próprio, o Ossuário.
 
@@ -135,7 +137,9 @@ Fichas: bestiario:robin-necromante e bestiario:morto-de-robin.
 
 ### Alicent, a Primeira Candidata
 
-**Quem é.** A personagem que as brumas levaram quando a jogadora deixou a mesa. **[preencher: classe, aparência, traços marcantes, o que os 2 personagens que lembram dela sabem.]**
+**Quem é.** A personagem que as brumas levaram quando a jogadora deixou a mesa. Paladina da Devoção, nascida numa família extremamente influente. Por orgulho, convenceu o pai a expulsar uma família humilde por uma ofensa ao nome dela. Anos depois, encontrou a filha dessa família vivendo na miséria, abandonou título, casa e herança e fez o juramento: honra, coragem e honestidade. A arte dela sempre "faltava emoção". **[preencher: aparência e o que os 2 personagens que lembram dela sabem.]**
+
+**Por que recusou ser herdeira.** Vessaly ofereceu o que a Alicent jovem mais queria: um nome lembrado para sempre. A Alicent de hoje recusou: "Meu nome já destruiu gente demais."
 
 **O que aconteceu.** Vessaly a escolheu primeiro. Alicent recusou ser âncora e, em vez de descartá-la, a torre a guardou. Desde então, ela se apaga um pouco a cada dia que alguém deixa de pensar nela.
 
@@ -158,9 +162,9 @@ Ficha da forma corrompida: bestiario:alicent-esvaziada.
 
 A torre é um Domínio do Pavor menor. Por fora, é uma torre de pedra comum, envolta em brumas. Por dentro, é muito maior do que por fora.
 
-- **Entrar é entrar no domínio.** A porta só abre para quem foi marcado pelas brumas, ou para quem tem a itens:carta-tarokka.
+- **Entrar é entrar no domínio.** A porta só abre para quem foi marcado pelas brumas. A itens:carta-tarokka deixa o portador atravessar a porta depois que alguém marcado a abre.
 - **Sair é cair no esquecimento.** Quem sai da torre sem a permissão de Vessaly (ou antes de a âncora ser destruída) atravessa as brumas e é esquecido por todos que estão fora. Na prática, o personagem deixa de existir para o mundo e passa a vagar pela torre como um bestiario:esquecido.
-- **Magia de fuga falha.** Teletransporte, *passo nebuloso* de longa distância, viagem planar e *palavra de retorno* levam o conjurador a outro andar, escolhido pelo Mestre, e rasgam 1 Âncora.
+- **Magia de fuga falha.** Teletransporte que sairia do andar atual, viagem planar e *palavra de retorno* levam o conjurador a outro andar, escolhido pelo Mestre, e rasgam 1 Âncora.
 
 ### A escada infinita
 
@@ -234,11 +238,11 @@ Antes da aventura começar, ainda dentro de Dragão da Espiral de Gelo, plante e
 
 ### Colina do Dragão: o cavalo esqueleto
 
-Quando a espada for retirada do túmulo, o cavalo esqueleto se curva diante de quem a pegou e vira pó. Ele cumpriu a função e o grupo não ganha montaria.
+**O que aconteceu na mesa.** Robin apareceu no túmulo, "reviveu" o cavalo esqueleto e disse que voltaria para buscá-lo. Quando o grupo retirou a espada, o cavalo virou pó. Ele cumpriu a função e o grupo não ganha montaria.
 
 > Os ossos do cavalo estalam, um por um, enquanto ele dobra as patas dianteiras diante de quem segura a espada. Por um momento, ele parece prestar continência. Depois, sem nenhum som, desfaz-se em pó. Uma névoa fria, que não deveria estar ali, passa pelo túmulo e some.
 
-Mais tarde, se alguém voltar à Colina, o pó não está mais lá. Robin o recolheu.
+Mais tarde, se alguém voltar à Colina, o pó não está mais lá. Robin voltou como prometido, recolheu o pó e reconstruiu o cavalo.
 
 ### Outras sementes
 
@@ -278,6 +282,8 @@ No fim do ato, Robin entra na praça montada no cavalo esqueleto. Ela quer conve
 
 > O cavalo é o mesmo. Vocês reconhecem a forma do crânio, a curva das costelas. Sobre ele, Robin sorri como se nunca tivesse ido embora.
 
+> "Eu disse que voltaria para buscá-lo. Vocês o quebraram. Eu o consertei."
+
 O que Robin conta:
 
 - Que o ritual que ela procurava existe e que é uma torre.
@@ -312,7 +318,7 @@ Um dia e meio de caminhada até o lugar onde o grupo achou estar o Moinho de Ada
 
 ### Robin na porta
 
-Robin espera na porta, com a carta na mão. A porta não abre para ela. Abre quando o primeiro personagem marcado pelas brumas a toca.
+Robin espera na porta, com a carta na mão. A porta não abre para ela. Abre quando o primeiro personagem marcado pelas brumas a toca. É o momento das revelações: a carta, e a mentira de que ela também tinha esquecido as brumas.
 
 Robin propõe uma trégua até o topo. Se o grupo aceitar, ela entra junto e se separa no primeiro descuido. Se recusar, ela entra logo atrás. De qualquer forma, a partir daqui ela sobe em paralelo.
 
@@ -580,7 +586,7 @@ Para entregar no Ato II, quando alguém recupera um fragmento:
 
 - **[preencher]** Nome definitivo da aventura.
 - **[preencher]** Qual carta Tarokka está com Robin.
-- **[preencher]** Dados de Alicent: classe, aparência, histórico, a memória do andar 8, e o que os 2 jogadores que lembram dela sabem.
+- **[preencher]** Dados de Alicent: aparência, a memória do andar 8 e o que os 2 jogadores que lembram dela sabem. Classe e histórico já estão no Capítulo 3.
 - **[preencher]** Nome verdadeiro de Vessaly e as pistas exatas (Biblioteca, Jardim, Espelhos).
 - **[preencher]** O que exatamente o grupo viu na torre quando foi teleportado na Serra da Discórdia.
 - Fichas completas do bestiário (hoje só há a base e o ND).

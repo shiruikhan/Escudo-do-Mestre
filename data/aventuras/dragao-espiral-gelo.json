@@ -154,7 +154,7 @@
       "acoes_bonus": [],
       "reacoes": [],
       "localizacao": "Fortaleza da Espiral de Gelo — H20, Telhado (luta final)",
-      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Três ações lendárias por rodada, usadas no fim do turno de outra criatura; recupera as ações gastas no início do próprio turno. No covil luta até a morte. Respostas que funcionam: espalhar-se contra o cone, fogo derrete o gelo do chão, atraí-lo para dentro (lá dentro não voa nem usa Bater Asas). Ficha original do livro: bestiario:cryovain.",
+      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Três ações lendárias por rodada, usadas no fim do turno de outra criatura; recupera as ações gastas no início do próprio turno. No covil luta até a morte. Respostas que funcionam: espalhar-se contra o cone, fogo derrete o gelo do chão, atraí-lo para dentro (lá dentro não voa nem usa Bater Asas). Ficha original do livro: bestiario:cryovain. Despertares nesta luta: a Nói, em fúria com menos da metade dos PV, ouve de novo \"AINDA NÃO\" e o Fragmento Fundido desperta (se estiver caída, levanta com 1 PV, só desta vez); o Athens cumpre o 2º desejo de npc:wesleynardo ao receber um ataque no lugar de um aliado.",
       "acoes_lendarias": [
         {
           "nome": "Espreitar",
@@ -2349,6 +2349,16 @@
       "interacao": "Ameaça fisicamente; violento se ignorado. Mais calmo perto de cavalos (os quatro de H2 são do bando). Subornos viram roubo; com 2+ caídos, o bando negocia.",
       "notas_dm": "Use estatísticas de veterano.",
       "ver_bestiario": "veterano"
+    },
+    "wesleynardo": {
+      "nome": "Wesleynardo, o Filho do Ferreiro",
+      "local": "Fortaleza da Espiral de Gelo — H5 (Forja); aparece na primeira noite na Fortaleza",
+      "papel": "Fantasma de um menino anão; arco de redenção do Athens (criação do Mestre)",
+      "descricao": "Menino anão de cabelo ruivo trançado, magro demais, com um avental de ferreiro grande demais para ele. Filho do ferreiro anão que servia à general Delsendra. Morreu de fome com a família quando a neve cortou os suprimentos. Só o Athens o vê.",
+      "motivacao": "Antes de morrer, jogou a última moeda da família num poço dos desejos da floresta com três desejos. As moedas que o Athens roubou do poço eram as dele, e os desejos vieram junto.",
+      "segredos": "Os três desejos: (1) \"Que ninguém aqui passe fome\": Athens cozinha para o grupo (sem falha; quem come ganha 1d8 PV temporários até o próximo descanso longo). (2) \"Que alguém salve quem ama\": na luta contra bestiario:cryovain-senhor-do-pico, Athens usa a Reação para receber um ataque no lugar de um aliado a até 1,5 m. (3) \"Que lembrem de quem partiu\": nas criptas (H22), Athens diz o nome de quem partiu; o menino insiste que há alguém esquecido. Se Athens não lembra da Alicent, teste de Sabedoria CD 10 com Vantagem traz o nome de volta; se já lembra, conta uma lembrança dela.",
+      "interacao": "\"Essas moedas eram minhas. Eram meus desejos. Agora são seus. São três. Você me ajuda?\"",
+      "notas_dm": "A cada desejo cumprido, uma moeda esquenta e some (use três moedas físicas na mesa). Ao terceiro, ele diz \"Agora eu posso ir\" e se desfaz em neve: a Marca da Fera Sem Nome do Athens desperta (nível 5: resistência a um tipo de dano à escolha ao entrar em fúria). Athens fica com uma moeda de cobre que nunca esfria. Espelha a história do Athens (3 dias sem comer, família perdida)."
     },
     "gnerkli": {
       "nome": "Gnerkli",
@@ -4728,7 +4738,8 @@
         "npc:syleen-wintermoon",
         "npc:runa-vokdottir",
         "npc:brakkis-elspaar",
-        "npc:jabarl-morde-orc"
+        "npc:jabarl-morde-orc",
+        "npc:wesleynardo"
       ],
       "encontros": [
         {
@@ -4766,6 +4777,12 @@
           "ref": "npc:runa-vokdottir",
           "qtd": 1,
           "nota": "Vigia a trilha pelas fendas de seta; se vir estranhos, alerta o bando em H4"
+        },
+        {
+          "area": "H5 — Forja",
+          "ref": "npc:wesleynardo",
+          "qtd": 1,
+          "nota": "Fantasma visível só para o Athens; aparece na primeira noite na Fortaleza (arco dos três desejos)"
         },
         {
           "area": "H12 — Câmara de Audiência",
