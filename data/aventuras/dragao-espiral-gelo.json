@@ -442,7 +442,7 @@
       "acoes_bonus": [],
       "reacoes": [],
       "localizacao": "Axeholm — A24 (aparições e Lamento) e A27 (confronto final)",
-      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Antes do confronto, aparece 2–3 vezes atravessando paredes, usa o Rosto Horripilante e some (quem passar fica imune por 24 h). Luta com 2 bestiario:guarda-anao-espectral. Saída sem combate: carta selada dos elfos da lua, guardada pelo regente no cofre secreto A29 (o grupo a acha antes do confronto; se encontrar Vyldara antes, ela usa o Lamento e recua para A27, dando tempo de abrir o cofre) e desafio de perícias (3 sucessos antes de 3 falhas, CD 15; Atuação da Lyrien com Vantagem; ler a carta = 1 sucesso automático). Se ela descansar assim, desperta a Lira de Duas Vozes da Lyrien. Ficha original do livro: bestiario:banshee."
+      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Antes do confronto, aparece 2–3 vezes atravessando paredes, usa o Rosto Horripilante e some (quem passar fica imune por 24 h). Luta com 2 bestiario:guarda-anao-espectral. Saída sem combate: item:carta-elfos-da-lua, guardada pelo regente no cofre secreto A29 (o grupo a acha antes do confronto; se encontrar Vyldara antes, ela usa o Lamento e recua para A27, dando tempo de abrir o cofre) e desafio de perícias (3 sucessos antes de 3 falhas, CD 15; Atuação da Lyrien com Vantagem; ler a carta = 1 sucesso automático). Se ela descansar assim, desperta a Lira de Duas Vozes da Lyrien. Ficha original do livro: bestiario:banshee."
     },
     "guarda-anao-espectral": {
       "nome": "Guarda Anão Espectral",
@@ -2724,6 +2724,13 @@
       "efeito": "Foco arcano de Miraal, a elfa do mar. Devolvê-la à caverna T1 liberta o espírito da bestiario:banshee, que desaparece. O grupo fica livre para vender a concha.",
       "localizacao": "local:torre-tempestades — T7 (Moesko, o Anacoreta): repousa no colo de npc:moesko, que a tomou de npc:miraal como troféu; deve ser levada a T1 (Caverna Assombrada). npc:linene-vento-cinza paga 125 PO; em uma cidade como Neverwinter vale 250 PO"
     },
+    "carta-elfos-da-lua": {
+      "nome": "Carta dos Elfos da Lua para Vyldara",
+      "tipo": "Item de Missão (prop) — criação do Mestre",
+      "propriedades": "Não mágica. Selo de cera prateado intacto: nunca foi aberta.",
+      "efeito": "Texto da carta: \"Vyldara, filha de Ithrel, / Os anões de Axeholm nos escreveram. Sabemos que falhou, e não importa. Ninguém em casa a chama de traidora. Seu irmão insistiu em vir pessoalmente. / Partimos na lua cheia, com três cavaleiros e o selo do Conselho. Estaremos aí antes da primeira neve. / Não faça nada imprudente. Estamos a caminho. Aguente. / Com o amor de toda a sua casa, / Caelith, da Corte da Lua Prateada / P.S. Sua mãe mandou a canção de ninar que você cantava para ela. Disse que você saberia o que fazer com ela.\" Em jogo: ler a carta em voz alta para bestiario:vyldara conta como 1 sucesso automático no desafio de perícias para pô-la em descanso, e a canção de ninar dá à Lyrien algo para cantar (Atuação com Vantagem). Se Vyldara descansar assim, desperta a Lira de Duas Vozes.",
+      "localizacao": "local:axeholm — A29, Cofre Secreto, junto do item:elmo-temor e das item:manoplas-forca-ogro. Chegou depois da morte de Vyldara; o regente nunca a abriu e a escondeu por vergonha."
+    },
     "anel-sinete-axeholm": {
       "nome": "Anel de Sinete de Axeholm",
       "tipo": "Joia (anel de sinete de ouro); chave",
@@ -4716,7 +4723,7 @@
           "codigo": "A29",
           "nome": "Cofre Secreto",
           "texto": "Sala vazia com baú de ferro de 30 kg com pés de garra. A fechadura é um recuo circular com o símbolo invertido do machado numa manopla: coloca-se o anel de sinete do regente (A14) e o baú abre, ficando destrancado até a tampa ser bem fechada. Alternativas: Destreza CD 20 com ferramentas de ladrão, arrombar ou magia semelhante.",
-          "tesouro": "Elmo do Temor (item:elmo-temor) e Manoplas de Força de Ogro (item:manoplas-forca-ogro). Variante do Mestre: carta selada dos elfos da lua para Vyldara, assinada por Caelith, da Corte da Lua Prateada (\"Estamos a caminho. Aguente.\"). O regente a recebeu depois da morte dela e a escondeu por vergonha."
+          "tesouro": "Elmo do Temor (item:elmo-temor), Manoplas de Força de Ogro (item:manoplas-forca-ogro) e, na variante do Mestre, a item:carta-elfos-da-lua."
         },
         {
           "codigo": "A30",
