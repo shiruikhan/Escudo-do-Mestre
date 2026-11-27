@@ -442,7 +442,7 @@
       "acoes_bonus": [],
       "reacoes": [],
       "localizacao": "Axeholm — A24 (aparições e Lamento) e A27 (confronto final)",
-      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Antes do confronto, aparece 2–3 vezes atravessando paredes, usa o Rosto Horripilante e some (quem passar fica imune por 24 h). Luta com 2 bestiario:guarda-anao-espectral. Saída sem combate: carta dos elfos da lua sob a cama de A27 (Investigação ou Percepção CD 15) e desafio de perícias (3 sucessos antes de 3 falhas, CD 15; Atuação da Lyrien com Vantagem; ler a carta = 1 sucesso automático). Se ela descansar assim, desperta a Lira de Duas Vozes da Lyrien. Ficha original do livro: bestiario:banshee."
+      "notas_dm": "Variante do Mestre para 6 personagens de nível 5. Antes do confronto, aparece 2–3 vezes atravessando paredes, usa o Rosto Horripilante e some (quem passar fica imune por 24 h). Luta com 2 bestiario:guarda-anao-espectral. Saída sem combate: carta selada dos elfos da lua, guardada pelo regente no cofre secreto A29 (o grupo a acha antes do confronto; se encontrar Vyldara antes, ela usa o Lamento e recua para A27, dando tempo de abrir o cofre) e desafio de perícias (3 sucessos antes de 3 falhas, CD 15; Atuação da Lyrien com Vantagem; ler a carta = 1 sucesso automático). Se ela descansar assim, desperta a Lira de Duas Vozes da Lyrien. Ficha original do livro: bestiario:banshee."
     },
     "guarda-anao-espectral": {
       "nome": "Guarda Anão Espectral",
@@ -4683,7 +4683,8 @@
         {
           "codigo": "A23",
           "nome": "Quartel Superior Oeste",
-          "texto": "Lareira na parede oeste com chaminé fuliginosa que serve de entrada/saída (ver Chegada). Acima da cornija, escudo de aço não mágico com o brasão de Axeholm. Leitos, mesas, cadeiras e armários vazios intactos, cobertos de poeira."
+          "texto": "Lareira na parede oeste com chaminé fuliginosa que serve de entrada/saída (ver Chegada). Acima da cornija, escudo de aço não mágico com o brasão de Axeholm. Leitos, mesas, cadeiras e armários vazios intactos, cobertos de poeira.",
+          "tesouro": "Variante do Mestre: num tubo de couro atrás do escudo, dois pergaminhos anões de uso único: Queda Suave (nível 1) e Arrombar (nível 2), ambos da lista de feiticeiro (pensados para o Heskan)."
         },
         {
           "codigo": "A24",
@@ -4715,7 +4716,7 @@
           "codigo": "A29",
           "nome": "Cofre Secreto",
           "texto": "Sala vazia com baú de ferro de 30 kg com pés de garra. A fechadura é um recuo circular com o símbolo invertido do machado numa manopla: coloca-se o anel de sinete do regente (A14) e o baú abre, ficando destrancado até a tampa ser bem fechada. Alternativas: Destreza CD 20 com ferramentas de ladrão, arrombar ou magia semelhante.",
-          "tesouro": "Elmo do Temor (item:elmo-temor) e Manoplas de Força de Ogro (item:manoplas-forca-ogro)."
+          "tesouro": "Elmo do Temor (item:elmo-temor) e Manoplas de Força de Ogro (item:manoplas-forca-ogro). Variante do Mestre: carta selada dos elfos da lua para Vyldara, assinada por Caelith, da Corte da Lua Prateada (\"Estamos a caminho. Aguente.\"). O regente a recebeu depois da morte dela e a escondeu por vergonha."
         },
         {
           "codigo": "A30",
